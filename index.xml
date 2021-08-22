@@ -15,7 +15,7 @@
     <item>
       <title>Welcome</title>
       <link>https://psqf6243.brandonlebeau.org/content/00-getting-started/</link>
-      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/00-getting-started/</guid>
       <description>
 &lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/00-getting-started/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
@@ -29,18 +29,12 @@
 &lt;ul&gt;
 &lt;li&gt;Review the syllabus&lt;/li&gt;
 &lt;li&gt;Review the schedule&lt;/li&gt;
-&lt;li&gt;Install R (or use the RStudio Cloud link) - &lt;a href=&#34;https://notebooks.hpc.uiowa.edu/psqf62500exw&#34;&gt;RStudio Cloud&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optionally, install RSTudio&lt;/li&gt;
-&lt;li&gt;Optionally, complete the &lt;a href=&#34;https://forms.office.com/Pages/ResponsePage.aspx?id=lUXEG7qaw0-47HuUpVhv3F6BhfUHbvpKq3g5-YqONptUM09TWExZSDlWWTIwOFhERlM2TVRDT1RZQy4u&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;weekly-videos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Weekly Videos&lt;/h2&gt;
+&lt;li&gt;Review, accessing the IDAS page
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Course Overview
-&lt;iframe src=&#34;https://uicapture.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=fe8f66c5-3c0c-455c-9bfc-acbb012df228&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&#34; height=&#34;405&#34; width=&#34;720&#34; style=&#34;border: 1px solid #464646;&#34; allowfullscreen allow=&#34;autoplay&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Course Logistics
-&lt;iframe src=&#34;https://uicapture.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=9d7ab154-e4c5-4591-96a7-acbc0165cf3c&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&#34; height=&#34;405&#34; width=&#34;720&#34; style=&#34;border: 1px solid #464646;&#34; allowfullscreen allow=&#34;autoplay&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://notebooks.hpc.uiowa.edu/psqf62430002/hub/home&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
+&lt;li&gt;RStudio Server to come …&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/Pages/ResponsePage.aspx?id=lUXEG7qaw0-47HuUpVhv3F6BhfUHbvpKq3g5-YqONptUMjY1U081UkJXQVFGNTI1WTBVWVhEWFpQRC4u&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 </description>
