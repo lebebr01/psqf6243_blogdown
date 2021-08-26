@@ -32,7 +32,7 @@
 &lt;li&gt;Review, accessing the IDAS page
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://notebooks.hpc.uiowa.edu/psqf62430002/hub/home&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
-&lt;li&gt;RStudio Server to come …&lt;/li&gt;
+&lt;li&gt;RStudio Server, to access you can switch via the “New” button on Jupyter Notebooks.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/Pages/ResponsePage.aspx?id=lUXEG7qaw0-47HuUpVhv3F6BhfUHbvpKq3g5-YqONptUMjY1U081UkJXQVFGNTI1WTBVWVhEWFpQRC4u&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -54,15 +54,25 @@
 
 &lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to the course. Primary content will be a review to set the basis for the remainder of the semester.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read syllabus, ask any questions&lt;/li&gt;
+&lt;li&gt;Review introductory statistics content&lt;/li&gt;
+&lt;li&gt;Explore R code from introductory slides&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;activities&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Activities&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;weekly-videos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Weekly Videos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Review introductory statistics content
+&lt;ul&gt;
+&lt;li&gt;Chapters 2 - 4 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/visualization.html&#34;&gt;Statistical Reasoning through computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Optional, complete &lt;a href=&#34;https://forms.office.com/r/Mj41bM8uVY&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;assignments&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Assignments&lt;/h2&gt;
