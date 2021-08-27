@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 23 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 27 Aug 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -101,7 +101,7 @@ library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
 ## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+## ✓ readr   2.0.0     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -183,14 +183,14 @@ mariokart &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/r
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(mariokart)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
-##   track         type  shortcut player system_played date       time_period  time
-##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;         &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
-## 1 Luigi Raceway Thre… No       Salam  NTSC          1997-02-15 2M 12.99S    133.
-## 2 Luigi Raceway Thre… No       Booth  NTSC          1997-02-16 2M 9.99S     130.
-## 3 Luigi Raceway Thre… No       Salam  NTSC          1997-02-16 2M 8.99S     129.
-## 4 Luigi Raceway Thre… No       Salam  NTSC          1997-02-28 2M 6.99S     127.
-## 5 Luigi Raceway Thre… No       Gregg… NTSC          1997-03-07 2M 4.51S     125.
-## 6 Luigi Raceway Thre… No       Rocky… NTSC          1997-04-30 2M 2.89S     123.
+##   track      type     shortcut player system_played date       time_period  time
+##   &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;         &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1 Luigi Rac… Three L… No       Salam  NTSC          1997-02-15 2M 12.99S    133.
+## 2 Luigi Rac… Three L… No       Booth  NTSC          1997-02-16 2M 9.99S     130.
+## 3 Luigi Rac… Three L… No       Salam  NTSC          1997-02-16 2M 8.99S     129.
+## 4 Luigi Rac… Three L… No       Salam  NTSC          1997-02-28 2M 6.99S     127.
+## 5 Luigi Rac… Three L… No       Gregg… NTSC          1997-03-07 2M 4.51S     125.
+## 6 Luigi Rac… Three L… No       Rocky… NTSC          1997-04-30 2M 2.89S     123.
 ## # … with 4 more variables: record_duration &amp;lt;dbl&amp;gt;, year &amp;lt;dbl&amp;gt;, month &amp;lt;dbl&amp;gt;,
 ## #   day &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# univariate distribution of time
