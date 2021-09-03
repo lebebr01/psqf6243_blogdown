@@ -102,6 +102,7 @@ library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 ## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
 ## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -225,6 +226,276 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;%
     </item>
     
     <item>
+      <title>Review - class</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/review-class/</link>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/review-class/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;review-for-psqf-6243&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Review for PSQF 6243&lt;/h1&gt;
+&lt;p&gt;This serves as a non-exhaustive review for the course. These are elements that I assume you have knowledge of prior to starting the course.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Variable vs constant attributes&lt;/li&gt;
+&lt;li&gt;Types of variables (ie., nominal, ordinal, integer, ratio)&lt;/li&gt;
+&lt;li&gt;Descriptive Statistics (eg., mean, median, standard deviation, variance, percentiles)&lt;/li&gt;
+&lt;li&gt;Higher order moments (eg., skewness and kurtosis)&lt;/li&gt;
+&lt;li&gt;Exploring/summarizing univariate distributions (eg., histogram or density figure)&lt;/li&gt;
+&lt;li&gt;What is a statistical model? Why do we use them?&lt;/li&gt;
+&lt;li&gt;Population vs Sample&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;examples&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Examples&lt;/h2&gt;
+&lt;p&gt;Mario Kart 64 world record data:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;variable&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;class&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;track&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Track name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;type&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;factor&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Single or three lap record&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;shortcut&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;factor&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Shortcut or non-shortcut record&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;player&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Player’s name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;system_played&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Used system (NTSC or PAL)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;date&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;date&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;World record date&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;time_period&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;period&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Time as &lt;code&gt;hms&lt;/code&gt; period&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;time&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Time in seconds&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;record_duration&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Record duration in days&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load some libraries
+library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(lubridate)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;lubridate&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     date, intersect, setdiff, union&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mosaic&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(e1071)
+
+theme_set(theme_bw(base_size = 18))
+
+# load in some data
+mariokart &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv&amp;#39;) %&amp;gt;%
+    mutate(year = year(date),
+           month = month(date),
+           day = month(date))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 2334 Columns: 9&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (6): track, type, shortcut, player, system_played, time_period
+## dbl  (2): time, record_duration
+## date (1): date&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(mariokart)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
+##   track         type  shortcut player system_played date       time_period  time
+##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;         &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1 Luigi Raceway Thre… No       Salam  NTSC          1997-02-15 2M 12.99S    133.
+## 2 Luigi Raceway Thre… No       Booth  NTSC          1997-02-16 2M 9.99S     130.
+## 3 Luigi Raceway Thre… No       Salam  NTSC          1997-02-16 2M 8.99S     129.
+## 4 Luigi Raceway Thre… No       Salam  NTSC          1997-02-28 2M 6.99S     127.
+## 5 Luigi Raceway Thre… No       Gregg… NTSC          1997-03-07 2M 4.51S     125.
+## 6 Luigi Raceway Thre… No       Rocky… NTSC          1997-04-30 2M 2.89S     123.
+## # … with 4 more variables: record_duration &amp;lt;dbl&amp;gt;, year &amp;lt;dbl&amp;gt;, month &amp;lt;dbl&amp;gt;,
+## #   day &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# univariate distribution of time
+gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;% 
+   gf_labs(x = &amp;quot;Time (in seconds)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ time, data = mariokart) %&amp;gt;% 
+   gf_labs(x = &amp;quot;Time (in seconds)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(~ time, data = mariokart, mean, median, sd, var, skewness, kurtosis, quantile(probs = c(0.1, 0.5, 0.9)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response     mean median      sd      var skewness kurtosis   10%   50%
+## 1     time 90.62383  86.19 66.6721 4445.169 1.771732 3.844745 31.31 86.19
+##       90%
+## 1 171.961&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bivariate-association&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bivariate Association&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(time ~ record_duration, data = mariokart)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.06736739&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor.test(time ~ record_duration, data = mariokart)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Pearson&amp;#39;s product-moment correlation
+## 
+## data:  time and record_duration
+## t = -3.2606, df = 2332, p-value = 0.001128
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.1076463 -0.0268677
+## sample estimates:
+##         cor 
+## -0.06736739&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(time ~ record_duration, data = mariokart) %&amp;gt;%
+  gf_labs(x = &amp;quot;How long the record was held&amp;quot;,
+          y = &amp;quot;Time (in seconds)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mariokart %&amp;gt;%
+group_by(track, type, shortcut) %&amp;gt;%
+summarise(cor = cor(time ~ record_duration)) %&amp;gt;%
+arrange(-cor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;track&amp;#39;, &amp;#39;type&amp;#39;. You can override using the `.groups` argument.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 56 × 4
+## # Groups:   track, type [32]
+##    track                 type      shortcut     cor
+##    &amp;lt;chr&amp;gt;                 &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+##  1 Toad&amp;#39;s Turnpike       Three Lap Yes       0.304 
+##  2 Luigi Raceway         Three Lap Yes       0.263 
+##  3 Rainbow Road          Three Lap Yes       0.155 
+##  4 Frappe Snowland       Three Lap Yes       0.0366
+##  5 Choco Mountain        Three Lap Yes      -0.0332
+##  6 Banshee Boardwalk     Three Lap No       -0.101 
+##  7 D.K.&amp;#39;s Jungle Parkway Three Lap Yes      -0.112 
+##  8 Toad&amp;#39;s Turnpike       Three Lap No       -0.128 
+##  9 Kalimari Desert       Three Lap Yes      -0.128 
+## 10 Yoshi Valley          Three Lap Yes      -0.135 
+## # … with 46 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Questions&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What is problematic about the analyses above? Why?&lt;/li&gt;
+&lt;li&gt;What could be done to improve the analyses above?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(time ~ type, data = mariokart, color = ~type, fill = ~type) %&amp;gt;%
+  gf_refine(coord_flip())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Ignoring unknown aesthetics: .&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(time ~ shortcut, data = mariokart, color = ~shortcut, fill = ~shortcut) %&amp;gt;%
+  gf_facet_wrap(~ type) %&amp;gt;%
+  gf_refine(coord_flip())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Ignoring unknown aesthetics: .&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(time ~ track, data = mariokart, fill = &amp;#39;gray65&amp;#39;,
+         draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
+  gf_refine(coord_flip())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(time ~ track, data = mariokart, fill = &amp;#39;gray65&amp;#39;,
+         draw_quantiles = c(0.1, 0.5, 0.9), scale = &amp;#39;width&amp;#39;) %&amp;gt;%
+  gf_refine(coord_flip()) %&amp;gt;%
+  gf_facet_wrap(~ type, scales = &amp;#39;free_x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
+## collapsing to unique &amp;#39;x&amp;#39; values
+
+## Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
+## collapsing to unique &amp;#39;x&amp;#39; values&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/review-class_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Intro to Linear Regression</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/intro-regression/</link>
       <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
@@ -252,6 +523,7 @@ Y = \beta_{0} + \beta_{1} X + \epsilon
 ## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
 ## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -566,6 +838,7 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 ## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
 ## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -748,7 +1021,7 @@ head(airquality)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_s &amp;lt;- lm(z_aqi ~ z_wind, data = airquality)
 coef(air_lm_s)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   (Intercept)        z_wind 
-## -6.712023e-16 -2.920277e-01&lt;/code&gt;&lt;/pre&gt;
+## -2.113006e-15 -2.920277e-01&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_s)$r.square&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_s)$sigma&lt;/code&gt;&lt;/pre&gt;
