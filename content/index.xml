@@ -41,6 +41,22 @@
     </item>
     
     <item>
+      <title>IDAS Introduction</title>
+      <link>https://psqf6243.brandonlebeau.org/content/00a-idas/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/00a-idas/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This page is meant as a way to give some introduction and how to access the IDAS used for the course.&lt;/p&gt;
+&lt;h2 id=&#34;access&#34;&gt;Access&lt;/h2&gt;
+&lt;p&gt;The IDAS server can be accessed via the following link directly: &lt;a href=&#34;https://notebooks.hpc.uiowa.edu/psqf62430002/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Access IDAS&lt;/a&gt;. Upon going here, you will be prompted to log in with your HawkID. Finally, to use the IDAS, you will need to have DUO authentication activated.&lt;/p&gt;
+&lt;p&gt;Here is a good link if you have not set up DUO authentication before from ITS. It may take a few hours or up to a day to be granted access to the IDAS after setting up DUO authentication for the first time, &lt;a href=&#34;https://its.uiowa.edu/duo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DUO Authentication Docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;idas-specifics&#34;&gt;IDAS Specifics&lt;/h2&gt;
+&lt;p&gt;The IDAS by default will launch in Jupyter Notebook mode and will sync all course materials that I have posted for the course. The syncing of remote materials will never overwrite anything that you have manually edited by you, the student. For this reason, if I notice a breaking change, I usually post a new updated file with a new name.&lt;/p&gt;
+&lt;p&gt;You can also access RStudio server within the IDAS for the course as well. This can be accessed by clicking on &amp;ldquo;New&amp;rdquo; in the middle left part of the page, then clicking RStudio in the drop-down menu. You should still have access to all of the course files that are automatically synced for you within the RStudio environment.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Week 1</title>
       <link>https://psqf6243.brandonlebeau.org/content/01-week1/</link>
       <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
