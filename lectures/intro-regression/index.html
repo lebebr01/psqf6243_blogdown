@@ -968,8 +968,8 @@ Avg\_points = 1.1356 + .0101 Minutes + \epsilon
 <pre><code>## [1] 1.1457</code></pre>
 <pre class="r"><code>1.1356 + .0101 * 100</code></pre>
 <pre><code>## [1] 2.1456</code></pre>
-<pre class="r"><code>1.1356 + .0101 * mean(basketball$avg_points)</code></pre>
-<pre><code>## [1] 1.189732</code></pre>
+<pre class="r"><code>1.1356 + .0101 * mean(basketball$total_minutes)</code></pre>
+<pre><code>## [1] 5.342042</code></pre>
 <pre class="r"><code>1.1356 + .0101 * 5000</code></pre>
 <pre><code>## [1] 51.6356</code></pre>
 <pre class="r"><code>1.1356 + .0101 * -50</code></pre>
@@ -1027,7 +1027,7 @@ Avg\_points = 1.1356 + .0101 Minutes + \epsilon
 <h2>Another related measure of error</h2>
 <p>Another way to get a measure of how well the model is performing, would be a statistic called R-squared. This statistic is a function of the sum of squares described above.</p>
 <p><span class="math display">\[
-R^{2} = 1 - \frac{SS_{res}}{SS_{total}}
+R^{2} = 1 - \frac{SS_{error}}{SS_{total}}
 \]</span></p>
 <p>or</p>
 <p><span class="math display">\[

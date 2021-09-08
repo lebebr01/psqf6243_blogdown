@@ -648,8 +648,8 @@ Avg\_points = 1.1356 + .0101 Minutes + \epsilon
 &lt;pre&gt;&lt;code&gt;## [1] 1.1457&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 100&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 2.1456&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * mean(basketball$avg_points)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 1.189732&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * mean(basketball$total_minutes)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 5.342042&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 5000&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 51.6356&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * -50&lt;/code&gt;&lt;/pre&gt;
@@ -707,7 +707,7 @@ Avg\_points = 1.1356 + .0101 Minutes + \epsilon
 &lt;h2&gt;Another related measure of error&lt;/h2&gt;
 &lt;p&gt;Another way to get a measure of how well the model is performing, would be a statistic called R-squared. This statistic is a function of the sum of squares described above.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-R^{2} = 1 - \frac{SS_{res}}{SS_{total}}
+R^{2} = 1 - \frac{SS_{error}}{SS_{total}}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;or&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
