@@ -783,7 +783,15 @@
 
 
 
+  <li class=""><a href="/lectures/linear-regression-class/">Intro to Linear Regression - class</a></li>
+
+
+
   <li class=""><a href="/lectures/regression-estimates/">Linear Regression Estimates</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-estimates-class/">Linear Regression Estimates - class</a></li>
 
 
 
@@ -937,8 +945,8 @@ tail(conditions)</code></pre>
     sqrt((sum(deviation^2) / (nrow(sim_data) - 2)))
 }
 
-sum_square_error(conditions[1892, ], sim_data)</code></pre>
-<pre><code>## [1] 26.74862</code></pre>
+sum_square_error(conditions[nrow(conditions), ], sim_data)</code></pre>
+<pre><code>## [1] 10.18153</code></pre>
 <pre class="r"><code>summary(sim_lm)$sigma</code></pre>
 <pre><code>## [1] 10.18153</code></pre>
 <pre class="r"><code>library(future)
@@ -973,7 +981,7 @@ head(conditions)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/regression-estimates/" rel="next">Linear Regression Estimates</a>
+    <a href="/lectures/regression-estimates-class/" rel="next">Linear Regression Estimates - class</a>
   </div>
   
   

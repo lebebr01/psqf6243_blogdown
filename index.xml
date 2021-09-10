@@ -826,6 +826,337 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>Intro to Linear Regression - class</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/linear-regression-class/</link>
+      <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/linear-regression-class/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction-to-linear-regression&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction to Linear Regression&lt;/h1&gt;
+&lt;p&gt;This week will dive into linear regression, the foundation of this course. The exploration into linear regression will first start with the case when we have 2 &lt;strong&gt;continuous&lt;/strong&gt; predictors or attributes. We may write this general model as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; is the outcome attribute. It is also known as the dependent variable. The &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; term is the predictor/covariate attribute. It is also known as the independent variable. The &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is a random error term, more on this later. Finally, &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt; are unknown population coefficients that we are interested in estimating. More on this later too.&lt;/p&gt;
+&lt;div id=&#34;specific-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Specific example&lt;/h2&gt;
+&lt;p&gt;The data used for this section of the course is from the 2019 WNBA season. These data are part of the &lt;a href=&#34;https://www.bayesrulesbook.com/&#34;&gt;&lt;em&gt;bayesrules&lt;/em&gt; package/book&lt;/a&gt;. The data contain 146 rows, one for each WNBA player sampled, and 32 attributes for that player. The R packages are loaded and the first few rows of the data are shown below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mosaic&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)
+
+basketball &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/basketball.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 146 Columns: 32&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (2): player_name, team
+## dbl (29): height, weight, year, age, games_played, games_started, avg_minute...
+## lgl  (1): starter&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(basketball)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 32
+##   player_name     height weight  year team    age games_played games_started
+##   &amp;lt;chr&amp;gt;            &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;
+## 1 Natalie Achonwa     75    190  2019 IND      26           30            18
+## 2 Kayla Alexander     76    195  2019 CHI      28            3             0
+## 3 Rebecca Allen       74    162  2019 NYL      26           24             2
+## 4 Jillian Alleyne     74    193  2019 MIN      24            5             0
+## 5 Kristine Anigwe     76    200  2019 TOT      22           27             0
+## 6 Kristine Anigwe     76    200  2019 CON      22           17             0
+## # … with 24 more variables: avg_minutes_played &amp;lt;dbl&amp;gt;, avg_field_goals &amp;lt;dbl&amp;gt;,
+## #   avg_field_goal_attempts &amp;lt;dbl&amp;gt;, field_goal_pct &amp;lt;dbl&amp;gt;,
+## #   avg_three_pointers &amp;lt;dbl&amp;gt;, avg_three_pointer_attempts &amp;lt;dbl&amp;gt;,
+## #   three_pointer_pct &amp;lt;dbl&amp;gt;, avg_two_pointers &amp;lt;dbl&amp;gt;,
+## #   avg_two_pointer_attempts &amp;lt;dbl&amp;gt;, two_pointer_pct &amp;lt;dbl&amp;gt;,
+## #   avg_free_throws &amp;lt;dbl&amp;gt;, avg_free_throw_attempts &amp;lt;dbl&amp;gt;, free_throw_pct &amp;lt;dbl&amp;gt;,
+## #   avg_offensive_rb &amp;lt;dbl&amp;gt;, avg_defensive_rb &amp;lt;dbl&amp;gt;, avg_rb &amp;lt;dbl&amp;gt;, …&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;guiding-question&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Guiding Question&lt;/h2&gt;
+&lt;p&gt;Suppose we are interested in exploring if players tend to score more points by playing more minutes in the season. That is, those that play more may have more opportunities to score more points. More generally, the relationship between average points in each game by the total minutes played across the season.&lt;/p&gt;
+&lt;p&gt;One first step in an analysis would be to explore each distribution independently first. I’m going to leave that as an exercise for you to do on your own.&lt;/p&gt;
+&lt;p&gt;The next step would be to explore the bivariate figure of these two attributes. As both of these attributes are continuous ratio type attributes, a scatterplot would be one way to visualize this. A scatterplot takes each X,Y pair of data and plots those coordinates. This can be done in R with the following code.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/linear-regression-class_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Questions to consider&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What can be noticed about the relationship between these two attributes?&lt;/li&gt;
+&lt;li&gt;Does there appear to be a relationship between the two?&lt;/li&gt;
+&lt;li&gt;Is this relationship perfect?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-a-smoother-line&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adding a smoother line&lt;/h2&gt;
+&lt;p&gt;Adding a smoother line to the figure can help to guide how strong the relationship may be. In general, there are two types of smoothers that we will consider in this course. One is flexible and data dependent. This means that the functional form of the relationship is flexible to allow the data to specify if there are in non-linear aspects. The second is a linear or straight-line approach.&lt;/p&gt;
+&lt;p&gt;I’m going to add both to the figure below. The flexible (in this case this is a LOESS curve) curve is darker blue, the linear line is lighter blue.&lt;/p&gt;
+&lt;p&gt;Does there appear to be much difference in the relationship across the two lines?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_smooth() %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;lightblue&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;loess&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/linear-regression-class_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimating-linear-regression-coefficients&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimating linear regression coefficients&lt;/h2&gt;
+&lt;p&gt;The linear regression coefficients can be estimated within any statistical software (or by hand, even if tedious). Within R, the primary function is &lt;code&gt;lm()&lt;/code&gt; to estimate a linear regression. The primary argument is a formula similar to the regression formula shown above at the top of the notes.&lt;/p&gt;
+&lt;p&gt;This equation could be written more directly for our specific problem.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Avg\_points = \beta_{0} + \beta_{1} Minutes\_Played + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For the R formula, instead of an &lt;span class=&#34;math inline&#34;&gt;\(=\)&lt;/span&gt;, you could insert a &lt;span class=&#34;math inline&#34;&gt;\(~\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wnba_reg &amp;lt;- lm(avg_points ~ total_minutes, data = basketball)
+coef(wnba_reg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   (Intercept) total_minutes 
+##    1.13562456    0.01014207&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;interpretting-linear-regression-terms&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Interpretting linear regression terms&lt;/h2&gt;
+&lt;p&gt;Now that we have estimates for the linear regression terms, how are these interpretted? The linear regression equation with these estimates plugged in would look like the following:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{avg\_points} = 1.1356 + .0101 min\_played
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where instead of &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt;, the estimated values from this single season were inserted. Note the &lt;span class=&#34;math inline&#34;&gt;\(\hat{avg\_points}\)&lt;/span&gt;, which the caret symbol is read as a hat, that is, average points hat, is a very important small distinction. This now represents the predicted values for the linear regression. That means, that the predicted value for the average number of points is assumed to function solely based on the minutes a player played. We could put in any value for the minutes played and get an estimated average number of points out.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.1356&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.1457&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 100&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.1456&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * mean(basketball$total_minutes)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 5.342042&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 5000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 51.6356&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * -50&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.6306&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(basketball$total_minutes)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 416.4795&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also notice from the equation above with the estimated coefficients, there is no longer any error. More on this later, but I wanted to point that out now. Back to model interpretations, these can become a bit more obvious with the values computed above by inputting specific values for the total minutes played.&lt;/p&gt;
+&lt;p&gt;First, for the intercept (&lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt;), notice that for the first computation above when 0 total minutes was input into the equation, that the same value for the intercept estimate was returned. This highlights what the intercept is, the average number of points scored when the X attribute (minutes played) equals 0.&lt;/p&gt;
+&lt;p&gt;The slope, (&lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt;), term is the average change in the outcome (average points here) for a one unit change in the predictor attribute (minutes played). Therefore, the slope here is 0.0101, which means that the average points scores increases by about 0.01 points for every additional minute played. This effect is additive, meaning that the 0.01 for a one unit change, say from 100 to 101 minutes, will remain when increasing from 101 to 102 minutes.&lt;/p&gt;
+&lt;p&gt;The predictions coming from the linear regression are the same as the light blue dashed line shown in the figure above and recreated here without the dark blue line.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;lightblue&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/linear-regression-class_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-about-the-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What about the error?&lt;/h2&gt;
+&lt;p&gt;So far the error has been disregarded, but where did it go? The error didn’t disappear, it is actually in the figure just created above. Where can you see the error? Why was it disregarded when creating the predicted values?&lt;/p&gt;
+&lt;p&gt;The short answer is that the error in a linear regression is commonly assumed to follow a Normal distribution with a mean of 0 and some variance, &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;. Sometimes this is written in math notation as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+\epsilon \sim N(0, \sigma^2)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From this notation, can you see why the error was disregarded earlier when generating predictions?&lt;/p&gt;
+&lt;p&gt;In short, on average, the error is assumed to be 0 across all the sample data. The error will be smaller when the data are more closely clustered around the linear regression line and larger when the data are not clustered around the linear regression line. In the simple case with a single predictor, the error would be minimized when the correlation is closest to 1 in absolute value and largest when the correlation close to or equals 0.&lt;/p&gt;
+&lt;div id=&#34;estimating-error-in-linear-regression&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Estimating error in linear regression&lt;/h3&gt;
+&lt;p&gt;This comes from partitioning of variance that you maybe heard from a design of experiment or analysis of variance course. More specifically, the variance in the outcome can be partioned or split into two components, those that the independent attribute helped to explain vs those that it can not explain. The part that can be explained is sometimes referred to as the &lt;em&gt;sum of squares regression&lt;/em&gt; (SSR), the portion that is unexplained is referred to as the &lt;em&gt;sum of squares error&lt;/em&gt; (SSE). This could be written in math notation as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+\sum (Y - \bar{Y})^2 = \sum (Y - \hat{Y})^2 + \sum (\hat{Y} - \bar{Y})^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sum (Y - \hat{Y})^2 = \sum (Y - (\hat{\beta}_{0} + \hat{\beta}_{1}X))^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\sigma}^2 = \frac{\sum (Y - \hat{Y})^2 }{n - 2}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s try to visualize what this means.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_hline(yintercept = ~mean(avg_points), data = basketball) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;lightblue&amp;#39;) %&amp;gt;%
+  gf_segment(avg_points + mean(avg_points) ~ total_minutes + total_minutes, data = basketball, color = &amp;#39;#FF7F7F&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/linear-regression-class_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_hline(yintercept = ~mean(avg_points), data = basketball) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;blue&amp;#39;, size = 2) %&amp;gt;%
+  gf_segment(avg_points + fitted(wnba_reg) ~ total_minutes + total_minutes, data = basketball, color = &amp;#39;#65a765&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/linear-regression-class_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_hline(yintercept = ~mean(avg_points), data = basketball) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;blue&amp;#39;, size = 2) %&amp;gt;%
+  gf_segment(mean(avg_points) + fitted(wnba_reg) ~ total_minutes + total_minutes, data = basketball, color = &amp;#39;#FFD580&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/linear-regression-class_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(wnba_reg)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.979045&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;another-related-measure-of-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Another related measure of error&lt;/h2&gt;
+&lt;p&gt;Another way to get a measure of how well the model is performing, would be a statistic called R-squared. This statistic is a function of the sum of squares described above.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+R^{2} = 1 - \frac{SS_{error}}{SS_{total}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+R^{2} = \frac{SS_{reg}}{SS_{total}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s compute the sum of square and get a value for &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;basketball %&amp;gt;%
+summarise(ss_total = sum((avg_points - mean(avg_points))^2),
+          ss_error = sum((avg_points - fitted(wnba_reg))^2),
+          ss_reg = sum((fitted(wnba_reg) - mean(avg_points))^2)) %&amp;gt;%
+mutate(r_square = 1 - ss_error / ss_total,
+       r_square2 = ss_reg / ss_total)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 5
+##   ss_total ss_error ss_reg r_square r_square2
+##      &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1    2004.     564.  1440.    0.719     0.719&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;basketball %&amp;gt;%
+summarise(ss_total = sum((avg_points - mean(avg_points))^2),
+          ss_error = sum((avg_points - fitted(wnba_reg))^2),
+          ss_reg = sum((fitted(wnba_reg) - mean(avg_points))^2)) %&amp;gt;%
+mutate(r_square = 1 - ss_error / ss_total,
+       r_square2 = ss_reg / ss_total)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 5
+##   ss_total ss_error ss_reg r_square r_square2
+##      &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1    2004.     564.  1440.    0.719     0.719&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(wnba_reg)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.7185315&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(wnba_reg)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.979045&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sigma_hat_square &amp;lt;- 563.9929 / (nrow(basketball) - 2)
+sigma_hat &amp;lt;- sqrt(sigma_hat_square)
+
+sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.916617&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sigma_hat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.979045&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(avg_points ~ total_minutes, data = basketball)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.8476624&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(avg_points ~ total_minutes, data = basketball) ^ 2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.7185315&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 2</title>
+      <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
+      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/02-week2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Recognize a linear regression formula&lt;/li&gt;
+&lt;li&gt;Interpret regression parameters&lt;/li&gt;
+&lt;li&gt;Specify a linear regression in statistical software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;activities&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;assignments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Assignments&lt;/h2&gt;
+&lt;p&gt;None this week.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 3</title>
+      <link>https://psqf6243.brandonlebeau.org/content/03-week3/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/03-week3/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define a residual or error from a regression model.&lt;/li&gt;
+&lt;li&gt;Explore benefits of centering predictor attributes.&lt;/li&gt;
+&lt;li&gt;Engage with linear regression parameter estimation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optional, Read 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#least-squares-regression&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/170115/quizzes/279966&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 1&lt;/a&gt; - Due September 13th&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Linear Regression Estimates</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/regression-estimates/</link>
       <pubDate>Thu, 02 Sep 2021 00:00:00 +0000</pubDate>
@@ -911,7 +1242,7 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 &lt;/table&gt;
 &lt;div id=&#34;guiding-question&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Guiding Question&lt;/h3&gt;
-&lt;p&gt;How is pm2.5 related to the daily air quality index?&lt;/p&gt;
+&lt;p&gt;How is average wind speed related to the daily air quality index?&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bivariate-figure&#34; class=&#34;section level2&#34;&gt;
@@ -1200,41 +1531,397 @@ X_Y&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Week 2</title>
-      <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
-      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
+      <title>Linear Regression Estimates - class</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/regression-estimates-class/</link>
+      <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/regression-estimates-class/</guid>
       <description>
-&lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/02-week2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 
 &lt;/div&gt;
 
-&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;div id=&#34;understanding-regression-parameters&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Understanding Regression Parameters&lt;/h1&gt;
+&lt;p&gt;This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate) parameters mean. We will consider the estimation formulas in part of this to gain a sense of how these can be computed.&lt;/p&gt;
+&lt;div id=&#34;new-example-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;New Example Data&lt;/h2&gt;
+&lt;p&gt;The new data for this section of notes will explore data from the &lt;a href=&#34;https://www.epa.gov/outdoor-air-quality-data&#34;&gt;Environmental Protection Agency on Air Quality&lt;/a&gt; collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;43%&#34; /&gt;
+&lt;col width=&#34;56%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Variable&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;date&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Date of observation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Site ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;poc&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Parameter Occurrence Code (POC)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;pm2.5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;daily_aqi&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Average air quality index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;site_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Site Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;aqs_parameter_desc&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Text Description of Observation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;cbsa_code&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Core Based Statistical Area (CBSA) ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;cbsa_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CBSA Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;county&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;County in Iowa&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;avg_wind&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Average daily wind speed (in knots)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;max_wind&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Maximum daily wind speed (in knots)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;max_wind_hours&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Time of maximum daily wind speed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div id=&#34;guiding-question&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Guiding Question&lt;/h3&gt;
+&lt;p&gt;How is pm2.5 related to the daily air quality index?&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Recognize a linear regression formula&lt;/li&gt;
-&lt;li&gt;Interpret regression parameters&lt;/li&gt;
-&lt;li&gt;Specify a linear regression in statistical software&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id=&#34;activities&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div id=&#34;bivariate-figure&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bivariate Figure&lt;/h2&gt;
+&lt;p&gt;Note, below I do a bit of post-processing to combine data from different POC values within a single CBSA.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mosaic&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+airquality &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 6917 Columns: 10&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wind &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1537 Columns: 5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;airquality &amp;lt;- airquality %&amp;gt;%
+   left_join(wind, by = c(&amp;#39;cbsa_name&amp;#39;, &amp;#39;date&amp;#39;)) %&amp;gt;% 
+   drop_na()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 13
+##   date           id   poc pm2.5 daily_aqi site_name   aqs_parameter_d… cbsa_code
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;
+## 1 1/1/21  190130009     1  15.1        57 Water Tower PM2.5 - Local C…     47940
+## 2 1/4/21  190130009     1  13.3        54 Water Tower PM2.5 - Local C…     47940
+## 3 1/7/21  190130009     1  20.5        69 Water Tower PM2.5 - Local C…     47940
+## 4 1/10/21 190130009     1  14.3        56 Water Tower PM2.5 - Local C…     47940
+## 5 1/13/21 190130009     1  13.7        54 Water Tower PM2.5 - Local C…     47940
+## 6 1/16/21 190130009     1   5.3        22 Water Tower PM2.5 - Local C…     47940
+## # … with 5 more variables: cbsa_name &amp;lt;chr&amp;gt;, county &amp;lt;chr&amp;gt;, avg_wind &amp;lt;dbl&amp;gt;,
+## #   max_wind &amp;lt;dbl&amp;gt;, max_wind_hours &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4821   13&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(daily_aqi ~ avg_wind, data = airquality, size = 4, alpha = .15) %&amp;gt;%
+  gf_labs(x = &amp;quot;Average daily wind speed (in knots)&amp;quot;,
+          y = &amp;quot;Daily Air Quality&amp;quot;) %&amp;gt;%
+  gf_smooth() %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, color = &amp;#39;lightblue&amp;#39;, linetype = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;gam&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/regression-estimates-class_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(daily_aqi ~ avg_wind, data = airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.2920277&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm &amp;lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+coef(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   48.222946   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 18.05479&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(airquality$avg_wind)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4.265731&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;48.22294 - 2.2117978 * mean(airquality$avg_wind)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 38.788&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;assignments&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Assignments&lt;/h2&gt;
-&lt;p&gt;None this week.&lt;/p&gt;
+&lt;div id=&#34;centering-predictors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Centering predictors&lt;/h2&gt;
+&lt;p&gt;There are times when centering of predictors can be helpful for interpretation of the model parameters. This can be helpful when 0 is not a practically useful characteristic of the attribute or for more specific tests of certain elements of the X attribute.&lt;/p&gt;
+&lt;div id=&#34;mean-centering&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Mean Centering&lt;/h3&gt;
+&lt;p&gt;Mean centering is where the mean of the attribute is subtracted from each value. This is a linear transformation where each data point is subtracted by a constant, the mean. This means that the distance between points do not change.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;airquality &amp;lt;- airquality %&amp;gt;%
+  mutate(avg_wind_mc = avg_wind - mean(avg_wind),
+         avg_wind_maxc = avg_wind - max(avg_wind),
+         avg_wind_10 = avg_wind - 10,
+        avg_wind_500 = avg_wind + 500)
+
+gf_point(daily_aqi ~ avg_wind_mc, data = airquality, size = 4, alpha = .15) %&amp;gt;%
+  gf_labs(x = &amp;quot;Average daily wind speed (in knots)&amp;quot;,
+          y = &amp;quot;Daily Air Quality&amp;quot;) %&amp;gt;%
+  gf_smooth() %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, color = &amp;#39;lightblue&amp;#39;, linetype = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;gam&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/regression-estimates-class_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_mc &amp;lt;- lm(daily_aqi ~ avg_wind_mc, data = airquality)
+coef(air_lm_mc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept) avg_wind_mc 
+##   38.788011   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_mc)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_mc)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 18.05479&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_maxc &amp;lt;- lm(daily_aqi ~ avg_wind_maxc, data = airquality)
+coef(air_lm_maxc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   (Intercept) avg_wind_maxc 
+##      5.968391     -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_maxc)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_maxc)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 18.05479&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_10 &amp;lt;- lm(daily_aqi ~ avg_wind_10, data = airquality)
+coef(air_lm_10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept) avg_wind_10 
+##   26.104968   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_10)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_10)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 18.05479&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;standardized-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Standardized Regression&lt;/h2&gt;
+&lt;p&gt;Another type of regression that can be done is one in which the attributes are standardized prior to estimating the linear regression. What is meant by standardizing? This is converting the attributes into z-scores:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+Z_{aqi} = \frac{(aqi - \bar{aqi})}{s_{aqi}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Z_{aqi} * s_{aqi} + \bar{aqi} = aqi
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;airquality &amp;lt;- airquality %&amp;gt;%
+  mutate(z_aqi = scale(daily_aqi),
+         z_aqi2 = (daily_aqi - mean(daily_aqi)) / sd(daily_aqi),
+         z_wind = scale(avg_wind))
+
+head(airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 20
+##   date           id   poc pm2.5 daily_aqi site_name   aqs_parameter_d… cbsa_code
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;
+## 1 1/1/21  190130009     1  15.1        57 Water Tower PM2.5 - Local C…     47940
+## 2 1/4/21  190130009     1  13.3        54 Water Tower PM2.5 - Local C…     47940
+## 3 1/7/21  190130009     1  20.5        69 Water Tower PM2.5 - Local C…     47940
+## 4 1/10/21 190130009     1  14.3        56 Water Tower PM2.5 - Local C…     47940
+## 5 1/13/21 190130009     1  13.7        54 Water Tower PM2.5 - Local C…     47940
+## 6 1/16/21 190130009     1   5.3        22 Water Tower PM2.5 - Local C…     47940
+## # … with 12 more variables: cbsa_name &amp;lt;chr&amp;gt;, county &amp;lt;chr&amp;gt;, avg_wind &amp;lt;dbl&amp;gt;,
+## #   max_wind &amp;lt;dbl&amp;gt;, max_wind_hours &amp;lt;dbl&amp;gt;, avg_wind_mc &amp;lt;dbl&amp;gt;,
+## #   avg_wind_maxc &amp;lt;dbl&amp;gt;, avg_wind_10 &amp;lt;dbl&amp;gt;, avg_wind_500 &amp;lt;dbl&amp;gt;,
+## #   z_aqi &amp;lt;dbl[,1]&amp;gt;, z_aqi2 &amp;lt;dbl&amp;gt;, z_wind &amp;lt;dbl[,1]&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_s &amp;lt;- lm(z_aqi ~ z_wind, data = airquality)
+coef(air_lm_s)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   (Intercept)        z_wind 
+## -2.113006e-15 -2.920277e-01&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_s)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_s)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9565091&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also use this formula to convert any unstandardized regression coefficients into a standardized metric.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+b^{&amp;#39;}_{k} = b_{k} * \frac{s_{x_{k}}}{s_{y}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{Z}_{aqi} = b_{1} Z_{wind}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+b_{1} = r * \frac{s_{y}}{s_{x}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;-2.211 * sd(airquality$avg_wind) / sd(airquality$daily_aqi)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.2919224&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(daily_aqi ~ avg_wind, data = airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.2920277&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(z_aqi ~ z_wind, data = airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            [,1]
+## [1,] -0.2920277&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(daily_aqi ~ avg_wind, data = airquality) * sd(airquality$daily_aqi) / sd(airquality$avg_wind)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(z_aqi ~ z_wind, data = airquality) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/regression-estimates-class_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;parameter-estimation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Parameter Estimation&lt;/h2&gt;
+&lt;p&gt;Now that we looked how the parameters are impacted by some changes in the model specification, how are these parameters actually estimated? I will show two ways, one is general, the other is specific to this simple case with a single predictor/covariate attribute. In general, linear regression (or more generally the general linear model) uses least square estimation. This means that the the parameters in the model minimize the squared distance between the observed and predicted values. That is, least squares estimates minimize this criterion:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sum (Y - \hat{Y})^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;div id=&#34;specific-example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Specific example&lt;/h3&gt;
+&lt;p&gt;Calculus can be used to show that these two equations can be solved simultanuously to get estimates for &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt; that minimize the criterion above. These formulas are:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+b_{1} = \frac{\sum(X - \bar{X})(Y - \bar{Y})}{\sum(X - \bar{X})^2}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+b_{0} = \bar{Y} - b_{1}\bar{X}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s use R to get these quantities.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;b1 &amp;lt;- with(airquality, 
+      sum((avg_wind - mean(avg_wind)) * (daily_aqi - mean(daily_aqi))) / sum((avg_wind - mean(avg_wind))^2)
+)
+b0 &amp;lt;- with(airquality, 
+      mean(daily_aqi) - b1 * mean(avg_wind)
+)
+b0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 48.22295&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;b1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;coef(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   48.222946   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;general-approach&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;General Approach&lt;/h3&gt;
+&lt;p&gt;When there are more than one predictor, the number of equations gets a bit unyieldy, therefore, there is a general analytic approach that works for any set of predictor attributes. The general approach uses matrix algebra (anyone take linear algebra?), to achieve their estimates. This general form is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{b} = \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1} \left( \mathbf{X}^{`} \mathbf{Y} \right).
+\]&lt;/span&gt;
+Where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{b}\)&lt;/span&gt; is a vector of estimated regression coefficients, &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}\)&lt;/span&gt; is a matrix of covariate/predictor attributes (called the design matrix), and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Y}\)&lt;/span&gt; is a vector of the outcome attribute.&lt;/p&gt;
+&lt;p&gt;Below, I show what these would look like for the air quality example that has been used and solve for the regression coefficients.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- model.matrix(air_lm)
+head(X)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   (Intercept) avg_wind
+## 1           1 2.941667
+## 2           1 2.445833
+## 3           1 1.995833
+## 4           1 3.445833
+## 5           1 1.116667
+## 6           1 6.091667&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Y &amp;lt;- as.matrix(airquality$daily_aqi)
+head(Y)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      [,1]
+## [1,]   57
+## [2,]   54
+## [3,]   69
+## [4,]   56
+## [5,]   54
+## [6,]   22&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X_X &amp;lt;- solve(t(X) %*% X)
+X_X&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               (Intercept)      avg_wind
+## (Intercept)  0.0008152474 -1.424894e-04
+## avg_wind    -0.0001424894  3.340328e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X_Y &amp;lt;- t(X) %*% Y
+X_Y&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               [,1]
+## (Intercept) 186997
+## avg_wind    731464&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X_X %*% X_Y&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  [,1]
+## (Intercept) 48.222946
+## avg_wind    -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;coef(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   48.222946   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -1357,8 +2044,8 @@ tail(conditions)&lt;/code&gt;&lt;/pre&gt;
     sqrt((sum(deviation^2) / (nrow(sim_data) - 2)))
 }
 
-sum_square_error(conditions[1892, ], sim_data)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 26.74862&lt;/code&gt;&lt;/pre&gt;
+sum_square_error(conditions[nrow(conditions), ], sim_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 10.18153&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(sim_lm)$sigma&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 10.18153&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(future)
@@ -1376,33 +2063,6 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
 ## 5        1.00     0 56.40699
 ## 6        1.25     0 56.16498&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 3</title>
-      <link>https://psqf6243.brandonlebeau.org/content/03-week3/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/03-week3/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Define a residual or error from a regression model.&lt;/li&gt;
-&lt;li&gt;Explore benefits of centering predictor attributes.&lt;/li&gt;
-&lt;li&gt;Engage with linear regression parameter estimation.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optional, Read 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#least-squares-regression&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/170115/quizzes/279966&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 1&lt;/a&gt; - Due September 13th&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
