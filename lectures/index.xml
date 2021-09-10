@@ -1114,5 +1114,145 @@ X_Y&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
+    <item>
+      <title>Least Square Simulation</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/least-squares-simulation/</link>
+      <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/least-squares-simulation/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;example-to-show-least-squares-minimization&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example to show least squares minimization&lt;/h2&gt;
+&lt;p&gt;This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y -  )^2 $.&lt;/p&gt;
+&lt;p&gt;In this example, we will generate some data so that we know what the truth is. Then, upon data generation, we will compute a bunch of different values for the linear slope and y-intercept. For each combination of the y-intercept and slope, I will compute the sum of squares error depicted above.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(simglm)
+
+theme_set(theme_bw(base_size = 18))
+
+set.seed(2021)
+
+sim_arguments &amp;lt;- list(
+    formula = y ~ x,
+    fixed = list(x = list(var_type = &amp;#39;continuous&amp;#39;, mean = 100, sd = 20)),
+    error = list(variance = 100),
+    sample_size = 1000,
+    reg_weights = c(5, .5)
+)
+
+sim_data &amp;lt;- simulate_fixed(data = NULL, sim_arguments) %&amp;gt;%
+  simulate_error(sim_arguments) %&amp;gt;%
+  generate_response(sim_arguments)
+
+head(sim_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.         x level1_id       error fixed_outcome random_effects
+## 1            1  97.55080         1   8.0959540      53.77540              0
+## 2            1 111.04913         2   0.9941633      60.52457              0
+## 3            1 106.97299         3 -23.4302131      58.48650              0
+## 4            1 107.19264         4   6.7652598      58.59632              0
+## 5            1 117.96107         5 -36.1147374      63.98054              0
+## 6            1  61.54861         6  -1.6416799      35.77430              0
+##          y
+## 1 61.87135
+## 2 61.51873
+## 3 35.05628
+## 4 65.36158
+## 5 27.86580
+## 6 34.13262&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(y ~ x, data = sim_data, size = 4) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/least-squares-simulation_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_lm &amp;lt;- lm (y ~ x, data = sim_data)
+coef(sim_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)           x 
+##   5.9653484   0.4941165&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y_intercept &amp;lt;- seq(0, 15, by = .25)
+slope &amp;lt;- seq(0, 1.5, by = .01)
+
+conditions &amp;lt;- rbind(expand.grid(y_intercept = y_intercept, 
+                          slope = slope),
+                          coef(sim_lm))
+
+tail(conditions)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      y_intercept     slope
+## 9207   14.000000 1.5000000
+## 9208   14.250000 1.5000000
+## 9209   14.500000 1.5000000
+## 9210   14.750000 1.5000000
+## 9211   15.000000 1.5000000
+## 9212    5.965348 0.4941165&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(conditions)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 9212    2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(y ~ x, data = sim_data, size = 4) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;) %&amp;gt;%
+  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 1), linetype = 2, size = 2) %&amp;gt;%
+  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 855), linetype = 2, color = &amp;#39;lightgreen&amp;#39;, size = 2) %&amp;gt;%
+  gf_refine(coord_cartesian(xlim = c(0, 160), ylim = c(0, 120)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/least-squares-simulation_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum_square_error &amp;lt;- function(conditions, sim_data) {
+    fitted &amp;lt;- conditions[[&amp;#39;y_intercept&amp;#39;]] + conditions[[&amp;#39;slope&amp;#39;]] * sim_data[[&amp;#39;x&amp;#39;]]
+
+    deviation &amp;lt;- sim_data[[&amp;#39;y&amp;#39;]] - fitted
+
+    sqrt((sum(deviation^2) / (nrow(sim_data) - 2)))
+}
+
+sum_square_error(conditions[1892, ], sim_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 26.74862&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(sim_lm)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 10.18153&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(future)
+
+plan(multicore)
+
+conditions$sse &amp;lt;- unlist(lapply(1:nrow(conditions), function(xx) sum_square_error(conditions[xx, ], sim_data)))
+
+head(conditions)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   y_intercept slope      sse
+## 1        0.00     0 57.37574
+## 2        0.25     0 57.13345
+## 3        0.50     0 56.89123
+## 4        0.75     0 56.64908
+## 5        1.00     0 56.40699
+## 6        1.25     0 56.16498&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
