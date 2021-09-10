@@ -540,47 +540,6 @@ arrange(-cor)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Week 1</title>
-      <link>https://psqf6243.brandonlebeau.org/content/01-week1/</link>
-      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/01-week1/</guid>
-      <description>
-&lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/01-week1/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-
-&lt;div id=&#34;TOC&#34;&gt;
-
-&lt;/div&gt;
-
-&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to the course. Primary content will be a review to set the basis for the remainder of the semester.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read syllabus, ask any questions&lt;/li&gt;
-&lt;li&gt;Review introductory statistics content&lt;/li&gt;
-&lt;li&gt;Explore R code from introductory slides&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;activities&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Review introductory statistics content
-&lt;ul&gt;
-&lt;li&gt;Chapters 2 - 4 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/visualization.html&#34;&gt;Statistical Reasoning through computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Optional, complete &lt;a href=&#34;https://forms.office.com/r/Mj41bM8uVY&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;assignments&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Assignments&lt;/h2&gt;
-&lt;p&gt;None this week.&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Intro to Linear Regression</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/intro-regression/</link>
       <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
@@ -826,12 +785,12 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Week 2</title>
-      <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
-      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
+      <title>Week 1</title>
+      <link>https://psqf6243.brandonlebeau.org/content/01-week1/</link>
+      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/01-week1/</guid>
       <description>
-&lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/02-week2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/01-week1/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 
@@ -839,23 +798,24 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;p&gt;This week is an introduction to the course. Primary content will be a review to set the basis for the remainder of the semester.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Objectives&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Recognize a linear regression formula&lt;/li&gt;
-&lt;li&gt;Interpret regression parameters&lt;/li&gt;
-&lt;li&gt;Specify a linear regression in statistical software&lt;/li&gt;
+&lt;li&gt;Read syllabus, ask any questions&lt;/li&gt;
+&lt;li&gt;Review introductory statistics content&lt;/li&gt;
+&lt;li&gt;Explore R code from introductory slides&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;activities&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Activities&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Review introductory statistics content
+&lt;ul&gt;
+&lt;li&gt;Chapters 2 - 4 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/visualization.html&#34;&gt;Statistical Reasoning through computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Optional, complete &lt;a href=&#34;https://forms.office.com/r/Mj41bM8uVY&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;assignments&#34; class=&#34;section level2&#34;&gt;
@@ -1235,6 +1195,46 @@ X_Y&lt;/code&gt;&lt;/pre&gt;
 ##   48.222946   -2.211798&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 2</title>
+      <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
+      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/content/02-week2/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Recognize a linear regression formula&lt;/li&gt;
+&lt;li&gt;Interpret regression parameters&lt;/li&gt;
+&lt;li&gt;Specify a linear regression in statistical software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;activities&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;assignments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Assignments&lt;/h2&gt;
+&lt;p&gt;None this week.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
