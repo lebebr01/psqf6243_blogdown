@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Activities | PSQF 6243</title>
+    <link>https://psqf6243.brandonlebeau.org/assignments/activity/</link>
+      <atom:link href="https://psqf6243.brandonlebeau.org/assignments/activity/index.xml" rel="self" type="application/rss+xml" />
+    <description>Activities</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
+      <title>Activities</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/activity/</link>
+    </image>
+    
+    <item>
+      <title>Activity 1</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/activity/activity1/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/activity/activity1/</guid>
+      <description>&lt;p&gt;The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. &lt;em&gt;Please make sure to add everyone&amp;rsquo;s name to the submission&lt;/em&gt;, this can be a comment on ICON or on the document itself.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What to turn in?&lt;/em&gt; Please turn in a document that contains answers to the following questions and also please include any relevant statistics/figures that support your answer.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Due around&lt;/em&gt; &lt;strong&gt;September 26th, 2021&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;The data for this activity is rideshare data from about three weeks in 2018 for Boston, MA. The data originally come from &lt;a href=&#34;https://www.kaggle.com/brllrb/uber-and-lyft-dataset-boston-ma&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kaggle&lt;/a&gt;. I have done some processing to randomly select 2,500 records from the larger data for our use and have trimmed down the data attributes.&lt;/p&gt;
+&lt;p&gt;The data can be obtained in &lt;a href=&#34;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/rideshare_small.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;csv format&lt;/a&gt;. A short description for each attribute is as follows.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Attribute Name&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;id&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Unique identifier for each row&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hour&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The hour of the ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;day&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The day of the ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;month&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The month of the ride, either 11 = November or 12 = December&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;price&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The total price of the ride, in $&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;temperature&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The outside temperature at the time of the ride, in Fahrenheit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;distance&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Total distance of the ride, in miles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;surge_multiplier&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The surge multiplier for the cost of rides&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;humidity&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The humidity at the time of the ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h2&gt;
+&lt;p&gt;Does the distance of the ride explain variation in the price of the ride?&lt;/p&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Explore the distribution of the price of the rides descriptively. In a few sentences, summarize key elements of the distribution, for instance discussing elements related to &lt;strong&gt;shape&lt;/strong&gt;, &lt;strong&gt;center&lt;/strong&gt;, &lt;strong&gt;variation&lt;/strong&gt;, and/or &lt;strong&gt;extreme values&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explore the bivariate distribution of the price of ride and distance of rides. In a few sentences, summarize key elements of the relationship between price and distance. You may wish to include the following elements of the association, &lt;strong&gt;strength&lt;/strong&gt;, &lt;strong&gt;direction&lt;/strong&gt;, and/or &lt;strong&gt;form&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Does the association between price and distance of rides appear to be linear? Why or why not?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fit a linear regression to answer the research question highlighted above. Interpret the intercept and slope of the linear regression. That is, what do these terms mean?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What are the r-squared and sigma estimates from the linear regression? Interpret these two values in the context of the problem. That is, what do these two terms mean in the context of the data and this problem?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, in a couple sentences, provide a summary of the overall model. Does the model appear to be useful to predict the price of a ride with only the distance of the ride? &lt;em&gt;Use statistics from the analysis steps above to support your answer.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
