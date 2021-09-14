@@ -1914,5 +1914,347 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
+    <item>
+      <title>Regression Inference - Part 1</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/regression-inference/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/regression-inference/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;inference-for-regression-parameters&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Inference for regression parameters&lt;/h1&gt;
+&lt;p&gt;It is often of interest to perform inference about the regression parameters that we have estimated thus far. The reason inference is useful is based on the idea that for most problems the sample is used to approximate the population. Therefore, a subset of the population (the sample) is used to estimate the population parameters that are of most interest. As such, our estimates come with error and this uncertainty we can quantify when making inference about the parameter estimates.&lt;/p&gt;
+&lt;p&gt;In this course, I plan to show you two ways to perform this inference. One of those frameworks will be the classical approach which uses classical statistical theory to estimate the amount of uncertainty in the parameter estimates. The second approach will use the bootstrap as a way to computationally estimate the uncertainty. The benefit of the bootstrap is that it comes with fewer assumptions than the classical approach. We will build up to these arguments.&lt;/p&gt;
+&lt;div id=&#34;classical-inferential-framework&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Classical Inferential Framework&lt;/h2&gt;
+&lt;p&gt;The classical inferential framework, sometimes referred to as the null hypothesis significance test (NHST) has been around for more than 100 years. This framework builds off of the idea of a null hypothesis.&lt;/p&gt;
+&lt;p&gt;A null hypothesis is typically thought as a hypothesis that assumes there is no relationship or a null effect. Framing this in the regression concept that we have been working with, we could define the following null hypotheses.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \beta_{0} = 0.\ The\  population\  yintercept\  equals\  0.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+H_{0}: \beta_{1} = 0.\ The\  population\  slope\  equals\  0.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the following two null hypotheses, represented with &lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt;, the population parameters are being assumed to be 0 in the population. This is one definition of a null effect, but is not the only null effect we can define (more on this later). The value defined as a null effect is important as it centers the sampling distribution used for evaluating where the sample estimate falls in that distribution.&lt;/p&gt;
+&lt;p&gt;Another hypothesis is typically defined with the null hypothesis, called the alternative hypothesis. This hypothesis states that there is an effect. Within the linear regression framework, we could write the alternative hypotheses as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+H_{A}: \beta_{0} \neq 0.\ The\  population\  yintercept\  is\  not\  equal\  to\  0.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+H_{A}: \beta_{1} \neq 0.\ The\  population\  slope\  is\  not\  equal\  to\  0. 
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the following two alternative hypotheses, represented with &lt;span class=&#34;math inline&#34;&gt;\(H_{A}\)&lt;/span&gt;, the population parameters are assumed to be not equal to 0. These can also be one-sided, more on this with an example later.&lt;/p&gt;
+&lt;div id=&#34;estimating-uncertainty-in-parameter-estimates&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Estimating uncertainty in parameter estimates&lt;/h3&gt;
+&lt;p&gt;The standard error is used to estimate uncertainty or error in the parameter estimates due to having a sample from the population. More specifically, this means that the entire population is not used to estimate the parameter, therefore the estimate we have is very likely not equal exactly to the parameter. Instead, there is some sort of sampling error involved that we want to quantify. If the sample was collected well, ideally randomly, then the estimate should be unbiased. Unbiased here doesn’t mean that the estimate equals the population parameter, rather, that through repeated sampling, the average of our sample estimates would equal the population parameter.&lt;/p&gt;
+&lt;p&gt;As mentioned, standard errors are used to quantify this uncertainty. In the linear regression case we have explored so far, there are mathematical formula for the standard errors. These are shown below.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SE\left( \hat{\beta}_{0} \right)^2 = \sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{X}^2}{\sum \left( X - \bar{X} \right)^2} \right)}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SE\left( \hat{\beta}_{1} \right)^2 = \sqrt{\frac{\hat{\sigma}^2}{\sum \left( X - \bar{X} \right)^2}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the equation above, &lt;span class=&#34;math inline&#34;&gt;\(\hat{\sigma}^2\)&lt;/span&gt;, is equal to &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{\frac{SS_{error}}{n - 2}}\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is the sample size (ie, number of rows of data in the model).&lt;/p&gt;
+&lt;div id=&#34;matrix-representation&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Matrix Representation&lt;/h4&gt;
+&lt;p&gt;It is also possible, and more easily extendable, to write the standard error computations or the variance of the estimated parameters in matrix representation. This framework extends beyond the single predictor case (ie. one &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;), therefore is more readily used in practice.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{var}\left({\hat{\beta}}\right) = \hat{\sigma}^2 \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the equation above, &lt;span class=&#34;math inline&#34;&gt;\(\hat{\sigma}^2\)&lt;/span&gt;, is equal to &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{\frac{SS_{error}}{n - 2}}\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}\)&lt;/span&gt; is the design matrix from the regression analysis. Finally, to get the standard errors back, you take the square root of the diagonal elements.&lt;/p&gt;
+&lt;p&gt;$$
+SE(  ) = &lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Data&lt;/h3&gt;
+&lt;p&gt;The data for this section of notes will explore data from the &lt;a href=&#34;https://www.epa.gov/outdoor-air-quality-data&#34;&gt;Environmental Protection Agency on Air Quality&lt;/a&gt; collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;43%&#34; /&gt;
+&lt;col width=&#34;56%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Variable&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;date&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Date of observation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Site ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;poc&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Parameter Occurrence Code (POC)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;pm2.5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;daily_aqi&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Average air quality index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;site_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Site Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;aqs_parameter_desc&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Text Description of Observation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;cbsa_code&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Core Based Statistical Area (CBSA) ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;cbsa_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CBSA Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;county&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;County in Iowa&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;avg_wind&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Average daily wind speed (in knots)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;max_wind&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Maximum daily wind speed (in knots)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;max_wind_hours&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Time of maximum daily wind speed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div id=&#34;guiding-question&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Guiding Question&lt;/h4&gt;
+&lt;p&gt;How is average daily wind speed related to the daily air quality index?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mosaic&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+airquality &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 6917 Columns: 10&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wind &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1537 Columns: 5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;airquality &amp;lt;- airquality %&amp;gt;%
+   left_join(wind, by = c(&amp;#39;cbsa_name&amp;#39;, &amp;#39;date&amp;#39;)) %&amp;gt;% 
+   drop_na()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm &amp;lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+coef(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   48.222946   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 18.05479&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum_x &amp;lt;- airquality %&amp;gt;%
+    summarise(mean_wind = mean(avg_wind),
+              sum_dev_x_sq = sum( (avg_wind - mean_wind) ^ 2))
+sum_x&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 2
+##   mean_wind sum_dev_x_sq
+##       &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1      4.27       29937.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;se_b0 &amp;lt;- sqrt(summary(air_lm)$sigma^2 * ((1 / nrow(airquality)) + ( sum_x[[&amp;#39;mean_wind&amp;#39;]]^2 / sum_x[[&amp;#39;sum_dev_x_sq&amp;#39;]]) ))
+se_b1 &amp;lt;- sqrt(summary(air_lm)$sigma^2 / sum_x[[&amp;#39;sum_dev_x_sq&amp;#39;]])
+
+se_b0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.51551&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;se_b1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1043487&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- model.matrix(air_lm)
+
+var_b &amp;lt;- summary(air_lm)$sigma^2 * solve(t(X) %*% X)
+var_b &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             (Intercept)    avg_wind
+## (Intercept)  0.26575054 -0.04644803
+## avg_wind    -0.04644803  0.01088865&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sqrt(diag(var_b))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   0.5155100   0.1043487&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)$coefficients[,2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   0.5155100   0.1043487&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;moving-toward-inference&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Moving toward inference&lt;/h3&gt;
+&lt;p&gt;Now that there the parameters are estimated and the amount of uncertainty is quantified, inference is possible. There are two related pieces that can be computed now, a confidence interval and/or the test-statistic and p-value. Let’s go through both.&lt;/p&gt;
+&lt;p&gt;First, a confidence interval can be computed. Confidence intervals take the following general form:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\beta} \pm C * SE
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where, &lt;span class=&#34;math inline&#34;&gt;\(\hat{\beta}\)&lt;/span&gt; is the parameter estimate, &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; is the confidence level, and &lt;span class=&#34;math inline&#34;&gt;\(SE\)&lt;/span&gt; is the standard error. The parameter estimates and standard errors are what we have already established, the &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; is the confidence level. This indicates the percentage of times, over the long run/repeated sampling, that the interval will capture the population parameter. Historically, this value is often specified as 95%, but any value is theoretically possible.&lt;/p&gt;
+&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; value represents a quantile from a mathematical distribution that separates the middle percetage desired (ie, 95%) from the rest of the distribution. The mathematical distribution is most often the t-distribution, but the difference between a t-distribution and normal distribution are modest once the sample size is greater than 30 or so.&lt;/p&gt;
+&lt;p&gt;The figure below tries to highlight the &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; value.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t_30 &amp;lt;- data.frame(value = seq(-5, 5, .01), density = dt(seq(-5, 5, .01), df = 30))
+gf_line(density ~ value, data = t_30) %&amp;gt;%
+  gf_vline(xintercept = ~ qt(.025, df = 30), linetype = 2) %&amp;gt;%
+  gf_vline(xintercept = ~ qt(.975, df = 30), linetype = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/regression-inference_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;coef(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   48.222946   -2.211798&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)$coefficients[,2]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   0.5155100   0.1043487&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;abs(qt(.025, df = nrow(airquality) -2))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.960456&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;48.2 + c(-1, 1) * 1.96 * .5155&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 47.18962 49.21038&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;-2.211 + c(-1, 1) * 1.96 * .1043&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -2.415428 -2.006572&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;inference-with-test-statistics&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Inference with test statistics&lt;/h3&gt;
+&lt;p&gt;It is also possible to do inference with a test statistic and computation of a p-value. Inference in this framework can be summarized into the following steps:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Generate hypotheses, ie null and alternative hypotheses.&lt;/li&gt;
+&lt;li&gt;Establish an &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; value&lt;/li&gt;
+&lt;li&gt;Estimate parameters&lt;/li&gt;
+&lt;li&gt;Compute test statistic&lt;/li&gt;
+&lt;li&gt;Generate p-value&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;An &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; value is the level of significance and represents the probability of obtaining the results due to chance. This is a value that the researcher can select. For a 5% &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; value, this is what was used above to compute the confidence intervals.&lt;/p&gt;
+&lt;p&gt;The test statistic is computed as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+test\ stat = \frac{\hat{\beta} - hypothesized\ value}{SE(\hat{\beta})}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(\hat{\beta}\)&lt;/span&gt; is the estimated parameter, &lt;span class=&#34;math inline&#34;&gt;\(SE(\hat{\beta})\)&lt;/span&gt; is the standard error of the parameter estimate, and the &lt;span class=&#34;math inline&#34;&gt;\(hypothesized\ value\)&lt;/span&gt; is the hypothesized value from the null hypothesis. This is often 0, but does not need to be zero.&lt;/p&gt;
+&lt;p&gt;Let’s assume the following null/alternative hypotheses:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+H_{0}: \beta_{1} = 0  \\
+H_{A}: \beta_{1} \neq 0
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s use R to compute this test statistic.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t = (-2.211 - 0) / .1043
+t&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -21.19847&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt(-21.198, df = nrow(airquality) -2, lower.tail = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.003866e-95&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t_dist &amp;lt;- data.frame(value = seq(-25, 25, .05), density = dt(seq(-25, 25, .05), df = (nrow(airquality) - 2)))
+gf_line(density ~ value, data = t_dist) %&amp;gt;%
+  gf_vline(xintercept = ~ qt(.025, df = (nrow(airquality) - 2)), linetype = 2) %&amp;gt;%
+  gf_vline(xintercept = ~ qt(.975, df = (nrow(airquality) - 2)), linetype = 2) %&amp;gt;%
+  gf_vline(xintercept = ~ -21.198, color = &amp;#39;red&amp;#39;) %&amp;gt;%
+  gf_vline(xintercept = ~ 21.198, color = &amp;#39;red&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/regression-inference_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = daily_aqi ~ avg_wind, data = airquality)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -41.71 -14.38  -0.73  12.43  86.84 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  48.2229     0.5155   93.54   &amp;lt;2e-16 ***
+## avg_wind     -2.2118     0.1043  -21.20   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 18.05 on 4819 degrees of freedom
+## Multiple R-squared:  0.08528,    Adjusted R-squared:  0.08509 
+## F-statistic: 449.3 on 1 and 4819 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
