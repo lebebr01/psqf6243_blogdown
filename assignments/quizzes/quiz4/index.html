@@ -34,10 +34,11 @@
   
     
   
-  <meta name="description" content="The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment.">
+  <meta name="description" content="Quiz 4 can be taken on ICON, due October 3rd, 2021. The quiz covers content from Week 4 and Week 5.
+Quiz 4 Link">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/assignments/activity/activity1/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/">
 
   
 
@@ -266,7 +267,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/assignments/activity/activity1/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/">
 
   
   
@@ -281,15 +282,16 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/assignments/activity/activity1/">
-  <meta property="og:title" content="Activity 1 | PSQF 6243">
-  <meta property="og:description" content="The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/">
+  <meta property="og:title" content="Quiz 4 | PSQF 6243">
+  <meta property="og:description" content="Quiz 4 can be taken on ICON, due October 3rd, 2021. The quiz covers content from Week 4 and Week 5.
+Quiz 4 Link"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2021-09-14T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2021-10-04T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2021-09-14T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2021-10-04T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +310,7 @@
 
 
 
-  <title>Activity 1 | PSQF 6243</title>
+  <title>Quiz 4 | PSQF 6243</title>
 
 </head>
 
@@ -832,7 +834,7 @@
 
 
 
-  <li class=""><a href="/assignments/quizzes/quiz4/">Quiz 4</a></li>
+  <li class="active"><a href="/assignments/quizzes/quiz4/">Quiz 4</a></li>
 
       
         </ul>
@@ -863,7 +865,7 @@
       
 
 
-  <li class="active"><a href="/assignments/activity/activity1/">Activity 1</a></li>
+  <li class=""><a href="/assignments/activity/activity1/">Activity 1</a></li>
 
 
 
@@ -901,13 +903,7 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#data">Data</a></li>
-    <li><a href="#guiding-question">Guiding Question</a></li>
-    <li><a href="#questions">Questions</a></li>
-  </ul>
-</nav>
+      <nav id="TableOfContents"></nav>
 
       
     </div>
@@ -920,84 +916,11 @@
         <div class="docs-article-container">
           
 
-          <h1>Activity 1</h1>
+          <h1>Quiz 4</h1>
 
           <div class="article-style">
-            <p>The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. <em>Please make sure to add everyone&rsquo;s name to the submission</em>, this can be a comment on ICON or on the document itself.</p>
-<p><em>What to turn in?</em> Please turn in a document that contains answers to the following questions and also please include any relevant statistics/figures that support your answer. Upload the final document to <a href="https://uiowa.instructure.com/courses/170115/assignments/1528301" target="_blank" rel="noopener">ICON</a>.</p>
-<p><em>Due around</em> <strong>September 26th, 2021</strong>. No penalty for late submissions as long as it is submitted by December 12th.</p>
-<h2 id="data">Data</h2>
-<p>The data for this activity is rideshare data from about three weeks in 2018 for Boston, MA. The data originally come from <a href="https://www.kaggle.com/brllrb/uber-and-lyft-dataset-boston-ma" target="_blank" rel="noopener">Kaggle</a>. I have done some processing to randomly select 2,500 records from the larger data for our use and have trimmed down the data attributes.</p>
-<p>The data can be obtained in <a href="https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/rideshare_small.csv" target="_blank" rel="noopener">csv format</a>. A short description for each attribute is as follows.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Attribute Name</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">id</td>
-<td style="text-align:left">Unique identifier for each row</td>
-</tr>
-<tr>
-<td style="text-align:left">hour</td>
-<td style="text-align:left">The hour of the ride</td>
-</tr>
-<tr>
-<td style="text-align:left">day</td>
-<td style="text-align:left">The day of the ride</td>
-</tr>
-<tr>
-<td style="text-align:left">month</td>
-<td style="text-align:left">The month of the ride, either 11 = November or 12 = December</td>
-</tr>
-<tr>
-<td style="text-align:left">price</td>
-<td style="text-align:left">The total price of the ride, in $</td>
-</tr>
-<tr>
-<td style="text-align:left">temperature</td>
-<td style="text-align:left">The outside temperature at the time of the ride, in Fahrenheit</td>
-</tr>
-<tr>
-<td style="text-align:left">distance</td>
-<td style="text-align:left">Total distance of the ride, in miles</td>
-</tr>
-<tr>
-<td style="text-align:left">surge_multiplier</td>
-<td style="text-align:left">The surge multiplier for the cost of rides</td>
-</tr>
-<tr>
-<td style="text-align:left">humidity</td>
-<td style="text-align:left">The humidity at the time of the ride</td>
-</tr>
-</tbody>
-</table>
-<h2 id="guiding-question">Guiding Question</h2>
-<p>Does the distance of the ride explain variation in the price of the ride?</p>
-<h2 id="questions">Questions</h2>
-<ol>
-<li>
-<p>Explore the distribution of the price of the rides descriptively. In a few sentences, summarize key elements of the distribution, for instance discussing elements related to <strong>shape</strong>, <strong>center</strong>, <strong>variation</strong>, and/or <strong>extreme values</strong>.</p>
-</li>
-<li>
-<p>Explore the bivariate distribution of the price of ride and distance of rides. In a few sentences, summarize key elements of the relationship between price and distance. You may wish to include the following elements of the association, <strong>strength</strong>, <strong>direction</strong>, and/or <strong>form</strong>.</p>
-</li>
-<li>
-<p>Does the association between price and distance of rides appear to be linear? Why or why not?</p>
-</li>
-<li>
-<p>Fit a linear regression to answer the research question highlighted above. Interpret the intercept and slope of the linear regression. That is, what do these terms mean?</p>
-</li>
-<li>
-<p>What are the r-squared and sigma estimates from the linear regression? Interpret these two values in the context of the problem. That is, what do these two terms mean in the context of the data and this problem?</p>
-</li>
-<li>
-<p>Finally, in a couple sentences, provide a summary of the overall model. Does the model appear to be useful to predict the price of a ride with only the distance of the ride? <em>Use statistics from the analysis steps above to support your answer.</em></p>
-</li>
-</ol>
+            <p>Quiz 4 can be taken on ICON, due October 3rd, 2021. The quiz covers content from <a href="https://psqf6243.brandonlebeau.org/content/04-week4/" target="_blank" rel="noopener">Week 4</a> and <a href="https://psqf6243.brandonlebeau.org/content/05-week5/" target="_blank" rel="noopener">Week 5</a>.</p>
+<p><a href="https://uiowa.instructure.com/courses/170115/quizzes/282873" target="_blank" rel="noopener">Quiz 4 Link</a></p>
 
           </div>
 
@@ -1014,9 +937,10 @@
   
   
   <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/assignments/activity/activity2/" rel="prev">Activity 2</a>
+    <div class="meta-nav">Previous</div>
+    <a href="/assignments/quizzes/quiz3/" rel="next">Quiz 3</a>
   </div>
+  
   
 </div>
 
@@ -1025,7 +949,7 @@
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Sep 14, 2021</p>
+          <p>Last updated on Oct 4, 2021</p>
 
           
 
