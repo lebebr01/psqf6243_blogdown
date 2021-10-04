@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Regression Assumptions">
+  <meta name="description" content="Regression Inference - Part 2">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/07-regression-assumptions/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/05a-regression-inference/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/07-regression-assumptions/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/05a-regression-inference/">
 
   
   
@@ -281,9 +281,9 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/07-regression-assumptions/">
-  <meta property="og:title" content="Regression Assumptions | PSQF 6243">
-  <meta property="og:description" content="Regression Assumptions"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/05a-regression-inference/">
+  <meta property="og:title" content="Regression Inference - Part 2 | PSQF 6243">
+  <meta property="og:description" content="Regression Inference - Part 2"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
@@ -308,7 +308,7 @@
 
 
 
-  <title>Regression Assumptions | PSQF 6243</title>
+  <title>Regression Inference - Part 2 | PSQF 6243</title>
 
 </head>
 
@@ -803,7 +803,7 @@
 
 
 
-  <li class=""><a href="/lectures/05a-regression-inference/">Regression Inference - Part 2</a></li>
+  <li class="active"><a href="/lectures/05a-regression-inference/">Regression Inference - Part 2</a></li>
 
 
 
@@ -811,7 +811,7 @@
 
 
 
-  <li class="active"><a href="/lectures/07-regression-assumptions/">Regression Assumptions</a></li>
+  <li class=""><a href="/lectures/07-regression-assumptions/">Regression Assumptions</a></li>
 
 
 
@@ -849,7 +849,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Regression Assumptions</h1>
+          <h1>Regression Inference - Part 2</h1>
 
           <div class="article-style">
             
@@ -859,96 +859,23 @@
 
 </div>
 
-<div id="assumptions-for-linear-regression" class="section level1">
-<h1>Assumptions for Linear Regression</h1>
-<p>The assumptions surrounding linear regression typically surround the residuals. Residuals are defined as:</p>
+<div id="classical-inferential-framework---part-2" class="section level1">
+<h1>Classical Inferential Framework - Part 2</h1>
+<p>This is the second part of the classical inferential framework. This will be broken into 2 or 3 parts, one-sided hypotheses, updated NHST framework thoughts, and other tidbits.</p>
+<div id="one-sided-hypotheses" class="section level2">
+<h2>One-sided Hypotheses</h2>
+<p>One sided hypotheses are possible. In this framework, the null hypothesis mostly stays the same, but the alternative does change.</p>
+<p>Suppose we again wanted to test the slope.</p>
 <p><span class="math display">\[ 
-Y - \hat{Y}
+H_{0}: \beta_{1} = 0  \\
+H_{A}: \beta_{1} &lt; 0
 \]</span></p>
-<p>These are the deviations in the observed scores from the predicted scores from the linear regression. Recall, through least square estimation that these residauls will sum to 0, therefore, their mean would also be equal to 0. However, there are certain assumptions about these residuals that are made for the linear regression model to have the inferences be appropriate. We’ll talk more about what the implications for violating these assumptions will have on the linear regression model, but first, the assumptions.</p>
-<ol style="list-style-type: decimal">
-<li>Approximately Normally distributed residuals</li>
-<li>Homogeneity of variance</li>
-<li>Uncorrelated residuals</li>
-<li>Error term is uncorrelated with the predictor attribute</li>
-</ol>
-<p>Each of these will be discussed in turn.</p>
-<div id="approximately-normally-distributed-residuals" class="section level2">
-<h2>Approximately Normally distributed residuals</h2>
-<p>The first assumption is that the residuals are at least approximately Normally distributed. This assumption is really only much of a concern when the sample size is small. If the sample size is larger, the Central Limit Thereom (CLT) states that the distribution of the statstics will be approximately normally distributed. The threshold for the CLT to be properly invoked is about 30. Larger then this, the residuals do not need to be approximately normally distributed. Even still, exploring the distribution of the residuals can still be helpful and can also be helpful to identify potential extreme values.</p>
-<p>This example will make use of the air quality data one more time.</p>
-<div id="data" class="section level3">
-<h3>Data</h3>
-<p>The data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
-<table>
-<colgroup>
-<col width="43%" />
-<col width="56%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Variable</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">date</td>
-<td align="left">Date of observation</td>
-</tr>
-<tr class="even">
-<td align="left">id</td>
-<td align="left">Site ID</td>
-</tr>
-<tr class="odd">
-<td align="left">poc</td>
-<td align="left">Parameter Occurrence Code (POC)</td>
-</tr>
-<tr class="even">
-<td align="left">pm2.5</td>
-<td align="left">Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)</td>
-</tr>
-<tr class="odd">
-<td align="left">daily_aqi</td>
-<td align="left">Average air quality index</td>
-</tr>
-<tr class="even">
-<td align="left">site_name</td>
-<td align="left">Site Name</td>
-</tr>
-<tr class="odd">
-<td align="left">aqs_parameter_desc</td>
-<td align="left">Text Description of Observation</td>
-</tr>
-<tr class="even">
-<td align="left">cbsa_code</td>
-<td align="left">Core Based Statistical Area (CBSA) ID</td>
-</tr>
-<tr class="odd">
-<td align="left">cbsa_name</td>
-<td align="left">CBSA Name</td>
-</tr>
-<tr class="even">
-<td align="left">county</td>
-<td align="left">County in Iowa</td>
-</tr>
-<tr class="odd">
-<td align="left">avg_wind</td>
-<td align="left">Average daily wind speed (in knots)</td>
-</tr>
-<tr class="even">
-<td align="left">max_wind</td>
-<td align="left">Maximum daily wind speed (in knots)</td>
-</tr>
-<tr class="odd">
-<td align="left">max_wind_hours</td>
-<td align="left">Time of maximum daily wind speed</td>
-</tr>
-</tbody>
-</table>
-<div id="guiding-question" class="section level4">
-<h4>Guiding Question</h4>
-<p>How is average daily wind speed related to the daily air quality index?</p>
+<p>To be more specific, we could update the null hypothesis as follows:</p>
+<p><span class="math display">\[ 
+H_{0}: \beta_{1} \geq 0  \\
+H_{A}: \beta_{1} &lt; 0
+\]</span></p>
+<p>Most of the mechanics stay the same, but there is one notable difference. Let’s draw this out.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
@@ -1036,132 +963,70 @@ airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr0
    drop_na()
 
 air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
-coef(air_lm)</code></pre>
-<pre><code>## (Intercept)    avg_wind 
-##   48.222946   -2.211798</code></pre>
-<p>The residuals can be saved with the <code>resid()</code> function. These can also be added to the original data, which are particularly helpful.</p>
-<pre class="r"><code>head(resid(air_lm))</code></pre>
-<pre><code>##          1          2          3          4          5          6 
-##  15.283427  11.186742  25.191433  15.398540   8.246896 -12.749410</code></pre>
-<pre class="r"><code>airquality$residuals &lt;- resid(air_lm)
-head(airquality)</code></pre>
-<pre><code>## # A tibble: 6 × 14
-##   date           id   poc pm2.5 daily_aqi site_name   aqs_parameter_d… cbsa_code
-##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;
-## 1 1/1/21  190130009     1  15.1        57 Water Tower PM2.5 - Local C…     47940
-## 2 1/4/21  190130009     1  13.3        54 Water Tower PM2.5 - Local C…     47940
-## 3 1/7/21  190130009     1  20.5        69 Water Tower PM2.5 - Local C…     47940
-## 4 1/10/21 190130009     1  14.3        56 Water Tower PM2.5 - Local C…     47940
-## 5 1/13/21 190130009     1  13.7        54 Water Tower PM2.5 - Local C…     47940
-## 6 1/16/21 190130009     1   5.3        22 Water Tower PM2.5 - Local C…     47940
-## # … with 6 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
-## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;, residuals &lt;dbl&gt;</code></pre>
-<pre class="r"><code>gf_density(~ residuals, data = airquality) %&gt;%
-  gf_labs(x = &quot;Residuals&quot;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(airquality, aes(sample = residuals)) + 
-  stat_qq(size = 5) + 
-  stat_qq_line(size = 2)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+summary(air_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = daily_aqi ~ avg_wind, data = airquality)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -41.71 -14.38  -0.73  12.43  86.84 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  48.2229     0.5155   93.54   &lt;2e-16 ***
+## avg_wind     -2.2118     0.1043  -21.20   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.05 on 4819 degrees of freedom
+## Multiple R-squared:  0.08528,    Adjusted R-squared:  0.08509 
+## F-statistic: 449.3 on 1 and 4819 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<div id="updated-nhst-thoughts" class="section level2">
+<h2>Updated NHST Thoughts</h2>
+<p>In general, p-values are fine, but the idea of dichotomizing those into a reject vs non-reject is problematic. Read a statement by the <a href="https://doi.org/10.1080/00031305.2016.1154108">American Statistical Association (ASA)</a> on p-values for extended detail.</p>
+<p>In general, the gist, is that p-values can become uninterpretable in many different frameworks. In addition, using p-values, a continuous measure, as evidence that rejects vs does not reject the null hypothesis (ie. dichotomization of the p-value) is a bad idea. Furthermore, treating the p-value in complete isolation is problematic as well as it does not take into account the context of the problem at hand.</p>
 </div>
-<div id="standardized-residuals" class="section level3">
-<h3>Standardized Residuals</h3>
-<p>Standardized residuals can be another way to explore the residuals. These will now be standardized to have a variance of 1, similar to that of a Z-score. These can be computed as:</p>
-<p><span class="math display">\[ 
-standardized\ residuals = \frac{\epsilon_{i}}{SD_{\epsilon}}
-\]</span></p>
-<p>Within R, these can be computed using the function <code>rstandard()</code>. Furthermore, these can be computed from another package called broom with the <code>augment()</code> function.</p>
-<pre class="r"><code>head(rstandard(air_lm))</code></pre>
-<pre><code>##          1          2          3          4          5          6 
-##  0.8466153  0.6196983  1.3955421  0.8529766  0.4568937 -0.7062638</code></pre>
-<pre class="r"><code>library(broom)
+<div id="p-value-and-sample-size" class="section level2">
+<h2>p-value and sample size</h2>
+<p>Why is it problematic to use a p-value in complete isolation? Let’s show a simulated example.</p>
+<pre class="r"><code>library(simglm)
+library(future)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;future&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     value</code></pre>
+<pre class="r"><code>plan(multicore)
 
-resid_diagnostics &lt;- augment(air_lm)
-head(resid_diagnostics)</code></pre>
-<pre><code>## # A tibble: 6 × 8
-##   daily_aqi avg_wind .fitted .resid     .hat .sigma   .cooksd .std.resid
-##       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1        57     2.94    41.7  15.3  0.000266   18.1 0.0000953      0.847
-## 2        54     2.45    42.8  11.2  0.000318   18.1 0.0000611      0.620
-## 3        69     2.00    43.8  25.2  0.000380   18.1 0.000370       1.40 
-## 4        56     3.45    40.6  15.4  0.000230   18.1 0.0000836      0.853
-## 5        54     1.12    45.8   8.25 0.000539   18.1 0.0000563      0.457
-## 6        22     6.09    34.7 -12.7  0.000319   18.1 0.0000795     -0.706</code></pre>
-<pre class="r"><code>gf_density(~ .std.resid, data = resid_diagnostics) %&gt;%
-  gf_labs(x = &quot;Standardized Residuals&quot;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(resid_diagnostics, aes(sample = .std.resid)) + 
-  stat_qq(size = 5) + 
-  stat_qq_line(size = 2)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-</div>
-</div>
-<div id="homogeneity-of-variance" class="section level2">
-<h2>Homogeneity of variance</h2>
-<p>Homoegeneity of variance is an assumption that is of larger concern compared to normality of the residuals. Homoogeneity of variance is an assumption that states that the variance of the residuals are similar across the predicted or fitted values from the regression line. This assumption can be explored by looking at the residuals (standardized or raw residuals), by the fitted or predicted values. Within this plot, the range of residuals should be similar across the range of fitted or predicted values.</p>
-<pre class="r"><code>gf_point(.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&gt;%
-  gf_smooth(method = &#39;loess&#39;, size = 2) %&gt;%
-  gf_labs(x = &#39;Fitted Values&#39;,
-          y = &#39;Residuals&#39;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(.std.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&gt;%
-  gf_smooth(method = &#39;loess&#39;, size = 2) %&gt;%
-  gf_labs(x = &#39;Fitted Values&#39;,
-          y = &#39;Standardized Residuals&#39;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Another figure that can also be helpful for the homogeneity of variance assumption is one that rescales the residuals on the y-axis. The rescaling makes all the standardized residuals positive (takes the absolute value) and then takes the square root of this.</p>
-<pre class="r"><code>resid_diagnostics %&gt;%
-  mutate(sqrt_abs_sresid = sqrt(abs(.std.resid))) %&gt;%
-  gf_point(sqrt_abs_sresid ~ .fitted, size = 5, alpha = .15) %&gt;%
-  gf_smooth(method = &#39;loess&#39;, size = 2) %&gt;%
-  gf_labs(x = &#39;Fitted Values&#39;,
-          y = &#39;Sqrt Abs Standardized Residuals&#39;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-</div>
-<div id="data-with-high-leverage" class="section level2">
-<h2>Data with high leverage</h2>
-<p>Data with high leverage are extreme values that may significantly impact the regression estimates. These statistics include extreme values for the outcome or predictor attributes. Cook’s distance is one statistic that can help to identify points with high impact/leverage for the regression estimates. Cook’s distance is a statistic that represents how much change there would be in the fitted values if the point was removed when estimating the regression coefficients. There is some disagreement between what type of thresholds to use for Cook’s distance, but one rule of thumb is Cook’s distance greater than 1. There has also been some research showing that Cook’s distance follows an F-distribution, so a more specific value could be computed. The rule of thumb for greater than 1 comes from the F distribution for large samples.</p>
-<pre class="r"><code>resid_diagnostics %&gt;%
-  mutate(obs_num = 1:n()) %&gt;%
-  gf_col(.cooksd ~ obs_num, fill = &#39;black&#39;, color = &#39;black&#39;) %&gt;%
-  gf_labs(x = &quot;Observation Number&quot;,
-          y = &quot;Cook&#39;s Distance&quot;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>Another leave one out statistic is the studentized deleted residuals. These are computed by removing a data point, refitting the regression model, then generate a predicted value for the X value for the data point removed. Then the residual is computed the same as before and is standardized like the standardized residuals above. The function in R to compute these is <code>rstudent()</code>.</p>
-<pre class="r"><code>head(rstudent(air_lm))</code></pre>
-<pre><code>##          1          2          3          4          5          6 
-##  0.8465904  0.6196587  1.3956793  0.8529524  0.4568561 -0.7062271</code></pre>
-<pre class="r"><code>airquality$student_residuals &lt;- rstudent(air_lm)
-head(airquality)</code></pre>
-<pre><code>## # A tibble: 6 × 15
-##   date           id   poc pm2.5 daily_aqi site_name   aqs_parameter_d… cbsa_code
-##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;
-## 1 1/1/21  190130009     1  15.1        57 Water Tower PM2.5 - Local C…     47940
-## 2 1/4/21  190130009     1  13.3        54 Water Tower PM2.5 - Local C…     47940
-## 3 1/7/21  190130009     1  20.5        69 Water Tower PM2.5 - Local C…     47940
-## 4 1/10/21 190130009     1  14.3        56 Water Tower PM2.5 - Local C…     47940
-## 5 1/13/21 190130009     1  13.7        54 Water Tower PM2.5 - Local C…     47940
-## 6 1/16/21 190130009     1   5.3        22 Water Tower PM2.5 - Local C…     47940
-## # … with 7 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
-## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;, residuals &lt;dbl&gt;,
-## #   student_residuals &lt;dbl&gt;</code></pre>
-<pre class="r"><code>airquality %&gt;%
-  mutate(obs_num = 1:n()) %&gt;%
-  gf_point(student_residuals ~ obs_num, size = 5, alpha = .15) %&gt;%
-  gf_hline(yintercept = ~ 3, color = &#39;blue&#39;, size = 2) %&gt;%
-  gf_labs(x = &quot;Observation Number&quot;,
-          y = &quot;Studentized Residuals&quot;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>Leverage can be another measure to help detect outliers in X values. The hat values that were computed from the <code>augment()</code> function above and can be interpreted as the distance the X scores are from the center of all X predictors. In the case of a single predictor, the hat values are the distance the X score is from the mean of X. The hat values will also sum up to the number of predictors and will always range between 0 and 1.</p>
-<pre class="r"><code>resid_diagnostics %&gt;%
-  mutate(obs_num = 1:n()) %&gt;%
-  gf_col(.hat ~ obs_num, fill = &#39;black&#39;, color = &#39;black&#39;) %&gt;%
-  gf_labs(x = &quot;Observation Number&quot;,
-          y = &quot;Hat Values (leverage)&quot;)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<pre class="r"><code>plot(air_lm, which = 1:5)</code></pre>
-<p><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-17-1.png" width="672" /><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-17-2.png" width="672" /><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-17-3.png" width="672" /><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-17-4.png" width="672" /><img src="/lectures/07-regression-assumptions_files/figure-html/unnamed-chunk-17-5.png" width="672" /></p>
+sim_arguments &lt;- list(
+    formula = y ~ x,
+    fixed = list(x = list(var_type = &#39;continuous&#39;, mean = 0, sd = 1)),
+    error = list(variance = 1),
+    sample_size = 1000,
+    reg_weights = c(5, .01)
+)
+
+sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
+  simulate_error(sim_arguments) %&gt;%
+  generate_response(sim_arguments)
+
+head(sim_data)</code></pre>
+<pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
+## 1            1  0.3722126         1  2.4562685      5.003722              0
+## 2            1  1.1617190         2  1.2536982      5.011617              0
+## 3            1  0.9713453         3 -0.1383281      5.009713              0
+## 4            1  0.3250353         4  0.4265839      5.003250              0
+## 5            1  0.8446578         5  0.9820352      5.008447              0
+## 6            1 -1.6094512         6  0.7540315      4.983905              0
+##          y
+## 1 7.459991
+## 2 6.265315
+## 3 4.871385
+## 4 5.429834
+## 5 5.990482
+## 6 5.737937</code></pre>
 </div>
 </div>
 
@@ -1181,14 +1046,14 @@ head(airquality)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/06-t-vs-norm/" rel="next">t vs Normal</a>
+    <a href="/lectures/regression-inference-p1/" rel="next">Regression Inference - Part 1</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/08-bootstrap/" rel="prev">Regression Bootstrap</a>
+    <a href="/lectures/06-t-vs-norm/" rel="prev">t vs Normal</a>
   </div>
   
 </div>

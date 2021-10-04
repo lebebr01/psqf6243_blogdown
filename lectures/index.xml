@@ -2257,6 +2257,191 @@ gf_line(density ~ value, data = t_dist) %&amp;gt;%
     </item>
     
     <item>
+      <title>Regression Inference - Part 2</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/05a-regression-inference/</link>
+      <pubDate>Mon, 04 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/05a-regression-inference/</guid>
+      <description>
+&lt;script src=&#34;https://psqf6243.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;classical-inferential-framework---part-2&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Classical Inferential Framework - Part 2&lt;/h1&gt;
+&lt;p&gt;This is the second part of the classical inferential framework. This will be broken into 2 or 3 parts, one-sided hypotheses, updated NHST framework thoughts, and other tidbits.&lt;/p&gt;
+&lt;div id=&#34;one-sided-hypotheses&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;One-sided Hypotheses&lt;/h2&gt;
+&lt;p&gt;One sided hypotheses are possible. In this framework, the null hypothesis mostly stays the same, but the alternative does change.&lt;/p&gt;
+&lt;p&gt;Suppose we again wanted to test the slope.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+H_{0}: \beta_{1} = 0  \\
+H_{A}: \beta_{1} &amp;lt; 0
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To be more specific, we could update the null hypothesis as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ 
+H_{0}: \beta_{1} \geq 0  \\
+H_{A}: \beta_{1} &amp;lt; 0
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Most of the mechanics stay the same, but there is one notable difference. Let’s draw this out.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mosaic&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+airquality &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 6917 Columns: 10&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wind &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1537 Columns: 5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;airquality &amp;lt;- airquality %&amp;gt;%
+   left_join(wind, by = c(&amp;#39;cbsa_name&amp;#39;, &amp;#39;date&amp;#39;)) %&amp;gt;% 
+   drop_na()
+
+air_lm &amp;lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+summary(air_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = daily_aqi ~ avg_wind, data = airquality)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -41.71 -14.38  -0.73  12.43  86.84 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  48.2229     0.5155   93.54   &amp;lt;2e-16 ***
+## avg_wind     -2.2118     0.1043  -21.20   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 18.05 on 4819 degrees of freedom
+## Multiple R-squared:  0.08528,    Adjusted R-squared:  0.08509 
+## F-statistic: 449.3 on 1 and 4819 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;updated-nhst-thoughts&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Updated NHST Thoughts&lt;/h2&gt;
+&lt;p&gt;In general, p-values are fine, but the idea of dichotomizing those into a reject vs non-reject is problematic. Read a statement by the &lt;a href=&#34;https://doi.org/10.1080/00031305.2016.1154108&#34;&gt;American Statistical Association (ASA)&lt;/a&gt; on p-values for extended detail.&lt;/p&gt;
+&lt;p&gt;In general, the gist, is that p-values can become uninterpretable in many different frameworks. In addition, using p-values, a continuous measure, as evidence that rejects vs does not reject the null hypothesis (ie. dichotomization of the p-value) is a bad idea. Furthermore, treating the p-value in complete isolation is problematic as well as it does not take into account the context of the problem at hand.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;p-value-and-sample-size&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;p-value and sample size&lt;/h2&gt;
+&lt;p&gt;Why is it problematic to use a p-value in complete isolation? Let’s show a simulated example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(simglm)
+library(future)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;future&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:mosaic&amp;#39;:
+## 
+##     value&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plan(multicore)
+
+sim_arguments &amp;lt;- list(
+    formula = y ~ x,
+    fixed = list(x = list(var_type = &amp;#39;continuous&amp;#39;, mean = 0, sd = 1)),
+    error = list(variance = 1),
+    sample_size = 1000,
+    reg_weights = c(5, .01)
+)
+
+sim_data &amp;lt;- simulate_fixed(data = NULL, sim_arguments) %&amp;gt;%
+  simulate_error(sim_arguments) %&amp;gt;%
+  generate_response(sim_arguments)
+
+head(sim_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.          x level1_id      error fixed_outcome random_effects
+## 1            1  0.3722126         1  2.4562685      5.003722              0
+## 2            1  1.1617190         2  1.2536982      5.011617              0
+## 3            1  0.9713453         3 -0.1383281      5.009713              0
+## 4            1  0.3250353         4  0.4265839      5.003250              0
+## 5            1  0.8446578         5  0.9820352      5.008447              0
+## 6            1 -1.6094512         6  0.7540315      4.983905              0
+##          y
+## 1 7.459991
+## 2 6.265315
+## 3 4.871385
+## 4 5.429834
+## 5 5.990482
+## 6 5.737937&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>t vs Normal</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/06-t-vs-norm/</link>
       <pubDate>Mon, 04 Oct 2021 00:00:00 +0000</pubDate>
@@ -2705,22 +2890,22 @@ slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
 ## 1      apple       2
 ## 2     grapes       5
-## 3 watermelon       1
-## 4       kiwi       7
+## 3       kiwi       7
+## 4 watermelon       1
 ## 5     banana       8
-## 6    kumquat       4
-## 7     orange       3
+## 6     orange       3
+## 7    kumquat       4
 ## 8 canteloupe       6&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1      apple       2
-## 2       kiwi       7
-## 3     banana       8
-## 4       kiwi       7
-## 5     orange       3
-## 6 canteloupe       6
-## 7 canteloupe       6
-## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+## 1     grapes       5
+## 2      apple       2
+## 3    kumquat       4
+## 4     grapes       5
+## 5 canteloupe       6
+## 6       kiwi       7
+## 7 watermelon       1
+## 8 canteloupe       6&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
@@ -2985,22 +3170,22 @@ summary(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2366.5 -1027.3  -634.8   560.5  9481.6 
+## -2222.1  -917.6  -646.0   366.0  9499.0 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)    -749.53     124.06  -6.041    2e-09 ***
-## year_centered    53.72       3.42  15.710   &amp;lt;2e-16 ***
+## (Intercept)   -599.096    122.654  -4.884 1.17e-06 ***
+## year_centered   48.641      3.457  14.068  &amp;lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
 ## 
-## Residual standard error: 1552 on 1275 degrees of freedom
-## Multiple R-squared:  0.1622, Adjusted R-squared:  0.1615 
-## F-statistic: 246.8 on 1 and 1275 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+## Residual standard error: 1557 on 1275 degrees of freedom
+## Multiple R-squared:  0.1344, Adjusted R-squared:  0.1337 
+## F-statistic: 197.9 on 1 and 1275 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##                    2.5 %     97.5 %
-## (Intercept)   -992.92201 -506.13834
-## year_centered   47.01538   60.43331&lt;/code&gt;&lt;/pre&gt;
+## (Intercept)   -839.72259 -358.46999
+## year_centered   41.85765   55.42367&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s now repeat this a bunch of times.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(2021)
 
