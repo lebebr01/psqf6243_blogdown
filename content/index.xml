@@ -251,5 +251,35 @@
 </description>
     </item>
     
+    <item>
+      <title>Week 7</title>
+      <link>https://psqf6243.brandonlebeau.org/content/07-week7/</link>
+      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/07-week7/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Exploration of utilizing a bootstrap for a robust alternative to inference for regression parameters.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define the bootstrap procedure&lt;/li&gt;
+&lt;li&gt;Define and explain the steps to conduct a bootstrap&lt;/li&gt;
+&lt;li&gt;Interpret bootstrap results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/estimation-bootstrap-and-uncertainty.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 12 of &lt;a href=&#34;https://openintro-ims.netlify.app/foundations-bootstrapping.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 10th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 17th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 4&lt;/a&gt; - Due October 10th.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 17th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 24th&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
