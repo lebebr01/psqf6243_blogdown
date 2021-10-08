@@ -803,7 +803,15 @@
 
 
 
+  <li class=""><a href="/lectures/05-regression-inference/">Regression Inference - Part 1</a></li>
+
+
+
   <li class="active"><a href="/lectures/05a-regression-inference/">Regression Inference - Part 2</a></li>
+
+
+
+  <li class=""><a href="/lectures/05a-regression-inference-class/">Regression Inference - Part 2 - Class</a></li>
 
 
 
@@ -820,6 +828,10 @@
 
 
   <li class=""><a href="/lectures/08-bootstrap/">Regression Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-bootstrap-class/">Regression Bootstrap - Class</a></li>
 
 
 
@@ -885,88 +897,16 @@ H_{A}: \beta_{1} &lt; 0
 \]</span></p>
 <p>Most of the mechanics stay the same, but there is one notable difference. Let’s draw this out.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   2.0.1     ✓ forcats 0.5.1</code></pre>
 <pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggstance&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh</code></pre>
-<pre><code>## Loading required package: scales</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
-<pre><code>## Loading required package: ggridges</code></pre>
-<pre><code>## 
-## New to ggformula?  Try the tutorials: 
-##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>library(mosaic)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
-<pre><code>## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;mosaic&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean</code></pre>
-<pre><code>## The following object is masked from &#39;package:scales&#39;:
-## 
-##     rescale</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+<pre class="r"><code>library(ggformula)
+library(mosaic)
 
-airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&quot;)</code></pre>
-<pre><code>## Rows: 6917 Columns: 10</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
-## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code</code></pre>
-<pre><code>## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>wind &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&quot;)</code></pre>
-<pre><code>## Rows: 1537 Columns: 5</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr (2): date, cbsa_name
-## dbl (3): avg_wind, max_wind, max_wind_hours</code></pre>
-<pre><code>## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>airquality &lt;- airquality %&gt;%
+theme_set(theme_bw(base_size = 18))
+
+airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&quot;)
+wind &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&quot;)
+
+airquality &lt;- airquality %&gt;%
    left_join(wind, by = c(&#39;cbsa_name&#39;, &#39;date&#39;)) %&gt;% 
    drop_na()
 
@@ -1021,20 +961,20 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
   generate_response(sim_arguments)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.          x level1_id       error fixed_outcome random_effects
-## 1            1  0.9381881         1 -1.22518711      5.009382              0
-## 2            1 -0.1865932         2 -0.76698187      4.998134              0
-## 3            1 -0.3145076         3  0.55821433      4.996855              0
-## 4            1 -0.2598458         4 -0.03348044      4.997402              0
-## 5            1  0.5146628         5  0.67115699      5.005147              0
-## 6            1 -0.5931033         6  0.21495298      4.994069              0
+<pre><code>##   X.Intercept.          x level1_id        error fixed_outcome random_effects
+## 1            1  0.4725632         1  0.404190768      5.004726              0
+## 2            1  0.1318261         2  0.298188136      5.001318              0
+## 3            1 -0.6944254         3 -0.789654037      4.993056              0
+## 4            1 -1.6830502         4 -0.007438986      4.983169              0
+## 5            1  0.1010183         5 -0.776984669      5.001010              0
+## 6            1  0.2765426         6 -0.309112901      5.002765              0
 ##          y
-## 1 3.784195
-## 2 4.231152
-## 3 5.555069
-## 4 4.963921
-## 5 5.676304
-## 6 5.209022</code></pre>
+## 1 5.408916
+## 2 5.299506
+## 3 4.203402
+## 4 4.975731
+## 5 4.224026
+## 6 4.693653</code></pre>
 </div>
 </div>
 
@@ -1054,14 +994,14 @@ head(sim_data)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/regression-inference-p1/" rel="next">Regression Inference - Part 1</a>
+    <a href="/lectures/05-regression-inference/" rel="next">Regression Inference - Part 1</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/06-t-vs-norm/" rel="prev">t vs Normal</a>
+    <a href="/lectures/05a-regression-inference-class/" rel="prev">Regression Inference - Part 2 - Class</a>
   </div>
   
 </div>
