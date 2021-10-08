@@ -912,23 +912,23 @@
 slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
 ## 1    kumquat       4
-## 2     banana       8
-## 3 canteloupe       6
+## 2     grapes       5
+## 3     banana       8
 ## 4 watermelon       1
 ## 5       kiwi       7
-## 6     orange       3
-## 7      apple       2
-## 8     grapes       5</code></pre>
+## 6      apple       2
+## 7     orange       3
+## 8 canteloupe       6</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1     grapes       5
+## 1 canteloupe       6
 ## 2 watermelon       1
 ## 3 canteloupe       6
-## 4       kiwi       7
+## 4     orange       3
 ## 5     grapes       5
-## 6      apple       2
-## 7 watermelon       1
-## 8 canteloupe       6</code></pre>
+## 6    kumquat       4
+## 7     grapes       5
+## 8      apple       2</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1193,22 +1193,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2308.1 -1057.3  -689.1   446.9  9442.2 
+## -2317.3  -989.4  -688.1   439.1  8216.9 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   -649.556    133.860  -4.852 1.37e-06 ***
-## year_centered   51.889      3.695  14.043  &lt; 2e-16 ***
+## (Intercept)   -600.535    122.627  -4.897  1.1e-06 ***
+## year_centered   50.307      3.425  14.687  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1668 on 1275 degrees of freedom
-## Multiple R-squared:  0.134,  Adjusted R-squared:  0.1333 
-## F-statistic: 197.2 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1598 on 1275 degrees of freedom
+## Multiple R-squared:  0.1447, Adjusted R-squared:  0.144 
+## F-statistic: 215.7 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
 <pre><code>##                    2.5 %     97.5 %
-## (Intercept)   -912.16649 -386.94544
-## year_centered   44.63985   59.13723</code></pre>
+## (Intercept)   -841.10870 -359.96158
+## year_centered   43.58696   57.02699</code></pre>
 <p>Let’s now repeat this a bunch of times.</p>
 <pre class="r"><code>set.seed(2021)
 
