@@ -815,7 +815,15 @@
 
 
 
+  <li class=""><a href="/lectures/07a-regression-assumptions/">Regression Assumptions - New Package</a></li>
+
+
+
   <li class="active"><a href="/lectures/08-bootstrap/">Regression Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/09-multiple-regression-p1/">Multiple Regression - Part 1</a></li>
 
       
     
@@ -891,24 +899,24 @@
 
 slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1      apple       2
-## 2     grapes       5
-## 3       kiwi       7
-## 4 watermelon       1
-## 5     banana       8
-## 6     orange       3
-## 7    kumquat       4
-## 8 canteloupe       6</code></pre>
-<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
-<pre><code>##         name obs_num
 ## 1     grapes       5
 ## 2      apple       2
-## 3    kumquat       4
-## 4     grapes       5
-## 5 canteloupe       6
-## 6       kiwi       7
+## 3     banana       8
+## 4 canteloupe       6
+## 5       kiwi       7
+## 6    kumquat       4
 ## 7 watermelon       1
-## 8 canteloupe       6</code></pre>
+## 8     orange       3</code></pre>
+<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
+<pre><code>##         name obs_num
+## 1    kumquat       4
+## 2      apple       2
+## 3 canteloupe       6
+## 4     orange       3
+## 5     banana       8
+## 6 watermelon       1
+## 7 canteloupe       6
+## 8     banana       8</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1173,22 +1181,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2222.1  -917.6  -646.0   366.0  9499.0 
+## -2206.8  -955.4  -606.6   466.3  8160.6 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   -599.096    122.654  -4.884 1.17e-06 ***
-## year_centered   48.641      3.457  14.068  &lt; 2e-16 ***
+## (Intercept)   -666.688    118.542  -5.624 2.29e-08 ***
+## year_centered   49.544      3.308  14.979  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1557 on 1275 degrees of freedom
-## Multiple R-squared:  0.1344, Adjusted R-squared:  0.1337 
-## F-statistic: 197.9 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1486 on 1275 degrees of freedom
+## Multiple R-squared:  0.1496, Adjusted R-squared:  0.149 
+## F-statistic: 224.4 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
 <pre><code>##                    2.5 %     97.5 %
-## (Intercept)   -839.72259 -358.46999
-## year_centered   41.85765   55.42367</code></pre>
+## (Intercept)   -899.24604 -434.12966
+## year_centered   43.05492   56.03242</code></pre>
 <p>Let’s now repeat this a bunch of times.</p>
 <pre class="r"><code>set.seed(2021)
 
@@ -31233,9 +31241,15 @@ resample_astronaut &lt;- function(...) {
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/07-regression-assumptions/" rel="next">Regression Assumptions</a>
+    <a href="/lectures/07a-regression-assumptions/" rel="next">Regression Assumptions - New Package</a>
   </div>
   
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/lectures/09-multiple-regression-p1/" rel="prev">Multiple Regression - Part 1</a>
+  </div>
   
 </div>
 
