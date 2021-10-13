@@ -1,0 +1,1560 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Multicollinearity">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/11-multicollinearity/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3aad675291f323c3cd47ae187f0bf0d6.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/11-multicollinearity/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/11-multicollinearity/">
+  <meta property="og:title" content="Multicollinearity | PSQF 6243">
+  <meta property="og:description" content="Multicollinearity"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-10-13T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-10-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Multicollinearity | PSQF 6243</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7de282f2047be3c570af3a58788341e7.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#logistics"><span>Logistics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Syllabus</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Schedule</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Content</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/lectures/"><span>Lecture Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/assignments/"><span>Assignments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/code/"><span>Software Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>People</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      
+      
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
+      
+
+
+  <li class=""><a href="/lectures/review/">Review</a></li>
+
+
+
+  <li class=""><a href="/lectures/review-class/">Review - class</a></li>
+
+
+
+  <li class=""><a href="/lectures/intro-regression/">Intro to Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/linear-regression-class/">Intro to Linear Regression - class</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-estimates/">Linear Regression Estimates</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-estimates-class/">Linear Regression Estimates - class</a></li>
+
+
+
+  <li class=""><a href="/lectures/least-squares-simulation/">Least Square Simulation</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-inference-p1/">Regression Inference - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Regression Inference - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/05a-regression-inference/">Regression Inference - Part 2</a></li>
+
+
+
+  <li class=""><a href="/lectures/05a-regression-inference-class/">Regression Inference - Part 2 - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/06-t-vs-norm/">t vs Normal</a></li>
+
+
+
+  <li class=""><a href="/lectures/07-regression-assumptions/">Regression Assumptions</a></li>
+
+
+
+  <li class=""><a href="/lectures/07a-regression-assumptions/">Regression Assumptions - New Package</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-bootstrap/">Regression Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-bootstrap-class/">Regression Bootstrap - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/09-multiple-regression-p1/">Multiple Regression - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
+
+
+
+  <li class="active"><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Multicollinearity</h1>
+
+          <div class="article-style">
+            
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<div id="multicollinearity" class="section level1">
+<h1>Multicollinearity</h1>
+<p>Multicollinearity is an assumption of regression that explores whether the predictor attributes (X) are correlated. Linear regression assumes that the predictor attributes are uncorrelated, but in practice this assumption is never met. What impacts does multicollinearity have on the linear regression? The short answer is that the regression parameters (the <span class="math inline">\(\beta\)</span> terms) will be more or less unbiased, however, the same cannot be said for the standard errors.</p>
+<p>Let’s first use some real data to explore this, then we’ll use simulated data to show the impact correlated predictor attributes have on the linear regression estiamtes.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggstance&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh</code></pre>
+<pre><code>## Loading required package: scales</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## Loading required package: ggridges</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+college &lt;- read_csv(&quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/College-scorecard-4143.csv&quot;) %&gt;%
+  mutate(act_mean = actcmmid - mean(actcmmid, na.rm = TRUE),
+         cost_mean = costt4_a - mean(costt4_a, na.rm = TRUE)) %&gt;%
+  drop_na(act_mean, cost_mean)</code></pre>
+<pre><code>## Rows: 7058 Columns: 16</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (6): instnm, city, stabbr, preddeg, region, locale
+## dbl (10): adm_rate, actcmmid, ugds, costt4_a, costt4_p, tuitionfee_in, tuiti...</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>adm_mult_reg &lt;- lm(adm_rate ~ actcmmid + costt4_a, data = college)
+
+summary(adm_mult_reg)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid + costt4_a, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.65484 -0.12230  0.02291  0.13863  0.37054 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.135e+00  3.326e-02  34.130  &lt; 2e-16 ***
+## actcmmid    -1.669e-02  1.650e-03 -10.114  &lt; 2e-16 ***
+## costt4_a    -2.304e-06  4.047e-07  -5.693 1.55e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1813 on 1278 degrees of freedom
+## Multiple R-squared:  0.1836, Adjusted R-squared:  0.1824 
+## F-statistic: 143.8 on 2 and 1278 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;mosaic&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean</code></pre>
+<pre><code>## The following object is masked from &#39;package:scales&#39;:
+## 
+##     rescale</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre class="r"><code>cor(actcmmid ~ costt4_a, data = college)</code></pre>
+<pre><code>## [1] 0.5557307</code></pre>
+<div id="variance-inflation-factor" class="section level2">
+<h2>Variance Inflation Factor</h2>
+<p>The variance inflation factor (VIF) is a commonly used statistic to aid in diagnosing multicollinearity. It attempts to estimate how much the variance of the estimated regression equation is inflated due to correlated predictor attributes.</p>
+<p>First, this can be calculated from the car package, using the function <code>vif()</code>.</p>
+<pre class="r"><code>library(car)</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
+## 
+##     deltaMethod, logit</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     recode</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     some</code></pre>
+<pre class="r"><code>vif(adm_mult_reg)</code></pre>
+<pre><code>## actcmmid costt4_a 
+## 1.446836 1.446836</code></pre>
+<p>Fundamentally, the VIF is calculated with the following steps.</p>
+<ol style="list-style-type: decimal">
+<li>Fit a regression where one of the X attributes is the outcome and the remaining X attributes are predictors.</li>
+<li>Calculate VIF: <span class="math inline">\(VIF = 1 / 1 - R^2\)</span> from step 1.</li>
+<li>Repeate this for all X attributes.</li>
+<li>Evaluate extent to which VIF is problematic. Rules of thumb include VIF statistics greater than 5 or 10.</li>
+</ol>
+<p>Interpretation wise, the square root of the VIF statistic can provide an indication of how inflated the standard error would be if the predictors are uncorrelated.</p>
+<pre class="r"><code>act_lm &lt;- lm(actcmmid ~ costt4_a, data = college)
+summary(act_lm)$r.square</code></pre>
+<pre><code>## [1] 0.3088366</code></pre>
+<pre class="r"><code>1 / (1 - .3088)</code></pre>
+<pre><code>## [1] 1.446759</code></pre>
+<pre class="r"><code>sqrt(1.446)</code></pre>
+<pre><code>## [1] 1.202497</code></pre>
+<div id="simulated-data-exploration" class="section level3">
+<h3>Simulated data exploration</h3>
+<p>Let’s use some simulated data to show the extent to which multicollinearity can be problematic, particularly for more highly correlated attributes.</p>
+<p>First, let’s start with uncorrelated (on average) predictor attributes.</p>
+<pre class="r"><code>library(simglm)
+
+sim_args &lt;- list(formula = y ~ 1 + act + gpa + sat, 
+                 fixed = list(act = list(var_type = &#39;continuous&#39;,
+                                         mean = 20, 
+                                         sd = 4),
+                              gpa = list(var_type = &#39;continuous&#39;,
+                                         mean = 2, 
+                                         sd = .5),
+                              sat = list(var_type = &#39;continuous&#39;,
+                                         mean = 500, 
+                                         sd = 100)),
+                 correlate = list(fixed = data.frame(x = c(&#39;act&#39;, &#39;act&#39;, &#39;gpa&#39;), 
+                                                     y = c(&#39;gpa&#39;, &#39;sat&#39;, &#39;sat&#39;), 
+                                                     corr = c(0, 0, 0))),
+                error = list(variance = 100),
+                reg_weights = c(1, 1, 1, 1),
+                 sample_size = 10000)
+
+sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
+   simulate_error(sim_args) %&gt;%
+   correlate_variables(sim_args) %&gt;%
+   generate_response(sim_args)
+
+head(sim_data)</code></pre>
+<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id      error      act
+## 1            1 20.50191 2.100045 414.2414         1   8.158125 20.80036
+## 2            1 22.84560 1.566047 425.6162         2   7.891201 16.52838
+## 3            1 23.39567 2.280137 530.6605         3 -13.731674 22.24110
+## 4            1 19.84052 1.321708 512.4972         4  -4.996858 14.57366
+## 5            1 20.86816 2.868471 433.9494         5   2.328955 26.94776
+## 6            1 21.72070 1.817061 588.6114         6   1.662005 18.53648
+##        gpa      sat fixed_outcome random_effects        y
+## 1 1.571207 512.5478      535.9194              0 544.0775
+## 2 1.628081 571.1400      590.2964              0 598.1876
+## 3 2.153302 584.8917      610.2861              0 596.5544
+## 4 2.062486 496.0129      513.6491              0 508.6522
+## 5 1.669747 521.7039      551.3214              0 553.6504
+## 6 2.443057 543.0175      564.9970              0 566.6590</code></pre>
+<pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
+<pre><code>##                y          act          gpa          sat
+## y    1.000000000  0.036742029 -0.001061055  0.994222071
+## act  0.036742029  1.000000000  0.012951580 -0.002915597
+## gpa -0.001061055  0.012951580  1.000000000 -0.008492256
+## sat  0.994222071 -0.002915597 -0.008492256  1.000000000</code></pre>
+<pre class="r"><code>sim_lm &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
+summary(sim_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ 1 + act + gpa + sat, data = sim_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -40.614  -6.596  -0.088   6.696  37.107 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.116082   0.819188  -0.142    0.887    
+## act          0.991555   0.024956  39.732  &lt; 2e-16 ***
+## gpa          1.385139   0.200675   6.902 5.42e-12 ***
+## sat          1.000803   0.001002 998.970  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 10.01 on 9996 degrees of freedom
+## Multiple R-squared:  0.9901, Adjusted R-squared:  0.9901 
+## F-statistic: 3.331e+05 on 3 and 9996 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>vif(sim_lm)</code></pre>
+<pre><code>##      act      gpa      sat 
+## 1.000176 1.000239 1.000080</code></pre>
+<p>Let’s now increase the correlation among the attributes.</p>
+<pre class="r"><code>library(simglm)
+
+sim_args &lt;- list(formula = y ~ 1 + act + gpa + sat, 
+                 fixed = list(act = list(var_type = &#39;continuous&#39;,
+                                         mean = 20, 
+                                         sd = 4),
+                              gpa = list(var_type = &#39;continuous&#39;,
+                                         mean = 2, 
+                                         sd = .5),
+                              sat = list(var_type = &#39;continuous&#39;,
+                                         mean = 500, 
+                                         sd = 100)),
+                 correlate = list(fixed = data.frame(x = c(&#39;act&#39;, &#39;act&#39;, &#39;gpa&#39;), 
+                                                     y = c(&#39;gpa&#39;, &#39;sat&#39;, &#39;sat&#39;), 
+                                                     corr = c(0.5, 0.5, 0.25))),
+                error = list(variance = 100),
+                reg_weights = c(1, 1, 1, 1),
+                 sample_size = 10000)
+
+sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
+   simulate_error(sim_args) %&gt;%
+   correlate_variables(sim_args) %&gt;%
+   generate_response(sim_args)
+
+head(sim_data)</code></pre>
+<pre><code>##   X.Intercept.  act_old   gpa_old  sat_old level1_id      error      act
+## 1            1 22.23494 3.6525676 565.0229         1  12.988252 30.34335
+## 2            1 15.22451 1.1798775 561.4118         2   2.964090 16.72792
+## 3            1 13.44779 0.9124147 360.3692         3  -8.061329 15.71007
+## 4            1 16.48619 2.0051405 493.6791         4 -13.628437 21.79289
+## 5            1 21.17670 2.3245069 555.6592         5  -1.724859 21.67346
+## 6            1 13.96560 2.4073696 465.2618         6  18.060597 25.83244
+##        gpa      sat fixed_outcome random_effects        y
+## 1 2.376222 443.8965      477.6161              0 490.6043
+## 2 1.523971 619.5013      638.7532              0 641.7173
+## 3 2.329038 663.9565      682.9956              0 674.9343
+## 4 2.139462 587.8445      612.7768              0 599.1484
+## 5 1.865808 470.5374      495.0766              0 493.3518
+## 6 2.517736 650.8034      680.1535              0 698.2141</code></pre>
+<pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
+<pre><code>##             y       act       gpa       sat
+## y   1.0000000 0.5254226 0.2653347 0.9945600
+## act 0.5254226 1.0000000 0.5019605 0.4959802
+## gpa 0.2653347 0.5019605 1.0000000 0.2469444
+## sat 0.9945600 0.4959802 0.2469444 1.0000000</code></pre>
+<pre class="r"><code>sim_lm2 &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
+vif(sim_lm2)</code></pre>
+<pre><code>##      act      gpa      sat 
+## 1.664875 1.336844 1.326263</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)   -0.116   0.819      -0.142 8.87e-  1
+## 2 act            0.992   0.0250     39.7   1.13e-320
+## 3 gpa            1.39    0.201       6.90  5.42e- 12
+## 4 sat            1.00    0.00100   999.    0</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm2)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.20    0.611        1.96 5.00e-  2
+## 2 act            1.02    0.0320      32.0  1.38e-214
+## 3 gpa            0.979   0.231        4.23 2.38e-  5
+## 4 sat            0.999   0.00115    869.   0</code></pre>
+<pre class="r"><code>library(simglm)
+
+sim_args &lt;- list(formula = y ~ 1 + act + gpa + sat, 
+                 fixed = list(act = list(var_type = &#39;continuous&#39;,
+                                         mean = 20, 
+                                         sd = 4),
+                              gpa = list(var_type = &#39;continuous&#39;,
+                                         mean = 2, 
+                                         sd = .5),
+                              sat = list(var_type = &#39;continuous&#39;,
+                                         mean = 500, 
+                                         sd = 100)),
+                 correlate = list(fixed = data.frame(x = c(&#39;act&#39;, &#39;act&#39;, &#39;gpa&#39;), 
+                                                     y = c(&#39;gpa&#39;, &#39;sat&#39;, &#39;sat&#39;), 
+                                                     corr = c(0.5, 0.9, 0.5))),
+                error = list(variance = 100),
+                reg_weights = c(1, 1, 1, 1),
+                 sample_size = 10000)
+
+sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
+   simulate_error(sim_args) %&gt;%
+   correlate_variables(sim_args) %&gt;%
+   generate_response(sim_args)
+
+head(sim_data)</code></pre>
+<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id      error      act
+## 1            1 18.15964 2.779708 565.4397         1  -6.543544 24.38195
+## 2            1 26.55300 2.936313 431.4147         2   1.020094 17.35089
+## 3            1 17.09162 1.224869 366.3566         3  -6.517360 19.89891
+## 4            1 21.57087 2.518400 594.6063         4  -1.362614 20.40529
+## 5            1 22.05276 2.319624 592.2248         5 -11.045240 19.27887
+## 6            1 11.41686 1.722861 630.5926         6  16.442848 26.78165
+##        gpa      sat fixed_outcome random_effects        y
+## 1 1.929453 545.9113      573.2227              0 566.6791
+## 2 1.998401 336.0569      356.4062              0 357.4262
+## 3 2.660329 572.8063      596.3655              0 589.8481
+## 4 1.559365 460.6636      483.6282              0 482.2656
+## 5 1.515246 448.6413      470.4354              0 459.3902
+## 6 1.942953 714.6140      744.3386              0 760.7815</code></pre>
+<pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
+<pre><code>##             y       act       gpa       sat
+## y   1.0000000 0.9025866 0.4937160 0.9951165
+## act 0.9025866 1.0000000 0.4907389 0.8999626
+## gpa 0.4937160 0.4907389 1.0000000 0.4903428
+## sat 0.9951165 0.8999626 0.4903428 1.0000000</code></pre>
+<pre class="r"><code>sim_lm3 &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
+vif(sim_lm3)</code></pre>
+<pre><code>##      act      gpa      sat 
+## 5.351939 1.339227 5.349201</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)   -0.116   0.819      -0.142 8.87e-  1
+## 2 act            0.992   0.0250     39.7   1.13e-320
+## 3 gpa            1.39    0.201       6.90  5.42e- 12
+## 4 sat            1.00    0.00100   999.    0</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm2)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.20    0.611        1.96 5.00e-  2
+## 2 act            1.02    0.0320      32.0  1.38e-214
+## 3 gpa            0.979   0.231        4.23 2.38e-  5
+## 4 sat            0.999   0.00115    869.   0</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm3)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1.25    0.554        2.25 2.45e- 2
+## 2 act            0.923   0.0584      15.8  1.55e-55
+## 3 gpa            1.09    0.233        4.69 2.79e- 6
+## 4 sat            1.00    0.00235    427.   0</code></pre>
+<pre class="r"><code>library(simglm)
+
+sim_args &lt;- list(formula = y ~ 1 + act + gpa + sat, 
+                 fixed = list(act = list(var_type = &#39;continuous&#39;,
+                                         mean = 20, 
+                                         sd = 4),
+                              gpa = list(var_type = &#39;continuous&#39;,
+                                         mean = 2, 
+                                         sd = .5),
+                              sat = list(var_type = &#39;continuous&#39;,
+                                         mean = 500, 
+                                         sd = 100)),
+                 correlate = list(fixed = data.frame(x = c(&#39;act&#39;, &#39;act&#39;, &#39;gpa&#39;), 
+                                                     y = c(&#39;gpa&#39;, &#39;sat&#39;, &#39;sat&#39;), 
+                                                     corr = c(0.9, 0.98, 0.85))),
+                error = list(variance = 100),
+                reg_weights = c(1, 1, 1, 1),
+                 sample_size = 10000)
+
+sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
+   simulate_error(sim_args) %&gt;%
+   correlate_variables(sim_args) %&gt;%
+   generate_response(sim_args)
+
+head(sim_data)</code></pre>
+<pre><code>##   X.Intercept.  act_old   gpa_old  sat_old level1_id      error      act
+## 1            1 18.61717 2.4693487 544.0417         1   4.980512 22.11933
+## 2            1 21.29059 2.4520902 440.9649         2  -8.196109 19.42696
+## 3            1 13.22677 2.5294886 583.6427         3   1.919272 27.51494
+## 4            1 18.70756 2.4025075 623.1402         4 -13.646511 21.95909
+## 5            1 23.43844 1.5913890 410.4118         5   4.078859 15.94262
+## 6            1 23.69812 0.7457003 689.4610         6 -10.458642 14.46738
+##        gpa      sat fixed_outcome random_effects        y
+## 1 2.229983 534.5405      559.8898              0 564.8703
+## 2 2.138716 467.7070      490.2727              0 482.0766
+## 3 2.747869 669.2962      700.5590              0 702.4782
+## 4 2.043736 532.2843      557.2872              0 543.6407
+## 5 1.661261 414.0659      432.6698              0 436.7486
+## 6 0.792108 407.6254      423.8849              0 413.4262</code></pre>
+<pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
+<pre><code>##             y       act       gpa       sat
+## y   1.0000000 0.9773657 0.8507372 0.9954331
+## act 0.9773657 1.0000000 0.9017005 0.9801057
+## gpa 0.8507372 0.9017005 1.0000000 0.8507010
+## sat 0.9954331 0.9801057 0.8507010 1.0000000</code></pre>
+<pre class="r"><code>sim_lm4 &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
+vif(sim_lm4)</code></pre>
+<pre><code>##       act       gpa       sat 
+## 44.061747  6.281825 29.809977</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)   -0.116   0.819      -0.142 8.87e-  1
+## 2 act            0.992   0.0250     39.7   1.13e-320
+## 3 gpa            1.39    0.201       6.90  5.42e- 12
+## 4 sat            1.00    0.00100   999.    0</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm2)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.20    0.611        1.96 5.00e-  2
+## 2 act            1.02    0.0320      32.0  1.38e-214
+## 3 gpa            0.979   0.231        4.23 2.38e-  5
+## 4 sat            0.999   0.00115    869.   0</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm3)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1.25    0.554        2.25 2.45e- 2
+## 2 act            0.923   0.0584      15.8  1.55e-55
+## 3 gpa            1.09    0.233        4.69 2.79e- 6
+## 4 sat            1.00    0.00235    427.   0</code></pre>
+<pre class="r"><code>broom::tidy(sim_lm4)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic      p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1 (Intercept)    1.78    0.522        3.41 0.000662    
+## 2 act            0.892   0.165        5.39 0.0000000713
+## 3 gpa            1.22    0.501        2.45 0.0144      
+## 4 sat            1.00    0.00543    184.   0</code></pre>
+</div>
+</div>
+</div>
+
+          </div>
+
+          
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/10-model-comparison/" rel="next">Model Comparison</a>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Oct 13, 2021</p>
+
+          
+
+
+
+          
+
+
+
+
+          
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.d4185df71ecf716f1c4e7ef5f3d4e2b8.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

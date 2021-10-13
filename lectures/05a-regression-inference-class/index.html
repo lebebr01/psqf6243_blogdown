@@ -837,6 +837,14 @@
 
   <li class=""><a href="/lectures/09-multiple-regression-p1/">Multiple Regression - Part 1</a></li>
 
+
+
+  <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
       
     
 
@@ -961,20 +969,20 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
   generate_response(sim_arguments)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
-## 1            1  1.1962331         1  0.6730010      5.000120              0
-## 2            1 -0.2489538         2 -1.6928058      4.999975              0
-## 3            1  0.6221119         3 -0.6147120      5.000062              0
-## 4            1 -0.7434366         4 -0.3736702      4.999926              0
-## 5            1 -0.4140016         5 -1.5009419      4.999959              0
-## 6            1 -0.7242824         6  1.1786823      4.999928              0
+<pre><code>##   X.Intercept.          x level1_id       error fixed_outcome random_effects
+## 1            1 -1.1916148         1 -0.87650973      4.999881              0
+## 2            1 -0.3319158         2  0.32666082      4.999967              0
+## 3            1  1.5400493         3 -0.46950718      5.000154              0
+## 4            1 -1.4263175         4 -0.55130078      4.999857              0
+## 5            1  0.2782470         5 -1.21529356      5.000028              0
+## 6            1  1.6705062         6  0.05761956      5.000167              0
 ##          y
-## 1 5.673121
-## 2 3.307169
-## 3 4.385350
-## 4 4.626255
-## 5 3.499017
-## 6 6.178610</code></pre>
+## 1 4.123371
+## 2 5.326628
+## 3 4.530647
+## 4 4.448557
+## 5 3.784734
+## 6 5.057787</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ x, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -983,18 +991,18 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.0773 -0.6741 -0.0001  0.6741  5.2809 
+## -5.0202 -0.6747 -0.0002  0.6744  5.7406 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error   t value Pr(&gt;|t|)    
-## (Intercept) 4.9998999  0.0003162 15810.769   &lt;2e-16 ***
-## x           0.0001984  0.0003162     0.627     0.53    
+## (Intercept) 5.000e+00  3.162e-04 15811.036   &lt;2e-16 ***
+## x           1.668e-05  3.162e-04     0.053    0.958    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1 on 9999998 degrees of freedom
-## Multiple R-squared:  3.935e-08,  Adjusted R-squared:  -6.065e-08 
-## F-statistic: 0.3935 on 1 and 9999998 DF,  p-value: 0.5305</code></pre>
+## Multiple R-squared:  2.783e-10,  Adjusted R-squared:  -9.972e-08 
+## F-statistic: 0.002783 on 1 and 9999998 DF,  p-value: 0.9579</code></pre>
 <p><span class="math display">\[
 H_{0}: \beta_{1} = 0
 \]</span></p>
