@@ -839,11 +839,31 @@
 
 
 
+  <li class=""><a href="/lectures/09-multiple-regression-p1-class/">Multiple Regression - Part 1</a></li>
+
+
+
   <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
 
 
 
+  <li class=""><a href="/lectures/10-model-comparison-class/">Model Comparison</a></li>
+
+
+
   <li class=""><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity-class/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical/">Regression Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
 
       
     
@@ -1008,9 +1028,8 @@ SE\left( \hat{\beta} \right) = \sqrt{diag\left(\hat{\sigma}^2 \left( \mathbf{X}^
 <div id="guiding-question" class="section level4">
 <h4>Guiding Question</h4>
 <p>How is average daily wind speed related to the daily air quality index?</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
-<pre class="r"><code>library(ggformula)
+<pre class="r"><code>library(tidyverse)
+library(ggformula)
 library(mosaic)
 
 theme_set(theme_bw(base_size = 18))
@@ -1174,19 +1193,19 @@ summary(air_lm_small)</code></pre>
 ##     50))
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -29.652 -13.081  -0.615  13.266  35.418 
+##    Min     1Q Median     3Q    Max 
+## -30.92 -11.59   1.49  10.09  30.70 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  39.9835     4.0554   9.859 4.02e-13 ***
-## avg_wind     -1.4543     0.7619  -1.909   0.0623 .  
+## (Intercept)  55.1991     4.4132  12.508  &lt; 2e-16 ***
+## avg_wind     -3.2991     0.9587  -3.441  0.00121 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 15.89 on 48 degrees of freedom
-## Multiple R-squared:  0.07054,    Adjusted R-squared:  0.05118 
-## F-statistic: 3.643 on 1 and 48 DF,  p-value: 0.06229</code></pre>
+## Residual standard error: 15.44 on 48 degrees of freedom
+## Multiple R-squared:  0.1979, Adjusted R-squared:  0.1812 
+## F-statistic: 11.84 on 1 and 48 DF,  p-value: 0.001209</code></pre>
 <pre class="r"><code>-2.84 / 1.101</code></pre>
 <pre><code>## [1] -2.579473</code></pre>
 <pre class="r"><code>(-2.84 - -2) / 1.101</code></pre>

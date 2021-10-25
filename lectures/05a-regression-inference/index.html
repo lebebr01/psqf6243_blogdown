@@ -839,11 +839,31 @@
 
 
 
+  <li class=""><a href="/lectures/09-multiple-regression-p1-class/">Multiple Regression - Part 1</a></li>
+
+
+
   <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
 
 
 
+  <li class=""><a href="/lectures/10-model-comparison-class/">Model Comparison</a></li>
+
+
+
   <li class=""><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity-class/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical/">Regression Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
 
       
     
@@ -904,9 +924,8 @@ H_{0}: \beta_{1} \geq 0  \\
 H_{A}: \beta_{1} &lt; 0
 \]</span></p>
 <p>Most of the mechanics stay the same, but there is one notable difference. Let’s draw this out.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
-<pre class="r"><code>library(ggformula)
+<pre class="r"><code>library(tidyverse)
+library(ggformula)
 library(mosaic)
 
 theme_set(theme_bw(base_size = 18))
@@ -954,9 +973,13 @@ library(future)</code></pre>
 <pre><code>## The following object is masked from &#39;package:mosaic&#39;:
 ## 
 ##     value</code></pre>
-<pre class="r"><code>plan(multicore)
-
-sim_arguments &lt;- list(
+<pre class="r"><code>plan(multicore)</code></pre>
+<pre><code>## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing (&#39;multicore&#39;) is not supported when running R from RStudio
+## because it is considered unstable. For more details, how to control forked
+## processing or not, and how to silence this warning in future R sessions, see ?
+## parallelly::supportsMulticore</code></pre>
+<pre class="r"><code>sim_arguments &lt;- list(
     formula = y ~ x,
     fixed = list(x = list(var_type = &#39;continuous&#39;, mean = 0, sd = 1)),
     error = list(variance = 1),
@@ -970,19 +993,19 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
 
 head(sim_data)</code></pre>
 <pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
-## 1            1 -0.8806904         1 -2.5109686      4.991193              0
-## 2            1  0.5527330         2 -0.8865856      5.005527              0
-## 3            1  0.6433758         3 -0.4819559      5.006434              0
-## 4            1 -0.1487767         4  0.1384570      4.998512              0
-## 5            1 -1.3254815         5  0.2611431      4.986745              0
-## 6            1 -0.1029906         6 -1.2526189      4.998970              0
+## 1            1  0.3815531         1  0.8466224      5.003816              0
+## 2            1 -1.9815003         2 -0.0979980      4.980185              0
+## 3            1 -0.1946125         3  0.4592723      4.998054              0
+## 4            1 -1.6126524         4 -0.1672501      4.983873              0
+## 5            1 -0.8760781         5  0.2876473      4.991239              0
+## 6            1  0.3986174         6  1.6296373      5.003986              0
 ##          y
-## 1 2.480225
-## 2 4.118942
-## 3 4.524478
-## 4 5.136969
-## 5 5.247888
-## 6 3.746351</code></pre>
+## 1 5.850438
+## 2 4.882187
+## 3 5.457326
+## 4 4.816623
+## 5 5.278887
+## 6 6.633623</code></pre>
 </div>
 </div>
 

@@ -839,11 +839,31 @@
 
 
 
+  <li class=""><a href="/lectures/09-multiple-regression-p1-class/">Multiple Regression - Part 1</a></li>
+
+
+
   <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
 
 
 
+  <li class=""><a href="/lectures/10-model-comparison-class/">Model Comparison</a></li>
+
+
+
   <li class=""><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity-class/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical/">Regression Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
 
       
     
@@ -904,9 +924,8 @@ H_{0}: \beta_{1} \geq 0  \\
 H_{A}: \beta_{1} &lt; 0
 \]</span></p>
 <p>Most of the mechanics stay the same, but there is one notable difference. Let’s draw this out.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
-<pre class="r"><code>library(ggformula)
+<pre class="r"><code>library(tidyverse)
+library(ggformula)
 library(mosaic)
 
 theme_set(theme_bw(base_size = 18))
@@ -954,9 +973,13 @@ library(future)</code></pre>
 <pre><code>## The following object is masked from &#39;package:mosaic&#39;:
 ## 
 ##     value</code></pre>
-<pre class="r"><code>plan(multicore)
-
-sim_arguments &lt;- list(
+<pre class="r"><code>plan(multicore)</code></pre>
+<pre><code>## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing (&#39;multicore&#39;) is not supported when running R from RStudio
+## because it is considered unstable. For more details, how to control forked
+## processing or not, and how to silence this warning in future R sessions, see ?
+## parallelly::supportsMulticore</code></pre>
+<pre class="r"><code>sim_arguments &lt;- list(
     formula = y ~ x,
     fixed = list(x = list(var_type = &#39;continuous&#39;, mean = 0, sd = 1)),
     error = list(variance = 1),
@@ -969,20 +992,20 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
   generate_response(sim_arguments)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.          x level1_id       error fixed_outcome random_effects
-## 1            1 -1.1916148         1 -0.87650973      4.999881              0
-## 2            1 -0.3319158         2  0.32666082      4.999967              0
-## 3            1  1.5400493         3 -0.46950718      5.000154              0
-## 4            1 -1.4263175         4 -0.55130078      4.999857              0
-## 5            1  0.2782470         5 -1.21529356      5.000028              0
-## 6            1  1.6705062         6  0.05761956      5.000167              0
+<pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
+## 1            1 -2.0262667         1  0.1212250      4.999797              0
+## 2            1 -0.2742173         2 -0.6423884      4.999973              0
+## 3            1  0.8533812         3  0.7133916      5.000085              0
+## 4            1  1.0162630         4  0.7828526      5.000102              0
+## 5            1  0.5322733         5  0.1214714      5.000053              0
+## 6            1  0.5515742         6 -1.2491844      5.000055              0
 ##          y
-## 1 4.123371
-## 2 5.326628
-## 3 4.530647
-## 4 4.448557
-## 5 3.784734
-## 6 5.057787</code></pre>
+## 1 5.121022
+## 2 4.357584
+## 3 5.713477
+## 4 5.782954
+## 5 5.121525
+## 6 3.750871</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ x, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -991,18 +1014,18 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.0202 -0.6747 -0.0002  0.6744  5.7406 
+## -5.7548 -0.6745  0.0000  0.6743  5.6354 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error   t value Pr(&gt;|t|)    
-## (Intercept) 5.000e+00  3.162e-04 15811.036   &lt;2e-16 ***
-## x           1.668e-05  3.162e-04     0.053    0.958    
+## (Intercept) 5.0000797  0.0003163 15809.741   &lt;2e-16 ***
+## x           0.0002295  0.0003164     0.725    0.468    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1 on 9999998 degrees of freedom
-## Multiple R-squared:  2.783e-10,  Adjusted R-squared:  -9.972e-08 
-## F-statistic: 0.002783 on 1 and 9999998 DF,  p-value: 0.9579</code></pre>
+## Multiple R-squared:  5.26e-08,   Adjusted R-squared:  -4.74e-08 
+## F-statistic: 0.526 on 1 and 9999998 DF,  p-value: 0.4683</code></pre>
 <p><span class="math display">\[
 H_{0}: \beta_{1} = 0
 \]</span></p>

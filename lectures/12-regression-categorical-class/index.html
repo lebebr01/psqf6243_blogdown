@@ -1,0 +1,1427 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Regression Categorical Predictors">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/12-regression-categorical-class/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3aad675291f323c3cd47ae187f0bf0d6.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/12-regression-categorical-class/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/12-regression-categorical-class/">
+  <meta property="og:title" content="Regression Categorical Predictors | PSQF 6243">
+  <meta property="og:description" content="Regression Categorical Predictors"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-10-25T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-10-25T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Regression Categorical Predictors | PSQF 6243</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7de282f2047be3c570af3a58788341e7.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#logistics"><span>Logistics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Syllabus</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Schedule</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Content</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/lectures/"><span>Lecture Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/assignments/"><span>Assignments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/code/"><span>Software Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>People</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      
+      
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
+      
+
+
+  <li class=""><a href="/lectures/review/">Review</a></li>
+
+
+
+  <li class=""><a href="/lectures/review-class/">Review - class</a></li>
+
+
+
+  <li class=""><a href="/lectures/intro-regression/">Intro to Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/linear-regression-class/">Intro to Linear Regression - class</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-estimates/">Linear Regression Estimates</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-estimates-class/">Linear Regression Estimates - class</a></li>
+
+
+
+  <li class=""><a href="/lectures/least-squares-simulation/">Least Square Simulation</a></li>
+
+
+
+  <li class=""><a href="/lectures/regression-inference-p1/">Regression Inference - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Regression Inference - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/05a-regression-inference/">Regression Inference - Part 2</a></li>
+
+
+
+  <li class=""><a href="/lectures/05a-regression-inference-class/">Regression Inference - Part 2 - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/06-t-vs-norm/">t vs Normal</a></li>
+
+
+
+  <li class=""><a href="/lectures/07-regression-assumptions/">Regression Assumptions</a></li>
+
+
+
+  <li class=""><a href="/lectures/07a-regression-assumptions/">Regression Assumptions - New Package</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-bootstrap/">Regression Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-bootstrap-class/">Regression Bootstrap - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/09-multiple-regression-p1/">Multiple Regression - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/09-multiple-regression-p1-class/">Multiple Regression - Part 1</a></li>
+
+
+
+  <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
+
+
+
+  <li class=""><a href="/lectures/10-model-comparison-class/">Model Comparison</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity-class/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical/">Regression Categorical Predictors</a></li>
+
+
+
+  <li class="active"><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Regression Categorical Predictors</h1>
+
+          <div class="article-style">
+            
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<div id="regression-with-categorical-predictors---part-1" class="section level1">
+<h1>Regression with Categorical Predictors - Part 1</h1>
+<p>This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(Lahman)
+library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggstance&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh</code></pre>
+<pre><code>## Loading required package: scales</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## Loading required package: ggridges</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+career &lt;- Batting %&gt;%
+  filter(AB &gt; 100) %&gt;%
+  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&gt;%
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- Master %&gt;%
+  tbl_df() %&gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
+  inner_join(career, by = &quot;playerID&quot;) %&gt;%
+  dplyr::select(-playerID)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## Please use `tibble::as_tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<pre class="r"><code>head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   name               lgID      H    AB average
+##   &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1 Jeff Abbott        AL      127   459   0.277
+## 2 Kurt Abbott        AL       33   123   0.268
+## 3 Kurt Abbott        NL      455  1780   0.256
+## 4 Reggie Abercrombie NL       54   255   0.212
+## 5 Brent Abernathy    AL      194   767   0.253
+## 6 Shawn Abner        AL       81   309   0.262</code></pre>
+<div id="question" class="section level2">
+<h2>Question</h2>
+<p>Suppose we are interested in the batting average of baseball players since 1990, that is, the average is:</p>
+<p><span class="math display">\[
+average = \frac{number\ of\ hits}{number\ of\ atbats}
+\]</span></p>
+<p>Let’s first visualize this.</p>
+<pre class="r"><code>gf_density(~ average, data = career) %&gt;%
+  gf_labs(x = &quot;Batting Average&quot;)</code></pre>
+<p><img src="/lectures/12-regression-categorical-class_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>What if we hypothesized that the batting average will differ based on the league that players played in.</p>
+<pre class="r"><code>gf_violin(lgID ~ average, data = career, fill = &#39;gray80&#39;, draw_quantiles = c(&#39;0.1&#39;, &#39;0.5&#39;, &#39;0.9&#39;)) %&gt;%
+  gf_labs(x = &quot;Batting Average&quot;,
+          y = &quot;League&quot;)</code></pre>
+<p><img src="/lectures/12-regression-categorical-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>df_stats(average ~ lgID, data = career, mean, median, sd, IQR, min, max, length)</code></pre>
+<pre><code>##   response lgID      mean    median        sd        IQR       min       max
+## 1  average   AL 0.2539625 0.2567568 0.0287995 0.03696929 0.1250000 0.3488372
+## 2  average   NL 0.2541274 0.2571429 0.0285979 0.03621951 0.1440678 0.3472072
+##   length
+## 1   1387
+## 2   1415</code></pre>
+<p>The distributions seem similar, but what if we wanted to go a step further and estimate a model to explore if there are really differences or not. For example, suppose we were interested in:</p>
+<p><span class="math display">\[ 
+H_{0}: \mu_{NL} = \mu_{AL}
+\]</span></p>
+<p><span class="math display">\[
+H_{0}: \mu_{NL} - \mu_{AL} = 0
+\]</span></p>
+<p>What type of model could we use? What about linear regression?</p>
+</div>
+<div id="linear-regression-with-categorical-attributes" class="section level2">
+<h2>Linear Regression with Categorical Attributes</h2>
+<p>Since these notes are happening, you can assume it is possible. But how can a categorical attribute with categories rather than numbers be included in the linear regression model?</p>
+<p>The answer is that they can’t. We need a new representation of the categorical attribute, enter dummy or indicator coding.</p>
+<div id="dummyindicator-coding" class="section level3">
+<h3>Dummy/Indicator Coding</h3>
+<p>Suppose we use the following logic:</p>
+<p>If NL, then give a value of 1, else give a value of 0.</p>
+<p>Does this give the same information as before?</p>
+<table>
+<thead>
+<tr class="header">
+<th>League ID</th>
+<th>Dummy League ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AL</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>NL</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>What would this look like for the actual data?</p>
+<pre class="r"><code>career &lt;- career %&gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0),
+         league_dummy_al = ifelse(lgID == &#39;AL&#39;, 1, 0))
+
+head(career, n = 10)</code></pre>
+<pre><code>## # A tibble: 10 × 7
+##    name               lgID      H    AB average league_dummy league_dummy_al
+##    &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;
+##  1 Jeff Abbott        AL      127   459   0.277            0               1
+##  2 Kurt Abbott        AL       33   123   0.268            0               1
+##  3 Kurt Abbott        NL      455  1780   0.256            1               0
+##  4 Reggie Abercrombie NL       54   255   0.212            1               0
+##  5 Brent Abernathy    AL      194   767   0.253            0               1
+##  6 Shawn Abner        AL       81   309   0.262            0               1
+##  7 Shawn Abner        NL       19   115   0.165            1               0
+##  8 Bobby Abreu        AL      858  3061   0.280            0               1
+##  9 Bobby Abreu        NL     1602  5373   0.298            1               0
+## 10 Jose Abreu         AL     1114  3787   0.294            0               1</code></pre>
+<p>Now that there is a numeric attribute, these can be added into the linear regression model.</p>
+<pre class="r"><code>average_lm &lt;- lm(average ~ 1 + league_dummy, data = career)
+
+broom::tidy(average_lm)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)  0.254     0.000771   330.      0    
+## 2 league_dummy 0.000165  0.00108      0.152   0.879</code></pre>
+<pre class="r"><code>summary(average_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = average ~ 1 + league_dummy, data = career)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.128963 -0.016770  0.002935  0.019779  0.094875 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.2539625  0.0007706 329.578   &lt;2e-16 ***
+## league_dummy 0.0001649  0.0010843   0.152    0.879    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0287 on 2800 degrees of freedom
+## Multiple R-squared:  8.257e-06,  Adjusted R-squared:  -0.0003489 
+## F-statistic: 0.02312 on 1 and 2800 DF,  p-value: 0.8792</code></pre>
+<pre class="r"><code>head(model.matrix(average_lm))</code></pre>
+<pre><code>##   (Intercept) league_dummy
+## 1           1            0
+## 2           1            0
+## 3           1            1
+## 4           1            1
+## 5           1            0
+## 6           1            0</code></pre>
+<p>How are these terms interpreted now?</p>
+<pre class="r"><code>df_stats(average ~ league_dummy, data = career, mean, sd, length)</code></pre>
+<pre><code>##   response league_dummy      mean        sd length
+## 1  average            0 0.2539625 0.0287995   1387
+## 2  average            1 0.2541274 0.0285979   1415</code></pre>
+</div>
+<div id="switch-reference-group" class="section level3">
+<h3>Switch reference group</h3>
+<pre class="r"><code>average_lm_al &lt;- lm(average ~ league_dummy_al, data = career)
+
+summary(average_lm_al)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = average ~ league_dummy_al, data = career)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.128963 -0.016770  0.002935  0.019779  0.094875 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      0.2541274  0.0007629 333.104   &lt;2e-16 ***
+## league_dummy_al -0.0001649  0.0010843  -0.152    0.879    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.0287 on 2800 degrees of freedom
+## Multiple R-squared:  8.257e-06,  Adjusted R-squared:  -0.0003489 
+## F-statistic: 0.02312 on 1 and 2800 DF,  p-value: 0.8792</code></pre>
+<p><span class="math display">\[
+H_{A}: \mu_{NL} - \mu_{AL} &gt; 0
+\]</span></p>
+<p><span class="math display">\[
+H_{A}: \mu_{NL} &gt; \mu_{AL}
+\]</span></p>
+<pre class="r"><code>head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 7
+##   name               lgID      H    AB average league_dummy league_dummy_al
+##   &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;
+## 1 Jeff Abbott        AL      127   459   0.277            0               1
+## 2 Kurt Abbott        AL       33   123   0.268            0               1
+## 3 Kurt Abbott        NL      455  1780   0.256            1               0
+## 4 Reggie Abercrombie NL       54   255   0.212            1               0
+## 5 Brent Abernathy    AL      194   767   0.253            0               1
+## 6 Shawn Abner        AL       81   309   0.262            0               1</code></pre>
+<pre class="r"><code>average_lm2 &lt;- lm(average ~ lgID, data = career)
+
+broom::tidy(average_lm2)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept) 0.254     0.000771   330.      0    
+## 2 lgIDNL      0.000165  0.00108      0.152   0.879</code></pre>
+</div>
+<div id="show-equivalent-t-tests" class="section level3">
+<h3>Show equivalent t-tests</h3>
+<pre class="r"><code>t.test(average ~ lgID, data = career, var.equal = TRUE)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  average by lgID
+## t = -0.15205, df = 2800, p-value = 0.8792
+## alternative hypothesis: true difference in means between group AL and group NL is not equal to 0
+## 95 percent confidence interval:
+##  -0.002291074  0.001961316
+## sample estimates:
+## mean in group AL mean in group NL 
+##        0.2539625        0.2541274</code></pre>
+<pre class="r"><code>t.test(average ~ lgID, data = career)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  average by lgID
+## t = -0.15204, df = 2798, p-value = 0.8792
+## alternative hypothesis: true difference in means between group AL and group NL is not equal to 0
+## 95 percent confidence interval:
+##  -0.002291224  0.001961466
+## sample estimates:
+## mean in group AL mean in group NL 
+##        0.2539625        0.2541274</code></pre>
+</div>
+<div id="test-for-equal-variances" class="section level3">
+<h3>Test for equal variances</h3>
+<pre class="r"><code>library(car)</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;carData&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Lahman&#39;:
+## 
+##     Salaries</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     recode</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     some</code></pre>
+<pre class="r"><code>leveneTest(average ~ lgID, data = career)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value Pr(&gt;F)
+## group    1  0.1735 0.6771
+##       2800</code></pre>
+</div>
+</div>
+</div>
+
+          </div>
+
+          
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/12-regression-categorical/" rel="next">Regression Categorical Predictors</a>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Oct 25, 2021</p>
+
+          
+
+
+
+          
+
+
+
+
+          
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.d4185df71ecf716f1c4e7ef5f3d4e2b8.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

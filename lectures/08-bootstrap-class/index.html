@@ -839,11 +839,31 @@
 
 
 
+  <li class=""><a href="/lectures/09-multiple-regression-p1-class/">Multiple Regression - Part 1</a></li>
+
+
+
   <li class=""><a href="/lectures/10-model-comparison/">Model Comparison</a></li>
 
 
 
+  <li class=""><a href="/lectures/10-model-comparison-class/">Model Comparison</a></li>
+
+
+
   <li class=""><a href="/lectures/11-multicollinearity/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multicollinearity-class/">Multicollinearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical/">Regression Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
 
       
     
@@ -907,10 +927,9 @@
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   2.0.1     ✓ forcats 0.5.1</code></pre>
-<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
@@ -931,24 +950,24 @@ fruit</code></pre>
 ## 8     banana       8</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1     banana       8
-## 2 watermelon       1
-## 3 canteloupe       6
-## 4      apple       2
-## 5    kumquat       4
-## 6     orange       3
-## 7       kiwi       7
-## 8     grapes       5</code></pre>
+## 1 watermelon       1
+## 2       kiwi       7
+## 3      apple       2
+## 4 canteloupe       6
+## 5     grapes       5
+## 6     banana       8
+## 7     orange       3
+## 8    kumquat       4</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1     banana       8
-## 2       kiwi       7
-## 3 canteloupe       6
+## 1      apple       2
+## 2 watermelon       1
+## 3       kiwi       7
 ## 4 canteloupe       6
-## 5 canteloupe       6
-## 6 canteloupe       6
-## 7 canteloupe       6
-## 8 watermelon       1</code></pre>
+## 5       kiwi       7
+## 6 watermelon       1
+## 7     banana       8
+## 8 canteloupe       6</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1101,14 +1120,14 @@ fruit</code></pre>
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>head(astronauts)</code></pre>
 <pre><code>## # A tibble: 6 × 25
-##      id number nationwide_number name                original_name sex   year_of_birth
-##   &lt;dbl&gt;  &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;         &lt;chr&gt;         &lt;dbl&gt;
-## 1     1      1                 1 Gagarin, Yuri       ГАГАРИН Юрий… male           1934
-## 2     2      2                 2 Titov, Gherman      ТИТОВ Герман… male           1935
-## 3     3      3                 1 Glenn, John H., Jr. Glenn, John … male           1921
-## 4     4      3                 1 Glenn, John H., Jr. Glenn, John … male           1921
-## 5     5      4                 2 Carpenter, M. Scott Carpenter, M… male           1925
-## 6     6      5                 2 Nikolayev, Andriyan НИКОЛАЕВ Анд… male           1929
+##      id number nationwide_number name      original_name     sex   year_of_birth
+##   &lt;dbl&gt;  &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;             &lt;chr&gt;         &lt;dbl&gt;
+## 1     1      1                 1 Gagarin,… ГАГАРИН Юрий Але… male           1934
+## 2     2      2                 2 Titov, G… ТИТОВ Герман Сте… male           1935
+## 3     3      3                 1 Glenn, J… Glenn, John H., … male           1921
+## 4     4      3                 1 Glenn, J… Glenn, John H., … male           1921
+## 5     5      4                 2 Carpente… Carpenter, M. Sc… male           1925
+## 6     6      5                 2 Nikolaye… НИКОЛАЕВ Андриян… male           1929
 ## # … with 18 more variables: nationality &lt;chr&gt;, military_civilian &lt;chr&gt;,
 ## #   selection &lt;chr&gt;, year_of_selection &lt;dbl&gt;, mission_number &lt;dbl&gt;,
 ## #   total_number_of_missions &lt;dbl&gt;, occupation &lt;chr&gt;, year_of_mission &lt;dbl&gt;,
@@ -1215,22 +1234,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2191.6  -968.2  -635.7   406.3  8336.0 
+## -2365.1  -968.2  -628.9   532.5  8187.4 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   -599.216    122.644  -4.886 1.16e-06 ***
-## year_centered   48.118      3.395  14.173  &lt; 2e-16 ***
+## (Intercept)    -843.92     126.99  -6.646 4.46e-11 ***
+## year_centered    55.33       3.50  15.806  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1579 on 1275 degrees of freedom
-## Multiple R-squared:  0.1361, Adjusted R-squared:  0.1354 
-## F-statistic: 200.9 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1529 on 1275 degrees of freedom
+## Multiple R-squared:  0.1638, Adjusted R-squared:  0.1632 
+## F-statistic: 249.8 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
-<pre><code>##                    2.5 %     97.5 %
-## (Intercept)   -839.82229 -358.60922
-## year_centered   41.45746   54.77876</code></pre>
+<pre><code>##                     2.5 %     97.5 %
+## (Intercept)   -1093.04954 -594.79241
+## year_centered    48.46075   62.19542</code></pre>
 <p>Let’s now repeat this a bunch of times.</p>
 <pre class="r"><code>set.seed(2021)
 
