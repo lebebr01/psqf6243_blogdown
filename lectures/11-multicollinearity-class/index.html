@@ -865,6 +865,18 @@
 
   <li class=""><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
 
+
+
+  <li class=""><a href="/lectures/13-regression-categorical-p2/">Regression Categorical Predictors - p2</a></li>
+
+
+
+  <li class=""><a href="/lectures/14-pairwise/">Pairwise Contrasts</a></li>
+
+
+
+  <li class=""><a href="/lectures/15-multiple-categorical/">Multiple Categorical Predictors</a></li>
+
       
     
 
@@ -914,7 +926,7 @@
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
 ## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1081,26 +1093,26 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
    generate_response(sim_args)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id       error      act
-## 1            1 19.30955 2.144997 409.3522         1  -0.2996427 21.15997
-## 2            1 23.60687 2.331717 677.1365         2  -1.1906051 22.65374
-## 3            1 24.86865 1.345642 429.8794         3  -4.2927644 14.76514
-## 4            1 19.08932 1.324749 549.1714         4   6.7840255 14.59800
-## 5            1 20.29040 3.025038 688.1818         5   5.9078317 28.20031
-## 6            1 19.51388 1.955354 472.6223         6 -23.3507986 19.64284
+<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id      error      act
+## 1            1 21.71261 2.269306 355.4309         1   3.443755 22.15445
+## 2            1 22.93298 1.540223 566.4037         2   6.069168 16.32179
+## 3            1 21.46041 1.449335 658.3830         3   1.096244 15.59468
+## 4            1 19.00509 1.633126 494.8745         4  -5.127735 17.06501
+## 5            1 15.86200 2.971490 312.8724         5 -14.516857 27.77192
+## 6            1 22.76143 1.860398 493.4779         6  -5.021837 18.88319
 ##        gpa      sat fixed_outcome random_effects        y
-## 1 1.546761 482.7388      506.4455              0 506.1459
-## 2 2.885682 590.1718      616.7112              0 615.5206
-## 3 1.649397 621.7162      639.1307              0 634.8379
-## 4 2.245857 477.2330      495.0768              0 501.8609
-## 5 2.940909 507.2599      539.4011              0 545.3089
-## 6 1.863112 487.8470      510.3530              0 487.0022</code></pre>
+## 1 1.277154 542.8153      567.2469              0 570.6906
+## 2 2.332019 573.3245      592.9783              0 599.0474
+## 3 2.791915 536.5103      555.8969              0 556.9931
+## 4 1.974372 475.1271      495.1665              0 490.0388
+## 5 1.064362 396.5499      426.3862              0 411.8693
+## 6 1.967390 569.0359      590.8864              0 585.8646</code></pre>
 <pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
-<pre><code>##               y         act          gpa          sat
-## y   1.000000000  0.02281287  0.009857696  0.994121553
-## act 0.022812868  1.00000000 -0.014079305 -0.017403739
-## gpa 0.009857696 -0.01407930  1.000000000  0.004968754
-## sat 0.994121553 -0.01740374  0.004968754  1.000000000</code></pre>
+<pre><code>##               y          act          gpa           sat
+## y   1.000000000  0.037533194 0.0045244958  0.9942986970
+## act 0.037533194  1.000000000 0.0097016040 -0.0011150316
+## gpa 0.004524496  0.009701604 1.0000000000  0.0006124061
+## sat 0.994298697 -0.001115032 0.0006124061  1.0000000000</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -1109,23 +1121,23 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -40.045  -6.710  -0.056   6.603  44.560 
+## -38.985  -6.544   0.002   6.617  39.497 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 0.323379   0.832346   0.389    0.698    
-## act         1.000625   0.025003  40.020  &lt; 2e-16 ***
-## gpa         1.099470   0.201492   5.457 4.97e-08 ***
-## sat         1.000903   0.001011 990.349  &lt; 2e-16 ***
+##             Estimate Std. Error  t value Pr(&gt;|t|)    
+## (Intercept) 1.174945   0.816648    1.439 0.150256    
+## act         0.967193   0.024888   38.862  &lt; 2e-16 ***
+## gpa         0.716212   0.200936    3.564 0.000366 ***
+## sat         1.001919   0.001001 1000.951  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 10.02 on 9996 degrees of freedom
-## Multiple R-squared:  0.9899, Adjusted R-squared:  0.9899 
-## F-statistic: 3.271e+05 on 3 and 9996 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 9.976 on 9996 degrees of freedom
+## Multiple R-squared:  0.9901, Adjusted R-squared:  0.9901 
+## F-statistic: 3.344e+05 on 3 and 9996 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>vif(sim_lm)</code></pre>
 <pre><code>##      act      gpa      sat 
-## 1.000499 1.000221 1.000325</code></pre>
+## 1.000095 1.000095 1.000002</code></pre>
 <pre class="r"><code>summary(lm(act ~ gpa + sat, data = sim_data))</code></pre>
 <pre><code>## 
 ## Call:
@@ -1133,19 +1145,19 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -14.5278  -2.6805   0.0685   2.6772  15.4615 
+## -13.3577  -2.7432   0.0037   2.7039  15.5665 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 20.6209402  0.2613785  78.893   &lt;2e-16 ***
-## gpa         -0.1127824  0.0805911  -1.399    0.162    
-## sat         -0.0007007  0.0004042  -1.734    0.083 .  
+## (Intercept)  1.991e+01  2.609e-01  76.326   &lt;2e-16 ***
+## gpa          7.833e-02  8.075e-02   0.970    0.332    
+## sat         -4.509e-05  4.023e-04  -0.112    0.911    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 4.007 on 9997 degrees of freedom
-## Multiple R-squared:  0.0004987,  Adjusted R-squared:  0.0002987 
-## F-statistic: 2.494 on 2 and 9997 DF,  p-value: 0.08263</code></pre>
+## Residual standard error: 4.009 on 9997 degrees of freedom
+## Multiple R-squared:  9.538e-05,  Adjusted R-squared:  -0.0001047 
+## F-statistic: 0.4768 on 2 and 9997 DF,  p-value: 0.6208</code></pre>
 <p>Let’s now increase the correlation among the attributes.</p>
 <pre class="r"><code>library(simglm)
 
@@ -1172,46 +1184,46 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
    generate_response(sim_args)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id      error      act
-## 1            1 22.30900 2.006245 508.5828         1  -2.764011 18.88971
-## 2            1 14.12185 1.874672 580.6172         2 -11.991057 22.09677
-## 3            1 24.65747 1.632369 493.9501         3  13.554084 15.12089
-## 4            1 21.54412 1.959197 633.7519         4  13.600137 18.98106
-## 5            1 24.59195 2.340164 563.2815         5   3.216777 20.07429
-## 6            1 30.93045 2.512827 681.0814         6   2.724644 18.12920
-##        gpa      sat fixed_outcome random_effects        y
-## 1 1.893485 442.2742      464.0574              0 461.2934
-## 2 1.781122 646.9711      671.8490              0 659.8579
-## 3 1.718732 383.6145      401.4541              0 415.0082
-## 4 1.356892 461.4026      482.7406              0 496.3407
-## 5 1.732961 385.1539      407.9612              0 411.1780
-## 6 1.102498 226.6673      246.8990              0 249.6236</code></pre>
+<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id     error      act      gpa
+## 1            1 27.05861 1.855185 459.5029         1 -2.349127 15.45248 1.890136
+## 2            1 14.07217 2.649933 530.3036         2 -6.695894 27.47670 2.340532
+## 3            1 19.63657 2.278515 322.3858         3 11.434178 22.06207 2.899854
+## 4            1 14.44969 2.443869 419.4135         4 -9.503024 25.83032 2.716375
+## 5            1 23.82573 2.350240 501.7876         5 -7.401130 20.51080 2.026580
+## 6            1 17.82908 2.567069 510.8666         6  3.204597 25.01681 2.270381
+##        sat fixed_outcome random_effects        y
+## 1 323.5549      341.8975              0 339.5483
+## 2 648.1053      678.9225              0 672.2266
+## 3 509.0471      535.0090              0 546.4432
+## 4 638.6959      668.2426              0 658.7396
+## 5 404.3081      427.8454              0 420.4443
+## 6 554.1941      582.4813              0 585.6859</code></pre>
 <pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
 <pre><code>##             y       act       gpa       sat
-## y   1.0000000 0.5223330 0.2693552 0.9945143
-## act 0.5223330 1.0000000 0.4961937 0.4935692
-## gpa 0.2693552 0.4961937 1.0000000 0.2518436
-## sat 0.9945143 0.4935692 0.2518436 1.0000000</code></pre>
+## y   1.0000000 0.5198059 0.2610032 0.9946058
+## act 0.5198059 1.0000000 0.4987948 0.4916594
+## gpa 0.2610032 0.4987948 1.0000000 0.2426418
+## sat 0.9946058 0.4916594 0.2426418 1.0000000</code></pre>
 <pre class="r"><code>sim_lm2 &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
 vif(sim_lm2)</code></pre>
 <pre><code>##      act      gpa      sat 
-## 1.642791 1.326738 1.322182</code></pre>
+## 1.652229 1.331212 1.318805</code></pre>
 <pre class="r"><code>broom::tidy(sim_lm)</code></pre>
 <pre><code>## # A tibble: 4 × 5
-##   term        estimate std.error statistic      p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1 (Intercept)    0.323   0.832       0.389 0.698       
-## 2 act            1.00    0.0250     40.0   0           
-## 3 gpa            1.10    0.201       5.46  0.0000000497
-## 4 sat            1.00    0.00101   990.    0</code></pre>
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.17    0.817        1.44 1.50e-  1
+## 2 act            0.967   0.0249      38.9  8.31e-308
+## 3 gpa            0.716   0.201        3.56 3.66e-  4
+## 4 sat            1.00    0.00100   1001.   0</code></pre>
 <pre class="r"><code>broom::tidy(sim_lm2)</code></pre>
 <pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)    1.30    0.617        2.10 3.56e-  2
-## 2 act            1.02    0.0325      31.3  1.59e-205
-## 3 gpa            0.924   0.230        4.02 5.96e-  5
-## 4 sat            0.999   0.00116    864.   0</code></pre>
+## 1 (Intercept)    0.200   0.615       0.325 7.45e-  1
+## 2 act            0.965   0.0320     30.2   1.62e-191
+## 3 gpa            1.17    0.232       5.04  4.70e-  7
+## 4 sat            1.00    0.00115   871.    0</code></pre>
 <pre class="r"><code>library(simglm)
 
 sim_args &lt;- list(formula = y ~ 1 + act + gpa + sat, 
@@ -1238,46 +1250,46 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
 
 head(sim_data)</code></pre>
 <pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id       error      act
-## 1            1 19.14782 1.757600 360.5474         1  -9.5002396 19.90212
-## 2            1 13.19622 1.501653 529.6813         2  12.0607878 24.39424
-## 3            1 23.42253 1.933027 407.2952         3  20.3142630 16.67164
-## 4            1 27.29911 1.755609 432.7996         4   0.5442232 12.56763
-## 5            1 17.41863 2.722507 466.8063         5  -2.4503554 24.83506
-## 6            1 14.84638 2.605098 451.8679         6 -13.0950955 26.73968
+## 1            1 19.23585 1.197351 546.8408         1   0.3885613 17.89978
+## 2            1 17.83672 1.199473 647.4092         2 -25.3566217 19.18187
+## 3            1 31.73995 2.345569 514.0842         3   6.9648019 10.63637
+## 4            1 14.93424 1.926293 658.8120         4  -0.0389233 24.32772
+## 5            1 15.19280 1.961151 436.4062         5  -3.9363290 24.18296
+## 6            1 17.41625 2.199170 466.9696         6  -7.6876017 23.01473
 ##        gpa      sat fixed_outcome random_effects        y
-## 1 2.621569 521.3343      544.8579              0 535.3577
-## 2 2.237382 670.1573      697.7889              0 709.8497
-## 3 2.175315 414.4447      434.2916              0 454.6059
-## 4 1.802052 317.5526      332.9223              0 333.4665
-## 5 2.391638 564.4433      592.6700              0 590.2197
-## 6 2.602172 628.7641      659.1060              0 646.0109</code></pre>
+## 1 1.749229 519.2048      539.8538              0 540.2424
+## 2 1.405823 554.1835      575.7711              0 550.4145
+## 3 1.247836 206.4578      219.3420              0 226.3068
+## 4 1.626879 626.6540      653.6086              0 653.5697
+## 5 2.568386 620.1845      647.9358              0 643.9995
+## 6 2.327361 564.5685      590.9106              0 583.2230</code></pre>
 <pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
 <pre><code>##             y       act       gpa       sat
-## y   1.0000000 0.9028605 0.5198763 0.9952262
-## act 0.9028605 1.0000000 0.5176140 0.8994394
-## gpa 0.5198763 0.5176140 1.0000000 0.5164930
-## sat 0.9952262 0.8994394 0.5164930 1.0000000</code></pre>
+## y   1.0000000 0.9051611 0.5124860 0.9952264
+## act 0.9051611 1.0000000 0.5066775 0.9022572
+## gpa 0.5124860 0.5066775 1.0000000 0.5102742
+## sat 0.9952264 0.9022572 0.5102742 1.0000000</code></pre>
 <pre class="r"><code>sim_lm3 &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
 vif(sim_lm3)</code></pre>
 <pre><code>##      act      gpa      sat 
-## 5.342761 1.391797 5.334314</code></pre>
+## 5.463400 1.373435 5.490418</code></pre>
 <pre class="r"><code>broom::tidy(sim_lm)</code></pre>
 <pre><code>## # A tibble: 4 × 5
-##   term        estimate std.error statistic      p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1 (Intercept)    0.323   0.832       0.389 0.698       
-## 2 act            1.00    0.0250     40.0   0           
-## 3 gpa            1.10    0.201       5.46  0.0000000497
-## 4 sat            1.00    0.00101   990.    0</code></pre>
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.17    0.817        1.44 1.50e-  1
+## 2 act            0.967   0.0249      38.9  8.31e-308
+## 3 gpa            0.716   0.201        3.56 3.66e-  4
+## 4 sat            1.00    0.00100   1001.   0</code></pre>
 <pre class="r"><code>#broom::tidy(sim_lm2)
 broom::tidy(sim_lm3)</code></pre>
 <pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)    1.27    0.541        2.35 1.90e- 2
-## 2 act            1.02    0.0578      17.6  4.12e-68
-## 3 gpa            1.05    0.231        4.56 5.21e- 6
-## 4 sat            0.999   0.00231    432.   0</code></pre>
+## 1 (Intercept)    1.01    0.548        1.84 6.52e- 2
+## 2 act            0.989   0.0588      16.8  1.08e-62
+## 3 gpa            0.821   0.236        3.48 5.06e- 4
+## 4 sat            1.00    0.00235    426.   0</code></pre>
 <pre class="r"><code>library(simglm)
 
 sim_args &lt;- list(formula = y ~ 1 + act + gpa + sat, 
@@ -1303,48 +1315,48 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_args) %&gt;%
    generate_response(sim_args)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id       error      act
-## 1            1 18.78887 2.771406 597.3452         1 -23.6764504 22.45365
-## 2            1 22.04940 2.398607 774.7156         2  14.6460496 18.74365
-## 3            1 20.97737 2.271094 538.0214         3   0.9651814 19.48891
-## 4            1 22.98562 2.638647 599.9119         4  -6.4204463 18.13098
-## 5            1 19.77648 1.645653 397.8289         5  -9.1467190 19.61222
-## 6            1 26.73313 2.755083 563.2787         6   0.9600359 14.62703
-##        gpa      sat fixed_outcome random_effects        y
-## 1 2.216992 530.2283      555.8989              0 532.2225
-## 2 1.394590 448.7371      469.8753              0 484.5213
-## 3 1.919810 475.5481      497.9568              0 498.9220
-## 4 1.718534 425.3178      446.1673              0 439.7469
-## 5 2.094119 505.6115      528.3179              0 519.1712
-## 6 1.432727 331.6230      348.6827              0 349.6428</code></pre>
+<pre><code>##   X.Intercept.  act_old  gpa_old  sat_old level1_id     error      act      gpa
+## 1            1 17.48186 1.679122 447.5947         1  2.870384 21.93587 2.253860
+## 2            1 17.32328 1.831504 560.8974         2 -4.478930 22.38244 2.106535
+## 3            1 25.50532 2.217385 585.5874         3 -5.835133 14.98670 1.327591
+## 4            1 22.21710 1.365170 442.6112         4 13.190558 16.79459 1.647876
+## 5            1 15.37398 2.824414 466.7051         5 -2.352740 25.82772 2.851066
+## 6            1 18.04779 2.964268 491.8926         6  2.772592 23.44015 2.568389
+##        sat fixed_outcome random_effects        y
+## 1 562.9745      588.1642              0 591.0346
+## 2 566.9283      592.4173              0 587.9383
+## 3 362.3525      379.6668              0 373.8316
+## 4 444.6136      464.0561              0 477.2466
+## 5 615.5981      645.2769              0 642.9242
+## 6 548.7439      575.7525              0 578.5251</code></pre>
 <pre class="r"><code>cor(sim_data[c(&#39;y&#39;, &#39;act&#39;, &#39;gpa&#39;, &#39;sat&#39;)])</code></pre>
 <pre><code>##             y       act       gpa       sat
-## y   1.0000000 0.9777961 0.8541301 0.9954737
-## act 0.9777961 1.0000000 0.9032752 0.9806250
-## gpa 0.8541301 0.9032752 1.0000000 0.8546924
-## sat 0.9954737 0.9806250 0.8546924 1.0000000</code></pre>
+## y   1.0000000 0.9773273 0.8515119 0.9953277
+## act 0.9773273 1.0000000 0.9007557 0.9798078
+## gpa 0.8515119 0.9007557 1.0000000 0.8511188
+## sat 0.9953277 0.9798078 0.8511188 1.0000000</code></pre>
 <pre class="r"><code>sim_lm4 &lt;- lm(y ~ 1 + act + gpa + sat, data = sim_data)
 vif(sim_lm4)</code></pre>
 <pre><code>##       act       gpa       sat 
-## 44.191633  6.292513 30.186959</code></pre>
+## 42.062176  6.101312 28.790515</code></pre>
 <pre class="r"><code>broom::tidy(sim_lm)</code></pre>
 <pre><code>## # A tibble: 4 × 5
-##   term        estimate std.error statistic      p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1 (Intercept)    0.323   0.832       0.389 0.698       
-## 2 act            1.00    0.0250     40.0   0           
-## 3 gpa            1.10    0.201       5.46  0.0000000497
-## 4 sat            1.00    0.00101   990.    0</code></pre>
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.17    0.817        1.44 1.50e-  1
+## 2 act            0.967   0.0249      38.9  8.31e-308
+## 3 gpa            0.716   0.201        3.56 3.66e-  4
+## 4 sat            1.00    0.00100   1001.   0</code></pre>
 <pre class="r"><code>#broom::tidy(sim_lm2)
 #broom::tidy(sim_lm3)
 broom::tidy(sim_lm4)</code></pre>
 <pre><code>## # A tibble: 4 × 5
-##   term        estimate std.error statistic      p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1 (Intercept)    1.80    0.520        3.47 0.000530    
-## 2 act            0.939   0.165        5.69 0.0000000130
-## 3 gpa            0.762   0.501        1.52 0.129       
-## 4 sat            1.00    0.00545    184.   0</code></pre>
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1.88    0.525        3.58 3.49e- 4
+## 2 act            1.14    0.163        7.01 2.48e-12
+## 3 gpa            1.10    0.495        2.22 2.62e- 2
+## 4 sat            0.992   0.00539    184.   0</code></pre>
 <pre class="r"><code>resample_func &lt;- function(...) {
     resamp_data &lt;- slice_sample(sim_data, n = nrow(sim_data), replace = TRUE)
     
@@ -1363,10 +1375,10 @@ resample_func()</code></pre>
 <pre><code>## # A tibble: 4 × 2
 ##   names           x
 ##   &lt;chr&gt;       &lt;dbl&gt;
-## 1 (Intercept) 1.81 
-## 2 act         0.969
-## 3 gpa         0.124
-## 4 sat         1.00</code></pre>
+## 1 (Intercept) 2.53 
+## 2 act         1.14 
+## 3 gpa         1.59 
+## 4 sat         0.989</code></pre>
 <pre class="r"><code>stat_save &lt;- map_dfr(1:5000, resample_func)</code></pre>
 <pre><code>## Warning: &#39;tidy.numeric&#39; is deprecated.
 ## See help(&quot;Deprecated&quot;)
@@ -16372,34 +16384,34 @@ resample_func()</code></pre>
 <p><img src="/lectures/11-multicollinearity-class_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <pre class="r"><code>df_stats(x ~ names, data = stat_save, 
          mean, median, quantile(c(0.025, 0.975)))</code></pre>
-<pre><code>##   response       names      mean    median       2.5%    97.5%
-## 1        x (Intercept) 1.7953710 1.7966687  0.7728777 2.826900
-## 2        x         act 0.9403341 0.9424522  0.6109155 1.260289
-## 3        x         gpa 0.7639099 0.7545954 -0.2479032 1.790243
-## 4        x         sat 1.0018682 1.0018610  0.9914906 1.012642</code></pre>
+<pre><code>##   response       names      mean    median      2.5%    97.5%
+## 1        x (Intercept) 1.8764446 1.8733851 0.8317722 2.921570
+## 2        x         act 1.1416453 1.1420651 0.8316163 1.458564
+## 3        x         gpa 1.1046673 1.1031184 0.1423395 2.112522
+## 4        x         sat 0.9921307 0.9921429 0.9816899 1.002354</code></pre>
 <pre class="r"><code>confint(sim_lm4)</code></pre>
-<pre><code>##                  2.5 %   97.5 %
-## (Intercept)  0.7827803 2.820588
-## act          0.6152604 1.261808
-## gpa         -0.2210032 1.745024
-## sat          0.9912677 1.012616</code></pre>
+<pre><code>##                 2.5 %   97.5 %
+## (Intercept) 0.8487284 2.906301
+## act         0.8221668 1.460021
+## gpa         0.1302388 2.072051
+## sat         0.9815973 1.002726</code></pre>
 <pre class="r"><code>broom::tidy(lm(y ~ 1 + sat + gpa, data = sim_data))</code></pre>
 <pre><code>## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)     2.41   0.509        4.73 2.28e- 6
-## 2 sat             1.03   0.00191    539.   0       
-## 3 gpa             2.59   0.386        6.72 1.98e-11</code></pre>
+## 1 (Intercept)     2.60   0.516        5.05 4.59e- 7
+## 2 sat             1.03   0.00192    536.   0       
+## 3 gpa             3.31   0.383        8.65 5.85e-18</code></pre>
 <pre class="r"><code>broom::tidy(sim_lm4)</code></pre>
 <pre><code>## # A tibble: 4 × 5
-##   term        estimate std.error statistic      p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1 (Intercept)    1.80    0.520        3.47 0.000530    
-## 2 act            0.939   0.165        5.69 0.0000000130
-## 3 gpa            0.762   0.501        1.52 0.129       
-## 4 sat            1.00    0.00545    184.   0</code></pre>
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1.88    0.525        3.58 3.49e- 4
+## 2 act            1.14    0.163        7.01 2.48e-12
+## 3 gpa            1.10    0.495        2.22 2.62e- 2
+## 4 sat            0.992   0.00539    184.   0</code></pre>
 <pre class="r"><code>summary(lm(y ~ 1 + sat + gpa, data = sim_data))$r.square</code></pre>
-<pre><code>## [1] 0.9910084</code></pre>
+<pre><code>## [1] 0.9907465</code></pre>
 </div>
 </div>
 </div>

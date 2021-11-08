@@ -865,6 +865,18 @@
 
   <li class=""><a href="/lectures/12-regression-categorical-class/">Regression Categorical Predictors</a></li>
 
+
+
+  <li class=""><a href="/lectures/13-regression-categorical-p2/">Regression Categorical Predictors - p2</a></li>
+
+
+
+  <li class=""><a href="/lectures/14-pairwise/">Pairwise Contrasts</a></li>
+
+
+
+  <li class=""><a href="/lectures/15-multiple-categorical/">Multiple Categorical Predictors</a></li>
+
       
     
 
@@ -993,19 +1005,19 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
 
 head(sim_data)</code></pre>
 <pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
-## 1            1 -2.0262667         1  0.1212250      4.999797              0
-## 2            1 -0.2742173         2 -0.6423884      4.999973              0
-## 3            1  0.8533812         3  0.7133916      5.000085              0
-## 4            1  1.0162630         4  0.7828526      5.000102              0
-## 5            1  0.5322733         5  0.1214714      5.000053              0
-## 6            1  0.5515742         6 -1.2491844      5.000055              0
+## 1            1  0.1562732         1  0.6945888      5.000016              0
+## 2            1  0.3641416         2 -0.5496772      5.000036              0
+## 3            1 -0.7901855         3  0.3459210      4.999921              0
+## 4            1 -0.6738467         4 -0.9167242      4.999933              0
+## 5            1  0.5004330         5  0.5447471      5.000050              0
+## 6            1 -0.6110503         6  0.3470354      4.999939              0
 ##          y
-## 1 5.121022
-## 2 4.357584
-## 3 5.713477
-## 4 5.782954
-## 5 5.121525
-## 6 3.750871</code></pre>
+## 1 5.694604
+## 2 4.450359
+## 3 5.345842
+## 4 4.083208
+## 5 5.544797
+## 6 5.346974</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ x, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -1014,18 +1026,18 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.7548 -0.6745  0.0000  0.6743  5.6354 
+## -5.2148 -0.6744  0.0003  0.6749  4.9681 
 ## 
 ## Coefficients:
-##              Estimate Std. Error   t value Pr(&gt;|t|)    
-## (Intercept) 5.0000797  0.0003163 15809.741   &lt;2e-16 ***
-## x           0.0002295  0.0003164     0.725    0.468    
+##               Estimate Std. Error  t value Pr(&gt;|t|)    
+## (Intercept)  5.000e+00  3.162e-04 15815.64   &lt;2e-16 ***
+## x           -1.276e-05  3.163e-04    -0.04    0.968    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1 on 9999998 degrees of freedom
-## Multiple R-squared:  5.26e-08,   Adjusted R-squared:  -4.74e-08 
-## F-statistic: 0.526 on 1 and 9999998 DF,  p-value: 0.4683</code></pre>
+## Residual standard error: 0.9998 on 9999998 degrees of freedom
+## Multiple R-squared:  1.628e-10,  Adjusted R-squared:  -9.984e-08 
+## F-statistic: 0.001628 on 1 and 9999998 DF,  p-value: 0.9678</code></pre>
 <p><span class="math display">\[
 H_{0}: \beta_{1} = 0
 \]</span></p>
