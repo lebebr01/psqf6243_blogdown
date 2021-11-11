@@ -1012,20 +1012,20 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
   generate_response(sim_arguments)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
-## 1            1  0.3155402         1  1.4751987      5.000032              0
-## 2            1 -0.5961198         2 -0.3856003      4.999940              0
-## 3            1 -0.5069123         3  0.9009756      4.999949              0
-## 4            1 -1.0880254         4  0.7824230      4.999891              0
-## 5            1  1.7483727         5  1.2539339      5.000175              0
-## 6            1 -0.6412862         6 -0.1739007      4.999936              0
+<pre><code>##   X.Intercept.           x level1_id       error fixed_outcome random_effects
+## 1            1 -0.26223566         1  1.37697378      4.999974              0
+## 2            1  0.67052317         2  0.95157062      5.000067              0
+## 3            1  0.03079009         3 -1.06868550      5.000003              0
+## 4            1  1.47752172         4  0.87958547      5.000148              0
+## 5            1 -1.09357344         5 -1.21993434      4.999891              0
+## 6            1  0.49867120         6 -0.04719431      5.000050              0
 ##          y
-## 1 6.475230
-## 2 4.614340
-## 3 5.900925
-## 4 5.782314
-## 5 6.254109
-## 6 4.826035</code></pre>
+## 1 6.376948
+## 2 5.951638
+## 3 3.931318
+## 4 5.879733
+## 5 3.779956
+## 6 4.952856</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ x, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -1034,18 +1034,18 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.7204 -0.6739 -0.0001  0.6738  5.4895 
+## -5.1688 -0.6745 -0.0001  0.6743  5.4853 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 4.9998822  0.0003162 15812.3   &lt;2e-16 ***
-## x           0.0004743  0.0003162     1.5    0.134    
+##              Estimate Std. Error   t value Pr(&gt;|t|)    
+## (Intercept) 5.0002487  0.0003162 15811.703   &lt;2e-16 ***
+## x           0.0005950  0.0003163     1.881     0.06 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9999 on 9999998 degrees of freedom
-## Multiple R-squared:  2.25e-07,   Adjusted R-squared:  1.25e-07 
-## F-statistic:  2.25 on 1 and 9999998 DF,  p-value: 0.1336</code></pre>
+## Residual standard error: 1 on 9999998 degrees of freedom
+## Multiple R-squared:  3.537e-07,  Adjusted R-squared:  2.537e-07 
+## F-statistic: 3.537 on 1 and 9999998 DF,  p-value: 0.06</code></pre>
 <p><span class="math display">\[
 H_{0}: \beta_{1} = 0
 \]</span></p>
