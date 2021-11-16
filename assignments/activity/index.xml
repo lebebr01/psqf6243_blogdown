@@ -347,7 +347,10 @@
 &lt;h2 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;How much variation is explained in the pumpkin weight (&lt;code&gt;weight_lbs&lt;/code&gt;) by the over the top pumpkin measurement?
-a. After controlling for pumpkin over the top measurement, is there any differences between United States growers compared to growers from other countries?&lt;/li&gt;
+&lt;ol&gt;
+&lt;li&gt;After controlling for pumpkin over the top measurement, is there any differences between United States growers compared to growers from other countries?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
 &lt;ol&gt;
@@ -364,9 +367,11 @@ a. After controlling for pumpkin over the top measurement, is there any differen
 &lt;p&gt;Fit the third linear regression model that includes an interaction between the two primary attributes of interest from the research questions.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Finally, instead of comparing United States vs other countries, try a new series of models equivalent to #3 and #4 that break the United States by their region (ie, use &lt;code&gt;us_region&lt;/code&gt;).
-a. Are all of these models nested?
-b. Perform the appropriate model comparison to identify the best fitting model.&lt;/p&gt;
+&lt;p&gt;Finally, instead of comparing United States vs other countries, try a new series of models equivalent to #3 and #4 that break the United States by their region (ie, use &lt;code&gt;us_region&lt;/code&gt;).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Are all of these models nested?&lt;/li&gt;
+&lt;li&gt;Perform the appropriate model comparison to identify the best fitting model.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Is the added complexity of splitting the United States into specific regions justified? Why or why not?&lt;/p&gt;
