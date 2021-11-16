@@ -885,6 +885,14 @@
 
   <li class=""><a href="/lectures/15-multiple-categorical/">Multiple Categorical Predictors</a></li>
 
+
+
+  <li class=""><a href="/lectures/16-ancova/">Analysis of Covariance</a></li>
+
+
+
+  <li class=""><a href="/lectures/17-categorical-interactions/">Categorical Interactions</a></li>
+
       
     
 
@@ -1010,7 +1018,7 @@
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
 ## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -1203,7 +1211,7 @@ head(airquality)</code></pre>
 <pre class="r"><code>air_lm_s &lt;- lm(z_aqi ~ z_wind, data = airquality)
 coef(air_lm_s)</code></pre>
 <pre><code>##   (Intercept)        z_wind 
-## -2.113006e-15 -2.920277e-01</code></pre>
+## -6.712023e-16 -2.920277e-01</code></pre>
 <pre class="r"><code>summary(air_lm_s)$r.square</code></pre>
 <pre><code>## [1] 0.08528019</code></pre>
 <pre class="r"><code>summary(air_lm_s)$sigma</code></pre>

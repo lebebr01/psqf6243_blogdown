@@ -885,6 +885,14 @@
 
   <li class=""><a href="/lectures/15-multiple-categorical/">Multiple Categorical Predictors</a></li>
 
+
+
+  <li class=""><a href="/lectures/16-ancova/">Analysis of Covariance</a></li>
+
+
+
+  <li class=""><a href="/lectures/17-categorical-interactions/">Categorical Interactions</a></li>
+
       
     
 
@@ -947,7 +955,7 @@
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
 ## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -958,24 +966,24 @@
 
 slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1       kiwi       7
-## 2    kumquat       4
-## 3     banana       8
-## 4 watermelon       1
+## 1    kumquat       4
+## 2 canteloupe       6
+## 3       kiwi       7
+## 4     banana       8
 ## 5     orange       3
-## 6     grapes       5
-## 7 canteloupe       6
+## 6 watermelon       1
+## 7     grapes       5
 ## 8      apple       2</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1     banana       8
-## 2 canteloupe       6
-## 3 canteloupe       6
+## 1     orange       3
+## 2     banana       8
+## 3     orange       3
 ## 4    kumquat       4
-## 5      apple       2
-## 6    kumquat       4
-## 7 watermelon       1
-## 8     grapes       5</code></pre>
+## 5     orange       3
+## 6       kiwi       7
+## 7 canteloupe       6
+## 8      apple       2</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1240,22 +1248,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2140.3  -973.2  -656.2   372.5  9500.6 
+## -1903.7 -1007.0  -620.4   549.8  8189.1 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   -494.942    116.650  -4.243 2.37e-05 ***
-## year_centered   45.435      3.272  13.885  &lt; 2e-16 ***
+## (Intercept)   -788.626    120.730  -6.532 9.34e-11 ***
+## year_centered   54.233      3.377  16.058  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1503 on 1275 degrees of freedom
-## Multiple R-squared:  0.1313, Adjusted R-squared:  0.1307 
-## F-statistic: 192.8 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1535 on 1275 degrees of freedom
+## Multiple R-squared:  0.1682, Adjusted R-squared:  0.1676 
+## F-statistic: 257.9 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
-<pre><code>##                    2.5 %     97.5 %
-## (Intercept)   -723.78934 -266.09504
-## year_centered   39.01571   51.85509</code></pre>
+<pre><code>##                     2.5 %     97.5 %
+## (Intercept)   -1025.47713 -551.77445
+## year_centered    47.60749   60.85886</code></pre>
 <p>Let’s now repeat this a bunch of times.</p>
 <pre class="r"><code>set.seed(2021)
 
