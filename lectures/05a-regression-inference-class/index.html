@@ -893,6 +893,10 @@
 
   <li class=""><a href="/lectures/17-categorical-interactions/">Categorical Interactions</a></li>
 
+
+
+  <li class=""><a href="/lectures/18-chi-square/">Chi-Square</a></li>
+
       
     
 
@@ -1020,20 +1024,20 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
   generate_response(sim_arguments)
 
 head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.          x level1_id       error fixed_outcome random_effects
-## 1            1 -0.7059205         1  0.54749427      4.999929              0
-## 2            1 -1.0934325         2 -1.11651720      4.999891              0
-## 3            1 -1.2458888         3 -0.38431004      4.999875              0
-## 4            1 -1.1558438         4  0.68048339      4.999884              0
-## 5            1 -1.1086418         5 -0.94146475      4.999889              0
-## 6            1  1.5293213         6  0.06070788      5.000153              0
+<pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
+## 1            1  1.1009535         1  0.3376149      5.000110              0
+## 2            1  0.1868965         2  1.3768014      5.000019              0
+## 3            1  0.7244688         3  1.0737518      5.000072              0
+## 4            1 -0.8333094         4 -1.4566087      4.999917              0
+## 5            1  0.5936598         5  0.5323429      5.000059              0
+## 6            1  1.4361902         6  0.8489262      5.000144              0
 ##          y
-## 1 5.547424
-## 2 3.883373
-## 3 4.615565
-## 4 5.680368
-## 5 4.058424
-## 6 5.060861</code></pre>
+## 1 5.337725
+## 2 6.376820
+## 3 6.073824
+## 4 3.543308
+## 5 5.532402
+## 6 5.849070</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ x, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -1042,18 +1046,18 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.1991 -0.6748 -0.0004  0.6748  5.1501 
+## -5.4747 -0.6749  0.0001  0.6749  5.1588 
 ## 
 ## Coefficients:
-##               Estimate Std. Error   t value Pr(&gt;|t|)    
-## (Intercept)  5.000e+00  3.164e-04 15804.837   &lt;2e-16 ***
-## x           -2.157e-05  3.164e-04    -0.068    0.946    
+##              Estimate Std. Error   t value Pr(&gt;|t|)    
+## (Intercept) 4.9998848  0.0003162 15811.508   &lt;2e-16 ***
+## x           0.0003728  0.0003162     1.179    0.238    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1 on 9999998 degrees of freedom
-## Multiple R-squared:  4.648e-10,  Adjusted R-squared:  -9.954e-08 
-## F-statistic: 0.004648 on 1 and 9999998 DF,  p-value: 0.9456</code></pre>
+## Multiple R-squared:  1.39e-07,   Adjusted R-squared:  3.9e-08 
+## F-statistic:  1.39 on 1 and 9999998 DF,  p-value: 0.2384</code></pre>
 <p><span class="math display">\[
 H_{0}: \beta_{1} = 0
 \]</span></p>

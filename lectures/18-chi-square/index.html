@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Regression Categorical Predictors - p2">
+  <meta name="description" content="Chi-Square">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/13-regression-categorical-p2/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/18-chi-square/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/13-regression-categorical-p2/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/18-chi-square/">
 
   
   
@@ -281,15 +281,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/13-regression-categorical-p2/">
-  <meta property="og:title" content="Regression Categorical Predictors - p2 | PSQF 6243">
-  <meta property="og:description" content="Regression Categorical Predictors - p2"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/18-chi-square/">
+  <meta property="og:title" content="Chi-Square | PSQF 6243">
+  <meta property="og:description" content="Chi-Square"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2021-11-08T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2021-11-30T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2021-11-08T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2021-11-30T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +308,7 @@
 
 
 
-  <title>Regression Categorical Predictors - p2 | PSQF 6243</title>
+  <title>Chi-Square | PSQF 6243</title>
 
 </head>
 
@@ -867,7 +867,7 @@
 
 
 
-  <li class="active"><a href="/lectures/13-regression-categorical-p2/">Regression Categorical Predictors - p2</a></li>
+  <li class=""><a href="/lectures/13-regression-categorical-p2/">Regression Categorical Predictors - p2</a></li>
 
 
 
@@ -895,7 +895,7 @@
 
 
 
-  <li class=""><a href="/lectures/18-chi-square/">Chi-Square</a></li>
+  <li class="active"><a href="/lectures/18-chi-square/">Chi-Square</a></li>
 
       
     
@@ -929,7 +929,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Regression Categorical Predictors - p2</h1>
+          <h1>Chi-Square</h1>
 
           <div class="article-style">
             
@@ -939,15 +939,14 @@
 
 </div>
 
-<div id="regression-with-categorical-predictors---part-2" class="section level1">
-<h1>Regression with Categorical Predictors - Part 2</h1>
-<p>First, I want to build off of the first part of the notes on regression with categorical predictors. Before generalizing to more than two groups, let’s first explore what happens when values other than 0/1 are used for the categorical attribute. The following three dummy/indicator attributes will be used:</p>
+<div id="chi-square-tests" class="section level1">
+<h1>Chi-Square Tests</h1>
+<p>There are a total of 2 different chi-square tests for categorical attributes.</p>
 <ol style="list-style-type: decimal">
-<li>1 = NL, 0 = AL</li>
-<li>1 = NL, 2 = AL</li>
-<li>100 = NL, 0 = AL</li>
+<li>Chi-square goodness of fit - Useful for 1 categorical attribute</li>
+<li>Chi-square test of independence - Useful for 2 categorical attributes</li>
 </ol>
-<p>Make some predictions about what you think will happen in the three separate regressions?</p>
+<p>Let’s explore some data related to the <a href="https://gss.norc.org/">General Social Survey</a>.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
@@ -957,218 +956,204 @@
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(Lahman)
-library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggstance&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh</code></pre>
-<pre><code>## Loading required package: scales</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
-<pre><code>## Loading required package: ggridges</code></pre>
-<pre><code>## 
-## New to ggformula?  Try the tutorials: 
-##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>theme_set(theme_bw(base_size = 18))
-
-career &lt;- Batting %&gt;%
-  filter(AB &gt; 100) %&gt;%
-  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
-  filter(yearID &gt; 1990) %&gt;%
-  group_by(playerID, lgID) %&gt;%
-  summarise(H = sum(H), AB = sum(AB)) %&gt;%
-  mutate(average = H / AB)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the `.groups` argument.</code></pre>
-<pre class="r"><code>career &lt;- Master %&gt;%
-  tbl_df() %&gt;%
-  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
-  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
-  inner_join(career, by = &quot;playerID&quot;) %&gt;%
-  dplyr::select(-playerID)</code></pre>
-<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
-## Please use `tibble::as_tibble()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
-<pre class="r"><code>career &lt;- career %&gt;%
-  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0),
-         league_dummy_12 = ifelse(lgID == &#39;NL&#39;, 1, 2),
-         league_dummy_100 = ifelse(lgID == &#39;NL&#39;, 100, 0))
-
-head(career, n = 10)</code></pre>
-<pre><code>## # A tibble: 10 × 8
-##    name  lgID      H    AB average league_dummy league_dummy_12 league_dummy_100
-##    &lt;chr&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Jeff… AL      127   459   0.277            0               2                0
-##  2 Kurt… AL       33   123   0.268            0               2                0
-##  3 Kurt… NL      455  1780   0.256            1               1              100
-##  4 Regg… NL       54   255   0.212            1               1              100
-##  5 Bren… AL      194   767   0.253            0               2                0
-##  6 Shaw… AL       81   309   0.262            0               2                0
-##  7 Shaw… NL       19   115   0.165            1               1              100
-##  8 Bobb… AL      858  3061   0.280            0               2                0
-##  9 Bobb… NL     1602  5373   0.298            1               1              100
-## 10 Jose… AL     1114  3787   0.294            0               2                0</code></pre>
-<pre class="r"><code>average_lm &lt;- lm(average ~ league_dummy, data = career)
-
-broom::tidy(average_lm)</code></pre>
-<pre><code>## # A tibble: 2 × 5
-##   term         estimate std.error statistic p.value
-##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept)  0.254     0.000771   330.      0    
-## 2 league_dummy 0.000165  0.00108      0.152   0.879</code></pre>
-<pre class="r"><code>average_lm_12 &lt;- lm(average ~ league_dummy_12, data = career)
-
-broom::tidy(average_lm_12)</code></pre>
-<pre><code>## # A tibble: 2 × 5
-##   term             estimate std.error statistic p.value
-##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept)      0.254      0.00171   149.      0    
-## 2 league_dummy_12 -0.000165   0.00108    -0.152   0.879</code></pre>
-<pre class="r"><code>average_lm_100 &lt;- lm(average ~ league_dummy_100, data = career)
-
-broom::tidy(average_lm_100)</code></pre>
-<pre><code>## # A tibble: 2 × 5
-##   term               estimate std.error statistic p.value
-##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept)      0.254      0.000771    330.      0    
-## 2 league_dummy_100 0.00000165 0.0000108     0.152   0.879</code></pre>
-<p>Before moving to more than 2 groups, any thoughts on how we could run a one-sample t-test using a linear regression? For example, suppose this null hypothesis wanted to be explored.</p>
+<pre class="r"><code>head(gss_cat)</code></pre>
+<pre><code>## # A tibble: 6 × 9
+##    year marital         age race  rincome        partyid   relig  denom  tvhours
+##   &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;          &lt;fct&gt;     &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
+## 1  2000 Never married    26 White $8000 to 9999  Ind,near… Prote… South…      12
+## 2  2000 Divorced         48 White $8000 to 9999  Not str … Prote… Bapti…      NA
+## 3  2000 Widowed          67 White Not applicable Independ… Prote… No de…       2
+## 4  2000 Never married    39 White Not applicable Ind,near… Ortho… Not a…       4
+## 5  2000 Divorced         25 White Not applicable Not str … None   Not a…       1
+## 6  2000 Married          25 White $20000 - 24999 Strong d… Prote… South…      NA</code></pre>
+<div id="chi-square-goodness-of-fit" class="section level2">
+<h2>Chi-square goodness of fit</h2>
+<p>Suppose we were interested in know if the proportion of people from the GSS data are similar to the political breakdown currently in the United States. This link gives the breakdown of the <a href="https://news.gallup.com/poll/15370/party-affiliation.aspx">current political affiliation in the United States</a> according to a running Gallup poll.</p>
+<p>The chi-square goodness of fit explores the extent to which a categorical attribute follows a specified distribution. The chi-square goodness of fit test is often framed as a way to evaluate if the sample data is representative of the population. As such, the following hypotheses would be a way to frame this analysis.</p>
 <p><span class="math display">\[
-H_{0}: \mu_{BA} = .2
+H_{0}:\ All\ categories\ follow\ the\ population\ distribution
 \]</span></p>
+<p>or</p>
 <p><span class="math display">\[ 
-H_{A}: \mu_{BA} \neq .2
+H_{0}:\ All\ categories\ follow\ the\ specified\ percentages/proportions
 \]</span></p>
-<div id="generalize-to-more-than-2-groups" class="section level2">
-<h2>Generalize to more than 2 groups</h2>
-<p>The ability to use regression with categorical attributes of more than 2 groups is possible and an extension of the 2 groups model shown above. First, let’s think about how we could represent three categories as numeric attributes. Suppose we had the following 4 categories of baseball players.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Position</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Outfield</td>
-</tr>
-<tr class="even">
-<td align="left">Infield</td>
-</tr>
-<tr class="odd">
-<td align="left">Catcher</td>
-</tr>
-<tr class="even">
-<td align="left">Designated Hitter</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>library(GeomMLBStadiums)
+<p>To frame this analysis in the context of the current data, let’s look at the <code>partyid</code> attribute in the data.</p>
+<pre class="r"><code>count(gss_cat, partyid) %&gt;%
+  mutate(prop = n / sum(n))</code></pre>
+<pre><code>## # A tibble: 10 × 3
+##    partyid                n      prop
+##    &lt;fct&gt;              &lt;int&gt;     &lt;dbl&gt;
+##  1 No answer            154 0.00717  
+##  2 Don&#39;t know             1 0.0000465
+##  3 Other party          393 0.0183   
+##  4 Strong republican   2314 0.108    
+##  5 Not str republican  3032 0.141    
+##  6 Ind,near rep        1791 0.0834   
+##  7 Independent         4119 0.192    
+##  8 Ind,near dem        2499 0.116    
+##  9 Not str democrat    3690 0.172    
+## 10 Strong democrat     3490 0.162</code></pre>
+<p>For this example, I’m going to collapse categories and assign a few to NA to omit from the analysis. The following code does this task and then returns a similar table to that shown above.</p>
+<pre class="r"><code>gss_cat &lt;- gss_cat %&gt;%
+  mutate(partyid_collapse = fct_collapse(partyid,
+    other = c(&quot;No answer&quot;, &quot;Don&#39;t know&quot;, &quot;Other party&quot;),
+    rep = c(&quot;Strong republican&quot;, &quot;Not str republican&quot;),
+    ind = c(&quot;Ind,near rep&quot;, &quot;Independent&quot;, &quot;Ind,near dem&quot;),
+    dem = c(&quot;Not str democrat&quot;, &quot;Strong democrat&quot;)
+  ))
 
-ggplot() + 
-  geom_mlb_stadium(stadium_segments = &quot;all&quot;) + 
-  facet_wrap(~team) + 
-  coord_fixed() + 
-  theme_void()</code></pre>
-<p><img src="/lectures/13-regression-categorical-p2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>library(tidyverse)
-library(Lahman)
-library(ggformula)
+count(gss_cat, partyid_collapse) %&gt;%
+  mutate(prop = n / sum(n))</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   partyid_collapse     n   prop
+##   &lt;fct&gt;            &lt;int&gt;  &lt;dbl&gt;
+## 1 other              548 0.0255
+## 2 rep               5346 0.249 
+## 3 ind               8409 0.391 
+## 4 dem               7180 0.334</code></pre>
+<div id="chi-square-gof-mechanics" class="section level3">
+<h3>Chi-Square GoF Mechanics</h3>
+<p>The chi-square goodness of fit compares the observed cell counts with the expected cell counts. More formally, the chi-square test statistic is as follows:</p>
+<p><span class="math display">\[
+\chi^2 = \sum \frac{( O - E ) ^ 2}{E}
+\]</span></p>
+<p>where <span class="math inline">\(O\)</span> is the observed cell counts and <span class="math inline">\(E\)</span> are the expected cell counts. The expected cell counts are defined as the sample size times the hypothesized proportions/percentages (this is not completely statistically accurate, however, in many social science situations, this should be sufficient). For example:</p>
+<p><span class="math display">\[
+E = p_{H_{0}} * N
+\]</span></p>
+<p>where <span class="math inline">\(p_{H_{0}}\)</span> is the hypothesized proportions from the null hypothesis. The <span class="math inline">\(\chi^2\)</span> statistic follows a chi-square distribution with <span class="math inline">\(k - 1\)</span> degrees of freedom, where <span class="math inline">\(k\)</span> is the number of categories.</p>
+<p>Using the table above, these can be computed from the data and assuming the following as population proportions/percentages from the Gallup poll: Rep = 26%, Ind = 44%, Dem = 26%, other = 4%.</p>
+<pre class="r"><code>chi_tab &lt;- count(gss_cat, partyid_collapse) %&gt;%
+  mutate(prop = n / sum(n), 
+         prop_h0 = c(.04, .26, .44, .26),
+         E = prop_h0 * sum(n))
 
-theme_set(theme_bw(base_size = 18))
-
-career &lt;- Batting %&gt;%
-  filter(AB &gt; 100) %&gt;%
-  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
-  filter(yearID &gt; 1990) %&gt;%
-  group_by(playerID, lgID) %&gt;%
-  summarise(H = sum(H), AB = sum(AB)) %&gt;%
-  mutate(average = H / AB)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the `.groups` argument.</code></pre>
-<pre class="r"><code>career &lt;- Appearances %&gt;%
-  filter(yearID &gt; 1990) %&gt;%
-  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) %&gt;%
-  rowwise() %&gt;%
-  mutate(g_inf = sum(c_across(G_1b:G_ss))) %&gt;%
-  select(-G_1b, -G_2b, -G_3b, -G_ss) %&gt;%
-  group_by(playerID, lgID) %&gt;%
-  summarise(catcher = sum(G_c),
-            outfield = sum(G_of),
-            dh = sum(G_dh),
-            infield = sum(g_inf),
-            total_games = sum(G_all)) %&gt;%
-  pivot_longer(catcher:infield,
-               names_to = &quot;position&quot;) %&gt;%
-  filter(value &gt; 0) %&gt;%
-  group_by(playerID, lgID) %&gt;%
-  slice_max(value) %&gt;%
-  select(playerID, lgID, position) %&gt;%
-  inner_join(career)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the `.groups` argument.</code></pre>
-<pre><code>## Joining, by = c(&quot;playerID&quot;, &quot;lgID&quot;)</code></pre>
-<pre class="r"><code>career &lt;- Master %&gt;%
-  tbl_df() %&gt;%
-  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
-  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
-  inner_join(career, by = &quot;playerID&quot;)
-
-career &lt;- career %&gt;%
-  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
-
-count(career, position)</code></pre>
-<pre><code>## # A tibble: 4 × 2
-##   position     n
-##   &lt;chr&gt;    &lt;int&gt;
-## 1 catcher    397
-## 2 dh          79
-## 3 infield   1233
-## 4 outfield  1096</code></pre>
-<pre class="r"><code>gf_violin(position ~ average, data = career, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&gt;%
-  gf_labs(x = &quot;Batting Average&quot;,
-          y = &quot;&quot;)</code></pre>
-<p><img src="/lectures/13-regression-categorical-p2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>career &lt;- career %&gt;%
-  mutate(outfield = ifelse(position == &#39;outfield&#39;, 1, 0),
-         infield = ifelse(position == &#39;infield&#39;, 1, 0),
-         catcher = ifelse(position == &#39;catcher&#39;, 1, 0))
-
-head(career)</code></pre>
-<pre><code>## # A tibble: 6 × 11
-##   playerID  name        lgID  position     H    AB average league_dummy outfield
-##   &lt;chr&gt;     &lt;chr&gt;       &lt;fct&gt; &lt;chr&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-## 1 abbotje01 Jeff Abbott AL    outfield   127   459   0.277            0        1
-## 2 abbotku01 Kurt Abbott AL    infield     33   123   0.268            0        0
-## 3 abbotku01 Kurt Abbott NL    infield    455  1780   0.256            1        0
-## 4 abercre01 Reggie Abe… NL    outfield    54   255   0.212            1        1
-## 5 abernbr01 Brent Aber… AL    infield    194   767   0.253            0        0
-## 6 abnersh01 Shawn Abner AL    outfield    81   309   0.262            0        1
-## # … with 2 more variables: infield &lt;dbl&gt;, catcher &lt;dbl&gt;</code></pre>
-<pre class="r"><code>position_lm &lt;- lm(average ~ 1 + outfield + infield + catcher, data = career)
-
-broom::tidy(position_lm)</code></pre>
+chi_tab</code></pre>
 <pre><code>## # A tibble: 4 × 5
-##   term        estimate std.error statistic    p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1 (Intercept)  0.258     0.00318    81.1   0         
-## 2 outfield    -0.00153   0.00330    -0.464 0.642     
-## 3 infield     -0.00289   0.00328    -0.881 0.378     
-## 4 catcher     -0.0161    0.00349    -4.62  0.00000400</code></pre>
-<pre class="r"><code>df_stats(average ~ position, data = career, mean)</code></pre>
-<pre><code>##   response position      mean
-## 1  average  catcher 0.2420592
-## 2  average       dh 0.2581647
-## 3  average  infield 0.2552719
-## 4  average outfield 0.2566338</code></pre>
+##   partyid_collapse     n   prop prop_h0     E
+##   &lt;fct&gt;            &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 other              548 0.0255    0.04  859.
+## 2 rep               5346 0.249     0.26 5586.
+## 3 ind               8409 0.391     0.44 9453.
+## 4 dem               7180 0.334     0.26 5586.</code></pre>
+<p>The <span class="math inline">\(\chi^2\)</span> statistic can be computed manually.</p>
+<pre class="r"><code>chi_tab %&gt;%
+  mutate(num = (n - E)^2,
+         chi_cell = num / E) %&gt;%
+  summarise(chi_square = sum(chi_cell))</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   chi_square
+##        &lt;dbl&gt;
+## 1       693.</code></pre>
+<p>More readily, using the <code>chisq.test()</code> function in R is easier. This function takes one primary argument, the attribute to do the chi-square goodness of fit test on. Optionally, the specific proportions need to be passed as well, which is typically desired unless equal percentages/proportions are desired.</p>
+<pre class="r"><code>xsq_got &lt;- chisq.test(table(gss_cat$partyid_collapse), p = c(.04, .26, .44, .26))
+
+xsq_got</code></pre>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  table(gss_cat$partyid_collapse)
+## X-squared = 693.4, df = 3, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div id="explore-differences" class="section level3">
+<h3>Explore Differences</h3>
+<p>It is often of interest to explore differences, particularly if the chi-square goodness of fit test has a small p-value. This would indicate that the counts likely do not follow the assumed distribution, but where are the differences found? Residuals can help with this. The residuals are the difference in the observed and expected values divided by the square root of the expected values.</p>
+<p><span class="math display">\[
+\chi^2_{resid} = \frac{(O - E)}{\sqrt{E}}
+\]</span></p>
+<p>These can be extracted directly from the model object saved when running the chi-square test.</p>
+<pre class="r"><code>xsq_got$residuals</code></pre>
+<pre><code>## 
+##      other        rep        ind        dem 
+## -10.620123  -3.205652 -10.733144  21.333818</code></pre>
+</div>
+</div>
+<div id="chi-square-test-of-independence" class="section level2">
+<h2>Chi-square Test of Independence</h2>
+<p>The chi-square test of independence is similar to that of the goodness of fit test, except now instead of a single attribute of interest, there are now more than one categorical attribute to be explored. The test of independence explores if the observed attributes are independent from one another. That is, if the two categorical attributes are indpendent, this would assume that the two attributes are proportionally distributed across all categories. The form of the <span class="math inline">\(\chi^2\)</span> test is the same as the GoT test:</p>
+<p><span class="math display">\[
+\chi^2 = \sum \frac{( O - E ) ^ 2}{E}
+\]</span></p>
+<p>However, different from the goodness of fit test, the expected values are computed differently. The expected cell counts are now defined as:</p>
+<p><span class="math display">\[
+E = N * p_{r} * p_{c}
+\]</span></p>
+<p>where <span class="math inline">\(p_{r}\)</span> is the margin proportion for the rows, ignoring the columns (that is, marginal row proportion) and <span class="math inline">\(p_{c}\)</span> is the margin proportion for the columns, ignoring the rows. Finally, the test has degrees of freedom equal to <span class="math inline">\((r - 1)(c - 1)\)</span>.</p>
+<div id="data-example" class="section level3">
+<h3>Data Example</h3>
+<p>To explore this example, let’s see if the political party affiliation differs across years that the GSS data were collected. The data are collected over 14 years, collected every other year.</p>
+<pre class="r"><code>count(gss_cat, year)</code></pre>
+<pre><code>## # A tibble: 8 × 2
+##    year     n
+##   &lt;int&gt; &lt;int&gt;
+## 1  2000  2817
+## 2  2002  2765
+## 3  2004  2812
+## 4  2006  4510
+## 5  2008  2023
+## 6  2010  2044
+## 7  2012  1974
+## 8  2014  2538</code></pre>
+<p>Suppose we were interested in exploring if there was a difference in political affiliation before and after 2010.</p>
+<pre class="r"><code>gss_cat &lt;- gss_cat %&gt;%
+  mutate(year_2 = ifelse(year &lt; 2010, &quot;2000 to 2008&quot;, &quot;2010 to 2014&quot;))
+
+addmargins(table(gss_cat$year_2, gss_cat$partyid_collapse))</code></pre>
+<pre><code>##               
+##                other   rep   ind   dem   Sum
+##   2000 to 2008   327  3906  5734  4960 14927
+##   2010 to 2014   221  1440  2675  2220  6556
+##   Sum            548  5346  8409  7180 21483</code></pre>
+<p>Giving this table, a single expected value could be computed manually.</p>
+<p><span class="math display">\[
+E_{1,1} = 21483 * (14927 / 21483) * (548 / 21483) = 380.766
+\]</span></p>
+<pre class="r"><code>21483 * (14927 / 21483) * (548 / 21483)</code></pre>
+<pre><code>## [1] 380.766</code></pre>
+<p>These could be computed for subsequent cell expected values, but these can be extracted directly when fitting the chi-square using the <code>chisq.test()</code> function.</p>
+<pre class="r"><code>xsq_ind &lt;- chisq.test(table(gss_cat$year_2, gss_cat$partyid_collapse))
+
+xsq_ind$expected</code></pre>
+<pre><code>##               
+##                  other      rep      ind      dem
+##   2000 to 2008 380.766 3714.553 5842.813 4988.868
+##   2010 to 2014 167.234 1631.447 2566.187 2191.132</code></pre>
+<pre class="r"><code>xsq_ind</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(gss_cat$year_2, gss_cat$partyid_collapse)
+## X-squared = 64.399, df = 3, p-value = 6.745e-14</code></pre>
+<pre class="r"><code>xsq_ind$residuals</code></pre>
+<pre><code>##               
+##                     other        rep        ind        dem
+##   2000 to 2008 -2.7553619  3.1411979 -1.4235351 -0.4087162
+##   2010 to 2014  4.1576263 -4.7398226  2.1480035  0.6167208</code></pre>
+</div>
+</div>
+<div id="effect-sizes-for-chi-square-tests" class="section level2">
+<h2>Effect Sizes for chi-square tests</h2>
+<p>Effect sizes for chi-square tests can be important, particularly with large sample sizes as the chi-square can be highly sensitive to large sample sizes. In particular, very small differences can be found with small samples sizes.</p>
+<p>For the goodness of fit test, <span class="math inline">\(Cohens\ W\)</span> can be estimated as an effect size measure. This is computed as:</p>
+<p><span class="math display">\[
+Cohens\ W = \sqrt{\frac{\chi^2}{N}}
+\]</span></p>
+<p>For the test of independence, Cramer’s V can be used.</p>
+<p><span class="math display">\[
+V = \sqrt{\frac{\chi^2}{N * df^{*}}}
+\]</span>
+where <span class="math inline">\(df^{*}\)</span> is the smallest of <span class="math inline">\(r - 1\)</span> or <span class="math inline">\(c - 1\)</span>.</p>
+<p>Cramers V ranges from 0 to 1, where values closer to 1 indicate more variation is explained (ie, the attributes are not independent).</p>
+<p>Cohen’s W is similar to Cramers V, but it is not limited to range between 0 and 1.</p>
+<pre class="r"><code>sqrt(693.4 / sum(chi_tab$n))</code></pre>
+<pre><code>## [1] 0.1796571</code></pre>
+<pre class="r"><code>sqrt(64.399 / 21483 * 1)</code></pre>
+<pre><code>## [1] 0.05475101</code></pre>
+<p>The DescTools package can be used for Cramer’s V as well.</p>
+<pre class="r"><code>library(DescTools)
+
+CramerV(table(gss_cat$year_2, gss_cat$partyid_collapse))</code></pre>
+<pre><code>## [1] 0.05475087</code></pre>
 </div>
 </div>
 
@@ -1188,15 +1173,9 @@ broom::tidy(position_lm)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/12-regression-categorical-class/" rel="next">Regression Categorical Predictors</a>
+    <a href="/lectures/17-categorical-interactions/" rel="next">Categorical Interactions</a>
   </div>
   
-  
-  
-  <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/lectures/13-regression-categorical-p2-class/" rel="prev">Regression Categorical Predictors - p2</a>
-  </div>
   
 </div>
 
@@ -1205,7 +1184,7 @@ broom::tidy(position_lm)</code></pre>
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Nov 8, 2021</p>
+          <p>Last updated on Nov 30, 2021</p>
 
           
 

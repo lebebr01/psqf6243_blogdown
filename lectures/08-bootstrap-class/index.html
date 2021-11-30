@@ -893,6 +893,10 @@
 
   <li class=""><a href="/lectures/17-categorical-interactions/">Categorical Interactions</a></li>
 
+
+
+  <li class=""><a href="/lectures/18-chi-square/">Chi-Square</a></li>
+
       
     
 
@@ -978,23 +982,23 @@ fruit</code></pre>
 ## 8     banana       8</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1      apple       2
-## 2     banana       8
-## 3 watermelon       1
-## 4    kumquat       4
-## 5     orange       3
-## 6 canteloupe       6
-## 7       kiwi       7
-## 8     grapes       5</code></pre>
+## 1    kumquat       4
+## 2     orange       3
+## 3       kiwi       7
+## 4 canteloupe       6
+## 5     grapes       5
+## 6     banana       8
+## 7 watermelon       1
+## 8      apple       2</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1     banana       8
-## 2 canteloupe       6
-## 3     orange       3
-## 4 canteloupe       6
-## 5 canteloupe       6
+## 1       kiwi       7
+## 2       kiwi       7
+## 3      apple       2
+## 4     grapes       5
+## 5       kiwi       7
 ## 6    kumquat       4
-## 7 canteloupe       6
+## 7 watermelon       1
 ## 8      apple       2</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
@@ -1262,22 +1266,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2441.2  -957.6  -642.1   657.8  9486.2 
+## -2179.0  -923.6  -605.4   370.7  8350.0 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   -936.870    130.448  -7.182 1.16e-12 ***
-## year_centered   59.264      3.604  16.442  &lt; 2e-16 ***
+## (Intercept)   -639.351    122.418  -5.223 2.06e-07 ***
+## year_centered   48.593      3.439  14.128  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1610 on 1275 degrees of freedom
-## Multiple R-squared:  0.1749, Adjusted R-squared:  0.1743 
-## F-statistic: 270.3 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1509 on 1275 degrees of freedom
+## Multiple R-squared:  0.1354, Adjusted R-squared:  0.1347 
+## F-statistic: 199.6 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
-<pre><code>##                   2.5 %     97.5 %
-## (Intercept)   -1192.786 -680.95430
-## year_centered    52.193   66.33532</code></pre>
+<pre><code>##                    2.5 %     97.5 %
+## (Intercept)   -879.51441 -399.18828
+## year_centered   41.84534   55.34043</code></pre>
 <p>Let’s now repeat this a bunch of times.</p>
 <pre class="r"><code>set.seed(2021)
 
