@@ -887,7 +887,15 @@
 
 
 
+  <li class=""><a href="/lectures/15-multiple-categorical-class/">Multiple Categorical Predictors - Class</a></li>
+
+
+
   <li class=""><a href="/lectures/16-ancova/">Analysis of Covariance</a></li>
+
+
+
+  <li class=""><a href="/lectures/16-ancova-class/">Analysis of Covariance - Class</a></li>
 
 
 
@@ -895,7 +903,19 @@
 
 
 
+  <li class=""><a href="/lectures/17-categorical-interactions-class/">Categorical Interactions - Class</a></li>
+
+
+
   <li class=""><a href="/lectures/18-chi-square/">Chi-Square</a></li>
+
+
+
+  <li class=""><a href="/lectures/18-chi-square-class/">Chi-Square - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/19-power/">Power</a></li>
 
       
     
@@ -959,9 +979,9 @@
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
-## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
+## ✓ readr   2.1.0     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
@@ -982,24 +1002,24 @@ fruit</code></pre>
 ## 8     banana       8</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1    kumquat       4
-## 2     orange       3
-## 3       kiwi       7
-## 4 canteloupe       6
-## 5     grapes       5
-## 6     banana       8
-## 7 watermelon       1
-## 8      apple       2</code></pre>
-<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
-<pre><code>##         name obs_num
-## 1       kiwi       7
+## 1 watermelon       1
 ## 2       kiwi       7
 ## 3      apple       2
-## 4     grapes       5
-## 5       kiwi       7
-## 6    kumquat       4
-## 7 watermelon       1
-## 8      apple       2</code></pre>
+## 4     orange       3
+## 5    kumquat       4
+## 6 canteloupe       6
+## 7     grapes       5
+## 8     banana       8</code></pre>
+<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
+<pre><code>##         name obs_num
+## 1    kumquat       4
+## 2 canteloupe       6
+## 3    kumquat       4
+## 4       kiwi       7
+## 5 watermelon       1
+## 6 watermelon       1
+## 7     grapes       5
+## 8    kumquat       4</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1266,22 +1286,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2179.0  -923.6  -605.4   370.7  8350.0 
+## -2240.9  -984.7  -637.9   385.7  9505.1 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   -639.351    122.418  -5.223 2.06e-07 ***
-## year_centered   48.593      3.439  14.128  &lt; 2e-16 ***
+## (Intercept)   -638.324    126.129  -5.061 4.78e-07 ***
+## year_centered   49.642      3.548  13.990  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1509 on 1275 degrees of freedom
-## Multiple R-squared:  0.1354, Adjusted R-squared:  0.1347 
-## F-statistic: 199.6 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1579 on 1275 degrees of freedom
+## Multiple R-squared:  0.1331, Adjusted R-squared:  0.1324 
+## F-statistic: 195.7 on 1 and 1275 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
 <pre><code>##                    2.5 %     97.5 %
-## (Intercept)   -879.51441 -399.18828
-## year_centered   41.84534   55.34043</code></pre>
+## (Intercept)   -885.76667 -390.88100
+## year_centered   42.68092   56.60374</code></pre>
 <p>Let’s now repeat this a bunch of times.</p>
 <pre class="r"><code>set.seed(2021)
 

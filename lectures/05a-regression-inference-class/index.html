@@ -887,7 +887,15 @@
 
 
 
+  <li class=""><a href="/lectures/15-multiple-categorical-class/">Multiple Categorical Predictors - Class</a></li>
+
+
+
   <li class=""><a href="/lectures/16-ancova/">Analysis of Covariance</a></li>
+
+
+
+  <li class=""><a href="/lectures/16-ancova-class/">Analysis of Covariance - Class</a></li>
 
 
 
@@ -895,7 +903,19 @@
 
 
 
+  <li class=""><a href="/lectures/17-categorical-interactions-class/">Categorical Interactions - Class</a></li>
+
+
+
   <li class=""><a href="/lectures/18-chi-square/">Chi-Square</a></li>
+
+
+
+  <li class=""><a href="/lectures/18-chi-square-class/">Chi-Square - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/19-power/">Power</a></li>
 
       
     
@@ -1025,19 +1045,19 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
 
 head(sim_data)</code></pre>
 <pre><code>##   X.Intercept.          x level1_id      error fixed_outcome random_effects
-## 1            1  1.1009535         1  0.3376149      5.000110              0
-## 2            1  0.1868965         2  1.3768014      5.000019              0
-## 3            1  0.7244688         3  1.0737518      5.000072              0
-## 4            1 -0.8333094         4 -1.4566087      4.999917              0
-## 5            1  0.5936598         5  0.5323429      5.000059              0
-## 6            1  1.4361902         6  0.8489262      5.000144              0
+## 1            1 -1.2154604         1 -1.4432054      4.999878              0
+## 2            1 -0.5660322         2  1.0528904      4.999943              0
+## 3            1  1.6412597         3 -0.4703851      5.000164              0
+## 4            1  1.3622960         4 -0.3885142      5.000136              0
+## 5            1  0.3336372         5 -0.3779327      5.000033              0
+## 6            1  0.7844828         6 -1.3301761      5.000078              0
 ##          y
-## 1 5.337725
-## 2 6.376820
-## 3 6.073824
-## 4 3.543308
-## 5 5.532402
-## 6 5.849070</code></pre>
+## 1 3.556673
+## 2 6.052834
+## 3 4.529779
+## 4 4.611622
+## 5 4.622101
+## 6 3.669902</code></pre>
 <pre class="r"><code>sim_lm &lt;- lm(y ~ x, data = sim_data)
 summary(sim_lm)</code></pre>
 <pre><code>## 
@@ -1046,18 +1066,18 @@ summary(sim_lm)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.4747 -0.6749  0.0001  0.6749  5.1588 
+## -5.0573 -0.6745  0.0002  0.6744  5.0610 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error   t value Pr(&gt;|t|)    
-## (Intercept) 4.9998848  0.0003162 15811.508   &lt;2e-16 ***
-## x           0.0003728  0.0003162     1.179    0.238    
+## (Intercept) 5.000e+00  3.163e-04 15809.334   &lt;2e-16 ***
+## x           3.369e-05  3.162e-04     0.107    0.915    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1 on 9999998 degrees of freedom
-## Multiple R-squared:  1.39e-07,   Adjusted R-squared:  3.9e-08 
-## F-statistic:  1.39 on 1 and 9999998 DF,  p-value: 0.2384</code></pre>
+## Multiple R-squared:  1.135e-09,  Adjusted R-squared:  -9.886e-08 
+## F-statistic: 0.01135 on 1 and 9999998 DF,  p-value: 0.9152</code></pre>
 <p><span class="math display">\[
 H_{0}: \beta_{1} = 0
 \]</span></p>
