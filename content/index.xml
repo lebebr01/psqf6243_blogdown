@@ -15,27 +15,20 @@
     <item>
       <title>Welcome</title>
       <link>https://psqf6243.brandonlebeau.org/content/00-getting-started/</link>
-      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2022 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/00-getting-started/</guid>
-      <description>
-
-&lt;div id=&#34;TOC&#34;&gt;
-
-&lt;/div&gt;
-
-&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Getting Started&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Review the syllabus&lt;/li&gt;
 &lt;li&gt;Review the schedule&lt;/li&gt;
 &lt;li&gt;Review, accessing the IDAS page
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://notebooks.hpc.uiowa.edu/psqf62430002/hub/home&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
-&lt;li&gt;RStudio Server, to access you can switch via the “New” button on Jupyter Notebooks.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/Pages/ResponsePage.aspx?id=lUXEG7qaw0-47HuUpVhv3F6BhfUHbvpKq3g5-YqONptUMjY1U081UkJXQVFGNTI1WTBVWVhEWFpQRC4u&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://psqf-6243-0002.idas.aws.cloud.uiowa.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
+&lt;li&gt;RStudio Server, to access you can switch via the &amp;ldquo;New&amp;rdquo; button on Jupyter Notebooks.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/r/40cahs1wma&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
