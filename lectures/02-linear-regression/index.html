@@ -282,12 +282,14 @@
   
   <meta property="og:site_name" content="PSQF 6243">
   <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression/">
-  <meta property="og:title" content="An R Markdown document converted from &#34;course-notes/02-linear-regression.ipynb&#34; | PSQF 6243">
+  <meta property="og:title" content="Introduction to Linear Regression | PSQF 6243">
   <meta property="og:description" content="Introduction to Linear Regression This week will dive into linear regression, the foundation of this course. The exploration into linear regression will first start with the case when we have 2 continuous attributes."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
+      <meta property="article:published_time" content="2022-08-24T00:00:00&#43;00:00">
     
+    <meta property="article:modified_time" content="2022-08-24T00:00:00&#43;00:00">
   
 
   
@@ -306,7 +308,7 @@
 
 
 
-  <title>An R Markdown document converted from &#34;course-notes/02-linear-regression.ipynb&#34; | PSQF 6243</title>
+  <title>Introduction to Linear Regression | PSQF 6243</title>
 
 </head>
 
@@ -710,90 +712,111 @@
   </div>
 
   <div class="page-body">
-    <article class="article">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-<div class="article-container pt-3">
-  <h1>An R Markdown document converted from &#34;course-notes/02-linear-regression.ipynb&#34;</h1>
-
-  
-
-  
     
 
 
-<div class="article-metadata">
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
 
   
   
+    
+
+    
+      
+
+      
+      
+      
+
 
   
-  <span class="article-date">
+    
+    
     
     
       
     
-    Jan 1, 0001
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-</div>
-
-
-
-  <div class="article-container">
-
-    <div class="article-style">
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
       
 
+
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
+
+
+
+  <li class="active"><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Introduction to Linear Regression</h1>
+
+          <div class="article-style">
+            
+
+<div id="TOC">
+
+</div>
 
 <div id="introduction-to-linear-regression" class="section level1">
 <h1>Introduction to Linear Regression</h1>
@@ -1030,130 +1053,51 @@ sigma_hat_square</code></pre>
 </div>
 </div>
 
-    </div>
+          </div>
 
-    
-
-
+          
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
   
   
   
-    
-  
-  
-  
-  <div class="media author-card content-widget-hr">
-    
-      
-      <a href="https://psqf6243.brandonlebeau.org/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1c7f48a60fee8ac47c4cc5fee1488333_95373_270x270_fill_q90_lanczos_center.jpg" alt=""></a>
-    
-
-    <div class="media-body">
-      <h5 class="card-title"><a href="https://psqf6243.brandonlebeau.org/"></a></h5>
-      
-      
-      <ul class="network-icon" aria-hidden="true">
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="http://psqf-6243-0002.idas.aws.cloud.uiowa.edu/" target="_blank" rel="noopener">
-        <i class="fab fa-r-project"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://brandonlebeau.org/" target="_blank" rel="noopener">
-        <i class="fas fa-globe"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://uiowa.instructure.com/courses/196816" target="_blank" rel="noopener">
-        <i class="fas fa-chalkboard"></i>
-      </a>
-    </li>
-  
-</ul>
-
-    </div>
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/01-review/" rel="next">Review</a>
   </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Aug 24, 2022</p>
+
+          
+
+
+
+          
 
 
 
 
+          
 
 
+        </div>
 
+      </article>
 
-
-
-
-
-
-
-
-
-
-
-  </div>
-</article>
-  </div>
-
-  <div class="page-footer">
-    
-    
-    <div class="container">
       <footer class="site-footer">
   
 
@@ -1181,7 +1125,15 @@ sigma_hat_square</code></pre>
   </p>
 </footer>
 
-    </div>
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
     
   </div>
 
@@ -1269,6 +1221,11 @@ sigma_hat_square</code></pre>
     
 
     
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
     
 
     
