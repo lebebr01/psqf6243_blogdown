@@ -291,7 +291,7 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;%
 &lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Read syllabus, ask any questions&lt;/li&gt;
-&lt;li&gt;Review introductory statistics content&lt;/li&gt;
+&lt;li&gt;Review &lt;a href=&#34;../../lectures/01-review/&#34;&gt;introductory statistics content&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Explore R code from introductory slides&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
