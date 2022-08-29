@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Activities | PSQF 6243</title>
+    <link>https://psqf6243.brandonlebeau.org/assignments/activity/</link>
+      <atom:link href="https://psqf6243.brandonlebeau.org/assignments/activity/index.xml" rel="self" type="application/rss+xml" />
+    <description>Activities</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
+      <title>Activities</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/activity/</link>
+    </image>
+    
+    <item>
+      <title>Activity 1</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/activity/activity1/</link>
+      <pubDate>Mon, 29 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/activity/activity1/</guid>
+      <description>&lt;p&gt;The following activity is aimed to give you some practice with exploring data on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. &lt;em&gt;Please make sure to add everyone&amp;rsquo;s name to the submission&lt;/em&gt;, this can be a comment on ICON or on the document itself.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What to turn in?&lt;/em&gt; Please turn in a document that contains answers to the following questions and also please include any relevant statistics/figures that support your answer. Upload the final document to &lt;a href=&#34;https://uiowa.instructure.com/courses/196816/assignments/1745907&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICON&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Due around&lt;/em&gt; &lt;strong&gt;September 19th, 2021&lt;/strong&gt;. No penalty for late submissions as long as it is submitted by December 11th.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;The data for this activity comes from the &lt;a href=&#34;https://github.com/rfordatascience/tidytuesday&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tidy Tuesday&lt;/a&gt; project. The data contain 73 rows and 22 columns about ferris wheels from around the world. A data description for each column in the data is shown below (&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-08-09&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see the Tidy Tuesday page for more information&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;The data can be obtained in &lt;a href=&#34;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/ferris_wheels.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;csv format&lt;/a&gt;. A short description for each attribute is as follows.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Attribute Name&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Type&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;name&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;height&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Height in feet&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;diameter&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Diameter in feet&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;opened&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ISO Date opened&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;closed&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ISO date closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;country&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Country&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;location&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Location/city/region&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;number_of_cabins&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Number of cabins&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;passengers_per_cabin&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Passengers per cabin&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;seating_capacity&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Seating capacity&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hourly_capacity&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Hourly capacity&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ride_duration_minutes&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Ride duration minutes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;climate_controlled&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;climate_controlled&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;construction_cost&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;construction_cost&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;status&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;status&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;design_manufacturer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;design_manufacturer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;type&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;type&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;vip_area&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;vip_area&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ticket_cost_to_ride&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ticket_cost_to_ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;official_website&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;official_website&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;turns&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;turns&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Pick a single integer or double attribute from the table above and explore the distribution of that attribute. In a few sentences, summarize key elements of the distribution, for instance discussing elements related to &lt;strong&gt;shape&lt;/strong&gt;, &lt;strong&gt;center&lt;/strong&gt;, &lt;strong&gt;variation&lt;/strong&gt;, and/or &lt;strong&gt;extreme values&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick a few attributes (i.e., pick your top 3 favorite) that are of the double or integer type and explore the bivariate association between those attributes. That is, estimate what is the bivariate association between the attributes you chose. In a few sentences, summarize key elements of the associations, paying attention to the &lt;strong&gt;strength&lt;/strong&gt; and &lt;strong&gt;direction&lt;/strong&gt; of association.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explore the bivariate associations you picked in #2 visually. Does the relationship appear to be linear for the associations that you picked? Why or why not?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pick a single integer or double attribute from the table above. Compute descriptive statistics for this attribute using one of the following attributes as a grouping attribute:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;climate_controlled&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type_two&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More specifically, compute descriptive statistics for the integer or double outcome for each unique value of either &lt;code&gt;climate_controlled&lt;/code&gt; or &lt;code&gt;type_two&lt;/code&gt;.&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;Summarize, in a few sentences, any notable differences or similarities in the descriptive statistics computed in #4 across the groups?&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
