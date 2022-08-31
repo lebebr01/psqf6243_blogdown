@@ -155,10 +155,14 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;climate_controlled&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;type_two&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;climate_controlled&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;type_two&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;More specifically, compute descriptive statistics for the integer or double outcome for each unique value of either &lt;code&gt;climate_controlled&lt;/code&gt; or &lt;code&gt;type_two&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;Summarize, in a few sentences, any notable differences or similarities in the descriptive statistics computed in #4 across the groups?&lt;/li&gt;
 &lt;/ol&gt;

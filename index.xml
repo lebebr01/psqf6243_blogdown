@@ -559,7 +559,7 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>Week 2</title>
       <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
-      <pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
@@ -577,7 +577,7 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;p&gt;None this week.&lt;/p&gt;
+&lt;p&gt;TBA&lt;/p&gt;
 </description>
     </item>
     
@@ -724,10 +724,14 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;climate_controlled&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;type_two&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;climate_controlled&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;type_two&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;More specifically, compute descriptive statistics for the integer or double outcome for each unique value of either &lt;code&gt;climate_controlled&lt;/code&gt; or &lt;code&gt;type_two&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;Summarize, in a few sentences, any notable differences or similarities in the descriptive statistics computed in #4 across the groups?&lt;/li&gt;
 &lt;/ol&gt;
