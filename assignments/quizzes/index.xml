@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quizzes | PSQF 6243</title>
+    <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/</link>
+      <atom:link href="https://psqf6243.brandonlebeau.org/assignments/quizzes/index.xml" rel="self" type="application/rss+xml" />
+    <description>Quizzes</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 19 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
+      <title>Quizzes</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/</link>
+    </image>
+    
+    <item>
+      <title>Quiz 1</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz1/</link>
+      <pubDate>Thu, 08 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz1/</guid>
+      <description>&lt;p&gt;Quiz 1 can be taken on ICON, due September 19th, 2022. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/01-week1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/196816/quizzes/336653&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 1 Link&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
