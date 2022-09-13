@@ -34,7 +34,7 @@
   
     
   
-  <meta name="description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $.">
+  <meta name="description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ \sum \left( Y - \hat{Y} \right)^2 $.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
@@ -283,7 +283,7 @@
   <meta property="og:site_name" content="PSQF 6243">
   <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
   <meta property="og:title" content="Least Squares Simulation | PSQF 6243">
-  <meta property="og:description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ \sum \left( Y - \hat{Y} \right)^2 $."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
@@ -808,7 +808,15 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#example-to-show-least-squares-minimization">Example to show least squares minimization</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
       
     </div>
@@ -824,17 +832,11 @@
           <h1>Least Squares Simulation</h1>
 
           <div class="article-style">
-            
-
-<div id="TOC">
-
-</div>
-
-<div id="example-to-show-least-squares-minimization" class="section level2">
-<h2>Example to show least squares minimization</h2>
-<p>This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $.</p>
+            <h2 id="example-to-show-least-squares-minimization">Example to show least squares minimization</h2>
+<p>This little example is meant as a way to show the least square really minimizes the criterion, $ \sum \left( Y - \hat{Y} \right)^2 $.</p>
 <p>In this example, we will generate some data so that we know what the truth is. Then, upon data generation, we will compute a bunch of different values for the linear slope and y-intercept. For each combination of the y-intercept and slope, I will compute the sum of squares error depicted above.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code class="language-r">library(tidyverse)
+</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
@@ -842,8 +844,9 @@
 ## ✔ readr   2.1.2      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(simglm)
+## ✖ dplyr::lag()    masks stats::lag()
+</code></pre>
+<pre><code class="language-r">library(simglm)
 
 theme_set(theme_bw(base_size = 18))
 
@@ -851,7 +854,7 @@ set.seed(2021)
 
 sim_arguments &lt;- list(
     formula = y ~ x,
-    fixed = list(x = list(var_type = &#39;continuous&#39;, mean = 100, sd = 20)),
+    fixed = list(x = list(var_type = 'continuous', mean = 100, sd = 20)),
     error = list(variance = 100),
     sample_size = 1000,
     reg_weights = c(5, .5)
@@ -861,7 +864,8 @@ sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) %&gt;%
   simulate_error(sim_arguments) %&gt;%
   generate_response(sim_arguments)
 
-head(sim_data)</code></pre>
+head(sim_data)
+</code></pre>
 <pre><code>##   X.Intercept.         x level1_id       error fixed_outcome random_effects
 ## 1            1  97.55080         1   8.0959540      53.77540              0
 ## 2            1 111.04913         2   0.9941633      60.52457              0
@@ -875,86 +879,111 @@ head(sim_data)</code></pre>
 ## 3 35.05628
 ## 4 65.36158
 ## 5 27.86580
-## 6 34.13262</code></pre>
-<pre class="r"><code>library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance</code></pre>
+## 6 34.13262
+</code></pre>
+<pre><code class="language-r">library(ggformula)
+</code></pre>
+<pre><code>## Loading required package: ggstance
+</code></pre>
 <pre><code>## 
-## Attaching package: &#39;ggstance&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## Attaching package: 'ggstance'
+</code></pre>
+<pre><code>## The following objects are masked from 'package:ggplot2':
 ## 
-##     geom_errorbarh, GeomErrorbarh</code></pre>
-<pre><code>## Loading required package: scales</code></pre>
+##     geom_errorbarh, GeomErrorbarh
+</code></pre>
+<pre><code>## Loading required package: scales
+</code></pre>
 <pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## Attaching package: 'scales'
+</code></pre>
+<pre><code>## The following object is masked from 'package:purrr':
 ## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
+##     discard
+</code></pre>
+<pre><code>## The following object is masked from 'package:readr':
 ## 
-##     col_factor</code></pre>
-<pre><code>## Loading required package: ggridges</code></pre>
+##     col_factor
+</code></pre>
+<pre><code>## Loading required package: ggridges
+</code></pre>
 <pre><code>## 
 ## New to ggformula?  Try the tutorials: 
-##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>gf_point(y ~ x, data = sim_data, size = 4) %&gt;%
-  gf_smooth(method = &#39;lm&#39;)</code></pre>
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
+</code></pre>
+<pre><code class="language-r">gf_point(y ~ x, data = sim_data, size = 4) %&gt;%
+  gf_smooth(method = 'lm')
+</code></pre>
 <p><img src="/lectures/04-least-squares-simulation_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>sim_lm &lt;- lm (y ~ x, data = sim_data)
-coef(sim_lm)</code></pre>
+<pre><code class="language-r">sim_lm &lt;- lm (y ~ x, data = sim_data)
+coef(sim_lm)
+</code></pre>
 <pre><code>## (Intercept)           x 
-##   5.9653484   0.4941165</code></pre>
-<pre class="r"><code>y_intercept &lt;- seq(0, 15, by = .25)
+##   5.9653484   0.4941165
+</code></pre>
+<pre><code class="language-r">y_intercept &lt;- seq(0, 15, by = .25)
 slope &lt;- seq(0, 1.5, by = .01)
 
 conditions &lt;- rbind(expand.grid(y_intercept = y_intercept, 
                           slope = slope),
                           coef(sim_lm))
 
-tail(conditions)</code></pre>
+tail(conditions)
+</code></pre>
 <pre><code>##      y_intercept     slope
 ## 9207   14.000000 1.5000000
 ## 9208   14.250000 1.5000000
 ## 9209   14.500000 1.5000000
 ## 9210   14.750000 1.5000000
 ## 9211   15.000000 1.5000000
-## 9212    5.965348 0.4941165</code></pre>
-<pre class="r"><code>dim(conditions)</code></pre>
-<pre><code>## [1] 9212    2</code></pre>
-<pre class="r"><code>gf_point(y ~ x, data = sim_data, size = 4) %&gt;%
-  gf_smooth(method = &#39;lm&#39;) %&gt;%
+## 9212    5.965348 0.4941165
+</code></pre>
+<pre><code class="language-r">dim(conditions)
+</code></pre>
+<pre><code>## [1] 9212    2
+</code></pre>
+<pre><code class="language-r">gf_point(y ~ x, data = sim_data, size = 4) %&gt;%
+  gf_smooth(method = 'lm') %&gt;%
   gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 1), linetype = 2, size = 2) %&gt;%
-  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 855), linetype = 2, color = &#39;lightgreen&#39;, size = 2) %&gt;%
-  gf_refine(coord_cartesian(xlim = c(0, 160), ylim = c(0, 120)))</code></pre>
+  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 855), linetype = 2, color = 'lightgreen', size = 2) %&gt;%
+  gf_refine(coord_cartesian(xlim = c(0, 160), ylim = c(0, 120)))
+</code></pre>
 <p><img src="/lectures/04-least-squares-simulation_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>sum_square_error &lt;- function(conditions, sim_data) {
-    fitted &lt;- conditions[[&#39;y_intercept&#39;]] + conditions[[&#39;slope&#39;]] * sim_data[[&#39;x&#39;]]
+<pre><code class="language-r">sum_square_error &lt;- function(conditions, sim_data) {
+    fitted &lt;- conditions[['y_intercept']] + conditions[['slope']] * sim_data[['x']]
 
-    deviation &lt;- sim_data[[&#39;y&#39;]] - fitted
+    deviation &lt;- sim_data[['y']] - fitted
 
     sqrt((sum(deviation^2) / (nrow(sim_data) - 2)))
 }
 
-sum_square_error(conditions[1892, ], sim_data)</code></pre>
-<pre><code>## [1] 26.74862</code></pre>
-<pre class="r"><code>summary(sim_lm)$sigma</code></pre>
-<pre><code>## [1] 10.18153</code></pre>
-<pre class="r"><code>library(future)
+sum_square_error(conditions[1892, ], sim_data)
+</code></pre>
+<pre><code>## [1] 26.74862
+</code></pre>
+<pre><code class="language-r">summary(sim_lm)$sigma
+</code></pre>
+<pre><code>## [1] 10.18153
+</code></pre>
+<pre><code class="language-r">library(future)
 
 plan(multisession)
 
 conditions$sse &lt;- unlist(lapply(1:nrow(conditions), function(xx) sum_square_error(conditions[xx, ], sim_data)))
 
-head(conditions)</code></pre>
+head(conditions)
+</code></pre>
 <pre><code>##   y_intercept slope      sse
 ## 1        0.00     0 57.37574
 ## 2        0.25     0 57.13345
 ## 3        0.50     0 56.89123
 ## 4        0.75     0 56.64908
 ## 5        1.00     0 56.40699
-## 6        1.25     0 56.16498</code></pre>
-<pre class="r"><code>plan(sequential)</code></pre>
-</div>
+## 6        1.25     0 56.16498
+</code></pre>
+<pre><code class="language-r">plan(sequential)
+</code></pre>
 
           </div>
 

@@ -808,7 +808,20 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#review-for-psqf-6243">Review for PSQF 6243</a>
+      <ul>
+        <li><a href="#examples">Examples</a></li>
+      </ul>
+    </li>
+    <li><a href="#bivariate-association">Bivariate Association</a>
+      <ul>
+        <li><a href="#questions">Questions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
       
     </div>
@@ -824,14 +837,7 @@
           <h1>Review</h1>
 
           <div class="article-style">
-            
-
-<div id="TOC">
-
-</div>
-
-<div id="review-for-psqf-6243" class="section level1">
-<h1>Review for PSQF 6243</h1>
+            <h1 id="review-for-psqf-6243">Review for PSQF 6243</h1>
 <p>This serves as a non-exhaustive review for the course. These are elements that I assume you have knowledge of prior to starting the course.</p>
 <ul>
 <li>Variable vs constant attributes</li>
@@ -842,67 +848,67 @@
 <li>What is a statistical model? Why do we use them?</li>
 <li>Population vs Sample</li>
 </ul>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
+<h2 id="examples">Examples</h2>
 <p>Mario Kart 64 world record data:</p>
 <table>
 <thead>
-<tr class="header">
-<th align="left">variable</th>
-<th align="left">class</th>
-<th align="left">description</th>
+<tr>
+<th style="text-align:left">variable</th>
+<th style="text-align:left">class</th>
+<th style="text-align:left">description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">track</td>
-<td align="left">character</td>
-<td align="left">Track name</td>
+<tr>
+<td style="text-align:left">track</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left">Track name</td>
 </tr>
-<tr class="even">
-<td align="left">type</td>
-<td align="left">factor</td>
-<td align="left">Single or three lap record</td>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:left">factor</td>
+<td style="text-align:left">Single or three lap record</td>
 </tr>
-<tr class="odd">
-<td align="left">shortcut</td>
-<td align="left">factor</td>
-<td align="left">Shortcut or non-shortcut record</td>
+<tr>
+<td style="text-align:left">shortcut</td>
+<td style="text-align:left">factor</td>
+<td style="text-align:left">Shortcut or non-shortcut record</td>
 </tr>
-<tr class="even">
-<td align="left">player</td>
-<td align="left">character</td>
-<td align="left">Player’s name</td>
+<tr>
+<td style="text-align:left">player</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left">Player’s name</td>
 </tr>
-<tr class="odd">
-<td align="left">system_played</td>
-<td align="left">character</td>
-<td align="left">Used system (NTSC or PAL)</td>
+<tr>
+<td style="text-align:left">system_played</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left">Used system (NTSC or PAL)</td>
 </tr>
-<tr class="even">
-<td align="left">date</td>
-<td align="left">date</td>
-<td align="left">World record date</td>
+<tr>
+<td style="text-align:left">date</td>
+<td style="text-align:left">date</td>
+<td style="text-align:left">World record date</td>
 </tr>
-<tr class="odd">
-<td align="left">time_period</td>
-<td align="left">period</td>
-<td align="left">Time as <code>hms</code> period</td>
+<tr>
+<td style="text-align:left">time_period</td>
+<td style="text-align:left">period</td>
+<td style="text-align:left">Time as <code>hms</code> period</td>
 </tr>
-<tr class="even">
-<td align="left">time</td>
-<td align="left">double</td>
-<td align="left">Time in seconds</td>
+<tr>
+<td style="text-align:left">time</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">Time in seconds</td>
 </tr>
-<tr class="odd">
-<td align="left">record_duration</td>
-<td align="left">double</td>
-<td align="left">Record duration in days</td>
+<tr>
+<td style="text-align:left">record_duration</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">Record duration in days</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code># load some libraries
-library(tidyverse)</code></pre>
+<pre><code class="language-r"># load some libraries
+library(tidyverse)
+</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
@@ -910,87 +916,95 @@ library(tidyverse)</code></pre>
 ## ✔ readr   2.1.2      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(ggformula)</code></pre>
+## ✖ dplyr::lag()    masks stats::lag()
+</code></pre>
+<pre><code class="language-r">library(ggformula)
+</code></pre>
 <pre><code>## Loading required package: ggstance
 ## 
-## Attaching package: &#39;ggstance&#39;
+## Attaching package: 'ggstance'
 ## 
-## The following objects are masked from &#39;package:ggplot2&#39;:
+## The following objects are masked from 'package:ggplot2':
 ## 
 ##     geom_errorbarh, GeomErrorbarh
 ## 
 ## Loading required package: scales
 ## 
-## Attaching package: &#39;scales&#39;
+## Attaching package: 'scales'
 ## 
-## The following object is masked from &#39;package:purrr&#39;:
+## The following object is masked from 'package:purrr':
 ## 
 ##     discard
 ## 
-## The following object is masked from &#39;package:readr&#39;:
+## The following object is masked from 'package:readr':
 ## 
 ##     col_factor
 ## 
 ## Loading required package: ggridges
 ## 
 ## New to ggformula?  Try the tutorials: 
-##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>library(lubridate)</code></pre>
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
+</code></pre>
+<pre><code class="language-r">library(lubridate)
+</code></pre>
 <pre><code>## 
-## Attaching package: &#39;lubridate&#39;
+## Attaching package: 'lubridate'
 ## 
-## The following objects are masked from &#39;package:base&#39;:
+## The following objects are masked from 'package:base':
 ## 
-##     date, intersect, setdiff, union</code></pre>
-<pre class="r"><code>library(mosaic)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##     date, intersect, setdiff, union
+</code></pre>
+<pre><code class="language-r">library(mosaic)
+</code></pre>
+<pre><code>## Registered S3 method overwritten by 'mosaic':
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
 ## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## The 'mosaic' package masks several functions from core packages in order to add 
 ## additional features.  The original behavior of these functions should not be affected by this.
 ## 
-## Attaching package: &#39;mosaic&#39;
+## Attaching package: 'mosaic'
 ## 
-## The following object is masked from &#39;package:Matrix&#39;:
+## The following object is masked from 'package:Matrix':
 ## 
 ##     mean
 ## 
-## The following object is masked from &#39;package:scales&#39;:
+## The following object is masked from 'package:scales':
 ## 
 ##     rescale
 ## 
-## The following objects are masked from &#39;package:dplyr&#39;:
+## The following objects are masked from 'package:dplyr':
 ## 
 ##     count, do, tally
 ## 
-## The following object is masked from &#39;package:purrr&#39;:
+## The following object is masked from 'package:purrr':
 ## 
 ##     cross
 ## 
-## The following object is masked from &#39;package:ggplot2&#39;:
+## The following object is masked from 'package:ggplot2':
 ## 
 ##     stat
 ## 
-## The following objects are masked from &#39;package:stats&#39;:
+## The following objects are masked from 'package:stats':
 ## 
 ##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
 ##     quantile, sd, t.test, var
 ## 
-## The following objects are masked from &#39;package:base&#39;:
+## The following objects are masked from 'package:base':
 ## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre class="r"><code>library(e1071)
+##     max, mean, min, prod, range, sample, sum
+</code></pre>
+<pre><code class="language-r">library(e1071)
 
 theme_set(theme_bw(base_size = 18))
 
 # load in some data
-mariokart &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv&#39;) %&gt;%
+mariokart &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv') %&gt;%
     mutate(year = year(date),
            month = month(date),
-           day = month(date))</code></pre>
+           day = month(date))
+</code></pre>
 <pre><code>## Rows: 2334 Columns: 9
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -999,8 +1013,10 @@ mariokart &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatas
 ## date (1): date
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>head(mariokart)</code></pre>
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</code></pre>
+<pre><code class="language-r">head(mariokart)
+</code></pre>
 <pre><code>## # A tibble: 6 × 12
 ##   track      type  short…¹ player syste…² date       time_…³  time recor…⁴  year
 ##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1011,35 +1027,37 @@ mariokart &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatas
 ## 5 Luigi Rac… Thre… No      Gregg… NTSC    1997-03-07 2M 4.5…  125.      54  1997
 ## 6 Luigi Rac… Thre… No      Rocky… NTSC    1997-04-30 2M 2.8…  123.       0  1997
 ## # … with 2 more variables: month &lt;dbl&gt;, day &lt;dbl&gt;, and abbreviated variable
-## #   names ¹​shortcut, ²​system_played, ³​time_period, ⁴​record_duration</code></pre>
-<pre class="r"><code># univariate distribution of time
+## #   names ¹​shortcut, ²​system_played, ³​time_period, ⁴​record_duration
+</code></pre>
+<pre><code class="language-r"># univariate distribution of time
 gf_histogram(~ time, data = mariokart, bins = 30) %&gt;% 
-   gf_labs(x = &quot;Time (in seconds)&quot;)</code></pre>
+   gf_labs(x = &quot;Time (in seconds)&quot;)
+</code></pre>
 <p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>gf_density(~ time, data = mariokart) %&gt;% 
-   gf_labs(x = &quot;Time (in seconds)&quot;)</code></pre>
+<pre><code class="language-r">gf_density(~ time, data = mariokart) %&gt;% 
+   gf_labs(x = &quot;Time (in seconds)&quot;)
+</code></pre>
 <p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>df_stats(~ time, data = mariokart, mean, median, sd, skewness, kurtosis, quantile(probs = c(0.1, 0.5, 0.9)))</code></pre>
+<pre><code class="language-r">df_stats(~ time, data = mariokart, mean, median, sd, skewness, kurtosis, quantile(probs = c(0.1, 0.5, 0.9)))
+</code></pre>
 <pre><code>##   response     mean median      sd skewness kurtosis   10%   50%     90%
-## 1     time 90.62383  86.19 66.6721 1.771732 3.844745 31.31 86.19 171.961</code></pre>
-</div>
-</div>
-<div id="bivariate-association" class="section level1">
-<h1>Bivariate Association</h1>
-<pre class="r"><code>cor(time ~ record_duration, data = mariokart)</code></pre>
-<pre><code>## [1] -0.06736739</code></pre>
-<pre class="r"><code>gf_point(time ~ record_duration, data = mariokart) %&gt;%
+## 1     time 90.62383  86.19 66.6721 1.771732 3.844745 31.31 86.19 171.961
+</code></pre>
+<h1 id="bivariate-association">Bivariate Association</h1>
+<pre><code class="language-r">cor(time ~ record_duration, data = mariokart)
+</code></pre>
+<pre><code>## [1] -0.06736739
+</code></pre>
+<pre><code class="language-r">gf_point(time ~ record_duration, data = mariokart) %&gt;%
   gf_labs(x = &quot;How long the record was held&quot;,
-          y = &quot;Time (in seconds)&quot;)</code></pre>
+          y = &quot;Time (in seconds)&quot;)
+</code></pre>
 <p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div id="questions" class="section level2">
-<h2>Questions</h2>
-<ol style="list-style-type: decimal">
+<h2 id="questions">Questions</h2>
+<ol>
 <li>What is problematic about the analyses above? Why?</li>
 <li>What could be done to improve the analyses above?</li>
 </ol>
-</div>
-</div>
 
           </div>
 
