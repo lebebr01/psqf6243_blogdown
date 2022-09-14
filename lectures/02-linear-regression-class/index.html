@@ -37,7 +37,7 @@
   <meta name="description" content="Introduction to Linear Regression This week will dive into linear regression, the foundation of this course. The exploration into linear regression will first start with the case when we have 2 continuous attributes.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-class/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-class/">
 
   
   
@@ -281,8 +281,8 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression/">
-  <meta property="og:title" content="Introduction to Linear Regression | PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-class/">
+  <meta property="og:title" content="Introduction to Linear Regression - Class Notes | PSQF 6243">
   <meta property="og:description" content="Introduction to Linear Regression This week will dive into linear regression, the foundation of this course. The exploration into linear regression will first start with the case when we have 2 continuous attributes."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
@@ -308,7 +308,7 @@
 
 
 
-  <title>Introduction to Linear Regression | PSQF 6243</title>
+  <title>Introduction to Linear Regression - Class Notes | PSQF 6243</title>
 
 </head>
 
@@ -779,11 +779,11 @@
 
 
 
-  <li class="active"><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
+  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
 
 
 
-  <li class=""><a href="/lectures/02-linear-regression-class/">Introduction to Linear Regression - Class Notes</a></li>
+  <li class="active"><a href="/lectures/02-linear-regression-class/">Introduction to Linear Regression - Class Notes</a></li>
 
 
 
@@ -851,7 +851,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Introduction to Linear Regression</h1>
+          <h1>Introduction to Linear Regression - Class Notes</h1>
 
           <div class="article-style">
             <h1 id="introduction-to-linear-regression">Introduction to Linear Regression</h1>
@@ -952,9 +952,32 @@ basketball &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr0
 <p>The next step would be to explore the bivariate figure of these two attributes. As both of these attributes are continuous ratio type attributes, a scatterplot would be one way to visualize this. A scatterplot takes each X,Y pair of data and plots those coordinates. This can be done in R with the following code.</p>
 <pre><code class="language-r">gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&gt;% 
   gf_labs(x = &quot;Total Minutes Played&quot;,
-          y = &quot;Average Points Scored&quot;)
+          y = &quot;Average Points Scored&quot;) 
 </code></pre>
-<p><img src="/lectures/02-linear-regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code class="language-r">gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) |&gt;
+  gf_smooth(method = 'lm', size = 4) |&gt;
+  gf_smooth(linetype = 2, color = 'black', size = 4) |&gt;
+  gf_labs(x = &quot;Total Minutes Played&quot;,
+          y = &quot;Average Points Scored&quot;) 
+</code></pre>
+<pre><code>## `geom_smooth()` using method = 'loess'
+</code></pre>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code class="language-r">filter(basketball, avg_points &gt; 15)
+</code></pre>
+<pre><code>## # A tibble: 1 × 32
+##   player_name    height weight  year team    age games…¹ games…² avg_m…³ avg_f…⁴
+##   &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Arike Ogunbow…     68    165  2019 DAL      22      33      28    32.1     6.5
+## # … with 22 more variables: avg_field_goal_attempts &lt;dbl&gt;,
+## #   field_goal_pct &lt;dbl&gt;, avg_three_pointers &lt;dbl&gt;,
+## #   avg_three_pointer_attempts &lt;dbl&gt;, three_pointer_pct &lt;dbl&gt;,
+## #   avg_two_pointers &lt;dbl&gt;, avg_two_pointer_attempts &lt;dbl&gt;,
+## #   two_pointer_pct &lt;dbl&gt;, avg_free_throws &lt;dbl&gt;,
+## #   avg_free_throw_attempts &lt;dbl&gt;, free_throw_pct &lt;dbl&gt;,
+## #   avg_offensive_rb &lt;dbl&gt;, avg_defensive_rb &lt;dbl&gt;, avg_rb &lt;dbl&gt;, …
+</code></pre>
 <h3 id="questions-to-consider">Questions to consider</h3>
 <ol>
 <li>What can be noticed about the relationship between these two attributes?</li>
@@ -966,19 +989,65 @@ basketball &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr0
 <p>I&rsquo;m going to add both to the figure below. The flexible (in this case this is a LOESS curve) curve is darker blue, the linear line is lighter blue.</p>
 <p>Does there appear to be much difference in the relationship across the two lines?</p>
 <pre><code class="language-r">gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&gt;% 
-  gf_smooth() %&gt;%
-  gf_smooth(method = 'lm', linetype = 2, color = 'lightblue') %&gt;%
+  #gf_smooth() %&gt;%
+  gf_smooth(method = 'lm',  color = 'lightblue', size = 4) %&gt;%
   gf_labs(x = &quot;Total Minutes Played&quot;,
           y = &quot;Average Points Scored&quot;)
 </code></pre>
-<pre><code>## `geom_smooth()` using method = 'loess'
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre><code class="language-r">cor(avg_points ~ total_minutes, data = basketball)
 </code></pre>
-<p><img src="/lectures/02-linear-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>## [1] 0.8476624
+</code></pre>
+<pre><code class="language-r">gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&gt;% 
+  gf_smooth(color = 'black', size = 3) %&gt;%
+  gf_smooth(method = 'lm', linetype = 2, size = 4, color = 'blue')
+  gf_labs(x = &quot;Total Minutes Played&quot;,
+          y = &quot;Average Points Scored&quot;)
+</code></pre>
+<pre><code class="language-r">library(simglm)
+
+sim_args &lt;- list(
+    formula = y ~ 1 + poly(x1, degree = 2),
+    fixed = list(x1 = list(var_type = 'continuous')),
+    sample_size = 2000,
+    reg_weights = c(1, 2, -200)
+)
+
+poly_data &lt;- simulate_fixed(data = NULL, sim_args) |&gt;
+simulate_error(sim_args) |&gt;
+generate_response(sim_args)
+
+head(poly_data)
+</code></pre>
+<pre><code>##   X.Intercept.         x1_1        x1_2          x1 level1_id      error
+## 1            1  0.001295508 -0.01539659  0.04920376         1  1.1871258
+## 2            1  0.010810915 -0.01157812  0.47539171         2 -0.8550062
+## 3            1  0.054146662  0.07673398  2.41636753         3 -0.7552604
+## 4            1 -0.003255235 -0.01524062 -0.15462063         4  1.6580407
+## 5            1 -0.012048218 -0.01130604 -0.54845179         5 -0.4716792
+## 6            1 -0.002683894 -0.01533060 -0.12903070         6  1.4749041
+##   fixed_outcome random_effects          y
+## 1      4.081908              0   5.269034
+## 2      3.337245              0   2.482239
+## 3    -14.238503              0 -14.993764
+## 4      4.041613              0   5.699654
+## 5      3.237111              0   2.765432
+## 6      4.060753              0   5.535657
+</code></pre>
+<pre><code class="language-r">gf_point(y ~ x1, data = poly_data, size = 3) |&gt;
+  gf_smooth(method = 'lm', color = 'lightblue') |&gt;
+  gf_smooth(method = 'loess')
+</code></pre>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <h2 id="estimating-linear-regression-coefficients">Estimating linear regression coefficients</h2>
 <p>The linear regression coefficients can be estimated within any statistical software (or by hand, even if tedious). Within R, the primary function is <code>lm()</code> to estimate a linear regression. The primary argument is a formula similar to the regression formula shown above at the top of the notes.</p>
 <p>This equation could be written more directly for our specific problem.</p>
 <p>$$
 Avg_points = \beta_{0} + \beta_{1} Minutes_Played + \epsilon
+$$</p>
+<p>$$
+Avg_points = 1.14 + .01 Minutes_Played + \epsilon
 $$</p>
 <p>One way to read this equation is that the number of minutes played for each player helps to understand variation or differences in the average points scored for that player. Or, average points is modeled or explained by minutes played.</p>
 <p>For the R formula, instead of an $ = $, you could insert a ~.</p>
@@ -987,6 +1056,22 @@ coef(wnba_reg)
 </code></pre>
 <pre><code>##   (Intercept) total_minutes 
 ##    1.13562456    0.01014207
+</code></pre>
+<pre><code class="language-r">basketball &lt;- basketball |&gt;
+  mutate(minutes_100 = total_minutes / 100)
+</code></pre>
+<pre><code class="language-r">gf_point(avg_points ~ minutes_100, data = basketball, size = 4, alpha = .5) %&gt;% 
+  #gf_smooth() %&gt;%
+  gf_smooth(method = 'lm',  color = 'lightblue', size = 4) %&gt;%
+  gf_labs(x = &quot;Total Minutes Played&quot;,
+          y = &quot;Average Points Scored&quot;)
+</code></pre>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre><code class="language-r">wnba_reg &lt;- lm(avg_points ~ minutes_100, data = basketball)
+coef(wnba_reg)
+</code></pre>
+<pre><code>## (Intercept) minutes_100 
+##    1.135625    1.014207
 </code></pre>
 <h2 id="interpretting-linear-regression-terms">Interpretting linear regression terms</h2>
 <p>Now that we have estimates for the linear regression terms, how are these interpretted? The linear regression equation with these estimates plugged in would look like the following:</p>
@@ -1027,7 +1112,7 @@ $$</p>
   gf_labs(x = &quot;Total Minutes Played&quot;,
           y = &quot;Average Points Scored&quot;)
 </code></pre>
-<p><img src="/lectures/02-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <h2 id="what-about-the-error">What about the error?</h2>
 <p>So far the error has been disregarded, but where did it go? The error didn&rsquo;t disappear, it is actually in the figure just created above. Where can you see the error? Why was it disregarded when creating the predicted values?</p>
 <p>The short answer is that the error in a linear regression is commonly assumed to follow a Normal distribution with a mean of 0 and some variance, <code>\(\sigma^2\)</code>. Sometimes this is written in math notation as:</p>
@@ -1049,7 +1134,7 @@ $$</p>
   gf_labs(x = &quot;Total Minutes Played&quot;,
           y = &quot;Average Points Scored&quot;)
 </code></pre>
-<p><img src="/lectures/02-linear-regression_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre><code class="language-r">gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&gt;% 
   gf_hline(yintercept = ~mean(avg_points), data = basketball) %&gt;%
   gf_smooth(method = 'lm', linetype = 2, color = 'lightblue') %&gt;%
@@ -1057,7 +1142,7 @@ $$</p>
   gf_labs(x = &quot;Total Minutes Played&quot;,
           y = &quot;Average Points Scored&quot;)
 </code></pre>
-<p><img src="/lectures/02-linear-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre><code class="language-r">gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&gt;% 
   gf_hline(yintercept = ~mean(avg_points), data = basketball) %&gt;%
   gf_smooth(method = 'lm', linetype = 2, color = 'lightblue') %&gt;%
@@ -1065,7 +1150,7 @@ $$</p>
   gf_labs(x = &quot;Total Minutes Played&quot;,
           y = &quot;Average Points Scored&quot;)
 </code></pre>
-<p><img src="/lectures/02-linear-regression_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/lectures/02-linear-regression-class_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <h2 id="another-related-measure-of-error">Another related measure of error</h2>
 <p>Another way to get a measure of how well the model is performing, would be a statistic called R-squared. This statistic is a function of the sum of squares described above.</p>
 <p>$$
@@ -1107,6 +1192,15 @@ sigma_hat_square
 </code></pre>
 <pre><code>## [1] 1.979045
 </code></pre>
+<p>$$
+\sigma^2 = \frac{SS_{error}}{n - 2}
+$$</p>
+<p>$$
+\sigma = \sqrt{\sigma^2}
+$$</p>
+<p>$$
+\hat{\sigma}
+$$</p>
 
           </div>
 
@@ -1124,14 +1218,14 @@ sigma_hat_square
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/01-review-class/" rel="next">Review - Class</a>
+    <a href="/lectures/02-linear-regression/" rel="next">Introduction to Linear Regression</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/02-linear-regression-class/" rel="prev">Introduction to Linear Regression - Class Notes</a>
+    <a href="/lectures/03-regression-estimates/" rel="prev">Regression Estimates</a>
   </div>
   
 </div>
