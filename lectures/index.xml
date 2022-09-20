@@ -1035,20 +1035,20 @@ generate_response(sim_args)
 
 head(poly_data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   X.Intercept.          x1_1         x1_2          x1 level1_id      error
-## 1            1 -0.0139665906 -0.009918615 -0.61044255         1 -0.7338556
-## 2            1 -0.0661016613  0.117671652 -2.92031675         2  0.4786632
-## 3            1  0.0003739655 -0.015475851  0.02492401         3  0.9959537
-## 4            1 -0.0353361598  0.022007872 -1.55723357         4  1.4491733
-## 5            1  0.0176554909 -0.005239858  0.79059190         5 -1.1436860
-## 6            1  0.0467127309  0.053692296  2.07798958         6 -1.5065093
-##   fixed_outcome random_effects           y
-## 1      2.955790              0   2.2219341
-## 2    -22.666534              0 -22.1878705
-## 3      4.095918              0   5.0918717
-## 4     -3.472247              0  -2.0230733
-## 5      2.083282              0   0.9395965
-## 6     -9.645034              0 -11.1515431
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.        x1_1          x1_2         x1 level1_id       error
+## 1            1  0.02222506  9.996891e-05  1.0243038         1  0.03952865
+## 2            1 -0.01191634 -1.195406e-02 -0.5526796         2 -0.66146608
+## 3            1 -0.03428484  2.178992e-02 -1.5858759         3  0.06505108
+## 4            1  0.02508621  4.597819e-03  1.1564599         4  0.50977012
+## 5            1 -0.01599696 -8.256651e-03 -0.7411625         5  0.15985781
+## 6            1 -0.04453522  4.826783e-02 -2.0593386         6  1.50329280
+##   fixed_outcome random_effects          y
+## 1     1.0244563              0  1.0639850
+## 2     3.3669790              0  2.7055129
+## 3    -3.4265543              0 -3.3615032
+## 4     0.1306087              0  0.6403788
+## 5     2.6193364              0  2.7791942
+## 6    -8.7426363              0 -7.2393435
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(y ~ x1, data = poly_data, size = 3) |&amp;gt;
   gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;) |&amp;gt;
@@ -1848,11 +1848,11 @@ $$&lt;/p&gt;
 &lt;p&gt;The standard error is used to estimate uncertainty or error in the parameter estimates due to having a sample from the population. More specifically, this means that the entire population is not used to estimate the parameter, therefore the estimate we have is very likely not equal exactly to the parameter. Instead, there is some sort of sampling error involved that we want to quantify. If the sample was collected well, ideally randomly, then the estimate should be unbiased. Unbiased here doesn&amp;rsquo;t mean that the estimate equals the population parameter, rather, that through repeated sampling, the average of our sample estimates would equal the population parameter.&lt;/p&gt;
 &lt;p&gt;As mentioned, standard errors are used to quantify this uncertainty. In the linear regression case we have explored so far, there are mathematical formula for the standard errors. These are shown below.&lt;/p&gt;
 &lt;p&gt;$$
-SE\left( \hat{\beta}_{0} \right)^2 = \sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{X}^2}{\sum \left( X - \bar{X} \right)^2} \right)}
+SE\left( \hat{\beta}_{0} \right) = \sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{X}^2}{\sum \left( X - \bar{X} \right)^2} \right)}
 $$&lt;/p&gt;
 &lt;p&gt;and&lt;/p&gt;
 &lt;p&gt;$$
-SE\left( \hat{\beta}_{1} \right)^2 = \sqrt{\frac{\hat{\sigma}^2}{\sum \left( X - \bar{X} \right)^2}}
+SE\left( \hat{\beta}_{1} \right) = \sqrt{\frac{\hat{\sigma}^2}{\sum \left( X - \bar{X} \right)^2}}
 $$&lt;/p&gt;
 &lt;p&gt;In the equation above, &lt;code&gt;\(\hat{\sigma}^2\)&lt;/code&gt;, is equal to &lt;code&gt;\(\sqrt{\frac{SS_{error}}{n - 2}}\)&lt;/code&gt;, and &lt;code&gt;\(n\)&lt;/code&gt; is the sample size (ie, number of rows of data in the model).&lt;/p&gt;
 &lt;h4 id=&#34;matrix-representation&#34;&gt;Matrix Representation&lt;/h4&gt;
@@ -1862,7 +1862,8 @@ $$&lt;/p&gt;
 $$&lt;/p&gt;
 &lt;p&gt;In the equation above, &lt;code&gt;\(\hat{\sigma}^2\)&lt;/code&gt;, is equal to &lt;code&gt;\(\sqrt{\frac{SS_{error}}{n - 2}}\)&lt;/code&gt;, and &lt;code&gt;\(\mathbf{X}\)&lt;/code&gt; is the design matrix from the regression analysis. Finally, to get the standard errors back, you take the square root of the diagonal elements.&lt;/p&gt;
 &lt;p&gt;$$
-SE\left( \hat{\beta} \right) = \sqrt{diag\left(\hat{\sigma}^2 \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1}\right)}&lt;/p&gt;
+SE\left( \hat{\beta} \right) = \sqrt{diag\left(\hat{\sigma}^2 \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1}\right)}
+$$&lt;/p&gt;
 &lt;h3 id=&#34;data&#34;&gt;Data&lt;/h3&gt;
 &lt;p&gt;The  data for this section of notes will explore data from the &lt;a href=&#34;https://www.epa.gov/outdoor-air-quality-data&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Environmental Protection Agency on Air Quality&lt;/a&gt; collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.&lt;/p&gt;
 &lt;table&gt;

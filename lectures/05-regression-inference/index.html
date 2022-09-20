@@ -878,11 +878,11 @@ $$</p>
 <p>The standard error is used to estimate uncertainty or error in the parameter estimates due to having a sample from the population. More specifically, this means that the entire population is not used to estimate the parameter, therefore the estimate we have is very likely not equal exactly to the parameter. Instead, there is some sort of sampling error involved that we want to quantify. If the sample was collected well, ideally randomly, then the estimate should be unbiased. Unbiased here doesn&rsquo;t mean that the estimate equals the population parameter, rather, that through repeated sampling, the average of our sample estimates would equal the population parameter.</p>
 <p>As mentioned, standard errors are used to quantify this uncertainty. In the linear regression case we have explored so far, there are mathematical formula for the standard errors. These are shown below.</p>
 <p>$$
-SE\left( \hat{\beta}_{0} \right)^2 = \sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{X}^2}{\sum \left( X - \bar{X} \right)^2} \right)}
+SE\left( \hat{\beta}_{0} \right) = \sqrt{\hat{\sigma}^2 \left( \frac{1}{n} + \frac{\bar{X}^2}{\sum \left( X - \bar{X} \right)^2} \right)}
 $$</p>
 <p>and</p>
 <p>$$
-SE\left( \hat{\beta}_{1} \right)^2 = \sqrt{\frac{\hat{\sigma}^2}{\sum \left( X - \bar{X} \right)^2}}
+SE\left( \hat{\beta}_{1} \right) = \sqrt{\frac{\hat{\sigma}^2}{\sum \left( X - \bar{X} \right)^2}}
 $$</p>
 <p>In the equation above, <code>\(\hat{\sigma}^2\)</code>, is equal to <code>\(\sqrt{\frac{SS_{error}}{n - 2}}\)</code>, and <code>\(n\)</code> is the sample size (ie, number of rows of data in the model).</p>
 <h4 id="matrix-representation">Matrix Representation</h4>
@@ -892,7 +892,8 @@ $$</p>
 $$</p>
 <p>In the equation above, <code>\(\hat{\sigma}^2\)</code>, is equal to <code>\(\sqrt{\frac{SS_{error}}{n - 2}}\)</code>, and <code>\(\mathbf{X}\)</code> is the design matrix from the regression analysis. Finally, to get the standard errors back, you take the square root of the diagonal elements.</p>
 <p>$$
-SE\left( \hat{\beta} \right) = \sqrt{diag\left(\hat{\sigma}^2 \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1}\right)}</p>
+SE\left( \hat{\beta} \right) = \sqrt{diag\left(\hat{\sigma}^2 \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1}\right)}
+$$</p>
 <h3 id="data">Data</h3>
 <p>The  data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data" target="_blank" rel="noopener">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
 <table>
