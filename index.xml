@@ -1970,6 +1970,37 @@ head(conditions)
     </item>
     
     <item>
+      <title>Week 5</title>
+      <link>https://psqf6243.brandonlebeau.org/content/05-week5/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/05-week5/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Digging deeper into linear regression inference using classical procedures. Further definitions of confidence intervals, sampling distribution, and interpretations of p-values.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Construct a confidence interval&lt;/li&gt;
+&lt;li&gt;Define the sampling distribution&lt;/li&gt;
+&lt;li&gt;Perform significance testing&lt;/li&gt;
+&lt;li&gt;Interpret p-value as a continuous probability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read 24.4 of &lt;a href=&#34;https://openintro-ims.netlify.app/inf-model-slr.html#mathslope&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optional, Read &lt;a href=&#34;https://doi.org/10.1080/00031305.2016.1154108&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ASA statement on p-values&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/activity/activity1/&#34;&gt;Activity 1&lt;/a&gt; &amp;ndash; Due around September 19th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/activity/activity2/&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz2/&#34;&gt;Quiz 2&lt;/a&gt; &amp;ndash; Due September 26th&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Regression Inference</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/05-regression-inference/</link>
       <pubDate>Tue, 13 Sep 2022 00:00:00 +0000</pubDate>
