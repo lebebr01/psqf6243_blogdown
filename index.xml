@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 20 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -2516,6 +2516,16 @@ gf_point(density ~ value, color = ~ normal, size = 1) %&amp;gt;%
       <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz2/</guid>
       <description>&lt;p&gt;Quiz 2 can be taken on ICON, due September 26th, 2022. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/02-week2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 2&lt;/a&gt; or &lt;a href=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;section 2 of the notes&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/196816/quizzes/336652&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 2 Link&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quiz 4</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/</guid>
+      <description>&lt;p&gt;Quiz 4 can be taken on ICON, due October 10th, 2022. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/04-week4/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 4&lt;/a&gt; and &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/05-week5/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 5&lt;/a&gt;. The course notes for &lt;a href=&#34;https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;section 3&lt;/a&gt; and &lt;a href=&#34;https://psqf6243.brandonlebeau.org/lectures/05-regression-inference/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;section 5&lt;/a&gt; are most relevant.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/196816/quizzes/336649&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 4 Link&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
