@@ -1131,20 +1131,20 @@ generate_response(sim_args)
 
 head(poly_data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   X.Intercept.        x1_1          x1_2         x1 level1_id       error
-## 1            1  0.02222506  9.996891e-05  1.0243038         1  0.03952865
-## 2            1 -0.01191634 -1.195406e-02 -0.5526796         2 -0.66146608
-## 3            1 -0.03428484  2.178992e-02 -1.5858759         3  0.06505108
-## 4            1  0.02508621  4.597819e-03  1.1564599         4  0.50977012
-## 5            1 -0.01599696 -8.256651e-03 -0.7411625         5  0.15985781
-## 6            1 -0.04453522  4.826783e-02 -2.0593386         6  1.50329280
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.          x1_1         x1_2         x1 level1_id       error
+## 1            1  0.0358464364  0.025406520  1.5979277         1 -0.76937995
+## 2            1  0.0008333176 -0.016301466  0.0545977         2  1.31273466
+## 3            1  0.0192260190 -0.004369247  0.8653226         3  0.10390033
+## 4            1 -0.0547938615  0.081999447 -2.3973717         4  0.07883602
+## 5            1  0.0038603280 -0.015855778  0.1880241         5 -0.23406237
+## 6            1  0.0429152355  0.043535826  1.9095106         6 -0.57287710
 ##   fixed_outcome random_effects          y
-## 1     1.0244563              0  1.0639850
-## 2     3.3669790              0  2.7055129
-## 3    -3.4265543              0 -3.3615032
-## 4     0.1306087              0  0.6403788
-## 5     2.6193364              0  2.7791942
-## 6    -8.7426363              0 -7.2393435
+## 1     -4.009611              0  -4.778991
+## 2      4.261960              0   5.574695
+## 3      1.912302              0   2.016202
+## 4    -15.509477              0 -15.430641
+## 5      4.178876              0   3.944814
+## 6     -7.621335              0  -8.194212
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(y ~ x1, data = poly_data, size = 3) |&amp;gt;
   gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;) |&amp;gt;
@@ -2771,6 +2771,369 @@ gf_point(density ~ value, color = ~ normal, size = 1) %&amp;gt;%
 &lt;li&gt;
 &lt;p&gt;Finally, in a couple sentences, provide a summary of the overall model. Does the model appear to be useful to predict the price of a ride with only the distance of the ride? &lt;em&gt;Use statistics from the analysis steps above to support your answer.&lt;/em&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34;</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/</guid>
+      <description>&lt;h1 id=&#34;conditions-for-linear-regression&#34;&gt;Conditions for Linear Regression&lt;/h1&gt;
+&lt;p&gt;The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:&lt;/p&gt;
+&lt;p&gt;$$
+Y - \hat{Y}
+$$&lt;/p&gt;
+&lt;p&gt;These are the deviations in the observed scores from the predicted scores from the linear regression. Recall, through least square estimation that these residauls will sum to 0, therefore, their mean would also be equal to 0. However, there are certain conditions about these residuals that are made for the linear regression model to have the inferences be appropriate. We&amp;rsquo;ll talk more about what the implications for violating these conditions will have on the linear regression model, but first, the conditions.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Approximately Normally distributed residuals&lt;/li&gt;
+&lt;li&gt;Homogeneity of variance&lt;/li&gt;
+&lt;li&gt;Uncorrelated residuals&lt;/li&gt;
+&lt;li&gt;Error term is uncorrelated with the predictor attribute&lt;/li&gt;
+&lt;li&gt;Linearity and additivity of the model.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Each of these will be discussed in turn.&lt;/p&gt;
+&lt;p&gt;Data conditions that are not directly testable:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Validity&lt;/li&gt;
+&lt;li&gt;Representativeness&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;approximately-normally-distributed-residuals&#34;&gt;Approximately Normally distributed residuals&lt;/h2&gt;
+&lt;p&gt;The first assumption is that the residuals are at least approximately Normally distributed. This assumption is really only much of a concern when the sample size is small. If the sample size is larger, the Central Limit Thereom (CLT) states that the distribution of the statstics will be approximately normally distributed. The threshold for the CLT to be properly invoked is about 30. Larger then this, the residuals do not need to be approximately normally distributed. Even still, exploring the distribution of the residuals can still be helpful and can also be helpful to identify potential extreme values.&lt;/p&gt;
+&lt;p&gt;This example will make use of the air quality data one more time.&lt;/p&gt;
+&lt;h3 id=&#34;data&#34;&gt;Data&lt;/h3&gt;
+&lt;p&gt;The  data for this section of notes will explore data from the &lt;a href=&#34;https://www.epa.gov/outdoor-air-quality-data&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Environmental Protection Agency on Air Quality&lt;/a&gt; collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Variable&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;date&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Date of observation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;id&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Site ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;poc&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Parameter Occurrence Code (POC)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;pm2.5&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;daily_aqi&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Average air quality index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;site_name&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Site Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;aqs_parameter_desc&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Text Description of Observation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;cbsa_code&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Core Based Statistical Area (CBSA) ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;cbsa_name&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;CBSA Name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;county&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;County in Iowa&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;avg_wind&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Average daily wind speed (in knots)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;max_wind&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Maximum daily wind speed (in knots)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;max_wind_hours&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Time of maximum daily wind speed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h4&gt;
+&lt;p&gt;How is average daily wind speed related to the daily air quality index?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ggformula)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(mosaic)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &#39;mosaic&#39;
+## 
+## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean
+## 
+## The following object is masked from &#39;package:scales&#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;theme_set(theme_bw(base_size = 18))
+
+airquality &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 6917 Columns: 10
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;wind &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1537 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;airquality &amp;lt;- airquality %&amp;gt;%
+   left_join(wind, by = c(&#39;cbsa_name&#39;, &#39;date&#39;)) %&amp;gt;% 
+   drop_na()
+
+air_lm &amp;lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+coef(air_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)    avg_wind 
+##   48.222946   -2.211798
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The residuals can be saved with the &lt;code&gt;resid()&lt;/code&gt; function. These can also be added to the original data, which are particularly helpful.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(resid(air_lm))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##          1          2          3          4          5          6 
+##  15.283427  11.186742  25.191433  15.398540   8.246896 -12.749410
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;airquality$residuals &amp;lt;- resid(air_lm)
+head(airquality)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 14
+##   date           id   poc pm2.5 daily_aqi site_…¹ aqs_p…² cbsa_…³ cbsa_…⁴ county
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; 
+## 1 1/1/21  190130009     1  15.1        57 Water … PM2.5 …   47940 Waterl… Black…
+## 2 1/4/21  190130009     1  13.3        54 Water … PM2.5 …   47940 Waterl… Black…
+## 3 1/7/21  190130009     1  20.5        69 Water … PM2.5 …   47940 Waterl… Black…
+## 4 1/10/21 190130009     1  14.3        56 Water … PM2.5 …   47940 Waterl… Black…
+## 5 1/13/21 190130009     1  13.7        54 Water … PM2.5 …   47940 Waterl… Black…
+## 6 1/16/21 190130009     1   5.3        22 Water … PM2.5 …   47940 Waterl… Black…
+## # … with 4 more variables: avg_wind &amp;lt;dbl&amp;gt;, max_wind &amp;lt;dbl&amp;gt;,
+## #   max_wind_hours &amp;lt;dbl&amp;gt;, residuals &amp;lt;dbl&amp;gt;, and abbreviated variable names
+## #   ¹​site_name, ²​aqs_parameter_desc, ³​cbsa_code, ⁴​cbsa_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_density(~ residuals, data = airquality) %&amp;gt;%
+  gf_labs(x = &amp;quot;Residuals&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(airquality, aes(sample = residuals)) + 
+  stat_qq(size = 5) + 
+  stat_qq_line(size = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;standardized-residuals&#34;&gt;Standardized Residuals&lt;/h3&gt;
+&lt;p&gt;Standardized residuals can be another way to explore the residuals. These will now be standardized to have a variance of 1, similar to that of a Z-score. These can be computed as:&lt;/p&gt;
+&lt;p&gt;$$
+standardized\ residuals = \frac{\epsilon_{i}}{SD_{\epsilon}}
+$$&lt;/p&gt;
+&lt;p&gt;Within R, these can be computed using the function &lt;code&gt;rstandard()&lt;/code&gt;. Furthermore, these can be computed from another package called broom with the &lt;code&gt;augment()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(rstandard(air_lm))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##          1          2          3          4          5          6 
+##  0.8466153  0.6196983  1.3955421  0.8529766  0.4568937 -0.7062638
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(broom)
+
+resid_diagnostics &amp;lt;- augment(air_lm)
+head(resid_diagnostics)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 8
+##   daily_aqi avg_wind .fitted .resid     .hat .sigma   .cooksd .std.resid
+##       &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1        57     2.94    41.7  15.3  0.000266   18.1 0.0000953      0.847
+## 2        54     2.45    42.8  11.2  0.000318   18.1 0.0000611      0.620
+## 3        69     2.00    43.8  25.2  0.000380   18.1 0.000370       1.40 
+## 4        56     3.45    40.6  15.4  0.000230   18.1 0.0000836      0.853
+## 5        54     1.12    45.8   8.25 0.000539   18.1 0.0000563      0.457
+## 6        22     6.09    34.7 -12.7  0.000319   18.1 0.0000795     -0.706
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_density(~ .std.resid, data = resid_diagnostics) %&amp;gt;%
+  gf_labs(x = &amp;quot;Standardized Residuals&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(resid_diagnostics, aes(sample = .std.resid)) + 
+  stat_qq(size = 5) + 
+  stat_qq_line(size = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;homogeneity-of-variance&#34;&gt;Homogeneity of variance&lt;/h2&gt;
+&lt;p&gt;Homoegeneity of variance is an assumption that is of larger concern compared to normality of the residuals. Homoogeneity of variance is an assumption that states that the variance of the residuals are similar across the predicted or fitted values from the regression line. This assumption can be explored by looking at the residuals (standardized or raw residuals), by the fitted or predicted values. Within this plot, the range of residuals should be similar across the range of fitted or predicted values.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&amp;gt;%
+  gf_smooth(method = &#39;loess&#39;, size = 2) %&amp;gt;%
+  gf_labs(x = &#39;Fitted Values&#39;,
+          y = &#39;Residuals&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(.std.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&amp;gt;%
+  gf_smooth(method = &#39;loess&#39;, size = 2) %&amp;gt;%
+  gf_labs(x = &#39;Fitted Values&#39;,
+          y = &#39;Standardized Residuals&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Another figure that can also be helpful for the homogeneity of variance assumption is one that rescales the residuals on the y-axis. The rescaling makes all the standardized residuals positive (takes the absolute value) and then takes the square root of this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;resid_diagnostics %&amp;gt;%
+  mutate(sqrt_abs_sresid = sqrt(abs(.std.resid))) %&amp;gt;%
+  gf_point(sqrt_abs_sresid ~ .fitted, size = 5, alpha = .15) %&amp;gt;%
+  gf_smooth(method = &#39;loess&#39;, size = 2) %&amp;gt;%
+  gf_labs(x = &#39;Fitted Values&#39;,
+          y = &#39;Sqrt Abs Standardized Residuals&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;data-with-high-leverage&#34;&gt;Data with high leverage&lt;/h2&gt;
+&lt;p&gt;Data with high leverage are extreme values that may significantly impact the regression estimates. These statistics include extreme values for the outcome or predictor attributes. Cook&amp;rsquo;s distance is one statistic that can help to identify points with high impact/leverage for the regression estimates. Cook&amp;rsquo;s distance is a statistic that represents how much change there would be in the fitted values if the point was removed when estimating the regression coefficients. There is some disagreement between what type of thresholds to use for Cook&amp;rsquo;s distance, but one rule of thumb is Cook&amp;rsquo;s distance greater than 1. There has also been some research showing that Cook&amp;rsquo;s distance follows an F-distribution, so a more specific value could be computed. The rule of thumb for greater than 1 comes from the F distribution for large samples.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;resid_diagnostics %&amp;gt;%
+  mutate(obs_num = 1:n()) %&amp;gt;%
+  gf_col(.cooksd ~ obs_num, fill = &#39;black&#39;, color = &#39;black&#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Observation Number&amp;quot;,
+          y = &amp;quot;Cook&#39;s Distance&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Another leave one out statistic is the studentized deleted residuals. These are computed by removing a data point, refitting the regression model, then generate a predicted value for the X value for the data point removed. Then the residual is computed the same as before and is standardized like the standardized residuals above. The function in R to compute these is &lt;code&gt;rstudent()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(rstudent(air_lm))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##          1          2          3          4          5          6 
+##  0.8465904  0.6196587  1.3956793  0.8529524  0.4568561 -0.7062271
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;airquality$student_residuals &amp;lt;- rstudent(air_lm)
+head(airquality)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 15
+##   date           id   poc pm2.5 daily_aqi site_…¹ aqs_p…² cbsa_…³ cbsa_…⁴ county
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; 
+## 1 1/1/21  190130009     1  15.1        57 Water … PM2.5 …   47940 Waterl… Black…
+## 2 1/4/21  190130009     1  13.3        54 Water … PM2.5 …   47940 Waterl… Black…
+## 3 1/7/21  190130009     1  20.5        69 Water … PM2.5 …   47940 Waterl… Black…
+## 4 1/10/21 190130009     1  14.3        56 Water … PM2.5 …   47940 Waterl… Black…
+## 5 1/13/21 190130009     1  13.7        54 Water … PM2.5 …   47940 Waterl… Black…
+## 6 1/16/21 190130009     1   5.3        22 Water … PM2.5 …   47940 Waterl… Black…
+## # … with 5 more variables: avg_wind &amp;lt;dbl&amp;gt;, max_wind &amp;lt;dbl&amp;gt;,
+## #   max_wind_hours &amp;lt;dbl&amp;gt;, residuals &amp;lt;dbl&amp;gt;, student_residuals &amp;lt;dbl&amp;gt;, and
+## #   abbreviated variable names ¹​site_name, ²​aqs_parameter_desc, ³​cbsa_code,
+## #   ⁴​cbsa_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;airquality %&amp;gt;%
+  mutate(obs_num = 1:n()) %&amp;gt;%
+  gf_point(student_residuals ~ obs_num, size = 5, alpha = .15) %&amp;gt;%
+  gf_hline(yintercept = ~ 3, color = &#39;blue&#39;, size = 2) %&amp;gt;%
+  gf_labs(x = &amp;quot;Observation Number&amp;quot;,
+          y = &amp;quot;Studentized Residuals&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Leverage can be another measure to help detect outliers in X values. The hat values that were computed from the &lt;code&gt;augment()&lt;/code&gt; function above and can be interpreted as the distance the X scores are from the center of all X predictors. In the case of a single predictor, the hat values are the distance the X score is from the mean of X. The hat values will also sum up to the number of predictors and will always range between 0 and 1.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;resid_diagnostics %&amp;gt;%
+  mutate(obs_num = 1:n()) %&amp;gt;%
+  gf_col(.hat ~ obs_num, fill = &#39;black&#39;, color = &#39;black&#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Observation Number&amp;quot;,
+          y = &amp;quot;Hat Values (leverage)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plot(air_lm, which = 1:5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;solutions-to-overcome-data-conditions-not-being-met&#34;&gt;Solutions to overcome data conditions not being met&lt;/h2&gt;
+&lt;p&gt;There are some strategies that can be done when a variety of data conditions for linear regression have not been met. In general, the strategies stem around generalizing the model and adding some complexity.&lt;/p&gt;
+&lt;p&gt;The following are options that would be possible:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add interactions or other non-linear terms&lt;/li&gt;
+&lt;li&gt;Use more complicated model
+&lt;ul&gt;
+&lt;li&gt;weighted least squares for homogeneity of variance concerns&lt;/li&gt;
+&lt;li&gt;models that include measurement error&lt;/li&gt;
+&lt;li&gt;mixed models for correlated data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transform the data.&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>

@@ -34,10 +34,12 @@
   
     
   
-  <meta name="description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (i.e., regression with a single continuous covariate/attribute) parameter estimates mean. We will consider the estimation formulas in part of this to gain a sense of how these can be computed.">
+  <meta name="description" content="Conditions for Linear Regression The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:
+$$ Y - \hat{Y} $$
+These are the deviations in the observed scores from the predicted scores from the linear regression.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/">
 
   
 
@@ -266,7 +268,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/">
 
   
   
@@ -281,15 +283,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
-  <meta property="og:title" content="Regression Estimates | PSQF 6243">
-  <meta property="og:description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (i.e., regression with a single continuous covariate/attribute) parameter estimates mean. We will consider the estimation formulas in part of this to gain a sense of how these can be computed."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/">
+  <meta property="og:title" content="An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34; | PSQF 6243">
+  <meta property="og:description" content="Conditions for Linear Regression The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:
+$$ Y - \hat{Y} $$
+These are the deviations in the observed scores from the predicted scores from the linear regression."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2022-09-06T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2022-09-06T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +310,7 @@
 
 
 
-  <title>Regression Estimates | PSQF 6243</title>
+  <title>An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34; | PSQF 6243</title>
 
 </head>
 
@@ -712,167 +714,112 @@
   </div>
 
   <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34;</h1>
+
+  
+
+  
     
 
 
+<div class="article-metadata">
 
-
-
-<div class="container-fluid docs">
-  <div class="row flex-xl-nowrap">
-    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
-      <form class="docs-search d-flex align-items-center">
-  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
-    <span><i class="fas fa-bars"></i></span>
-  </button>
-
-  
-  <button class="form-control sidebar-search js-search">
-    <i class="fas fa-search pr-2"></i>
-    <span class="sidebar-search-text">Search...</span>
-    <span class="sidebar-search-shortcut">/</span>
-  </button>
-  
-</form>
-
-<nav class="collapse docs-links" id="docs-nav">
-  
-  
-  
-  
   
   
 
   
-  
-    
-
-    
-      
-
-      
-      
-      
-
-
-  
-    
-    
+  <span class="article-date">
     
     
       
     
-    
-
-    
-      <ul class="nav docs-sidenav">
-        <li class=""><a href="/lectures/">Lecture Notes</a></li>
-    
-      
-
-
-  <li class=""><a href="/lectures/01-review/">Review</a></li>
-
-
-
-  <li class=""><a href="/lectures/01-review-class/">Review - Class</a></li>
-
-
-
-  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
-
-
-
-  <li class=""><a href="/lectures/02-linear-regression-class/">Introduction to Linear Regression - Class Notes</a></li>
-
-
-
-  <li class="active"><a href="/lectures/03-regression-estimates/">Regression Estimates</a></li>
-
-
-
-  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Simulation</a></li>
-
-
-
-  <li class=""><a href="/lectures/05-regression-inference/">Regression Inference</a></li>
-
-
-
-  <li class=""><a href="/lectures/06-t-vs-norm/">t-distribution vs Normal distribution</a></li>
-
-
-
-  <li class=""><a href="/lectures/07-regression-conditions/">An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34;</a></li>
-
-      
-    
-
-    
-      </ul>
-    
+    Jan 1, 0001
+  </span>
+  
 
   
-</nav>
 
-    </div>
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
 
     
-    
-    <div class="d-none d-xl-block col-xl-2 docs-toc">
-      <ul class="nav toc-top">
-        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
-      </ul>
 
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#understanding-regression-parameters">Understanding Regression Parameters</a>
-      <ul>
-        <li><a href="#new-example-data">New Example Data</a>
-          <ul>
-            <li><a href="#guiding-question">Guiding Question</a></li>
-          </ul>
-        </li>
-        <li><a href="#bivariate-figure">Bivariate Figure</a>
-          <ul>
-            <li><a href="#interpreting-these-estimates">Interpreting these estimates</a></li>
-          </ul>
-        </li>
-        <li><a href="#centering-predictors">Centering predictors</a>
-          <ul>
-            <li><a href="#mean-centering">Mean Centering</a></li>
-          </ul>
-        </li>
-        <li><a href="#standardized-regression">Standardized Regression</a></li>
-        <li><a href="#parameter-estimation">Parameter Estimation</a>
-          <ul>
-            <li><a href="#specific-example">Specific example</a></li>
-            <li><a href="#general-approach">General Approach</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
 
-      
-    </div>
-    
 
-    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
 
-      <article class="article">
 
-        <div class="docs-article-container">
-          
 
-          <h1>Regression Estimates</h1>
 
-          <div class="article-style">
-            <h1 id="understanding-regression-parameters">Understanding Regression Parameters</h1>
-<p>This section of notes aims to dig a bit more into what the simple linear regression (i.e., regression with a single continuous covariate/attribute) parameter estimates mean. We will consider the estimation formulas in part of this to gain a sense of how these can be computed.</p>
-<h2 id="new-example-data">New Example Data</h2>
-<p>The new data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data" target="_blank" rel="noopener">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="conditions-for-linear-regression">Conditions for Linear Regression</h1>
+<p>The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:</p>
+<p>$$
+Y - \hat{Y}
+$$</p>
+<p>These are the deviations in the observed scores from the predicted scores from the linear regression. Recall, through least square estimation that these residauls will sum to 0, therefore, their mean would also be equal to 0. However, there are certain conditions about these residuals that are made for the linear regression model to have the inferences be appropriate. We&rsquo;ll talk more about what the implications for violating these conditions will have on the linear regression model, but first, the conditions.</p>
+<ol>
+<li>Approximately Normally distributed residuals</li>
+<li>Homogeneity of variance</li>
+<li>Uncorrelated residuals</li>
+<li>Error term is uncorrelated with the predictor attribute</li>
+<li>Linearity and additivity of the model.</li>
+</ol>
+<p>Each of these will be discussed in turn.</p>
+<p>Data conditions that are not directly testable:</p>
+<ol>
+<li>Validity</li>
+<li>Representativeness</li>
+</ol>
+<h2 id="approximately-normally-distributed-residuals">Approximately Normally distributed residuals</h2>
+<p>The first assumption is that the residuals are at least approximately Normally distributed. This assumption is really only much of a concern when the sample size is small. If the sample size is larger, the Central Limit Thereom (CLT) states that the distribution of the statstics will be approximately normally distributed. The threshold for the CLT to be properly invoked is about 30. Larger then this, the residuals do not need to be approximately normally distributed. Even still, exploring the distribution of the residuals can still be helpful and can also be helpful to identify potential extreme values.</p>
+<p>This example will make use of the air quality data one more time.</p>
+<h3 id="data">Data</h3>
+<p>The  data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data" target="_blank" rel="noopener">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
 <table>
 <thead>
 <tr>
@@ -935,10 +882,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="guiding-question">Guiding Question</h3>
+<h4 id="guiding-question">Guiding Question</h4>
 <p>How is average daily wind speed related to the daily air quality index?</p>
-<h2 id="bivariate-figure">Bivariate Figure</h2>
-<p>Note, below I do a bit of post-processing to combine data from different POC values within a single CBSA.</p>
 <pre><code class="language-r">library(tidyverse)
 </code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
@@ -1045,132 +990,23 @@ airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr0
 <pre><code class="language-r">airquality &lt;- airquality %&gt;%
    left_join(wind, by = c('cbsa_name', 'date')) %&gt;% 
    drop_na()
-</code></pre>
-<pre><code class="language-r">head(airquality)
-</code></pre>
-<pre><code>## # A tibble: 6 × 13
-##   date           id   poc pm2.5 daily_aqi site_…¹ aqs_p…² cbsa_…³ cbsa_…⁴ county
-##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; 
-## 1 1/1/21  190130009     1  15.1        57 Water … PM2.5 …   47940 Waterl… Black…
-## 2 1/4/21  190130009     1  13.3        54 Water … PM2.5 …   47940 Waterl… Black…
-## 3 1/7/21  190130009     1  20.5        69 Water … PM2.5 …   47940 Waterl… Black…
-## 4 1/10/21 190130009     1  14.3        56 Water … PM2.5 …   47940 Waterl… Black…
-## 5 1/13/21 190130009     1  13.7        54 Water … PM2.5 …   47940 Waterl… Black…
-## 6 1/16/21 190130009     1   5.3        22 Water … PM2.5 …   47940 Waterl… Black…
-## # … with 3 more variables: avg_wind &lt;dbl&gt;, max_wind &lt;dbl&gt;,
-## #   max_wind_hours &lt;dbl&gt;, and abbreviated variable names ¹​site_name,
-## #   ²​aqs_parameter_desc, ³​cbsa_code, ⁴​cbsa_name
-</code></pre>
-<pre><code class="language-r">dim(airquality)
-</code></pre>
-<pre><code>## [1] 4821   13
-</code></pre>
-<pre><code class="language-r">gf_point(daily_aqi ~ avg_wind, data = airquality, size = 4, alpha = .15) %&gt;%
-  gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
-          y = &quot;Daily Air Quality&quot;) %&gt;%
-  gf_smooth() %&gt;%
-  gf_smooth(method = 'lm', color = 'lightblue', linetype = 2)
-</code></pre>
-<pre><code>## `geom_smooth()` using method = 'gam'
-</code></pre>
-<p><img src="/lectures/03-regression-estimates_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre><code class="language-r">cor(daily_aqi ~ avg_wind, data = airquality) |&gt; round(3)
-</code></pre>
-<pre><code>## [1] -0.292
-</code></pre>
-<pre><code class="language-r">air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
-coef(air_lm) |&gt; round(3)
+
+air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+coef(air_lm)
 </code></pre>
 <pre><code>## (Intercept)    avg_wind 
-##      48.223      -2.212
+##   48.222946   -2.211798
 </code></pre>
-<pre><code class="language-r">summary(air_lm)$r.square |&gt; round(3)
+<p>The residuals can be saved with the <code>resid()</code> function. These can also be added to the original data, which are particularly helpful.</p>
+<pre><code class="language-r">head(resid(air_lm))
 </code></pre>
-<pre><code>## [1] 0.085
+<pre><code>##          1          2          3          4          5          6 
+##  15.283427  11.186742  25.191433  15.398540   8.246896 -12.749410
 </code></pre>
-<pre><code class="language-r">summary(air_lm)$sigma |&gt; round(3)
-</code></pre>
-<pre><code>## [1] 18.055
-</code></pre>
-<h3 id="interpreting-these-estimates">Interpreting these estimates</h3>
-<p>What do these parameter estimates mean in this context?</p>
-<p><strong>Intercept:</strong> This is the model implied ______ when the ________ equals 0.<br>
-<strong>Slope:</strong> For each 1 unit change in ____ there is a -2.2 unit decrease in ___.<br>
-<strong>R-Square:</strong> The _____ in ____ is explained by ____. <br>
-<strong>Sigma:</strong> The _____ distance each point is from ____.</p>
-<h2 id="centering-predictors">Centering predictors</h2>
-<p>There are times when centering of predictors can be helpful for interpretation of the model parameters. This can be helpful when 0 is not a practically useful characteristic of the attribute or for more specific tests of certain elements of the X attribute.</p>
-<h3 id="mean-centering">Mean Centering</h3>
-<p>Mean centering is where the mean of the attribute is subtracted from each value. This is a linear transformation where each data point is subtracted by a constant, the mean. This means that the distance between points do not change.</p>
-<pre><code class="language-r">airquality &lt;- airquality %&gt;%
-  mutate(avg_wind_mc = avg_wind - mean(avg_wind),
-         avg_wind_maxc = avg_wind - max(avg_wind),
-         avg_wind_10 = avg_wind - 10)
-
-gf_point(daily_aqi ~ avg_wind_mc, data = airquality, size = 4, alpha = .15) %&gt;%
-  gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
-          y = &quot;Daily Air Quality&quot;) %&gt;%
-  gf_smooth() %&gt;%
-  gf_smooth(method = 'lm', color = 'lightblue', linetype = 2)
-</code></pre>
-<pre><code>## `geom_smooth()` using method = 'gam'
-</code></pre>
-<p><img src="/lectures/03-regression-estimates_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre><code class="language-r">air_lm_mc &lt;- lm(daily_aqi ~ avg_wind_mc, data = airquality)
-coef(air_lm_mc)
-</code></pre>
-<pre><code>## (Intercept) avg_wind_mc 
-##   38.788011   -2.211798
-</code></pre>
-<pre><code class="language-r">summary(air_lm_mc)$r.square
-</code></pre>
-<pre><code>## [1] 0.08528019
-</code></pre>
-<pre><code class="language-r">summary(air_lm_mc)$sigma
-</code></pre>
-<pre><code>## [1] 18.05479
-</code></pre>
-<pre><code class="language-r">air_lm_maxc &lt;- lm(daily_aqi ~ avg_wind_maxc, data = airquality)
-coef(air_lm_maxc)
-</code></pre>
-<pre><code>##   (Intercept) avg_wind_maxc 
-##      5.968391     -2.211798
-</code></pre>
-<pre><code class="language-r">summary(air_lm_maxc)$r.square
-</code></pre>
-<pre><code>## [1] 0.08528019
-</code></pre>
-<pre><code class="language-r">summary(air_lm_maxc)$sigma
-</code></pre>
-<pre><code>## [1] 18.05479
-</code></pre>
-<pre><code class="language-r">air_lm_10 &lt;- lm(daily_aqi ~ avg_wind_10, data = airquality)
-coef(air_lm_10)
-</code></pre>
-<pre><code>## (Intercept) avg_wind_10 
-##   26.104968   -2.211798
-</code></pre>
-<pre><code class="language-r">summary(air_lm_10)$r.square
-</code></pre>
-<pre><code>## [1] 0.08528019
-</code></pre>
-<pre><code class="language-r">summary(air_lm_10)$sigma
-</code></pre>
-<pre><code>## [1] 18.05479
-</code></pre>
-<h2 id="standardized-regression">Standardized Regression</h2>
-<p>Another type of regression that can be done is one in which the attributes are standardized prior to estimating the linear regression. What is meant by standardizing? This is converting the attributes into z-scores:</p>
-<p>$$
-Z_{api} = \frac{(aqi - \bar{aqi})}{s_{aqi}}
-$$</p>
-<pre><code class="language-r">airquality &lt;- airquality %&gt;%
-  mutate(z_aqi = scale(daily_aqi),
-         z_aqi2 = (daily_aqi - mean(daily_aqi)) / sd(daily_aqi),
-         z_wind = scale(avg_wind))
-
+<pre><code class="language-r">airquality$residuals &lt;- resid(air_lm)
 head(airquality)
 </code></pre>
-<pre><code>## # A tibble: 6 × 19
+<pre><code>## # A tibble: 6 × 14
 ##   date           id   poc pm2.5 daily_aqi site_…¹ aqs_p…² cbsa_…³ cbsa_…⁴ county
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; 
 ## 1 1/1/21  190130009     1  15.1        57 Water … PM2.5 …   47940 Waterl… Black…
@@ -1179,177 +1015,267 @@ head(airquality)
 ## 4 1/10/21 190130009     1  14.3        56 Water … PM2.5 …   47940 Waterl… Black…
 ## 5 1/13/21 190130009     1  13.7        54 Water … PM2.5 …   47940 Waterl… Black…
 ## 6 1/16/21 190130009     1   5.3        22 Water … PM2.5 …   47940 Waterl… Black…
-## # … with 9 more variables: avg_wind &lt;dbl&gt;, max_wind &lt;dbl&gt;,
-## #   max_wind_hours &lt;dbl&gt;, avg_wind_mc &lt;dbl&gt;, avg_wind_maxc &lt;dbl&gt;,
-## #   avg_wind_10 &lt;dbl&gt;, z_aqi &lt;dbl[,1]&gt;, z_aqi2 &lt;dbl&gt;, z_wind &lt;dbl[,1]&gt;, and
+## # … with 4 more variables: avg_wind &lt;dbl&gt;, max_wind &lt;dbl&gt;,
+## #   max_wind_hours &lt;dbl&gt;, residuals &lt;dbl&gt;, and abbreviated variable names
+## #   ¹​site_name, ²​aqs_parameter_desc, ³​cbsa_code, ⁴​cbsa_name
+</code></pre>
+<pre><code class="language-r">gf_density(~ residuals, data = airquality) %&gt;%
+  gf_labs(x = &quot;Residuals&quot;)
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code class="language-r">ggplot(airquality, aes(sample = residuals)) + 
+  stat_qq(size = 5) + 
+  stat_qq_line(size = 2)
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<h3 id="standardized-residuals">Standardized Residuals</h3>
+<p>Standardized residuals can be another way to explore the residuals. These will now be standardized to have a variance of 1, similar to that of a Z-score. These can be computed as:</p>
+<p>$$
+standardized\ residuals = \frac{\epsilon_{i}}{SD_{\epsilon}}
+$$</p>
+<p>Within R, these can be computed using the function <code>rstandard()</code>. Furthermore, these can be computed from another package called broom with the <code>augment()</code> function.</p>
+<pre><code class="language-r">head(rstandard(air_lm))
+</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  0.8466153  0.6196983  1.3955421  0.8529766  0.4568937 -0.7062638
+</code></pre>
+<pre><code class="language-r">library(broom)
+
+resid_diagnostics &lt;- augment(air_lm)
+head(resid_diagnostics)
+</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   daily_aqi avg_wind .fitted .resid     .hat .sigma   .cooksd .std.resid
+##       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1        57     2.94    41.7  15.3  0.000266   18.1 0.0000953      0.847
+## 2        54     2.45    42.8  11.2  0.000318   18.1 0.0000611      0.620
+## 3        69     2.00    43.8  25.2  0.000380   18.1 0.000370       1.40 
+## 4        56     3.45    40.6  15.4  0.000230   18.1 0.0000836      0.853
+## 5        54     1.12    45.8   8.25 0.000539   18.1 0.0000563      0.457
+## 6        22     6.09    34.7 -12.7  0.000319   18.1 0.0000795     -0.706
+</code></pre>
+<pre><code class="language-r">gf_density(~ .std.resid, data = resid_diagnostics) %&gt;%
+  gf_labs(x = &quot;Standardized Residuals&quot;)
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre><code class="language-r">ggplot(resid_diagnostics, aes(sample = .std.resid)) + 
+  stat_qq(size = 5) + 
+  stat_qq_line(size = 2)
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<h2 id="homogeneity-of-variance">Homogeneity of variance</h2>
+<p>Homoegeneity of variance is an assumption that is of larger concern compared to normality of the residuals. Homoogeneity of variance is an assumption that states that the variance of the residuals are similar across the predicted or fitted values from the regression line. This assumption can be explored by looking at the residuals (standardized or raw residuals), by the fitted or predicted values. Within this plot, the range of residuals should be similar across the range of fitted or predicted values.</p>
+<pre><code class="language-r">gf_point(.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&gt;%
+  gf_smooth(method = 'loess', size = 2) %&gt;%
+  gf_labs(x = 'Fitted Values',
+          y = 'Residuals')
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code class="language-r">gf_point(.std.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&gt;%
+  gf_smooth(method = 'loess', size = 2) %&gt;%
+  gf_labs(x = 'Fitted Values',
+          y = 'Standardized Residuals')
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Another figure that can also be helpful for the homogeneity of variance assumption is one that rescales the residuals on the y-axis. The rescaling makes all the standardized residuals positive (takes the absolute value) and then takes the square root of this.</p>
+<pre><code class="language-r">resid_diagnostics %&gt;%
+  mutate(sqrt_abs_sresid = sqrt(abs(.std.resid))) %&gt;%
+  gf_point(sqrt_abs_sresid ~ .fitted, size = 5, alpha = .15) %&gt;%
+  gf_smooth(method = 'loess', size = 2) %&gt;%
+  gf_labs(x = 'Fitted Values',
+          y = 'Sqrt Abs Standardized Residuals')
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<h2 id="data-with-high-leverage">Data with high leverage</h2>
+<p>Data with high leverage are extreme values that may significantly impact the regression estimates. These statistics include extreme values for the outcome or predictor attributes. Cook&rsquo;s distance is one statistic that can help to identify points with high impact/leverage for the regression estimates. Cook&rsquo;s distance is a statistic that represents how much change there would be in the fitted values if the point was removed when estimating the regression coefficients. There is some disagreement between what type of thresholds to use for Cook&rsquo;s distance, but one rule of thumb is Cook&rsquo;s distance greater than 1. There has also been some research showing that Cook&rsquo;s distance follows an F-distribution, so a more specific value could be computed. The rule of thumb for greater than 1 comes from the F distribution for large samples.</p>
+<pre><code class="language-r">resid_diagnostics %&gt;%
+  mutate(obs_num = 1:n()) %&gt;%
+  gf_col(.cooksd ~ obs_num, fill = 'black', color = 'black') %&gt;%
+  gf_labs(x = &quot;Observation Number&quot;,
+          y = &quot;Cook's Distance&quot;)
+</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Another leave one out statistic is the studentized deleted residuals. These are computed by removing a data point, refitting the regression model, then generate a predicted value for the X value for the data point removed. Then the residual is computed the same as before and is standardized like the standardized residuals above. The function in R to compute these is <code>rstudent()</code>.</p>
+<pre><code class="language-r">head(rstudent(air_lm))
+</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  0.8465904  0.6196587  1.3956793  0.8529524  0.4568561 -0.7062271
+</code></pre>
+<pre><code class="language-r">airquality$student_residuals &lt;- rstudent(air_lm)
+head(airquality)
+</code></pre>
+<pre><code>## # A tibble: 6 × 15
+##   date           id   poc pm2.5 daily_aqi site_…¹ aqs_p…² cbsa_…³ cbsa_…⁴ county
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; 
+## 1 1/1/21  190130009     1  15.1        57 Water … PM2.5 …   47940 Waterl… Black…
+## 2 1/4/21  190130009     1  13.3        54 Water … PM2.5 …   47940 Waterl… Black…
+## 3 1/7/21  190130009     1  20.5        69 Water … PM2.5 …   47940 Waterl… Black…
+## 4 1/10/21 190130009     1  14.3        56 Water … PM2.5 …   47940 Waterl… Black…
+## 5 1/13/21 190130009     1  13.7        54 Water … PM2.5 …   47940 Waterl… Black…
+## 6 1/16/21 190130009     1   5.3        22 Water … PM2.5 …   47940 Waterl… Black…
+## # … with 5 more variables: avg_wind &lt;dbl&gt;, max_wind &lt;dbl&gt;,
+## #   max_wind_hours &lt;dbl&gt;, residuals &lt;dbl&gt;, student_residuals &lt;dbl&gt;, and
 ## #   abbreviated variable names ¹​site_name, ²​aqs_parameter_desc, ³​cbsa_code,
 ## #   ⁴​cbsa_name
 </code></pre>
-<pre><code class="language-r">air_lm_s &lt;- lm(z_aqi ~ z_wind, data = airquality)
-coef(air_lm_s)
+<pre><code class="language-r">airquality %&gt;%
+  mutate(obs_num = 1:n()) %&gt;%
+  gf_point(student_residuals ~ obs_num, size = 5, alpha = .15) %&gt;%
+  gf_hline(yintercept = ~ 3, color = 'blue', size = 2) %&gt;%
+  gf_labs(x = &quot;Observation Number&quot;,
+          y = &quot;Studentized Residuals&quot;)
 </code></pre>
-<pre><code>##   (Intercept)        z_wind 
-## -6.712023e-16 -2.920277e-01
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Leverage can be another measure to help detect outliers in X values. The hat values that were computed from the <code>augment()</code> function above and can be interpreted as the distance the X scores are from the center of all X predictors. In the case of a single predictor, the hat values are the distance the X score is from the mean of X. The hat values will also sum up to the number of predictors and will always range between 0 and 1.</p>
+<pre><code class="language-r">resid_diagnostics %&gt;%
+  mutate(obs_num = 1:n()) %&gt;%
+  gf_col(.hat ~ obs_num, fill = 'black', color = 'black') %&gt;%
+  gf_labs(x = &quot;Observation Number&quot;,
+          y = &quot;Hat Values (leverage)&quot;)
 </code></pre>
-<pre><code class="language-r">summary(air_lm_s)$r.square
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre><code class="language-r">plot(air_lm, which = 1:5)
 </code></pre>
-<pre><code>## [1] 0.08528019
-</code></pre>
-<pre><code class="language-r">summary(air_lm_s)$sigma
-</code></pre>
-<pre><code>## [1] 0.9565091
-</code></pre>
-<p>We can also use this formula to convert any unstandardized regression coefficients into a standardized metric.</p>
-<p>$$
-b^{'}<em>{k} = b</em>{k} * \frac{s_{x_{k}}}{s_{y}}
-$$</p>
-<pre><code class="language-r">-2.211 * sd(airquality$avg_wind) / sd(airquality$daily_aqi)
-</code></pre>
-<pre><code>## [1] -0.2919224
-</code></pre>
-<pre><code class="language-r">cor(daily_aqi ~ avg_wind, data = airquality)
-</code></pre>
-<pre><code>## [1] -0.2920277
-</code></pre>
-<h2 id="parameter-estimation">Parameter Estimation</h2>
-<p>Now that we looked how the parameters are impacted by some changes in the model specification, how are these parameters actually estimated? I will show two ways, one is general, the other is specific to this simple case with a single predictor/covariate attribute. In general, linear regression (or more generally the general linear model) uses least square estimation. This means that the the parameters in the model minimize the squared distance between the observed and predicted values. That is, least squares estimates minimize this criterion:</p>
-<p>$$
-\sum (Y - \hat{Y})^2
-$$</p>
-<h3 id="specific-example">Specific example</h3>
-<p>Calculus can be used to show that these two equations can be solved simultanuously to get estimates for <code>\(\beta_{0}\)</code> and <code>\(\beta_{1}\)</code> that minimize the criterion above. These formulas are:</p>
-<p>$$
-b_{1} = \frac{\sum(X - \bar{X})(Y - \bar{Y})}{\sum(X - \bar{X})^2}
-$$
-$$
-b_{0} = \bar{Y} - b_{1}\bar{X}
-$$</p>
-<p>Let&rsquo;s use R to get these quantities.</p>
-<pre><code class="language-r">b1 &lt;- with(airquality, 
-      sum((avg_wind - mean(avg_wind)) * (daily_aqi - mean(daily_aqi))) / sum((avg_wind - mean(avg_wind))^2)
-)
-b0 &lt;- with(airquality, 
-      mean(daily_aqi) - b1 * mean(avg_wind)
-)
-b0
-</code></pre>
-<pre><code>## [1] 48.22295
-</code></pre>
-<pre><code class="language-r">b1
-</code></pre>
-<pre><code>## [1] -2.211798
-</code></pre>
-<pre><code class="language-r">coef(air_lm)
-</code></pre>
-<pre><code>## (Intercept)    avg_wind 
-##   48.222946   -2.211798
-</code></pre>
-<h3 id="general-approach">General Approach</h3>
-<p>When there are more than one predictor, the number of equations gets a bit unyieldy, therefore, there is a general analytic approach that works for any set of predictor attributes. The general approach uses matrix algebra (anyone take linear algebra?), to achieve their estimates. This general form is:</p>
-<p>$$
-\mathbf{b} = \left( \mathbf{X}^{<code>}\mathbf{X} \right)^{-1} \left( \mathbf{X}^{</code>} \mathbf{Y} \right).
-$$
-Where <code>\(\mathbf{b}\)</code> is a vector of estimated regression coefficients, <code>\(\mathbf{X}\)</code> is a matrix of covariate/predictor attributes (called the design matrix), and <code>\(\mathbf{Y}\)</code> is a vector of the outcome attribute.</p>
-<p>Below, I show what these would look like for the air quality example that has been used and solve for the regression coefficients.</p>
-<pre><code class="language-r">X &lt;- model.matrix(air_lm)
-head(X)
-</code></pre>
-<pre><code>##   (Intercept) avg_wind
-## 1           1 2.941667
-## 2           1 2.445833
-## 3           1 1.995833
-## 4           1 3.445833
-## 5           1 1.116667
-## 6           1 6.091667
-</code></pre>
-<pre><code class="language-r">Y &lt;- as.matrix(airquality$daily_aqi)
-head(Y)
-</code></pre>
-<pre><code>##      [,1]
-## [1,]   57
-## [2,]   54
-## [3,]   69
-## [4,]   56
-## [5,]   54
-## [6,]   22
-</code></pre>
-<pre><code class="language-r">X_X &lt;- solve(t(X) %*% X)
-X_X
-</code></pre>
-<pre><code>##               (Intercept)      avg_wind
-## (Intercept)  0.0008152474 -1.424894e-04
-## avg_wind    -0.0001424894  3.340328e-05
-</code></pre>
-<pre><code class="language-r">X_Y &lt;- t(X) %*% Y
-X_Y
-</code></pre>
-<pre><code>##               [,1]
-## (Intercept) 186997
-## avg_wind    731464
-</code></pre>
-<pre><code class="language-r">X_X %*% X_Y
-</code></pre>
-<pre><code>##                  [,1]
-## (Intercept) 48.222946
-## avg_wind    -2.211798
-</code></pre>
-<pre><code class="language-r">coef(air_lm)
-</code></pre>
-<pre><code>## (Intercept)    avg_wind 
-##   48.222946   -2.211798
-</code></pre>
+<p><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-1.png" width="672" /><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-2.png" width="672" /><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-3.png" width="672" /><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-4.png" width="672" /><img src="/lectures/07-regression-conditions_files/figure-html/unnamed-chunk-17-5.png" width="672" /></p>
+<h2 id="solutions-to-overcome-data-conditions-not-being-met">Solutions to overcome data conditions not being met</h2>
+<p>There are some strategies that can be done when a variety of data conditions for linear regression have not been met. In general, the strategies stem around generalizing the model and adding some complexity.</p>
+<p>The following are options that would be possible:</p>
+<ol>
+<li>Add interactions or other non-linear terms</li>
+<li>Use more complicated model
+<ul>
+<li>weighted least squares for homogeneity of variance concerns</li>
+<li>models that include measurement error</li>
+<li>mixed models for correlated data</li>
+</ul>
+</li>
+<li>Transform the data.</li>
+</ol>
 
-          </div>
+    </div>
 
-          
+    
 
 
 
-          
-          
-          <div class="article-widget">
-            
-<div class="post-nav">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
   
   
   
-  <div class="post-nav-item">
-    <div class="meta-nav">Previous</div>
-    <a href="/lectures/02-linear-regression-class/" rel="next">Introduction to Linear Regression - Class Notes</a>
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://psqf6243.brandonlebeau.org/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1c7f48a60fee8ac47c4cc5fee1488333_95373_270x270_fill_q90_lanczos_center.jpg" alt=""></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://psqf6243.brandonlebeau.org/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="http://psqf-6243-0002.idas.aws.cloud.uiowa.edu/" target="_blank" rel="noopener">
+        <i class="fab fa-r-project"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://brandonlebeau.org/" target="_blank" rel="noopener">
+        <i class="fas fa-globe"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://uiowa.instructure.com/courses/196816" target="_blank" rel="noopener">
+        <i class="fas fa-chalkboard"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
   </div>
-  
-  
-  
-  <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/lectures/04-least-squares-simulation/" rel="prev">Least Squares Simulation</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
-  
-</div>
+</article>
+  </div>
 
-          </div>
-          
-        </div>
-
-        <div class="body-footer">
-          <p>Last updated on Sep 6, 2022</p>
-
-          
-
-
-
-          
-
-
-
-
-          
-
-
-        </div>
-
-      </article>
-
+  <div class="page-footer">
+    
+    
+    <div class="container">
       <footer class="site-footer">
   
 
@@ -1377,15 +1303,7 @@ X_Y
   </p>
 </footer>
 
-
-    </main>
-  </div>
-</div>
-
-  </div>
-
-  <div class="page-footer">
-    
+    </div>
     
   </div>
 
@@ -1473,11 +1391,6 @@ X_Y
     
 
     
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
-    <script>
-      anchors.add();
-    </script>
     
 
     
