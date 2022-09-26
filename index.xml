@@ -2786,6 +2786,95 @@ gf_point(density ~ value, color = ~ normal, size = 1) %&amp;gt;%
     </item>
     
     <item>
+      <title>Activity 3</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/activity/activity3/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/activity/activity3/</guid>
+      <description>&lt;p&gt;The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. &lt;em&gt;Please make sure to add everyone&amp;rsquo;s name to the submission&lt;/em&gt;, this can be a comment on ICON or on the document itself.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What to turn in?&lt;/em&gt; Please turn in a document that contains answers to the following questions and also please include any relevant statistics/figures that support your answer. Upload the final document to &lt;a href=&#34;https://uiowa.instructure.com/courses/196816/assignments/1745909&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICON&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Due around&lt;/em&gt; &lt;strong&gt;October 17th, 2021&lt;/strong&gt;. No penalty for late submissions as long as it is submitted by December 11th.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;The data for this activity is rideshare data from about three weeks in 2018 for Boston, MA. The data originally come from &lt;a href=&#34;https://www.kaggle.com/brllrb/uber-and-lyft-dataset-boston-ma&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kaggle&lt;/a&gt;. I have done some processing to randomly select 2,500 records from the larger data for our use and have trimmed down the data attributes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use the data linked here or posted to the IDAS. The data can be obtained in &lt;a href=&#34;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/rideshare_small.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;csv format&lt;/a&gt;. A short description for each attribute is as follows.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Attribute Name&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;id&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Unique identifier for each row&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hour&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The hour of the ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;day&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The day of the ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;month&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The month of the ride, either 11 = November or 12 = December&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;price&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The total price of the ride, in $&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;temperature&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The outside temperature at the time of the ride, in Fahrenheit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;distance&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Total distance of the ride, in miles&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;surge_multiplier&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The surge multiplier for the cost of rides&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;humidity&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The humidity at the time of the ride&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h2&gt;
+&lt;p&gt;Does the distance of the ride explain variation in the price of the ride?&lt;/p&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;This assignment uses the same data from the &lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;second activity&lt;/a&gt;. Take a few minutes to reacquaint yourself with this analysis, including the linear regression estimates obtained.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Was the intercept from the linear regression fitted in activity 2 using the raw data as it was collected interpretable in the context of the data? Rephrasing slightly, could the intercept term be made more interpretable? If so, how?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fit a modified linear regression that performs a centering. That is, center the distance in some fashion. Options could include, minimum, mean, median, maximum, etc centering. What changed for the estimates obtained from the model?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Which model, the centered or the uncentered, do you feel has a stronger justification for its usage? Be as specific as possible in your rationale.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use whichever model you feel is the best from #3, then extract from software or compute the standard errors for the estimated regression coefficients. Interpret these standard errors in the context of the problem.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Compute confidence intervals for the two regression coefficients. Justify your choice for level of confidence and interpret the confidence interval.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, perform hypothesis testing for the two regression coefficients. In this, set up the null/alternative hypotheses and then interpret the statistical results to provide a statistical conclusion. More specifically, what does the hypothesis test suggest about the null and alternative hypotheses?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The first part talked about the statistical conclusions, now compare/contrast this with practical conclusions. More specifically, would these results be useful in practice? Be as specific as possible in your response.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34;</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
