@@ -284,14 +284,16 @@ These are the deviations in the observed scores from the predicted scores from t
   
   <meta property="og:site_name" content="PSQF 6243">
   <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/">
-  <meta property="og:title" content="An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34; | PSQF 6243">
+  <meta property="og:title" content="Data Conditions for Valid Inference | PSQF 6243">
   <meta property="og:description" content="Conditions for Linear Regression The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:
 $$ Y - \hat{Y} $$
 These are the deviations in the observed scores from the predicted scores from the linear regression."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
+      <meta property="article:published_time" content="2022-09-28T00:00:00&#43;00:00">
     
+    <meta property="article:modified_time" content="2022-09-28T00:00:00&#43;00:00">
   
 
   
@@ -310,7 +312,7 @@ These are the deviations in the observed scores from the predicted scores from t
 
 
 
-  <title>An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34; | PSQF 6243</title>
+  <title>Data Conditions for Valid Inference | PSQF 6243</title>
 
 </head>
 
@@ -714,89 +716,151 @@ These are the deviations in the observed scores from the predicted scores from t
   </div>
 
   <div class="page-body">
-    <article class="article">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-<div class="article-container pt-3">
-  <h1>An R Markdown document converted from &#34;course-notes/07-regression-assumptions.ipynb&#34;</h1>
-
-  
-
-  
     
 
 
-<div class="article-metadata">
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
 
   
   
+    
+
+    
+      
+
+      
+      
+      
+
 
   
-  <span class="article-date">
+    
+    
     
     
       
     
-    Jan 1, 0001
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
     
 
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
+      
+
+
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
 
 
 
+  <li class=""><a href="/lectures/01-review-class/">Review - Class</a></li>
 
 
 
+  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
 
 
 
+  <li class=""><a href="/lectures/02-linear-regression-class/">Introduction to Linear Regression - Class Notes</a></li>
 
 
 
+  <li class=""><a href="/lectures/03-regression-estimates/">Regression Estimates</a></li>
+
+
+
+  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Simulation</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Regression Inference</a></li>
+
+
+
+  <li class=""><a href="/lectures/06-t-vs-norm/">t-distribution vs Normal distribution</a></li>
+
+
+
+  <li class="active"><a href="/lectures/07-regression-conditions/">Data Conditions for Valid Inference</a></li>
+
+      
+    
+
+    
+      </ul>
+    
 
   
-</div>
+</nav>
 
+    </div>
 
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
 
-  <div class="article-container">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#conditions-for-linear-regression">Conditions for Linear Regression</a>
+      <ul>
+        <li><a href="#approximately-normally-distributed-residuals">Approximately Normally distributed residuals</a>
+          <ul>
+            <li><a href="#data">Data</a></li>
+            <li><a href="#standardized-residuals">Standardized Residuals</a></li>
+          </ul>
+        </li>
+        <li><a href="#homogeneity-of-variance">Homogeneity of variance</a></li>
+        <li><a href="#data-with-high-leverage">Data with high leverage</a></li>
+        <li><a href="#solutions-to-overcome-data-conditions-not-being-met">Solutions to overcome data conditions not being met</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
-    <div class="article-style">
-      <h1 id="conditions-for-linear-regression">Conditions for Linear Regression</h1>
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Data Conditions for Valid Inference</h1>
+
+          <div class="article-style">
+            <h1 id="conditions-for-linear-regression">Conditions for Linear Regression</h1>
 <p>The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:</p>
 <p>$$
 Y - \hat{Y}
@@ -1152,130 +1216,51 @@ head(airquality)
 <li>Transform the data.</li>
 </ol>
 
-    </div>
+          </div>
 
-    
-
-
+          
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
   
   
   
-    
-  
-  
-  
-  <div class="media author-card content-widget-hr">
-    
-      
-      <a href="https://psqf6243.brandonlebeau.org/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1c7f48a60fee8ac47c4cc5fee1488333_95373_270x270_fill_q90_lanczos_center.jpg" alt=""></a>
-    
-
-    <div class="media-body">
-      <h5 class="card-title"><a href="https://psqf6243.brandonlebeau.org/"></a></h5>
-      
-      
-      <ul class="network-icon" aria-hidden="true">
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="http://psqf-6243-0002.idas.aws.cloud.uiowa.edu/" target="_blank" rel="noopener">
-        <i class="fab fa-r-project"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://brandonlebeau.org/" target="_blank" rel="noopener">
-        <i class="fas fa-globe"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://uiowa.instructure.com/courses/196816" target="_blank" rel="noopener">
-        <i class="fas fa-chalkboard"></i>
-      </a>
-    </li>
-  
-</ul>
-
-    </div>
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/06-t-vs-norm/" rel="next">t-distribution vs Normal distribution</a>
   </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Sep 28, 2022</p>
+
+          
+
+
+
+          
 
 
 
 
+          
 
 
+        </div>
 
+      </article>
 
-
-
-
-
-
-
-
-
-
-
-  </div>
-</article>
-  </div>
-
-  <div class="page-footer">
-    
-    
-    <div class="container">
       <footer class="site-footer">
   
 
@@ -1303,7 +1288,15 @@ head(airquality)
   </p>
 </footer>
 
-    </div>
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
     
   </div>
 
@@ -1391,6 +1384,11 @@ head(airquality)
     
 
     
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
     
 
     
