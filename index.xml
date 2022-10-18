@@ -2066,7 +2066,7 @@ head(conditions)
     </item>
     
     <item>
-      <title>Week 8</title>
+      <title>Week 8 and 9</title>
       <link>https://psqf6243.brandonlebeau.org/content/08-week8/</link>
       <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/08-week8/</guid>
@@ -2598,6 +2598,26 @@ gf_line(density ~ value, data = t_dist) %&amp;gt;%
 &lt;p&gt;Based on the justification in #8, what practical implications does this result have? That is, are the statistical results that you have been describing/summarizing throughout this assignment practically relevant? Be as specific as you can in your discussion about why you believe the results are practically useful or not.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 10</title>
+      <link>https://psqf6243.brandonlebeau.org/content/10-week10/</link>
+      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/10-week10/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Additional comparison of multiple comparisons of models for identifying which model fits the data the best.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Compare multiple models&lt;/li&gt;
+&lt;li&gt;Identify nested vs non-nested models&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 3.3 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
