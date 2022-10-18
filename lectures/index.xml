@@ -1036,19 +1036,19 @@ generate_response(sim_args)
 head(poly_data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   X.Intercept.         x1_1         x1_2         x1 level1_id      error
-## 1            1 -0.036022484  0.026094531 -1.6409455         1  1.1701589
-## 2            1 -0.037305968  0.029085809 -1.6992362         2 -1.3579155
-## 3            1  0.008817437 -0.013510926  0.3955040         3  0.5284616
-## 4            1  0.004272080 -0.015243436  0.1890721         4 -1.4401365
-## 5            1  0.028656440  0.009231112  1.2965119         5  0.1233569
-## 6            1  0.012606505 -0.011075727  0.5675883         6 -2.3728414
+## 1            1 -0.007948849 -0.013841582 -0.3655597         1  0.2032010
+## 2            1 -0.014334977 -0.009266841 -0.6530156         2  0.7227897
+## 3            1 -0.021423370 -0.001149814 -0.9720822         3  1.5010172
+## 4            1 -0.007620270 -0.014006757 -0.3507696         4  0.4929379
+## 5            1 -0.019540929 -0.003617258 -0.8873488         5 -0.8883373
+## 6            1 -0.028116765  0.009450196 -1.2733690         6  0.6112566
 ##   fixed_outcome random_effects          y
-## 1    -4.2909512              0 -3.1207923
-## 2    -4.8917737              0 -6.2496891
-## 3     3.7198201              0  4.2482817
-## 4     4.0572314              0  2.6170949
-## 5    -0.7889096              0 -0.6655526
-## 6     3.2403585              0  0.8675171
+## 1     3.7524188              0  3.9556198
+## 2     2.8246983              0  3.5474880
+## 3     1.1871160              0  2.6881332
+## 4     3.7861109              0  4.2790488
+## 5     1.6843697              0  0.7960324
+## 6    -0.9462727              0 -0.3350161
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(y ~ x1, data = poly_data, size = 3) |&amp;gt;
   gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;) |&amp;gt;
@@ -2635,6 +2635,834 @@ head(airquality)
 &lt;/li&gt;
 &lt;li&gt;Transform the data.&lt;/li&gt;
 &lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bootstrap</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/</link>
+      <pubDate>Tue, 18 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/</guid>
+      <description>&lt;h1 id=&#34;bootstrap&#34;&gt;Bootstrap&lt;/h1&gt;
+&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.&lt;/p&gt;
+&lt;h2 id=&#34;bootstrapping-steps&#34;&gt;Bootstrapping Steps&lt;/h2&gt;
+&lt;p&gt;The following are the steps when performing a bootstrap.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Treat the sample data as the population.&lt;/li&gt;
+&lt;li&gt;Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.&lt;/li&gt;
+&lt;li&gt;Estimate the model using the resampled data from step 2.&lt;/li&gt;
+&lt;li&gt;Repeat steps 2 and 3 many many times (eg, 10,000 or more).&lt;/li&gt;
+&lt;li&gt;Visualize distribution of effect of interest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;resampling-with-replacement&#34;&gt;Resampling with replacement&lt;/h2&gt;
+&lt;p&gt;What is meant by sampling with replacement? Let&amp;rsquo;s do an example.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;fruit &amp;lt;- data.frame(name = c(&#39;watermelon&#39;, &#39;apple&#39;, &#39;orange&#39;, &#39;kumquat&#39;, &#39;grapes&#39;, &#39;canteloupe&#39;, &#39;kiwi&#39;, &#39;banana&#39;)) %&amp;gt;%
+    mutate(obs_num = 1:n())
+
+fruit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 watermelon       1
+## 2      apple       2
+## 3     orange       3
+## 4    kumquat       4
+## 5     grapes       5
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     banana       8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1    kumquat       4
+## 2     banana       8
+## 3      apple       2
+## 4 watermelon       1
+## 5     orange       3
+## 6     grapes       5
+## 7 canteloupe       6
+## 8       kiwi       7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1     orange       3
+## 2     banana       8
+## 3     orange       3
+## 4 canteloupe       6
+## 5    kumquat       4
+## 6    kumquat       4
+## 7 watermelon       1
+## 8     banana       8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;more-practical-example&#34;&gt;More practical example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s load some data to do a more practical example. The following data come from a &lt;a href=&#34;https://nces.ed.gov/timss/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TIMSS&lt;/a&gt; on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IDSTUD&lt;/strong&gt;: A unique student ID&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHM&lt;/strong&gt;: The birth month of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHY&lt;/strong&gt;: The birth year of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITSEX&lt;/strong&gt;: The birth sex of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASDAGE&lt;/strong&gt;: The age of the student (at time of test)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSSCI01&lt;/strong&gt;: Overall science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSEAR01&lt;/strong&gt;: Earth science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSLIF01&lt;/strong&gt;: Life science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSPHY01&lt;/strong&gt;: Physics scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSKNO01&lt;/strong&gt;: Science knowing scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSAPP01&lt;/strong&gt;: Science applying scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSREA01&lt;/strong&gt;: Science reasoning scale score&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+
+timss &amp;lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv&#39;) |&amp;gt; 
+   filter(ASDAGE &amp;lt; 15)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 10029 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(timss)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
+##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEA…¹ ASSLI…² ASSPH…³ ASSKN…⁴
+##    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1  10101        6     2005     2   9.92     505.    445.    408.    458.    530.
+## 2  10102       10     2005     2   9.58     401.    291.    323.    297.    379.
+## 3  10103        1     2005     1  10.3      542.    440.    529.    529.    521.
+## 4  10104        6     2005     2   9.92     544.    534.    552.    557.    538.
+## 5  10105        6     2005     2   9.92     588.    555.    500.    559.    533.
+## 6  10106       12     2005     1   9.42     583.    556.    585.    562.    526.
+## # … with 2 more variables: ASSAPP01 &amp;lt;dbl&amp;gt;, ASSREA01 &amp;lt;dbl&amp;gt;, and abbreviated
+## #   variable names ¹​ASSEAR01, ²​ASSLIF01, ³​ASSPHY01, ⁴​ASSKNO01
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;two-guiding-questions&#34;&gt;Two Guiding Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Is the age of a student related to their overall science scale score?&lt;/li&gt;
+&lt;li&gt;Is the life science scale score related to the overall science scale score?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;bivariate-exploration&#34;&gt;Bivariate exploration&lt;/h2&gt;
+&lt;p&gt;It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of &amp;ldquo;%%&amp;rdquo; below and fill in the appropriate predictor in place of &amp;ldquo;^^&amp;rdquo;. You may also want to fill in an appropriate axis labels in place of &amp;ldquo;@@&amp;rdquo; below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summarize the bivariate association&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ggformula)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &#39;ggstance&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &#39;scales&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;theme_set(theme_bw(base_size = 18))
+
+gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&amp;gt; 
+  gf_smooth(method = &#39;lm&#39;, size = 1.5) |&amp;gt;
+  gf_smooth(method = &#39;loess&#39;, size = 1.5, color = &#39;green&#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;Age&amp;quot;,
+          y = &amp;quot;Overall Science Score&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-bootstrap_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;estimate-parameters&#34;&gt;Estimate Parameters&lt;/h2&gt;
+&lt;p&gt;To do this, fill in the outcome of interest in place of &amp;ldquo;%%&amp;rdquo; below and fill in the appropriate predictor in place of &amp;ldquo;^^&amp;rdquo;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;timss_model &amp;lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
+
+summary(timss_model)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;confint(timss_model)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;resample-these-data&#34;&gt;Resample these data&lt;/h2&gt;
+&lt;p&gt;For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
+  count(IDSTUD)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6,324 × 2
+##    IDSTUD     n
+##     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
+##  1  10101     1
+##  2  10102     1
+##  3  10103     2
+##  4  10104     1
+##  5  10105     1
+##  6  10108     1
+##  7  10110     4
+##  8  10111     2
+##  9  10114     1
+## 10  10115     1
+## # … with 6,314 more rows
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
+  lm(ASSSCI01 ~ ASDAGE, data = .)
+
+summary(resamp_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.151  -51.661    5.296   57.124  259.568 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  616.075     16.897  36.461  &amp;lt; 2e-16 ***
+## ASDAGE        -7.002      1.652  -4.239 2.26e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 80.64 on 10025 degrees of freedom
+## Multiple R-squared:  0.001789,	Adjusted R-squared:  0.00169 
+## F-statistic: 17.97 on 1 and 10025 DF,  p-value: 2.264e-05
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;confint(resamp_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                 2.5 %     97.5 %
+## (Intercept) 582.95340 649.195804
+## ASDAGE      -10.23994  -3.764309
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;questions-to-consider&#34;&gt;Questions to consider&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Do the parameter estimates differ from before? Why or why not?&lt;/li&gt;
+&lt;li&gt;Would you come to substantially different conclusions from the original analysis? Why or why not?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let&amp;rsquo;s now repeat this a bunch of times.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(2022)
+
+resample_timss &amp;lt;- function(data, model_equation) {
+  timss_resample &amp;lt;- slice_sample(data, n = nrow(data), replace = TRUE)
+
+  
+  lm(model_equation, data = timss_resample) %&amp;gt;%
+    coef()
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Run this function a bunch of times manually, what happens to the estimates? Why is this happening?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)      ASDAGE 
+##  593.768824   -4.636762
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;make-sure-futureapply-is-installed&#34;&gt;Make sure future.apply is installed&lt;/h2&gt;
+&lt;p&gt;The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the &lt;code&gt;#&lt;/code&gt; symbol) in the first line of code to (hopefully) install the package yourself.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# install.packages(&amp;quot;future.apply&amp;quot;)
+library(future.apply)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: future
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plan(multisession)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;replicate&#34;&gt;Replicate&lt;/h2&gt;
+&lt;p&gt;The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;timss_coef &amp;lt;- future.apply::future_replicate(10000, resample_timss(data = timss, 
+                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&amp;gt;
+                        dplyr::bind_rows() |&amp;gt; 
+                        tidyr::pivot_longer(cols = everything())
+
+head(timss_coef)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
+##   name         value
+##   &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 (Intercept) 610.  
+## 2 ASDAGE       -6.56
+## 3 (Intercept) 603.  
+## 4 ASDAGE       -5.67
+## 5 (Intercept) 620.  
+## 6 ASDAGE       -7.25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;visualize-results&#34;&gt;Visualize results&lt;/h2&gt;
+&lt;p&gt;The following code visualizes the results of the analysis above. Explore the following questions.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What does this distribution show/represent?&lt;/li&gt;
+&lt;li&gt;What are key features of this distribution?&lt;/li&gt;
+&lt;li&gt;How do these values compare to the original linear regression results?
+&lt;ul&gt;
+&lt;li&gt;Are there comparable statistics here compared to those?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_density(~ value, data = timss_coef) %&amp;gt;%
+  gf_facet_wrap(~ name, scales = &#39;free&#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Regression Estimates&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-bootstrap_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;change-the-n-value&#34;&gt;Change the N value&lt;/h2&gt;
+&lt;p&gt;Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What happens to the resulting figure when the N increases?&lt;/li&gt;
+&lt;li&gt;What value for N seems to be reasonable? Why?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple Regression</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/09-multiple-regression/</link>
+      <pubDate>Tue, 18 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/09-multiple-regression/</guid>
+      <description>&lt;h1 id=&#34;multiple-regression&#34;&gt;Multiple Regression&lt;/h1&gt;
+&lt;p&gt;So far, the course has considered a single continuous predictor attribute. That is, in the following equation, we have only considered a single &lt;code&gt;\(X\)&lt;/code&gt; attribute.&lt;/p&gt;
+&lt;p&gt;$$
+Y = \beta_{0} + \beta_{1} X + \epsilon
+$$&lt;/p&gt;
+&lt;p&gt;However, there are many situations where we would want more than one predictor attribute in the data. We can simply add another predictor attribute and this would look like the following regression equation.&lt;/p&gt;
+&lt;p&gt;$$
+Y = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + \epsilon
+$$&lt;/p&gt;
+&lt;p&gt;where &lt;code&gt;\(X_{1}\)&lt;/code&gt; and &lt;code&gt;\(X_{2}\)&lt;/code&gt; are two different predictors attributes. Let&amp;rsquo;s dive right into some data to explore this a bit more.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;For this portion, using data from the college scorecard representing information about higher education institutions.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ggformula)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;theme_set(theme_bw(base_size = 18))
+
+college &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/College-scorecard-4143.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 7058 Columns: 16
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (6): instnm, city, stabbr, preddeg, region, locale
+## dbl (10): adm_rate, actcmmid, ugds, costt4_a, costt4_p, tuitionfee_in, tuiti...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(college)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 16
+##   instnm        city  stabbr preddeg region locale adm_r…¹ actcm…²  ugds costt…³
+##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 Alabama A &amp;amp; … Norm… AL     Bachel… South… City:…   0.903      18  4824   22886
+## 2 University o… Birm… AL     Bachel… South… City:…   0.918      25 12866   24129
+## 3 Amridge Univ… Mont… AL     Bachel… South… City:…  NA          NA   322   15080
+## 4 University o… Hunt… AL     Bachel… South… City:…   0.812      28  6917   22108
+## 5 Alabama Stat… Mont… AL     Bachel… South… City:…   0.979      18  4189   19413
+## 6 The Universi… Tusc… AL     Bachel… South… City:…   0.533      28 32387   28836
+## # … with 6 more variables: costt4_p &amp;lt;dbl&amp;gt;, tuitionfee_in &amp;lt;dbl&amp;gt;,
+## #   tuitionfee_out &amp;lt;dbl&amp;gt;, debt_mdn &amp;lt;dbl&amp;gt;, grad_debt_mdn &amp;lt;dbl&amp;gt;, female &amp;lt;dbl&amp;gt;,
+## #   and abbreviated variable names ¹​adm_rate, ²​actcmmid, ³​costt4_a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+&lt;p&gt;Suppose we were interested in exploring admission rates and which attributes helped to explain variation in admission rates.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_density(~ adm_rate, data = college) %&amp;gt;%
+  gf_labs(x = &amp;quot;Admission Rate&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite values (stat_density).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-multiple-regression_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(adm_rate ~ actcmmid, data = college) %&amp;gt;%
+  gf_smooth(method = &#39;loess&#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Median ACT Score&amp;quot;,
+          y = &amp;quot;Admission Rate&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing non-finite values (stat_smooth).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-multiple-regression_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(GGally)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggpairs(college[c(&#39;adm_rate&#39;, &#39;actcmmid&#39;, &#39;costt4_a&#39;)])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite values (stat_density).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5769 rows containing missing values
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5236 rows containing missing values
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing non-finite values (stat_density).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5777 rows containing missing values
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5236 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5777 rows containing missing values (geom_point).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 3486 rows containing non-finite values (stat_density).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-multiple-regression_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s now fit a multiple regression model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;adm_mult_reg &amp;lt;- lm(adm_rate ~ actcmmid + costt4_a, data = college)
+
+summary(adm_mult_reg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid + costt4_a, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.65484 -0.12230  0.02291  0.13863  0.37054 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  1.135e+00  3.326e-02  34.130  &amp;lt; 2e-16 ***
+## actcmmid    -1.669e-02  1.650e-03 -10.114  &amp;lt; 2e-16 ***
+## costt4_a    -2.304e-06  4.047e-07  -5.693 1.55e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1813 on 1278 degrees of freedom
+##   (5777 observations deleted due to missingness)
+## Multiple R-squared:  0.1836,	Adjusted R-squared:  0.1824 
+## F-statistic: 143.8 on 2 and 1278 DF,  p-value: &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This model is now the following form:&lt;/p&gt;
+&lt;p&gt;$$
+Admission\ Rate = 1.1 + -0.017 ACT + -0.000002 cost + \epsilon
+$$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Why are these parameter estimates so small?&lt;/li&gt;
+&lt;li&gt;How well is the overall model doing?&lt;/li&gt;
+&lt;li&gt;Are both terms important in understanding variation in admission rates? How can you tell?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;variance-decomposition&#34;&gt;Variance decomposition&lt;/h2&gt;
+&lt;p&gt;Ultimately, multiple regression is a decomposition of variance. Recall,&lt;/p&gt;
+&lt;p&gt;$$
+\sum (Y - \bar{Y})^2 =  \sum (\hat{Y} - \bar{Y})^2 + \sum (Y - \hat{Y})^2  \[10pt]
+SS_{Total} = SS_{Regression} + SS_{Error}
+$$&lt;/p&gt;
+&lt;p&gt;Multiple regression still does this, but now, there are two attributes going into helping explain variation in the regression portion of the variance decomposition. How is this variance decomposed by default? For linear regression, the variance decomposition is commonly done using type I sum of square decomposition. What does this mean? Essentially, this means that additional terms are added to determine if they help explain variation over and above the other terms in the model. This is a conditional variance added. For example, given the model above, the variance decomposition could be broken down into the following.&lt;/p&gt;
+&lt;p&gt;$$
+SS_{Total} = SS_{Regression} + SS_{Error}   \[10pt]
+SS_{Total} = SS_{X_{1}} + SS_{X_{2} | X_{1}} + SS_{Error}
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;act_lm &amp;lt;- lm(adm_rate ~ actcmmid, data = college)
+
+summary(act_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.71615 -0.12521  0.02024  0.14490  0.37314 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  1.180914   0.032988   35.80   &amp;lt;2e-16 ***
+## actcmmid    -0.022162   0.001391  -15.93   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1844 on 1287 degrees of freedom
+##   (5769 observations deleted due to missingness)
+## Multiple R-squared:  0.1647,	Adjusted R-squared:  0.1641 
+## F-statistic: 253.8 on 1 and 1287 DF,  p-value: &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;anova(act_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## actcmmid     1  8.635  8.6351  253.84 &amp;lt; 2.2e-16 ***
+## Residuals 1287 43.781  0.0340                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;anova(adm_mult_reg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## actcmmid     1  8.386  8.3861 255.092 &amp;lt; 2.2e-16 ***
+## costt4_a     1  1.065  1.0655  32.411 1.546e-08 ***
+## Residuals 1278 42.014  0.0329                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;cost_lm &amp;lt;- lm(adm_rate ~ costt4_a, data = college)
+
+summary(cost_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ costt4_a, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.72108 -0.12656  0.02474  0.14459  0.38059 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  8.233e-01  1.151e-02   71.52   &amp;lt;2e-16 ***
+## costt4_a    -4.147e-06  3.022e-07  -13.73   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1965 on 1820 degrees of freedom
+##   (5236 observations deleted due to missingness)
+## Multiple R-squared:  0.0938,	Adjusted R-squared:  0.09331 
+## F-statistic: 188.4 on 1 and 1820 DF,  p-value: &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;anova(cost_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## costt4_a     1  7.278  7.2781   188.4 &amp;lt; 2.2e-16 ***
+## Residuals 1820 70.309  0.0386                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Model Comparisons</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/10-model-comparison/</link>
+      <pubDate>Tue, 18 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/10-model-comparison/</guid>
+      <description>&lt;h1 id=&#34;model-comparison&#34;&gt;Model Comparison&lt;/h1&gt;
+&lt;p&gt;This section of multiple regression is going to explore model comparison, to guide the selection of the best fitting model from a set of competing models.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ggformula)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;theme_set(theme_bw(base_size = 18))
+
+college &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/College-scorecard-4143.csv&amp;quot;) %&amp;gt;%
+  mutate(act_mean = actcmmid - mean(actcmmid, na.rm = TRUE),
+         cost_mean = costt4_a - mean(costt4_a, na.rm = TRUE)) %&amp;gt;%
+  drop_na(act_mean, cost_mean)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 7058 Columns: 16
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (6): instnm, city, stabbr, preddeg, region, locale
+## dbl (10): adm_rate, actcmmid, ugds, costt4_a, costt4_p, tuitionfee_in, tuiti...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(college)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 18
+##   instnm        city  stabbr preddeg region locale adm_r…¹ actcm…²  ugds costt…³
+##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 Alabama A &amp;amp; … Norm… AL     Bachel… South… City:…   0.903      18  4824   22886
+## 2 University o… Birm… AL     Bachel… South… City:…   0.918      25 12866   24129
+## 3 University o… Hunt… AL     Bachel… South… City:…   0.812      28  6917   22108
+## 4 Alabama Stat… Mont… AL     Bachel… South… City:…   0.979      18  4189   19413
+## 5 The Universi… Tusc… AL     Bachel… South… City:…   0.533      28 32387   28836
+## 6 Auburn Unive… Mont… AL     Bachel… South… City:…   0.825      22  4211   19892
+## # … with 8 more variables: costt4_p &amp;lt;dbl&amp;gt;, tuitionfee_in &amp;lt;dbl&amp;gt;,
+## #   tuitionfee_out &amp;lt;dbl&amp;gt;, debt_mdn &amp;lt;dbl&amp;gt;, grad_debt_mdn &amp;lt;dbl&amp;gt;, female &amp;lt;dbl&amp;gt;,
+## #   act_mean &amp;lt;dbl&amp;gt;, cost_mean &amp;lt;dbl&amp;gt;, and abbreviated variable names ¹​adm_rate,
+## #   ²​actcmmid, ³​costt4_a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;dim(college)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1281   18
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;adm_mult_reg &amp;lt;- lm(adm_rate ~ act_mean + cost_mean, data = college)
+
+summary(adm_mult_reg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ act_mean + cost_mean, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.65484 -0.12230  0.02291  0.13863  0.37054 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  6.834e-01  6.346e-03 107.681  &amp;lt; 2e-16 ***
+## act_mean    -1.669e-02  1.650e-03 -10.114  &amp;lt; 2e-16 ***
+## cost_mean   -2.304e-06  4.047e-07  -5.693 1.55e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1813 on 1278 degrees of freedom
+## Multiple R-squared:  0.1836,	Adjusted R-squared:  0.1824 
+## F-statistic: 143.8 on 2 and 1278 DF,  p-value: &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;omnibus-hypothesis&#34;&gt;Omnibus Hypothesis&lt;/h2&gt;
+&lt;p&gt;In linear regression, I omitted a portion of the output from above that typically comes with most statistical output. That is, there is a test statistic that aims to test if the model is explaining variation over and above a simple mean. More specifically, this omnibus hypothesis tests the following:&lt;/p&gt;
+&lt;p&gt;$$
+H_{0}: All\ \beta = 0 \[10pt]
+H_{A}: Any\ \beta \neq 0
+$$&lt;/p&gt;
+&lt;p&gt;This hypothesis can be formally tested with an F-statistic which is distributed as an F distribution with &lt;code&gt;\(p\)&lt;/code&gt; predictor attributes and &lt;code&gt;\(n - p - 1\)&lt;/code&gt; degrees of freedom.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;f_data &amp;lt;- data.frame(value = seq(0, 5, by = .01)) %&amp;gt;%
+   mutate(dens = df(value, 2, 1278))
+
+gf_line(dens ~ value, data = f_data, size = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-model-comparison_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;f_data &amp;lt;- data.frame(value = seq(0, 5, by = .01)) %&amp;gt;%
+   mutate(dens = df(value, 5, 50))
+
+gf_line(dens ~ value, data = f_data, size = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-model-comparison_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;adjusted-r-squared&#34;&gt;Adjusted R-squared&lt;/h2&gt;
+&lt;p&gt;The adjusted R-squared is typically used when comparing models. This statistic is commonly used as R-square represents the ratio between explained and total variance, therefore, this will always increase, even if the new attribute entered is not helpful. The adjusted R-squared tries to adjust for model complexity. There are many ways to do this, but the most common will be defined here.&lt;/p&gt;
+&lt;p&gt;$$
+\bar{R}^2 = 1 - (1 - R^2) \frac{n - 1}{n - p - 1}
+$$&lt;/p&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;p&gt;$$
+\bar{R}^2 = 1 - \frac{SS_{res} / df_{e}}{SS_{tot} / df_{t}}
+$$
+where &lt;code&gt;\(p\)&lt;/code&gt; is the number of predictors (excluding the intercept), &lt;code&gt;\(n\)&lt;/code&gt; is the sample size, &lt;code&gt;\(SS_{e}\)&lt;/code&gt; and &lt;code&gt;\(SS_{tot}\)&lt;/code&gt; are sum of square residual and total respectively, and &lt;code&gt;\(df_{e}\)&lt;/code&gt; and &lt;code&gt;\(df_{t}\)&lt;/code&gt; are degrees of freedom for the error ($n - p - 1$) and total ($n - 1$) respectively.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;summary(adm_mult_reg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ act_mean + cost_mean, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.65484 -0.12230  0.02291  0.13863  0.37054 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  6.834e-01  6.346e-03 107.681  &amp;lt; 2e-16 ***
+## act_mean    -1.669e-02  1.650e-03 -10.114  &amp;lt; 2e-16 ***
+## cost_mean   -2.304e-06  4.047e-07  -5.693 1.55e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1813 on 1278 degrees of freedom
+## Multiple R-squared:  0.1836,	Adjusted R-squared:  0.1824 
+## F-statistic: 143.8 on 2 and 1278 DF,  p-value: &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;1 - (1 - .1836) * (1281 - 1) / (1281 - 2 - 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1823224
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;anova(adm_mult_reg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## act_mean     1  8.386  8.3861 255.092 &amp;lt; 2.2e-16 ***
+## cost_mean    1  1.065  1.0655  32.411 1.546e-08 ***
+## Residuals 1278 42.014  0.0329                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;1 - (42.01 / 1278) / ((8.39 + 1.066 + 42.014) / 1280)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1825191
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;model-comparison-1&#34;&gt;Model Comparison&lt;/h2&gt;
+&lt;p&gt;There are a variety of statistics used to provide statistical evidence for competing models. If the models are nested, then the variance decomposition can be used to determine if the added predictors helped to explain significant variation over and above the simpler model.&lt;/p&gt;
+&lt;p&gt;In this situation, another F statistic can be derived where&lt;/p&gt;
+&lt;p&gt;$$
+F = \frac{SS_{res}^{R} - SS_{res}^{F} / \Delta p}{SS_{res}^{F} / df_{F}}
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;act_lm &amp;lt;- lm(adm_rate ~ act_mean, data = college)
+
+summary(act_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ act_mean, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.71229 -0.12483  0.01999  0.14317  0.37289 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  0.661593   0.005128  129.02   &amp;lt;2e-16 ***
+## act_mean    -0.021905   0.001388  -15.78   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1835 on 1279 degrees of freedom
+## Multiple R-squared:  0.1629,	Adjusted R-squared:  0.1623 
+## F-statistic:   249 on 1 and 1279 DF,  p-value: &amp;lt; 2.2e-16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;anova(act_lm, adm_mult_reg)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Model 1: adm_rate ~ act_mean
+## Model 2: adm_rate ~ act_mean + cost_mean
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&amp;gt;F)    
+## 1   1279 43.079                                  
+## 2   1278 42.014  1    1.0655 32.411 1.546e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;((43.08 - 42.01) / 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.07
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;1.07 / (42.01 / 1278)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 32.55082
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;non-nested-models&#34;&gt;Non-nested models&lt;/h3&gt;
+&lt;p&gt;For non-nested models, the F-statistic defined above will not work. Instead other statistics are needed to evaluate which model is the best. The one that I prefer for this is the AIC (Akaike information criteria) or the related small sample form, AICc. The equations for these aren&amp;rsquo;t all that useful, utilizing software is the best way to compute these statistics. In general, smaller AIC values indicate a better fitting model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(AICcmodavg)
+
+cost_lm &amp;lt;- lm(adm_rate ~ cost_mean, data = college)
+
+aictab(list(cost_lm, act_lm), 
+       modnames = c(&#39;cost&#39;, &#39;act&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Model selection based on AICc:
+## 
+##      K    AICc Delta_AICc AICcWt Cum.Wt     LL
+## act  3 -704.26       0.00      1      1 355.14
+## cost 3 -637.70      66.56      0      1 321.86
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

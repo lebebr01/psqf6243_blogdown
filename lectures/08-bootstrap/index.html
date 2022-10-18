@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Review">
+  <meta name="description" content="Bootstrap The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/01-review/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/01-review/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/">
 
   
   
@@ -281,15 +281,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/01-review/">
-  <meta property="og:title" content="Review | PSQF 6243">
-  <meta property="og:description" content="Review"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/">
+  <meta property="og:title" content="Bootstrap | PSQF 6243">
+  <meta property="og:description" content="Bootstrap The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2022-08-22T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2022-10-18T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2022-08-22T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2022-10-18T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +308,7 @@
 
 
 
-  <title>Review | PSQF 6243</title>
+  <title>Bootstrap | PSQF 6243</title>
 
 </head>
 
@@ -771,7 +771,7 @@
       
 
 
-  <li class="active"><a href="/lectures/01-review/">Review</a></li>
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
 
 
 
@@ -807,7 +807,7 @@
 
 
 
-  <li class=""><a href="/lectures/08-bootstrap/">Bootstrap</a></li>
+  <li class="active"><a href="/lectures/08-bootstrap/">Bootstrap</a></li>
 
 
 
@@ -838,14 +838,23 @@
 
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#review-for-psqf-6243">Review for PSQF 6243</a>
+    <li><a href="#bootstrap">Bootstrap</a>
       <ul>
-        <li><a href="#examples">Examples</a></li>
-      </ul>
-    </li>
-    <li><a href="#bivariate-association">Bivariate Association</a>
-      <ul>
-        <li><a href="#questions">Questions</a></li>
+        <li><a href="#bootstrapping-steps">Bootstrapping Steps</a></li>
+        <li><a href="#resampling-with-replacement">Resampling with replacement</a></li>
+        <li><a href="#more-practical-example">More practical example</a></li>
+        <li><a href="#two-guiding-questions">Two Guiding Questions</a></li>
+        <li><a href="#bivariate-exploration">Bivariate exploration</a></li>
+        <li><a href="#estimate-parameters">Estimate Parameters</a></li>
+        <li><a href="#resample-these-data">Resample these data</a>
+          <ul>
+            <li><a href="#questions-to-consider">Questions to consider</a></li>
+          </ul>
+        </li>
+        <li><a href="#make-sure-futureapply-is-installed">Make sure future.apply is installed</a></li>
+        <li><a href="#replicate">Replicate</a></li>
+        <li><a href="#visualize-results">Visualize results</a></li>
+        <li><a href="#change-the-n-value">Change the N value</a></li>
       </ul>
     </li>
   </ul>
@@ -862,80 +871,23 @@
         <div class="docs-article-container">
           
 
-          <h1>Review</h1>
+          <h1>Bootstrap</h1>
 
           <div class="article-style">
-            <h1 id="review-for-psqf-6243">Review for PSQF 6243</h1>
-<p>This serves as a non-exhaustive review for the course. These are elements that I assume you have knowledge of prior to starting the course.</p>
-<ul>
-<li>Variable vs constant attributes</li>
-<li>Types of variables (ie., nominal, ordinal, integer, ratio)</li>
-<li>Descriptive Statistics (eg., mean, median, standard deviation, variance, percentiles)</li>
-<li>Higher order moments (eg., skewness and kurtosis)</li>
-<li>Exploring/summarizing univariate distributions (eg., histogram or density figure)</li>
-<li>What is a statistical model? Why do we use them?</li>
-<li>Population vs Sample</li>
-</ul>
-<h2 id="examples">Examples</h2>
-<p>Mario Kart 64 world record data:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">variable</th>
-<th style="text-align:left">class</th>
-<th style="text-align:left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">track</td>
-<td style="text-align:left">character</td>
-<td style="text-align:left">Track name</td>
-</tr>
-<tr>
-<td style="text-align:left">type</td>
-<td style="text-align:left">factor</td>
-<td style="text-align:left">Single or three lap record</td>
-</tr>
-<tr>
-<td style="text-align:left">shortcut</td>
-<td style="text-align:left">factor</td>
-<td style="text-align:left">Shortcut or non-shortcut record</td>
-</tr>
-<tr>
-<td style="text-align:left">player</td>
-<td style="text-align:left">character</td>
-<td style="text-align:left">Player’s name</td>
-</tr>
-<tr>
-<td style="text-align:left">system_played</td>
-<td style="text-align:left">character</td>
-<td style="text-align:left">Used system (NTSC or PAL)</td>
-</tr>
-<tr>
-<td style="text-align:left">date</td>
-<td style="text-align:left">date</td>
-<td style="text-align:left">World record date</td>
-</tr>
-<tr>
-<td style="text-align:left">time_period</td>
-<td style="text-align:left">period</td>
-<td style="text-align:left">Time as <code>hms</code> period</td>
-</tr>
-<tr>
-<td style="text-align:left">time</td>
-<td style="text-align:left">double</td>
-<td style="text-align:left">Time in seconds</td>
-</tr>
-<tr>
-<td style="text-align:left">record_duration</td>
-<td style="text-align:left">double</td>
-<td style="text-align:left">Record duration in days</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-r"># load some libraries
-library(tidyverse)
+            <h1 id="bootstrap">Bootstrap</h1>
+<p>The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.</p>
+<h2 id="bootstrapping-steps">Bootstrapping Steps</h2>
+<p>The following are the steps when performing a bootstrap.</p>
+<ol>
+<li>Treat the sample data as the population.</li>
+<li>Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.</li>
+<li>Estimate the model using the resampled data from step 2.</li>
+<li>Repeat steps 2 and 3 many many times (eg, 10,000 or more).</li>
+<li>Visualize distribution of effect of interest</li>
+</ol>
+<h2 id="resampling-with-replacement">Resampling with replacement</h2>
+<p>What is meant by sampling with replacement? Let&rsquo;s do an example.</p>
+<pre><code class="language-r">library(tidyverse)
 </code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
@@ -946,146 +898,294 @@ library(tidyverse)
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 </code></pre>
-<pre><code class="language-r">library(ggformula)
-</code></pre>
-<pre><code>## Loading required package: ggstance
-## 
-## Attaching package: 'ggstance'
-## 
-## The following objects are masked from 'package:ggplot2':
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
-## 
-## Attaching package: 'scales'
-## 
-## The following object is masked from 'package:purrr':
-## 
-##     discard
-## 
-## The following object is masked from 'package:readr':
-## 
-##     col_factor
-## 
-## Loading required package: ggridges
-## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
-</code></pre>
-<pre><code class="language-r">library(lubridate)
-</code></pre>
-<pre><code>## 
-## Attaching package: 'lubridate'
-## 
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-</code></pre>
-<pre><code class="language-r">library(mosaic)
-</code></pre>
-<pre><code>## Registered S3 method overwritten by 'mosaic':
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2
-## 
-## The 'mosaic' package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Attaching package: 'mosaic'
-## 
-## The following object is masked from 'package:Matrix':
-## 
-##     mean
-## 
-## The following object is masked from 'package:scales':
-## 
-##     rescale
-## 
-## The following objects are masked from 'package:dplyr':
-## 
-##     count, do, tally
-## 
-## The following object is masked from 'package:purrr':
-## 
-##     cross
-## 
-## The following object is masked from 'package:ggplot2':
-## 
-##     stat
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var
-## 
-## The following objects are masked from 'package:base':
-## 
-##     max, mean, min, prod, range, sample, sum
-</code></pre>
-<pre><code class="language-r">library(e1071)
+<pre><code class="language-r">fruit &lt;- data.frame(name = c('watermelon', 'apple', 'orange', 'kumquat', 'grapes', 'canteloupe', 'kiwi', 'banana')) %&gt;%
+    mutate(obs_num = 1:n())
 
-theme_set(theme_bw(base_size = 18))
-
-# load in some data
-mariokart &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv') %&gt;%
-    mutate(year = year(date),
-           month = month(date),
-           day = month(date))
+fruit
 </code></pre>
-<pre><code>## Rows: 2334 Columns: 9
+<pre><code>##         name obs_num
+## 1 watermelon       1
+## 2      apple       2
+## 3     orange       3
+## 4    kumquat       4
+## 5     grapes       5
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     banana       8
+</code></pre>
+<pre><code class="language-r">slice_sample(fruit, n = nrow(fruit), replace = FALSE)
+</code></pre>
+<pre><code>##         name obs_num
+## 1    kumquat       4
+## 2     banana       8
+## 3      apple       2
+## 4 watermelon       1
+## 5     orange       3
+## 6     grapes       5
+## 7 canteloupe       6
+## 8       kiwi       7
+</code></pre>
+<pre><code class="language-r">slice_sample(fruit, n = nrow(fruit), replace = TRUE)
+</code></pre>
+<pre><code>##         name obs_num
+## 1     orange       3
+## 2     banana       8
+## 3     orange       3
+## 4 canteloupe       6
+## 5    kumquat       4
+## 6    kumquat       4
+## 7 watermelon       1
+## 8     banana       8
+</code></pre>
+<h2 id="more-practical-example">More practical example</h2>
+<p>Let&rsquo;s load some data to do a more practical example. The following data come from a <a href="https://nces.ed.gov/timss/" target="_blank" rel="noopener">TIMSS</a> on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.</p>
+<ul>
+<li><strong>IDSTUD</strong>: A unique student ID</li>
+<li><strong>ITBIRTHM</strong>: The birth month of the student</li>
+<li><strong>ITBIRTHY</strong>: The birth year of the student</li>
+<li><strong>ITSEX</strong>: The birth sex of the student</li>
+<li><strong>ASDAGE</strong>: The age of the student (at time of test)</li>
+<li><strong>ASSSCI01</strong>: Overall science scale score</li>
+<li><strong>ASSEAR01</strong>: Earth science scale score</li>
+<li><strong>ASSLIF01</strong>: Life science scale score</li>
+<li><strong>ASSPHY01</strong>: Physics scale score</li>
+<li><strong>ASSKNO01</strong>: Science knowing scale score</li>
+<li><strong>ASSAPP01</strong>: Science applying scale score</li>
+<li><strong>ASSREA01</strong>: Science reasoning scale score</li>
+</ul>
+<pre><code class="language-r">library(tidyverse)
+
+timss &lt;- readr::read_csv('https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv') |&gt; 
+   filter(ASDAGE &lt; 15)
+</code></pre>
+<pre><code>## Rows: 10029 Columns: 12
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr  (6): track, type, shortcut, player, system_played, time_period
-## dbl  (2): time, record_duration
-## date (1): date
+## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </code></pre>
-<pre><code class="language-r">head(mariokart)
+<pre><code class="language-r">head(timss)
 </code></pre>
 <pre><code>## # A tibble: 6 × 12
-##   track      type  short…¹ player syste…² date       time_…³  time recor…⁴  year
-##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 Luigi Rac… Thre… No      Salam  NTSC    1997-02-15 2M 12.…  133.       1  1997
-## 2 Luigi Rac… Thre… No      Booth  NTSC    1997-02-16 2M 9.9…  130.       0  1997
-## 3 Luigi Rac… Thre… No      Salam  NTSC    1997-02-16 2M 8.9…  129.      12  1997
-## 4 Luigi Rac… Thre… No      Salam  NTSC    1997-02-28 2M 6.9…  127.       7  1997
-## 5 Luigi Rac… Thre… No      Gregg… NTSC    1997-03-07 2M 4.5…  125.      54  1997
-## 6 Luigi Rac… Thre… No      Rocky… NTSC    1997-04-30 2M 2.8…  123.       0  1997
-## # … with 2 more variables: month &lt;dbl&gt;, day &lt;dbl&gt;, and abbreviated variable
-## #   names ¹​shortcut, ²​system_played, ³​time_period, ⁴​record_duration
+##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEA…¹ ASSLI…² ASSPH…³ ASSKN…⁴
+##    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1  10101        6     2005     2   9.92     505.    445.    408.    458.    530.
+## 2  10102       10     2005     2   9.58     401.    291.    323.    297.    379.
+## 3  10103        1     2005     1  10.3      542.    440.    529.    529.    521.
+## 4  10104        6     2005     2   9.92     544.    534.    552.    557.    538.
+## 5  10105        6     2005     2   9.92     588.    555.    500.    559.    533.
+## 6  10106       12     2005     1   9.42     583.    556.    585.    562.    526.
+## # … with 2 more variables: ASSAPP01 &lt;dbl&gt;, ASSREA01 &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​ASSEAR01, ²​ASSLIF01, ³​ASSPHY01, ⁴​ASSKNO01
 </code></pre>
-<pre><code class="language-r"># univariate distribution of time
-gf_histogram(~ time, data = mariokart, bins = 30) %&gt;% 
-   gf_labs(x = &quot;Time (in seconds)&quot;)
-</code></pre>
-<p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre><code class="language-r">gf_density(~ time, data = mariokart) %&gt;% 
-   gf_labs(x = &quot;Time (in seconds)&quot;)
-</code></pre>
-<p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre><code class="language-r">df_stats(~ time, data = mariokart, mean, median, sd, skewness, kurtosis, quantile(probs = c(0.1, 0.5, 0.9)))
-</code></pre>
-<pre><code>##   response     mean median      sd skewness kurtosis   10%   50%     90%
-## 1     time 90.62383  86.19 66.6721 1.771732 3.844745 31.31 86.19 171.961
-</code></pre>
-<h1 id="bivariate-association">Bivariate Association</h1>
-<pre><code class="language-r">cor(time ~ record_duration, data = mariokart)
-</code></pre>
-<pre><code>## [1] -0.06736739
-</code></pre>
-<pre><code class="language-r">gf_point(time ~ record_duration, data = mariokart) %&gt;%
-  gf_labs(x = &quot;How long the record was held&quot;,
-          y = &quot;Time (in seconds)&quot;)
-</code></pre>
-<p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<h2 id="questions">Questions</h2>
+<h2 id="two-guiding-questions">Two Guiding Questions</h2>
 <ol>
-<li>What is problematic about the analyses above? Why?</li>
-<li>What could be done to improve the analyses above?</li>
+<li>Is the age of a student related to their overall science scale score?</li>
+<li>Is the life science scale score related to the overall science scale score?</li>
 </ol>
+<h2 id="bivariate-exploration">Bivariate exploration</h2>
+<p>It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of &ldquo;%%&rdquo; below and fill in the appropriate predictor in place of &ldquo;^^&rdquo;. You may also want to fill in an appropriate axis labels in place of &ldquo;@@&rdquo; below.</p>
+<ul>
+<li>Summarize the bivariate association</li>
+</ul>
+<pre><code class="language-r">library(ggformula)
+</code></pre>
+<pre><code>## Loading required package: ggstance
+</code></pre>
+<pre><code>## 
+## Attaching package: 'ggstance'
+</code></pre>
+<pre><code>## The following objects are masked from 'package:ggplot2':
+## 
+##     geom_errorbarh, GeomErrorbarh
+</code></pre>
+<pre><code>## Loading required package: scales
+</code></pre>
+<pre><code>## 
+## Attaching package: 'scales'
+</code></pre>
+<pre><code>## The following object is masked from 'package:purrr':
+## 
+##     discard
+</code></pre>
+<pre><code>## The following object is masked from 'package:readr':
+## 
+##     col_factor
+</code></pre>
+<pre><code>## Loading required package: ggridges
+</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
+</code></pre>
+<pre><code class="language-r">theme_set(theme_bw(base_size = 18))
+
+gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&gt; 
+  gf_smooth(method = 'lm', size = 1.5) |&gt;
+  gf_smooth(method = 'loess', size = 1.5, color = 'green') |&gt;
+  gf_labs(x = &quot;Age&quot;,
+          y = &quot;Overall Science Score&quot;)
+</code></pre>
+<p><img src="/lectures/08-bootstrap_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<h2 id="estimate-parameters">Estimate Parameters</h2>
+<p>To do this, fill in the outcome of interest in place of &ldquo;%%&rdquo; below and fill in the appropriate predictor in place of &ldquo;^^&rdquo;.</p>
+<ul>
+<li>Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)</li>
+</ul>
+<pre><code class="language-r">timss_model &lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
+
+summary(timss_model)
+</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05
+</code></pre>
+<pre><code class="language-r">confint(timss_model)
+</code></pre>
+<pre><code>##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915
+</code></pre>
+<h2 id="resample-these-data">Resample these data</h2>
+<p>For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.</p>
+<pre><code class="language-r">slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
+  count(IDSTUD)
+</code></pre>
+<pre><code>## # A tibble: 6,324 × 2
+##    IDSTUD     n
+##     &lt;dbl&gt; &lt;int&gt;
+##  1  10101     1
+##  2  10102     1
+##  3  10103     2
+##  4  10104     1
+##  5  10105     1
+##  6  10108     1
+##  7  10110     4
+##  8  10111     2
+##  9  10114     1
+## 10  10115     1
+## # … with 6,314 more rows
+</code></pre>
+<pre><code class="language-r">resamp_lm &lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
+  lm(ASSSCI01 ~ ASDAGE, data = .)
+
+summary(resamp_lm)
+</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.151  -51.661    5.296   57.124  259.568 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  616.075     16.897  36.461  &lt; 2e-16 ***
+## ASDAGE        -7.002      1.652  -4.239 2.26e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 80.64 on 10025 degrees of freedom
+## Multiple R-squared:  0.001789,	Adjusted R-squared:  0.00169 
+## F-statistic: 17.97 on 1 and 10025 DF,  p-value: 2.264e-05
+</code></pre>
+<pre><code class="language-r">confint(resamp_lm)
+</code></pre>
+<pre><code>##                 2.5 %     97.5 %
+## (Intercept) 582.95340 649.195804
+## ASDAGE      -10.23994  -3.764309
+</code></pre>
+<h3 id="questions-to-consider">Questions to consider</h3>
+<ol>
+<li>Do the parameter estimates differ from before? Why or why not?</li>
+<li>Would you come to substantially different conclusions from the original analysis? Why or why not?</li>
+</ol>
+<p>Let&rsquo;s now repeat this a bunch of times.</p>
+<pre><code class="language-r">set.seed(2022)
+
+resample_timss &lt;- function(data, model_equation) {
+  timss_resample &lt;- slice_sample(data, n = nrow(data), replace = TRUE)
+
+  
+  lm(model_equation, data = timss_resample) %&gt;%
+    coef()
+}
+</code></pre>
+<p>Run this function a bunch of times manually, what happens to the estimates? Why is this happening?</p>
+<pre><code class="language-r">resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)
+</code></pre>
+<pre><code>## (Intercept)      ASDAGE 
+##  593.768824   -4.636762
+</code></pre>
+<h2 id="make-sure-futureapply-is-installed">Make sure future.apply is installed</h2>
+<p>The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the <code>#</code> symbol) in the first line of code to (hopefully) install the package yourself.</p>
+<pre><code class="language-r"># install.packages(&quot;future.apply&quot;)
+library(future.apply)
+</code></pre>
+<pre><code>## Loading required package: future
+</code></pre>
+<pre><code class="language-r">plan(multisession)
+</code></pre>
+<h2 id="replicate">Replicate</h2>
+<p>The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.</p>
+<pre><code class="language-r">timss_coef &lt;- future.apply::future_replicate(10000, resample_timss(data = timss, 
+                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&gt;
+                        dplyr::bind_rows() |&gt; 
+                        tidyr::pivot_longer(cols = everything())
+
+head(timss_coef)
+</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   name         value
+##   &lt;chr&gt;        &lt;dbl&gt;
+## 1 (Intercept) 610.  
+## 2 ASDAGE       -6.56
+## 3 (Intercept) 603.  
+## 4 ASDAGE       -5.67
+## 5 (Intercept) 620.  
+## 6 ASDAGE       -7.25
+</code></pre>
+<h2 id="visualize-results">Visualize results</h2>
+<p>The following code visualizes the results of the analysis above. Explore the following questions.</p>
+<ol>
+<li>What does this distribution show/represent?</li>
+<li>What are key features of this distribution?</li>
+<li>How do these values compare to the original linear regression results?
+<ul>
+<li>Are there comparable statistics here compared to those?</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-r">gf_density(~ value, data = timss_coef) %&gt;%
+  gf_facet_wrap(~ name, scales = 'free') %&gt;%
+  gf_labs(x = &quot;Regression Estimates&quot;)
+</code></pre>
+<p><img src="/lectures/08-bootstrap_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<h2 id="change-the-n-value">Change the N value</h2>
+<p>Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).</p>
+<ul>
+<li>What happens to the resulting figure when the N increases?</li>
+<li>What value for N seems to be reasonable? Why?</li>
+</ul>
 
           </div>
 
@@ -1102,8 +1202,15 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&gt;%
   
   
   <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/07-regression-conditions/" rel="next">Data Conditions for Valid Inference</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/01-review-class/" rel="prev">Review - Class</a>
+    <a href="/lectures/09-multiple-regression/" rel="prev">Multiple Regression</a>
   </div>
   
 </div>
@@ -1113,7 +1220,7 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&gt;%
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Aug 22, 2022</p>
+          <p>Last updated on Oct 18, 2022</p>
 
           
 
