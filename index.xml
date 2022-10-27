@@ -4518,5 +4518,111 @@ aictab(list(cost_lm, act_lm),
 </description>
     </item>
     
+    <item>
+      <title>Activity 5</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/activity/activity5/</link>
+      <pubDate>Tue, 18 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/activity/activity5/</guid>
+      <description>&lt;p&gt;The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. &lt;em&gt;Please make sure to add everyone&amp;rsquo;s name to the submission&lt;/em&gt;, this can be a comment on ICON or on the document itself.&lt;/p&gt;
+&lt;h2 id=&#34;instructions&#34;&gt;Instructions&lt;/h2&gt;
+&lt;h3 id=&#34;what-to-turn-in&#34;&gt;What to turn in&lt;/h3&gt;
+&lt;p&gt;Please turn in a document that contains the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;answers to the questions below&lt;/li&gt;
+&lt;li&gt;include any relevant statistics/figures that support your answer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally,upload the final document to &lt;a href=&#34;https://uiowa.instructure.com/courses/196816/assignments/1745910&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICON&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;due-date&#34;&gt;Due Date&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Due around&lt;/em&gt; &lt;strong&gt;November 14th, 2022&lt;/strong&gt;. No penalty for late submissions as long as it is submitted by December 11th.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;The data for this activity is San Francisco rental data. The data originally come from &lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-07-05&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tidy Tuesday&lt;/a&gt;. I have done some processing to drop some missing data and remove some attributes from the larger data for our use.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use the data linked here or posted to the IDAS. The data can be obtained in &lt;a href=&#34;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/sf_rent.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;csv format&lt;/a&gt;. A short description for each attribute is as follows.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Attribute Name&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;post_id&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Unique ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;date&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;date&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;year&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;year&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;nhood&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;neighborhood&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;city&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;city&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;county&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;county&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;price&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;price in USD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;beds&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;n of beds&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;sqft&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;square feet of rental&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;room_in_apt&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;room in apartment&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;guiding-questions&#34;&gt;Guiding Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Does the square footage (&lt;code&gt;sqft&lt;/code&gt;) of the rental help explain variation in the price of the rental?&lt;/li&gt;
+&lt;li&gt;After controlling for the square footage of the rental, does the number of bedrooms help explain any additional variation in the price of the rental?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Explore descriptively any relationship between square footage and price of the rental. Summarize the relationship in a couple sentences.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fit a model to explore research question 1, summarize in a few sentences the primary regression estimates.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There are two ways to estimate this model, treat number of bedrooms as continuous or as a factor. Fit this model in both ways:
+a. Treat bedrooms as continuous (simply add bedrooms into the model).
+b. Treat bedrooms as a categorical/ordinal attribute. In R, you can do this with the following code: &lt;code&gt;factor(beds)&lt;/code&gt; in the model equation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Interpret the regression estimates for the effect of number of bedrooms from each model in #3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What is a key difference in the assumed form of the relationship between both models in #3?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Perform model comparisons for the 3 models fitted in this activity. That is, compare the following models:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;square footage only&lt;/li&gt;
+&lt;li&gt;square footage with continuous bedrooms&lt;/li&gt;
+&lt;li&gt;square footage with categorical/ordinal bedrooms.
+Identify for each model comparison if the model is nested or not nested and interpret the appropriate model comparison measure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
