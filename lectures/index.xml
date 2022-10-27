@@ -1035,20 +1035,20 @@ generate_response(sim_args)
 
 head(poly_data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   X.Intercept.         x1_1         x1_2         x1 level1_id      error
-## 1            1 -0.007948849 -0.013841582 -0.3655597         1  0.2032010
-## 2            1 -0.014334977 -0.009266841 -0.6530156         2  0.7227897
-## 3            1 -0.021423370 -0.001149814 -0.9720822         3  1.5010172
-## 4            1 -0.007620270 -0.014006757 -0.3507696         4  0.4929379
-## 5            1 -0.019540929 -0.003617258 -0.8873488         5 -0.8883373
-## 6            1 -0.028116765  0.009450196 -1.2733690         6  0.6112566
-##   fixed_outcome random_effects          y
-## 1     3.7524188              0  3.9556198
-## 2     2.8246983              0  3.5474880
-## 3     1.1871160              0  2.6881332
-## 4     3.7861109              0  4.2790488
-## 5     1.6843697              0  0.7960324
-## 6    -0.9462727              0 -0.3350161
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.         x1_1         x1_2          x1 level1_id       error
+## 1            1 -0.023738970  0.001264975 -1.05732784         1 -0.72911136
+## 2            1  0.001855997 -0.015605511  0.05808737         2 -0.89038148
+## 3            1  0.012546200 -0.010416012  0.52396082         3  0.35416269
+## 4            1 -0.005732009 -0.014914073 -0.27259394         4 -0.95894820
+## 5            1  0.001278362 -0.015680610  0.03291437         5 -0.04970669
+## 6            1 -0.013338978 -0.010574816 -0.60410166         6  0.59216136
+##   fixed_outcome random_effects           y
+## 1      0.699527              0 -0.02958439
+## 2      4.124814              0  3.23443267
+## 3      3.108295              0  3.46245751
+## 4      3.971351              0  3.01240240
+## 5      4.138679              0  4.08897209
+## 6      3.088285              0  3.68044656
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_point(y ~ x1, data = poly_data, size = 3) |&amp;gt;
   gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;) |&amp;gt;
@@ -2685,26 +2685,26 @@ fruit
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
-## 2     banana       8
-## 3      apple       2
-## 4 watermelon       1
-## 5     orange       3
+## 1     orange       3
+## 2       kiwi       7
+## 3 watermelon       1
+## 4    kumquat       4
+## 5 canteloupe       6
 ## 6     grapes       5
-## 7 canteloupe       6
-## 8       kiwi       7
+## 7      apple       2
+## 8     banana       8
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     orange       3
+## 1 watermelon       1
 ## 2     banana       8
-## 3     orange       3
+## 3       kiwi       7
 ## 4 canteloupe       6
-## 5    kumquat       4
-## 6    kumquat       4
-## 7 watermelon       1
-## 8     banana       8
+## 5       kiwi       7
+## 6       kiwi       7
+## 7       kiwi       7
+## 8 watermelon       1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;more-practical-example&#34;&gt;More practical example&lt;/h2&gt;
 &lt;p&gt;Let&amp;rsquo;s load some data to do a more practical example. The following data come from a &lt;a href=&#34;https://nces.ed.gov/timss/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TIMSS&lt;/a&gt; on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.&lt;/p&gt;
@@ -2838,20 +2838,20 @@ summary(timss_model)
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
   count(IDSTUD)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6,324 × 2
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6,356 × 2
 ##    IDSTUD     n
 ##     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
-##  1  10101     1
-##  2  10102     1
-##  3  10103     2
-##  4  10104     1
-##  5  10105     1
-##  6  10108     1
-##  7  10110     4
-##  8  10111     2
-##  9  10114     1
-## 10  10115     1
-## # … with 6,314 more rows
+##  1  10105     3
+##  2  10108     1
+##  3  10110     1
+##  4  10111     1
+##  5  10112     2
+##  6  10113     1
+##  7  10116     2
+##  8  10117     1
+##  9  10118     1
+## 10  10119     1
+## # … with 6,346 more rows
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
   lm(ASSSCI01 ~ ASDAGE, data = .)
@@ -2864,24 +2864,24 @@ summary(resamp_lm)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -305.151  -51.661    5.296   57.124  259.568 
+## -303.996  -51.161    4.522   57.275  271.654 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  616.075     16.897  36.461  &amp;lt; 2e-16 ***
-## ASDAGE        -7.002      1.652  -4.239 2.26e-05 ***
+## (Intercept)  580.886     17.169  33.834   &amp;lt;2e-16 ***
+## ASDAGE        -3.571      1.680  -2.126   0.0335 *  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 80.64 on 10025 degrees of freedom
-## Multiple R-squared:  0.001789,	Adjusted R-squared:  0.00169 
-## F-statistic: 17.97 on 1 and 10025 DF,  p-value: 2.264e-05
+## Residual standard error: 80.45 on 10025 degrees of freedom
+## Multiple R-squared:  0.0004508,	Adjusted R-squared:  0.0003511 
+## F-statistic: 4.521 on 1 and 10025 DF,  p-value: 0.03351
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;confint(resamp_lm)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                 2.5 %     97.5 %
-## (Intercept) 582.95340 649.195804
-## ASDAGE      -10.23994  -3.764309
+&lt;pre&gt;&lt;code&gt;##                  2.5 %      97.5 %
+## (Intercept) 547.232078 614.5395568
+## ASDAGE       -6.863595  -0.2788938
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;questions-to-consider&#34;&gt;Questions to consider&lt;/h3&gt;
 &lt;ol&gt;
@@ -3462,6 +3462,426 @@ aictab(list(cost_lm, act_lm),
 ##      K    AICc Delta_AICc AICcWt Cum.Wt     LL
 ## act  3 -704.26       0.00      1      1 355.14
 ## cost 3 -637.70      66.56      0      1 321.86
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Regression Categorical</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/11-regression-categorical/</link>
+      <pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/11-regression-categorical/</guid>
+      <description>&lt;h1 id=&#34;regression-with-categorical-predictors&#34;&gt;Regression with Categorical Predictors&lt;/h1&gt;
+&lt;p&gt;This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let&amp;rsquo;s explore some data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(Lahman)
+library(ggformula)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting %&amp;gt;%
+  filter(AB &amp;gt; 100) %&amp;gt;%
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) %&amp;gt;%
+  filter(yearID &amp;gt; 1990) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&amp;gt;%
+  mutate(average = H / AB)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;career &amp;lt;- People %&amp;gt;%
+  tbl_df() %&amp;gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&amp;gt;%
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) %&amp;gt;%
+  inner_join(career, by = &amp;quot;playerID&amp;quot;) %&amp;gt;%
+  dplyr::select(-playerID)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;head(career)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 5
+##   name               lgID      H    AB average
+##   &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 Jeff Abbott        AL      127   459   0.277
+## 2 Kurt Abbott        AL       33   123   0.268
+## 3 Kurt Abbott        NL      455  1780   0.256
+## 4 Reggie Abercrombie NL       54   255   0.212
+## 5 Brent Abernathy    AL      194   767   0.253
+## 6 Shawn Abner        AL       81   309   0.262
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;question&#34;&gt;Question&lt;/h2&gt;
+&lt;p&gt;Suppose we are interested in the batting average of baseball players since 1990, that is, the average is:&lt;/p&gt;
+&lt;p&gt;$$
+average = \frac{number\ of\ hits}{number\ of\ atbats}
+$$&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s first visualize this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_density(~ average, data = career) %&amp;gt;%
+  gf_labs(x = &amp;quot;Batting Average&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-regression-categorical_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;What if we hypothesized that the batting average will differ based on the league that players played in.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_violin(lgID ~ average, data = career, fill = &#39;gray80&#39;, draw_quantiles = c(&#39;0.1&#39;, &#39;0.5&#39;, &#39;0.9&#39;)) %&amp;gt;%
+  gf_labs(x = &amp;quot;Batting Average&amp;quot;,
+          y = &amp;quot;League&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-regression-categorical_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The distributions seem similar, but what if we wanted to go a step further and estimate a model to explore if there are really differences or not. For example, suppose we were interested in:&lt;/p&gt;
+&lt;p&gt;$$
+H_{0}: \mu_{NL} = \mu_{AL}
+$$&lt;/p&gt;
+&lt;p&gt;What type of model could we use? What about linear regression?&lt;/p&gt;
+&lt;h2 id=&#34;linear-regression-with-categorical-attributes&#34;&gt;Linear Regression with Categorical Attributes&lt;/h2&gt;
+&lt;p&gt;Since these notes are happening, you can assume it is possible. But how can a categorical attribute with categories rather than numbers be included in the linear regression model?&lt;/p&gt;
+&lt;p&gt;The answer is that they can&amp;rsquo;t. We need a new representation of the categorical attribute, enter dummy or indicator coding.&lt;/p&gt;
+&lt;h3 id=&#34;dummyindicator-coding&#34;&gt;Dummy/Indicator Coding&lt;/h3&gt;
+&lt;p&gt;Suppose we use the following logic:&lt;/p&gt;
+&lt;p&gt;If NL, then give a value of 1, else give a value of 0.&lt;/p&gt;
+&lt;p&gt;Does this give the same information as before?&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;League ID&lt;/th&gt;
+&lt;th&gt;Dummy League ID&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;AL&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;NL&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;What would this look like for the actual data?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;career &amp;lt;- career %&amp;gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
+
+head(career, n = 10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 × 6
+##    name               lgID      H    AB average league_dummy
+##    &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1 Jeff Abbott        AL      127   459   0.277            0
+##  2 Kurt Abbott        AL       33   123   0.268            0
+##  3 Kurt Abbott        NL      455  1780   0.256            1
+##  4 Reggie Abercrombie NL       54   255   0.212            1
+##  5 Brent Abernathy    AL      194   767   0.253            0
+##  6 Shawn Abner        AL       81   309   0.262            0
+##  7 Shawn Abner        NL       19   115   0.165            1
+##  8 Bobby Abreu        AL      858  3061   0.280            0
+##  9 Bobby Abreu        NL     1602  5373   0.298            1
+## 10 Jose Abreu         AL     1262  4353   0.290            0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that there is a numeric attribute, these can be added into the linear regression model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;average_lm &amp;lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)   0.253    0.000761   332.      0    
+## 2 league_dummy  0.00102  0.00107      0.949   0.343
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;How are these terms interpreted now?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df_stats(average ~ league_dummy, data = career, mean, sd, length)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response league_dummy      mean         sd length
+## 1  average            0 0.2525899 0.02876352   1431
+## 2  average            1 0.2536090 0.02879563   1440
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;average_lm2 &amp;lt;- lm(average ~ lgID, data = career)
+
+broom::tidy(average_lm2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term        estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)  0.253    0.000761   332.      0    
+## 2 lgIDNL       0.00102  0.00107      0.949   0.343
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;t.test(average ~ lgID, data = career, var.equal = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	Two Sample t-test
+## 
+## data:  average by lgID
+## t = -0.9487, df = 2869, p-value = 0.3429
+## alternative hypothesis: true difference in means between group AL and group NL is not equal to 0
+## 95 percent confidence interval:
+##  -0.003125489  0.001087227
+## sample estimates:
+## mean in group AL mean in group NL 
+##        0.2525899        0.2536090
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;values-other-than-01&#34;&gt;Values other than 0/1&lt;/h2&gt;
+&lt;p&gt;First, I want to build off of the first part of the notes on regression with categorical predictors. Before generalizing to more than two groups, let&amp;rsquo;s first explore what happens when values other than 0/1 are used for the categorical attribute. The following three dummy/indicator attributes will be used:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;1 = NL, 0 = AL&lt;/li&gt;
+&lt;li&gt;1 = NL, 2 = AL&lt;/li&gt;
+&lt;li&gt;100 = NL, 0 = AL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Make some predictions about what you think will happen in the three separate regressions?&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting %&amp;gt;%
+  filter(AB &amp;gt; 100) %&amp;gt;%
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) %&amp;gt;%
+  filter(yearID &amp;gt; 1990) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&amp;gt;%
+  mutate(average = H / AB)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;career &amp;lt;- People %&amp;gt;%
+  tbl_df() %&amp;gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&amp;gt;%
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) %&amp;gt;%
+  inner_join(career, by = &amp;quot;playerID&amp;quot;) %&amp;gt;%
+  dplyr::select(-playerID)
+
+career &amp;lt;- career %&amp;gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0),
+         league_dummy_12 = ifelse(lgID == &#39;NL&#39;, 1, 2),
+         league_dummy_100 = ifelse(lgID == &#39;NL&#39;, 100, 0))
+
+head(career, n = 10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 × 8
+##    name               lgID      H    AB average league_dummy league_du…¹ leagu…²
+##    &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 Jeff Abbott        AL      127   459   0.277            0           2       0
+##  2 Kurt Abbott        AL       33   123   0.268            0           2       0
+##  3 Kurt Abbott        NL      455  1780   0.256            1           1     100
+##  4 Reggie Abercrombie NL       54   255   0.212            1           1     100
+##  5 Brent Abernathy    AL      194   767   0.253            0           2       0
+##  6 Shawn Abner        AL       81   309   0.262            0           2       0
+##  7 Shawn Abner        NL       19   115   0.165            1           1     100
+##  8 Bobby Abreu        AL      858  3061   0.280            0           2       0
+##  9 Bobby Abreu        NL     1602  5373   0.298            1           1     100
+## 10 Jose Abreu         AL     1262  4353   0.290            0           2       0
+## # … with abbreviated variable names ¹​league_dummy_12, ²​league_dummy_100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;average_lm &amp;lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)   0.253    0.000761   332.      0    
+## 2 league_dummy  0.00102  0.00107      0.949   0.343
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;average_lm_12 &amp;lt;- lm(average ~ league_dummy_12, data = career)
+
+broom::tidy(average_lm_12)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term            estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;              &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)      0.255     0.00170   150.      0    
+## 2 league_dummy_12 -0.00102   0.00107    -0.949   0.343
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;average_lm_100 &amp;lt;- lm(average ~ league_dummy_100, data = career)
+
+broom::tidy(average_lm_100)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term              estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)      0.253     0.000761    332.      0    
+## 2 league_dummy_100 0.0000102 0.0000107     0.949   0.343
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Before moving to more than 2 groups, any thoughts on how we could run a one-sample t-test using a linear regression? For example, suppose this null hypothesis wanted to be explored.&lt;/p&gt;
+&lt;p&gt;$$
+H_{0}: \mu_{BA} = .2
+$$&lt;/p&gt;
+&lt;p&gt;$$
+H_{A}: \mu_{BA} \neq .2
+$$&lt;/p&gt;
+&lt;h2 id=&#34;generalize-to-more-than-2-groups&#34;&gt;Generalize to more than 2 groups&lt;/h2&gt;
+&lt;p&gt;The ability to use regression with categorical attributes of more than 2 groups is possible and an extension of the 2 groups model shown above. First, let&amp;rsquo;s think about how we could represent three categories as numeric attributes. Suppose we had the following 4 categories of baseball players.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Position&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Outfield&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Infield&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Catcher&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Designated Hitter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(GeomMLBStadiums)
+
+ggplot() + 
+  geom_mlb_stadium(stadium_segments = &amp;quot;all&amp;quot;) + 
+  facet_wrap(~team) + 
+  coord_fixed() + 
+  theme_void()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-regression-categorical_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting %&amp;gt;%
+  filter(AB &amp;gt; 100) %&amp;gt;%
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) %&amp;gt;%
+  filter(yearID &amp;gt; 1990) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&amp;gt;%
+  mutate(average = H / AB)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;career &amp;lt;- Appearances %&amp;gt;%
+  filter(yearID &amp;gt; 1990) %&amp;gt;%
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) %&amp;gt;%
+  rowwise() %&amp;gt;%
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) %&amp;gt;%
+  select(-G_1b, -G_2b, -G_3b, -G_ss) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) %&amp;gt;%
+  pivot_longer(catcher:infield,
+               names_to = &amp;quot;position&amp;quot;) %&amp;gt;%
+  filter(value &amp;gt; 0) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  slice_max(value) %&amp;gt;%
+  select(playerID, lgID, position) %&amp;gt;%
+  inner_join(career)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+## Joining, by = c(&amp;quot;playerID&amp;quot;, &amp;quot;lgID&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;career &amp;lt;- People %&amp;gt;%
+  tbl_df() %&amp;gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&amp;gt;%
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) %&amp;gt;%
+  inner_join(career, by = &amp;quot;playerID&amp;quot;)
+
+career &amp;lt;- career %&amp;gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
+
+count(career, position)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 2
+##   position     n
+##   &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
+## 1 catcher    410
+## 2 dh          81
+## 3 infield   1248
+## 4 outfield  1136
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gf_violin(position ~ average, data = career, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
+  gf_labs(x = &amp;quot;Batting Average&amp;quot;,
+          y = &amp;quot;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-regression-categorical_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;career &amp;lt;- career %&amp;gt;%
+  mutate(outfield = ifelse(position == &#39;outfield&#39;, 1, 0),
+         infield = ifelse(position == &#39;infield&#39;, 1, 0),
+         catcher = ifelse(position == &#39;catcher&#39;, 1, 0))
+
+head(career)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 11
+##   playerID  name       lgID  posit…¹     H    AB average leagu…² outfi…³ infield
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;      &amp;lt;fct&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 abbotje01 Jeff Abbo… AL    outfie…   127   459   0.277       0       1       0
+## 2 abbotku01 Kurt Abbo… AL    infield    33   123   0.268       0       0       1
+## 3 abbotku01 Kurt Abbo… NL    infield   455  1780   0.256       1       0       1
+## 4 abercre01 Reggie Ab… NL    outfie…    54   255   0.212       1       1       0
+## 5 abernbr01 Brent Abe… AL    infield   194   767   0.253       0       0       1
+## 6 abnersh01 Shawn Abn… AL    outfie…    81   309   0.262       0       1       0
+## # … with 1 more variable: catcher &amp;lt;dbl&amp;gt;, and abbreviated variable names
+## #   ¹​position, ²​league_dummy, ³​outfield
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;position_lm &amp;lt;- lm(average ~ 1 + outfield + infield + catcher, data = career)
+
+broom::tidy(position_lm)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term        estimate std.error statistic    p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;
+## 1 (Intercept)  0.257     0.00315    81.7   0         
+## 2 outfield    -0.00182   0.00326    -0.557 0.578     
+## 3 infield     -0.00289   0.00325    -0.888 0.375     
+## 4 catcher     -0.0165    0.00345    -4.79  0.00000175
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df_stats(average ~ position, data = career, mean)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response position      mean
+## 1  average  catcher 0.2408859
+## 2  average       dh 0.2574041
+## 3  average  infield 0.2545163
+## 4  average outfield 0.2555881
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
