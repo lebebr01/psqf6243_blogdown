@@ -2964,6 +2964,28 @@ gf_point(density ~ value, color = ~ normal, size = 1) %&amp;gt;%
     </item>
     
     <item>
+      <title>Week 11</title>
+      <link>https://psqf6243.brandonlebeau.org/content/11-week11/</link>
+      <pubDate>Fri, 04 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/11-week11/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Generalize the regression model to using categorical predictors with more than 2 groups. In this section, exploration of dummy/indicator coding for coding of categorical predictors will be the focus. Interpretation of model parameters will be the focus&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify a categorical attribute&lt;/li&gt;
+&lt;li&gt;Define dummy/indicator coding for categorical attributes with more than 2 categories&lt;/li&gt;
+&lt;li&gt;Interpret regression results from dummy coded categorical attribute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 3.6.6 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 7.2.6 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#categorical-predictor-two-levels&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Data Conditions for Valid Inference</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/07-regression-conditions/</link>
       <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
@@ -3323,6 +3345,29 @@ head(airquality)
 &lt;/li&gt;
 &lt;li&gt;Transform the data.&lt;/li&gt;
 &lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 12</title>
+      <link>https://psqf6243.brandonlebeau.org/content/12-week12/</link>
+      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/12-week12/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Explore pairwise comparisons for categorical predictors with multiple categories. Discuss familywise error rate and p-value adjustment procedures. Start exploring interactions between two categorical and between a categorical and continuous attribute (ANCOVA).&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify hypotheses for pairwise comparison procedures&lt;/li&gt;
+&lt;li&gt;Define familywise error rate&lt;/li&gt;
+&lt;li&gt;Interpret p-values from adjustment methods&lt;/li&gt;
+&lt;li&gt;Interpret interaction effects&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Brambor, T., Clark, W. R., &amp;amp; Golder, M. (2006). &lt;a href=&#34;http://mattgolder.com/files/research/pa_final.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Understanding interaction models: Improving empirical analyses&lt;/a&gt;. Political Analysis, 14, 63–82.&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional: Read Frost, J. (2018). &lt;a href=&#34;https://statisticsbyjim.com/regression/interaction-effects/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Understanding Interaction Effects in Statistics&lt;/a&gt;. [blog post]&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
