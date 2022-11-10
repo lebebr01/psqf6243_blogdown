@@ -1,0 +1,1437 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Add more than one categorical predictor Let’s explore the ability to add more than one categorical predictor to our model. This will then build into thinking through interactions. Let’s load some new data.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3aad675291f323c3cd47ae187f0bf0d6.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical/">
+  <meta property="og:title" content="Multiple Categorical Attributes | PSQF 6243">
+  <meta property="og:description" content="Add more than one categorical predictor Let’s explore the ability to add more than one categorical predictor to our model. This will then build into thinking through interactions. Let’s load some new data."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2022-11-10T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2022-11-10T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Multiple Categorical Attributes | PSQF 6243</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7de282f2047be3c570af3a58788341e7.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#logistics"><span>Logistics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Syllabus</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Schedule</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Content</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/lectures/"><span>Lecture Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/assignments/"><span>Assignments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/code/"><span>Software Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>People</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      
+      
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
+      
+
+
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
+
+
+
+  <li class=""><a href="/lectures/01-review-class/">Review - Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression-class/">Introduction to Linear Regression - Class Notes</a></li>
+
+
+
+  <li class=""><a href="/lectures/03-regression-estimates/">Regression Estimates</a></li>
+
+
+
+  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Simulation</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Regression Inference</a></li>
+
+
+
+  <li class=""><a href="/lectures/06-t-vs-norm/">t-distribution vs Normal distribution</a></li>
+
+
+
+  <li class=""><a href="/lectures/07-regression-conditions/">Data Conditions for Valid Inference</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-bootstrap/">Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/09-multiple-regression/">Multiple Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/10-model-comparison/">Model Comparisons</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-regression-categorical/">Regression Categorical</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-pairwise/">Pairwise Contrasts</a></li>
+
+
+
+  <li class="active"><a href="/lectures/13-multiple-categorical/">Multiple Categorical Attributes</a></li>
+
+
+
+  <li class=""><a href="/lectures/14-ancova/">Analysis of Covariance</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Multiple Categorical Attributes</h1>
+
+          <div class="article-style">
+            
+
+<div id="TOC">
+
+</div>
+
+<div id="add-more-than-one-categorical-predictor" class="section level1">
+<h1>Add more than one categorical predictor</h1>
+<p>Let’s explore the ability to add more than one categorical predictor to our model. This will then build into thinking through interactions. Let’s load some new data. These are bike data from Philadelphia program, called <a href="https://www.rideindego.com/about/data/">Indego</a>. The data loaded below are from Q3 of 2021.</p>
+<p>Here is information about the columns in the data.</p>
+<ul>
+<li><strong>trip_id:</strong> Locally unique integer that identifies the trip</li>
+<li><strong>duration:</strong> Length of trip in minutes</li>
+<li><strong>start_time:</strong> The date/time when the trip began, presented in ISO 8601 format in local time</li>
+<li><strong>end_time:</strong> The date/time when the trip ended, presented in ISO 8601 format in local time</li>
+<li><strong>start_station:</strong> The station ID where the trip originated (for station name and more information on each station see the Station Table)</li>
+<li><strong>start_lat:</strong> The latitude of the station where the trip originated</li>
+<li><strong>start_lon:</strong> The longitude of the station where the trip originated</li>
+<li><strong>end_station:</strong> The station ID where the trip terminated (for station name and more information on each station see the Station Table)</li>
+<li><strong>end_lat:</strong> The latitude of the station where the trip terminated</li>
+<li><strong>end_lon:</strong> The longitude of the station where the trip terminated</li>
+<li><strong>bike_id:</strong> Locally unique integer that identifies the bike</li>
+<li><strong>plan_duration:</strong> The number of days that the plan the passholder is using entitles them to ride; 0 is used for a single ride plan (Walk-up)</li>
+<li><strong>trip_route_category:</strong> “Round Trip” for trips starting and ending at the same station or “One Way” for all other trips</li>
+<li><strong>passholder_type:</strong> The name of the passholder’s plan</li>
+<li><strong>bike_type:</strong> The kind of bike used on the trip, including standard pedal-powered bikes or electric assist bikes</li>
+</ul>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+temp &lt;- tempfile()
+download.file(&quot;https://u626n26h74f16ig1p3pt0f2g-wpengine.netdna-ssl.com/wp-content/uploads/2021/10/indego-trips-2021-q3.zip&quot;, temp)
+bike &lt;- readr::read_csv(unz(temp, &quot;indego-trips-2021-q3.csv&quot;)) %&gt;%
+   filter(duration &lt;= 120 &amp; passholder_type != &#39;Walk-up&#39;)</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Rows: 300432 Columns: 15
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (5): start_time, end_time, trip_route_category, passholder_type, bike_type
+## dbl (10): trip_id, duration, start_station, start_lat, start_lon, end_statio...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>unlink(temp)
+
+head(bike)</code></pre>
+<pre><code>## # A tibble: 6 × 15
+##     trip_id duration start_time  end_t…¹ start…² start…³ start…⁴ end_s…⁵ end_lat
+##       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 398698761       11 7/1/2021 0… 7/1/20…    3045    39.9   -75.2    3030    39.9
+## 2 398698759        4 7/1/2021 0… 7/1/20…    3052    39.9   -75.2    3238    39.9
+## 3 398698757       56 7/1/2021 0… 7/1/20…    3192    40.0   -75.1    3161    40.0
+## 4 398698755       55 7/1/2021 0… 7/1/20…    3192    40.0   -75.1    3161    40.0
+## 5 398698753        5 7/1/2021 0… 7/1/20…    3052    39.9   -75.2    3046    40.0
+## 6 398698750       13 7/1/2021 0… 7/1/20…    3213    39.9   -75.2    3039    40.0
+## # … with 6 more variables: end_lon &lt;dbl&gt;, bike_id &lt;dbl&gt;, plan_duration &lt;dbl&gt;,
+## #   trip_route_category &lt;chr&gt;, passholder_type &lt;chr&gt;, bike_type &lt;chr&gt;, and
+## #   abbreviated variable names ¹​end_time, ²​start_station, ³​start_lat,
+## #   ⁴​start_lon, ⁵​end_station</code></pre>
+<pre class="r"><code>dim(bike)</code></pre>
+<pre><code>## [1] 297792     15</code></pre>
+<p>Suppose we were interested in the following research questions.</p>
+<ul>
+<li>Does the trip route, type of pass, and bike type explain variation in the duration the bike was rented?</li>
+</ul>
+<p>Let’s explore this descriptively.</p>
+<pre class="r"><code>gf_density(~ duration, data = bike) %&gt;%
+  gf_labs(x = &quot;Duration, in minutes&quot;)</code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>gf_violin(bike_type ~ duration, data = bike, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&gt;%
+  gf_labs(x = &quot;Duration, in minutes&quot;, y = &quot;&quot;) </code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>gf_violin(passholder_type ~ duration, data = bike, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&gt;%
+  gf_labs(x = &quot;Duration, in minutes&quot;, y = &quot;&quot;) </code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>gf_violin(trip_route_category ~ duration, data = bike, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&gt;%
+  gf_labs(x = &quot;Duration, in minutes&quot;, y = &quot;&quot;) </code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div id="regression-model-with-multiple-categorical-predictors" class="section level2">
+<h2>Regression model with multiple categorical predictors</h2>
+<p>Similar to multiple linear regression, including multiple categorical predictors is similar to that case. The simplest model is the additive model, also commonly referred to as the main effect model. Let’s start with two categorical attributes that take on two different values.</p>
+<p><span class="math display">\[
+duration = \beta_{0} + \beta_{1} bike\_type + \beta_{2} trip\_route\_category + \epsilon
+\]</span></p>
+<pre class="r"><code>bike_lm &lt;- lm(duration ~ bike_type + trip_route_category, data = bike)
+
+broom::glance(bike_lm)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+##       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1    0.0177     0.0176  15.2   2676.       0     2 -1.23e6 2.47e6 2.47e6  6.90e7
+## # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance</code></pre>
+<pre class="r"><code>broom::tidy(bike_lm) |&gt;
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 3 × 5
+##   term                          estimate std.error statistic p.value
+##   &lt;chr&gt;                            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                     14.9       0.048     310.        0
+## 2 bike_typestandard                0.375     0.059       6.4       0
+## 3 trip_route_categoryRound Trip    7.25      0.099      73.0       0</code></pre>
+<pre class="r"><code>two_way_predict &lt;- broom::augment(bike_lm) %&gt;%
+   distinct(bike_type, trip_route_category, .fitted)
+
+two_way_predict</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   bike_type trip_route_category .fitted
+##   &lt;chr&gt;     &lt;chr&gt;                 &lt;dbl&gt;
+## 1 standard  One Way                15.3
+## 2 electric  One Way                14.9
+## 3 electric  Round Trip             22.2
+## 4 standard  Round Trip             22.6</code></pre>
+<pre class="r"><code>mean_duration &lt;- df_stats(duration ~ bike_type + trip_route_category, data =bike, mean, length)
+mean_duration</code></pre>
+<pre><code>##   response bike_type trip_route_category     mean length
+## 1 duration  electric             One Way 15.21481  93807
+## 2 duration  standard             One Way 15.16518 178219
+## 3 duration  electric          Round Trip 19.52470   9819
+## 4 duration  standard          Round Trip 24.19370  15947</code></pre>
+<pre class="r"><code>gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = two_way_predict, size = 5) %&gt;%
+  gf_line(size = 1.5, group = ~ trip_route_category) %&gt;%
+  gf_labs(x = &quot;&quot;, y = &quot;Model Predicted Values&quot;, color = &#39;Trip Route&#39;) %&gt;%
+  gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)</code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Back to the coefficients to really understand what these are.</p>
+<pre class="r"><code>broom::tidy(bike_lm) |&gt;
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 3 × 5
+##   term                          estimate std.error statistic p.value
+##   &lt;chr&gt;                            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                     14.9       0.048     310.        0
+## 2 bike_typestandard                0.375     0.059       6.4       0
+## 3 trip_route_categoryRound Trip    7.25      0.099      73.0       0</code></pre>
+<ul>
+<li><em>Intercept</em>: The average bike rental duration for the reference group (electric bikes and one-way trips).</li>
+<li><em>bike_typestandard</em>: This is like a slope, so for a one unit change in bike type (ie, moving from an electric bike to a standard bike), the estimated mean change in bike duration decreased by 0.375 minutes, holding other attributes constant.</li>
+<li><em>trip_route_categoryRound Trip</em>: This is again like a slope, for a one unit change in trip route (ie, moving from a one-way trip to a round trip), the estimated mean change in bike duraction increased by 7.246 minutes, holder other attributes constant.</li>
+</ul>
+<p>These are like weighted marginal means, where the weighting is occuring due to different sample sizes among the groups.</p>
+<pre class="r"><code>count(bike, bike_type, trip_route_category)</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   bike_type trip_route_category      n
+##   &lt;chr&gt;     &lt;chr&gt;                &lt;int&gt;
+## 1 electric  One Way              93807
+## 2 electric  Round Trip            9819
+## 3 standard  One Way             178219
+## 4 standard  Round Trip           15947</code></pre>
+<pre class="r"><code>df_stats(duration ~ bike_type + trip_route_category, data = bike, mean) %&gt;%
+  pivot_wider(names_from = &#39;trip_route_category&#39;, values_from = &quot;mean&quot;)</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   response bike_type `One Way` `Round Trip`
+##   &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 duration electric       15.2         19.5
+## 2 duration standard       15.2         24.2</code></pre>
+<div id="interaction-model" class="section level3">
+<h3>Interaction Model</h3>
+<p>The interaction model expands on the main effect only model, by allowing the effect of one category to differ based on elements of the other category. One way to think about this in the case with two categorical attributes, is that the mean change differs based on levels of the second attribute. This model, in the case where the attributes are each two groups, adds one additional term.</p>
+<p><span class="math display">\[
+duration = \beta_{0} + \beta_{1} bike\_type + \beta_{2} trip\_route\_category + \beta_{3} bike\_type:trip\_route\_category + \epsilon
+\]</span></p>
+<pre class="r"><code>bike_lm_int &lt;- lm(duration ~ bike_type + trip_route_category + bike_type:trip_route_category, data = bike)
+
+broom::glance(bike_lm_int)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+##       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1    0.0194     0.0194  15.2   1964.       0     3 -1.23e6 2.47e6 2.47e6  6.89e7
+## # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance</code></pre>
+<pre class="r"><code>broom::tidy(bike_lm_int)  |&gt;
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term                                           estim…¹ std.e…² stati…³ p.value
+##   &lt;chr&gt;                                            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                                      15.2    0.05  306.      0    
+## 2 bike_typestandard                                -0.05   0.061  -0.809   0.419
+## 3 trip_route_categoryRound Trip                     4.31   0.161  26.7     0    
+## 4 bike_typestandard:trip_route_categoryRound Tr…    4.72   0.205  23.1     0    
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic</code></pre>
+<pre class="r"><code>two_way_predict_int &lt;- broom::augment(bike_lm_int) %&gt;%
+   distinct(bike_type, trip_route_category, .fitted)
+
+two_way_predict_int</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   bike_type trip_route_category .fitted
+##   &lt;chr&gt;     &lt;chr&gt;                 &lt;dbl&gt;
+## 1 standard  One Way                15.2
+## 2 electric  One Way                15.2
+## 3 electric  Round Trip             19.5
+## 4 standard  Round Trip             24.2</code></pre>
+<pre class="r"><code>gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = two_way_predict_int, size = 5) %&gt;%
+  gf_line(size = 1.5, group = ~ trip_route_category) %&gt;%
+  gf_labs(x = &quot;&quot;, y = &quot;Model Predicted Values&quot;, color = &#39;Trip Route&#39;) %&gt;%
+  gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)</code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Back to the coefficients and what do these mean here.</p>
+<pre class="r"><code>broom::tidy(bike_lm_int)  |&gt;
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term                                           estim…¹ std.e…² stati…³ p.value
+##   &lt;chr&gt;                                            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                                      15.2    0.05  306.      0    
+## 2 bike_typestandard                                -0.05   0.061  -0.809   0.419
+## 3 trip_route_categoryRound Trip                     4.31   0.161  26.7     0    
+## 4 bike_typestandard:trip_route_categoryRound Tr…    4.72   0.205  23.1     0    
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic</code></pre>
+<ul>
+<li><em>Intercept</em>: The average bike rental duration for the reference group (electric bikes and one-way trips).</li>
+<li><em>bike_typestandard</em>: This is like a slope, so for a one unit change in bike type (ie, moving from an electric bike to a standard bike), the estimated mean change in bike duration decreased by .05 minutes, holding other attributes constant.</li>
+<li><em>trip_route_categoryRound Trip</em>: This is again like a slope, for a one unit change in trip route (ie, moving from a one-way trip to a round trip), the estimated mean change in bike duraction increased by 4.3 minutes, holder other attributes constant.</li>
+<li><em>bike_typestandard:trip_route_categoryRound Trip</em>: This is the interaction effect and is the <strong>additional</strong> mean level change for standard bikes <em>and</em> round trips, holding other attributes constant.</li>
+</ul>
+<p>We can get the estimated means for the 4 groups as follows:</p>
+<p><span class="math display">\[
+\hat{\mu}_{elec-1way} = 15.2
+\]</span>
+<span class="math display">\[
+\hat{\mu}_{elec-RT} = 15.2 + 4.3
+\]</span>
+<span class="math display">\[
+\hat{\mu}_{stand-1way} = 15.2 - .05
+\]</span>
+<span class="math display">\[
+\hat{\mu}_{stand-RT} = 15.2 - 0.05 + 4.3 + 4.7
+\]</span></p>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>What about the example with two categorical attributes bike type and passholder type? Fit this model below and interpret the parameter estimates, both one without and with interaction effects.</p>
+</div>
+</div>
+<div id="second-order-three-way-interaction" class="section level2">
+<h2>Second order (three-way) interaction</h2>
+<p>The more attributes that interact with one another makes the model more complicated and difficult to interpret. Still, let’s try a second order or three way interaction.</p>
+<pre class="r"><code>bike_lm_3way &lt;- lm(duration ~ bike_type * trip_route_category * passholder_type, data = bike)
+
+broom::glance(bike_lm_3way)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+##       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1    0.0617     0.0617  14.9   1780.       0    11 -1.23e6 2.45e6 2.45e6  6.59e7
+## # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance</code></pre>
+<pre class="r"><code>broom::tidy(bike_lm_3way) |&gt;
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 12 × 5
+##    term                                          estim…¹ std.e…² stati…³ p.value
+##    &lt;chr&gt;                                           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 (Intercept)                                    23.9     0.132 181.      0    
+##  2 bike_typestandard                              -0.8     0.173  -4.63    0    
+##  3 trip_route_categoryRound Trip                   0.426   0.314   1.36    0.174
+##  4 passholder_typeIndego30                        -9.67    0.144 -67.3     0    
+##  5 passholder_typeIndego365                      -11.9     0.185 -64.0     0    
+##  6 bike_typestandard:trip_route_categoryRound T…   8.04    0.424  19.0     0    
+##  7 bike_typestandard:passholder_typeIndego30       1.42    0.187   7.60    0    
+##  8 bike_typestandard:passholder_typeIndego365      0.738   0.233   3.17    0.002
+##  9 trip_route_categoryRound Trip:passholder_typ…   3.64    0.369   9.86    0    
+## 10 trip_route_categoryRound Trip:passholder_typ…  -0.249   0.661  -0.377   0.706
+## 11 bike_typestandard:trip_route_categoryRound T…  -3.78    0.49   -7.72    0    
+## 12 bike_typestandard:trip_route_categoryRound T…  -2.47    0.801  -3.08    0.002
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic</code></pre>
+<p>Interpreting these coefficients can be challenging, visualizing them can be a more effective way to undersand the impact these may have. The following steps will be used to visualize these model results:</p>
+<ol style="list-style-type: decimal">
+<li>Generate model-implied or predicted values for each combination of model values</li>
+<li>Plot those model implied means</li>
+</ol>
+<pre class="r"><code>three_way_predict_int &lt;- broom::augment(bike_lm_3way) %&gt;%
+   distinct(bike_type, trip_route_category, passholder_type, .fitted)
+
+three_way_predict_int</code></pre>
+<pre><code>## # A tibble: 12 × 4
+##    bike_type trip_route_category passholder_type .fitted
+##    &lt;chr&gt;     &lt;chr&gt;               &lt;chr&gt;             &lt;dbl&gt;
+##  1 standard  One Way             Indego30           14.8
+##  2 electric  One Way             Indego30           14.2
+##  3 standard  One Way             Indego365          12.0
+##  4 electric  Round Trip          Day Pass           24.3
+##  5 standard  One Way             Day Pass           23.1
+##  6 standard  Round Trip          Indego30           23.2
+##  7 standard  Round Trip          Day Pass           31.5
+##  8 electric  One Way             Day Pass           23.9
+##  9 electric  Round Trip          Indego30           18.3
+## 10 electric  One Way             Indego365          12.0
+## 11 standard  Round Trip          Indego365          17.7
+## 12 electric  Round Trip          Indego365          12.2</code></pre>
+<pre class="r"><code>gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = three_way_predict_int, size = 5) %&gt;%
+  gf_line(size = 1.5, group = ~ trip_route_category) %&gt;%
+  gf_facet_wrap(~ passholder_type) %&gt;%
+  gf_labs(y = &quot;&quot;, x = &quot;Model Predicted Values&quot;, color = &#39;Trip Route&#39;)</code></pre>
+<p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+</div>
+
+          </div>
+
+          
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/12-pairwise/" rel="next">Pairwise Contrasts</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/lectures/14-ancova/" rel="prev">Analysis of Covariance</a>
+  </div>
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Nov 10, 2022</p>
+
+          
+
+
+
+          
+
+
+
+
+          
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.d4185df71ecf716f1c4e7ef5f3d4e2b8.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

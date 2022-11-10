@@ -3886,5 +3886,876 @@ broom::tidy(position_lm)
 </description>
     </item>
     
+    <item>
+      <title>Pairwise Contrasts</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/12-pairwise/</link>
+      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/12-pairwise/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;more-details-on-pairwise-contrasts&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;More details on pairwise contrasts&lt;/h1&gt;
+&lt;p&gt;Last week the idea of pairwise contrasts were introduced. Here is a more formal discussion of pairwise contrasts and controlling of familywise type I error rates.&lt;/p&gt;
+&lt;div id=&#34;bonferroni-method&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bonferroni Method&lt;/h2&gt;
+&lt;p&gt;This method is introduced first, primarily due to its simplicity. This is not the best measure to use however as will be discussed below. The Bonferroni method makes the following adjustment:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\alpha_{new} = \frac{\alpha}{m}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; is the number of hypotheses being tested. Let’s use a specific example to frame this based on the baseball data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Lahman)
+library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting %&amp;gt;%
+  filter(AB &amp;gt; 100) %&amp;gt;%
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) %&amp;gt;%
+  filter(yearID &amp;gt; 1990) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&amp;gt;%
+  mutate(average = H / AB)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- Appearances %&amp;gt;%
+  filter(yearID &amp;gt; 1990) %&amp;gt;%
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) %&amp;gt;%
+  rowwise() %&amp;gt;%
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) %&amp;gt;%
+  select(-G_1b, -G_2b, -G_3b, -G_ss) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) %&amp;gt;%
+  pivot_longer(catcher:infield,
+               names_to = &amp;quot;position&amp;quot;) %&amp;gt;%
+  filter(value &amp;gt; 0) %&amp;gt;%
+  group_by(playerID, lgID) %&amp;gt;%
+  slice_max(value) %&amp;gt;%
+  select(playerID, lgID, position) %&amp;gt;%
+  inner_join(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.
+## Joining, by = c(&amp;quot;playerID&amp;quot;, &amp;quot;lgID&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- People %&amp;gt;%
+  tbl_df() %&amp;gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&amp;gt;%
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) %&amp;gt;%
+  inner_join(career, by = &amp;quot;playerID&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- career %&amp;gt;%
+  mutate(league_dummy = ifelse(lgID == &amp;#39;NL&amp;#39;, 1, 0))
+
+head(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 8
+##   playerID  name               lgID  position     H    AB average league_dummy
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 abbotje01 Jeff Abbott        AL    outfield   127   459   0.277            0
+## 2 abbotku01 Kurt Abbott        AL    infield     33   123   0.268            0
+## 3 abbotku01 Kurt Abbott        NL    infield    455  1780   0.256            1
+## 4 abercre01 Reggie Abercrombie NL    outfield    54   255   0.212            1
+## 5 abernbr01 Brent Abernathy    AL    infield    194   767   0.253            0
+## 6 abnersh01 Shawn Abner        AL    outfield    81   309   0.262            0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;position_lm &amp;lt;- lm(average ~ 1 + position, data = career)
+
+broom::tidy(position_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term             estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)        0.241    0.00140    172.   0       
+## 2 positiondh         0.0165   0.00345      4.79 1.75e- 6
+## 3 positioninfield    0.0136   0.00161      8.44 4.80e-17
+## 4 positionoutfield   0.0147   0.00163      9.00 4.05e-19&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(career, position)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 2
+##   position     n
+##   &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
+## 1 catcher    410
+## 2 dh          81
+## 3 infield   1248
+## 4 outfield  1136&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Given that there are 4 groups, if all pairwise comparisons were of interest, the following would be all possible &lt;strong&gt;NULL&lt;/strong&gt; hypotheses. Note, I am assuming that each of these has a matching alternative hypothesis that states the groups differences are &lt;em&gt;different&lt;/em&gt; from 0.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \mu_{catcher} - \mu_{dh} = 0 \\
+H_{0}: \mu_{catcher} - \mu_{infield} = 0 \\
+H_{0}: \mu_{catcher} - \mu_{outfield} = 0 \\
+H_{0}: \mu_{dh} - \mu_{infield} = 0 \\
+H_{0}: \mu_{dh} - \mu_{outfield} = 0 \\
+H_{0}: \mu_{infield} - \mu_{outfield} = 0 \\
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In general, to find the total number of hypotheses, you can use the combinations formula:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For our example this would lead to:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\binom{4}{2} = \frac{4!}{2!(4 - 2)!} = \frac{4 * 3 * 2 * 1}{2 * 1 * (2 * 1)} = \frac{24}{4} = 6
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Therefore, using bonferroni’s correction, our new alpha would be:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\alpha_{new} = \frac{.05}{6} = .0083
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Alternatively, you could also adjust the p-values to make them smaller and still use .05 (or any other predetermined familywise &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; value).&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+p_{new} = \frac{p_{original}}{m}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This is what most software programs do automatically for you.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;bonf&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  career$average and career$position 
+## 
+##          catcher dh infield
+## dh       1.0e-05 -  -      
+## infield  2.9e-16 1  -      
+## outfield &amp;lt; 2e-16 1  1      
+## 
+## P value adjustment method: bonferroni&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-a-type-i-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is a type I error?&lt;/h2&gt;
+&lt;p&gt;Before moving to why you should care, let’s more formally talk about type I errors. Suppose we have the following table of possible outcomes:&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;35%&#34; /&gt;
+&lt;col width=&#34;31%&#34; /&gt;
+&lt;col width=&#34;33%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt; true&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt; false&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Reject &lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Type I Error (&lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Correct - Power (&lt;span class=&#34;math inline&#34;&gt;\(1 - \beta\)&lt;/span&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Retain &lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Correct (&lt;span class=&#34;math inline&#34;&gt;\(1 - \alpha\)&lt;/span&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Type II Error (&lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Type I error&lt;/strong&gt; is when the null hypothesis is true in the population, but the statistical evidence &lt;em&gt;supports the alternative hypothesis&lt;/em&gt;.
+&lt;strong&gt;Type II error&lt;/strong&gt; is when the null hypothesis is false in the population, but the statistical evidence &lt;em&gt;supports the null hypothesis&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Here is a good link for an interactive app that shows many of these terms visually: &lt;a href=&#34;https://rpsychologist.com/d3/nhst/&#34; class=&#34;uri&#34;&gt;https://rpsychologist.com/d3/nhst/&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;type-m-and-type-s-errors&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Type M and Type S errors&lt;/h3&gt;
+&lt;p&gt;These were first defined by Gelman and Tuerlinckx (2000) and is also in section 4.4 of &lt;em&gt;Regression and Other Stories&lt;/em&gt; textbook.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Type S (sign) occurs when the sign of the estimated effect is in the opposite direction as the true effect.&lt;/li&gt;
+&lt;li&gt;Type M (magnitude) occurse when the magnitude of the estimated effect is much different (often larger) than the true effect.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These really shift the narrative away from achieving statistical signficiance and moving toward proper estimation of effects or precision, this is a better goal in my opinion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;holm-bonferroni-procedure&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Holm-Bonferroni Procedure&lt;/h2&gt;
+&lt;p&gt;The boneferroni procedure will be overly conservative and I wouldn’t recommend it’s use in practice. If you want a simple approach to p-value adjustment, I’d recommend just setting a specific value for the alpha value to be more conservative, for example setting it to 0.01.&lt;/p&gt;
+&lt;p&gt;The Holm-Bonferroni approach is an adjustment method that is more powerful then the original bonferroni procedure, but does not come with onerous assumptions. The Holm-Boneferroni procedure uses the following steps for adjustment.&lt;/p&gt;
+&lt;p&gt;Suppose there are &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; p-values (ie, &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; null hypotheses). First, order these from smallest to largest, be sure to keep track of which hypothese the p-value is associated with. Then,
+1. Is the smallest p-value &lt;strong&gt;less than&lt;/strong&gt; &lt;span class=&#34;math inline&#34;&gt;\(\alpha / m\)&lt;/span&gt;, if yes, provide evidence for the alternative hypothesis and proceed to the next p-value, it not stop.
+2. Is the second smallest p-value &lt;strong&gt;less than&lt;/strong&gt; $ / m - 1$, if eys, provide evidence for the alternative hypothesis and proceed to the next p-value, if not stop.
+3. Continue, comparing the p-values in order to the following adjust alpha,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\alpha_{new_{k}} = \frac{\alpha}{m + 1 - k}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where is &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; is the rank of the p-values when ordered from smallest to largest.&lt;/p&gt;
+&lt;p&gt;Similar to the bonferroni, the p-values can be adjusted with the following formula:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+p_{adj} = min(1, max((m + 1 - k) * p_{k} ))
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where is &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; is the rank of the p-values when ordered from smallest to largest.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;holm&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  career$average and career$position 
+## 
+##          catcher dh infield
+## dh       7.0e-06 -  -      
+## infield  2.4e-16 1  -      
+## outfield &amp;lt; 2e-16 1  1      
+## 
+## P value adjustment method: holm&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               catcher        dh   infield
+## dh       1.747816e-06        NA        NA
+## infield  4.802093e-17 0.3745381        NA
+## outfield 4.051053e-19 0.5776818 0.3567626&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[3] * (6 + 1 - 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.430632e-18&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[2] * (6 + 1 - 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.401046e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[1] * (6 + 1 - 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 6.991264e-06&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[9] * (6 + 1 - 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.070288&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[5] * (6 + 1 - 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.7490762&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[6] * (6 + 1 - 6)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5776818&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exploring-assumptions-for-model-with-categorical-attributes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exploring assumptions for model with categorical attributes&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(position_lm, which = 1:5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple Categorical Attributes</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical/</link>
+      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;add-more-than-one-categorical-predictor&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Add more than one categorical predictor&lt;/h1&gt;
+&lt;p&gt;Let’s explore the ability to add more than one categorical predictor to our model. This will then build into thinking through interactions. Let’s load some new data. These are bike data from Philadelphia program, called &lt;a href=&#34;https://www.rideindego.com/about/data/&#34;&gt;Indego&lt;/a&gt;. The data loaded below are from Q3 of 2021.&lt;/p&gt;
+&lt;p&gt;Here is information about the columns in the data.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;trip_id:&lt;/strong&gt; Locally unique integer that identifies the trip&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;duration:&lt;/strong&gt; Length of trip in minutes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_time:&lt;/strong&gt; The date/time when the trip began, presented in ISO 8601 format in local time&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_time:&lt;/strong&gt; The date/time when the trip ended, presented in ISO 8601 format in local time&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_station:&lt;/strong&gt; The station ID where the trip originated (for station name and more information on each station see the Station Table)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_lat:&lt;/strong&gt; The latitude of the station where the trip originated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_lon:&lt;/strong&gt; The longitude of the station where the trip originated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_station:&lt;/strong&gt; The station ID where the trip terminated (for station name and more information on each station see the Station Table)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_lat:&lt;/strong&gt; The latitude of the station where the trip terminated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_lon:&lt;/strong&gt; The longitude of the station where the trip terminated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bike_id:&lt;/strong&gt; Locally unique integer that identifies the bike&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;plan_duration:&lt;/strong&gt; The number of days that the plan the passholder is using entitles them to ride; 0 is used for a single ride plan (Walk-up)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;trip_route_category:&lt;/strong&gt; “Round Trip” for trips starting and ending at the same station or “One Way” for all other trips&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;passholder_type:&lt;/strong&gt; The name of the passholder’s plan&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bike_type:&lt;/strong&gt; The kind of bike used on the trip, including standard pedal-powered bikes or electric assist bikes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+temp &amp;lt;- tempfile()
+download.file(&amp;quot;https://u626n26h74f16ig1p3pt0f2g-wpengine.netdna-ssl.com/wp-content/uploads/2021/10/indego-trips-2021-q3.zip&amp;quot;, temp)
+bike &amp;lt;- readr::read_csv(unz(temp, &amp;quot;indego-trips-2021-q3.csv&amp;quot;)) %&amp;gt;%
+   filter(duration &amp;lt;= 120 &amp;amp; passholder_type != &amp;#39;Walk-up&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: One or more parsing issues, see `problems()` for details&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 300432 Columns: 15
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (5): start_time, end_time, trip_route_category, passholder_type, bike_type
+## dbl (10): trip_id, duration, start_station, start_lat, start_lon, end_statio...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unlink(temp)
+
+head(bike)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 15
+##     trip_id duration start_time  end_t…¹ start…² start…³ start…⁴ end_s…⁵ end_lat
+##       &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 398698761       11 7/1/2021 0… 7/1/20…    3045    39.9   -75.2    3030    39.9
+## 2 398698759        4 7/1/2021 0… 7/1/20…    3052    39.9   -75.2    3238    39.9
+## 3 398698757       56 7/1/2021 0… 7/1/20…    3192    40.0   -75.1    3161    40.0
+## 4 398698755       55 7/1/2021 0… 7/1/20…    3192    40.0   -75.1    3161    40.0
+## 5 398698753        5 7/1/2021 0… 7/1/20…    3052    39.9   -75.2    3046    40.0
+## 6 398698750       13 7/1/2021 0… 7/1/20…    3213    39.9   -75.2    3039    40.0
+## # … with 6 more variables: end_lon &amp;lt;dbl&amp;gt;, bike_id &amp;lt;dbl&amp;gt;, plan_duration &amp;lt;dbl&amp;gt;,
+## #   trip_route_category &amp;lt;chr&amp;gt;, passholder_type &amp;lt;chr&amp;gt;, bike_type &amp;lt;chr&amp;gt;, and
+## #   abbreviated variable names ¹​end_time, ²​start_station, ³​start_lat,
+## #   ⁴​start_lon, ⁵​end_station&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(bike)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 297792     15&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Suppose we were interested in the following research questions.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Does the trip route, type of pass, and bike type explain variation in the duration the bike was rented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s explore this descriptively.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ duration, data = bike) %&amp;gt;%
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(bike_type ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(passholder_type ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(trip_route_category ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;regression-model-with-multiple-categorical-predictors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Regression model with multiple categorical predictors&lt;/h2&gt;
+&lt;p&gt;Similar to multiple linear regression, including multiple categorical predictors is similar to that case. The simplest model is the additive model, also commonly referred to as the main effect model. Let’s start with two categorical attributes that take on two different values.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+duration = \beta_{0} + \beta_{1} bike\_type + \beta_{2} trip\_route\_category + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bike_lm &amp;lt;- lm(duration ~ bike_type + trip_route_category, data = bike)
+
+broom::glance(bike_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+##       &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1    0.0177     0.0176  15.2   2676.       0     2 -1.23e6 2.47e6 2.47e6  6.90e7
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm) |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term                          estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                     14.9       0.048     310.        0
+## 2 bike_typestandard                0.375     0.059       6.4       0
+## 3 trip_route_categoryRound Trip    7.25      0.099      73.0       0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;two_way_predict &amp;lt;- broom::augment(bike_lm) %&amp;gt;%
+   distinct(bike_type, trip_route_category, .fitted)
+
+two_way_predict&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 3
+##   bike_type trip_route_category .fitted
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;
+## 1 standard  One Way                15.3
+## 2 electric  One Way                14.9
+## 3 electric  Round Trip             22.2
+## 4 standard  Round Trip             22.6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean_duration &amp;lt;- df_stats(duration ~ bike_type + trip_route_category, data =bike, mean, length)
+mean_duration&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response bike_type trip_route_category     mean length
+## 1 duration  electric             One Way 15.21481  93807
+## 2 duration  standard             One Way 15.16518 178219
+## 3 duration  electric          Round Trip 19.52470   9819
+## 4 duration  standard          Round Trip 24.19370  15947&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = two_way_predict, size = 5) %&amp;gt;%
+  gf_line(size = 1.5, group = ~ trip_route_category) %&amp;gt;%
+  gf_labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;) %&amp;gt;%
+  gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Back to the coefficients to really understand what these are.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm) |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term                          estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                     14.9       0.048     310.        0
+## 2 bike_typestandard                0.375     0.059       6.4       0
+## 3 trip_route_categoryRound Trip    7.25      0.099      73.0       0&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Intercept&lt;/em&gt;: The average bike rental duration for the reference group (electric bikes and one-way trips).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;bike_typestandard&lt;/em&gt;: This is like a slope, so for a one unit change in bike type (ie, moving from an electric bike to a standard bike), the estimated mean change in bike duration decreased by 0.375 minutes, holding other attributes constant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;trip_route_categoryRound Trip&lt;/em&gt;: This is again like a slope, for a one unit change in trip route (ie, moving from a one-way trip to a round trip), the estimated mean change in bike duraction increased by 7.246 minutes, holder other attributes constant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are like weighted marginal means, where the weighting is occuring due to different sample sizes among the groups.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(bike, bike_type, trip_route_category)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 3
+##   bike_type trip_route_category      n
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                &amp;lt;int&amp;gt;
+## 1 electric  One Way              93807
+## 2 electric  Round Trip            9819
+## 3 standard  One Way             178219
+## 4 standard  Round Trip           15947&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(duration ~ bike_type + trip_route_category, data = bike, mean) %&amp;gt;%
+  pivot_wider(names_from = &amp;#39;trip_route_category&amp;#39;, values_from = &amp;quot;mean&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 4
+##   response bike_type `One Way` `Round Trip`
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 duration electric       15.2         19.5
+## 2 duration standard       15.2         24.2&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;interaction-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Interaction Model&lt;/h3&gt;
+&lt;p&gt;The interaction model expands on the main effect only model, by allowing the effect of one category to differ based on elements of the other category. One way to think about this in the case with two categorical attributes, is that the mean change differs based on levels of the second attribute. This model, in the case where the attributes are each two groups, adds one additional term.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+duration = \beta_{0} + \beta_{1} bike\_type + \beta_{2} trip\_route\_category + \beta_{3} bike\_type:trip\_route\_category + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bike_lm_int &amp;lt;- lm(duration ~ bike_type + trip_route_category + bike_type:trip_route_category, data = bike)
+
+broom::glance(bike_lm_int)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+##       &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1    0.0194     0.0194  15.2   1964.       0     3 -1.23e6 2.47e6 2.47e6  6.89e7
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm_int)  |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term                                           estim…¹ std.e…² stati…³ p.value
+##   &amp;lt;chr&amp;gt;                                            &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                                      15.2    0.05  306.      0    
+## 2 bike_typestandard                                -0.05   0.061  -0.809   0.419
+## 3 trip_route_categoryRound Trip                     4.31   0.161  26.7     0    
+## 4 bike_typestandard:trip_route_categoryRound Tr…    4.72   0.205  23.1     0    
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;two_way_predict_int &amp;lt;- broom::augment(bike_lm_int) %&amp;gt;%
+   distinct(bike_type, trip_route_category, .fitted)
+
+two_way_predict_int&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 3
+##   bike_type trip_route_category .fitted
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;
+## 1 standard  One Way                15.2
+## 2 electric  One Way                15.2
+## 3 electric  Round Trip             19.5
+## 4 standard  Round Trip             24.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = two_way_predict_int, size = 5) %&amp;gt;%
+  gf_line(size = 1.5, group = ~ trip_route_category) %&amp;gt;%
+  gf_labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;) %&amp;gt;%
+  gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Back to the coefficients and what do these mean here.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm_int)  |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term                                           estim…¹ std.e…² stati…³ p.value
+##   &amp;lt;chr&amp;gt;                                            &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                                      15.2    0.05  306.      0    
+## 2 bike_typestandard                                -0.05   0.061  -0.809   0.419
+## 3 trip_route_categoryRound Trip                     4.31   0.161  26.7     0    
+## 4 bike_typestandard:trip_route_categoryRound Tr…    4.72   0.205  23.1     0    
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Intercept&lt;/em&gt;: The average bike rental duration for the reference group (electric bikes and one-way trips).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;bike_typestandard&lt;/em&gt;: This is like a slope, so for a one unit change in bike type (ie, moving from an electric bike to a standard bike), the estimated mean change in bike duration decreased by .05 minutes, holding other attributes constant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;trip_route_categoryRound Trip&lt;/em&gt;: This is again like a slope, for a one unit change in trip route (ie, moving from a one-way trip to a round trip), the estimated mean change in bike duraction increased by 4.3 minutes, holder other attributes constant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;bike_typestandard:trip_route_categoryRound Trip&lt;/em&gt;: This is the interaction effect and is the &lt;strong&gt;additional&lt;/strong&gt; mean level change for standard bikes &lt;em&gt;and&lt;/em&gt; round trips, holding other attributes constant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We can get the estimated means for the 4 groups as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{elec-1way} = 15.2
+\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{elec-RT} = 15.2 + 4.3
+\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{stand-1way} = 15.2 - .05
+\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{stand-RT} = 15.2 - 0.05 + 4.3 + 4.7
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Example&lt;/h3&gt;
+&lt;p&gt;What about the example with two categorical attributes bike type and passholder type? Fit this model below and interpret the parameter estimates, both one without and with interaction effects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;second-order-three-way-interaction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Second order (three-way) interaction&lt;/h2&gt;
+&lt;p&gt;The more attributes that interact with one another makes the model more complicated and difficult to interpret. Still, let’s try a second order or three way interaction.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bike_lm_3way &amp;lt;- lm(duration ~ bike_type * trip_route_category * passholder_type, data = bike)
+
+broom::glance(bike_lm_3way)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+##       &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1    0.0617     0.0617  14.9   1780.       0    11 -1.23e6 2.45e6 2.45e6  6.59e7
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm_3way) |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 12 × 5
+##    term                                          estim…¹ std.e…² stati…³ p.value
+##    &amp;lt;chr&amp;gt;                                           &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 (Intercept)                                    23.9     0.132 181.      0    
+##  2 bike_typestandard                              -0.8     0.173  -4.63    0    
+##  3 trip_route_categoryRound Trip                   0.426   0.314   1.36    0.174
+##  4 passholder_typeIndego30                        -9.67    0.144 -67.3     0    
+##  5 passholder_typeIndego365                      -11.9     0.185 -64.0     0    
+##  6 bike_typestandard:trip_route_categoryRound T…   8.04    0.424  19.0     0    
+##  7 bike_typestandard:passholder_typeIndego30       1.42    0.187   7.60    0    
+##  8 bike_typestandard:passholder_typeIndego365      0.738   0.233   3.17    0.002
+##  9 trip_route_categoryRound Trip:passholder_typ…   3.64    0.369   9.86    0    
+## 10 trip_route_categoryRound Trip:passholder_typ…  -0.249   0.661  -0.377   0.706
+## 11 bike_typestandard:trip_route_categoryRound T…  -3.78    0.49   -7.72    0    
+## 12 bike_typestandard:trip_route_categoryRound T…  -2.47    0.801  -3.08    0.002
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Interpreting these coefficients can be challenging, visualizing them can be a more effective way to undersand the impact these may have. The following steps will be used to visualize these model results:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Generate model-implied or predicted values for each combination of model values&lt;/li&gt;
+&lt;li&gt;Plot those model implied means&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;three_way_predict_int &amp;lt;- broom::augment(bike_lm_3way) %&amp;gt;%
+   distinct(bike_type, trip_route_category, passholder_type, .fitted)
+
+three_way_predict_int&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 12 × 4
+##    bike_type trip_route_category passholder_type .fitted
+##    &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;               &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;
+##  1 standard  One Way             Indego30           14.8
+##  2 electric  One Way             Indego30           14.2
+##  3 standard  One Way             Indego365          12.0
+##  4 electric  Round Trip          Day Pass           24.3
+##  5 standard  One Way             Day Pass           23.1
+##  6 standard  Round Trip          Indego30           23.2
+##  7 standard  Round Trip          Day Pass           31.5
+##  8 electric  One Way             Day Pass           23.9
+##  9 electric  Round Trip          Indego30           18.3
+## 10 electric  One Way             Indego365          12.0
+## 11 standard  Round Trip          Indego365          17.7
+## 12 electric  Round Trip          Indego365          12.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = three_way_predict_int, size = 5) %&amp;gt;%
+  gf_line(size = 1.5, group = ~ trip_route_category) %&amp;gt;%
+  gf_facet_wrap(~ passholder_type) %&amp;gt;%
+  gf_labs(y = &amp;quot;&amp;quot;, x = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Analysis of Covariance</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/14-ancova/</link>
+      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/14-ancova/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;analysis-of-covariance&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Analysis of Covariance&lt;/h1&gt;
+&lt;p&gt;This section of notes will explore an analysis procedure classically known as Analysis of Covariance (ANCOVA). This methodology is aimed to answer the following question, &lt;em&gt;Is there a difference in groups, after controlling for other covariates&lt;/em&gt;. Here, covariates refer to another attribute in the data that is thought to influence or explain variation in the outcome, therefore, this method is meant to remove, control, or partition the variance associated with the covariate (or multiple covariates) to evaluate the conditional or adjusted means.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(broom)
+
+theme_set(theme_bw(base_size = 18))
+
+baby &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/baby.csv&amp;quot;) %&amp;gt;%
+   mutate(gestational_mean = gestational_days - mean(gestational_days),
+          maternal_weight_mean = maternal_pregnancy_weight - mean(maternal_pregnancy_weight),
+          maternal_age_mean = maternal_age - mean(maternal_age),
+          maternal_height_mean = maternal_height - mean(maternal_height))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1174 Columns: 6
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## dbl (5): birth_weight, gestational_days, maternal_age, maternal_height, mate...
+## lgl (1): maternal_smoker
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(baby)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 10
+##   birth_weight gestati…¹ mater…² mater…³ mater…⁴ mater…⁵ gesta…⁶ mater…⁷ mater…⁸
+##          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;lgl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1          120       284      27      62     100 FALSE     4.90   -28.5   -0.228
+## 2          113       282      33      64     135 FALSE     2.90     6.52   5.77 
+## 3          128       279      28      64     115 TRUE     -0.101  -13.5    0.772
+## 4          108       282      23      67     125 TRUE      2.90    -3.48  -4.23 
+## 5          136       286      25      62      93 FALSE     6.90   -35.5   -2.23 
+## 6          138       244      33      62     178 FALSE   -35.1     49.5    5.77 
+## # … with 1 more variable: maternal_height_mean &amp;lt;dbl&amp;gt;, and abbreviated variable
+## #   names ¹​gestational_days, ²​maternal_age, ³​maternal_height,
+## #   ⁴​maternal_pregnancy_weight, ⁵​maternal_smoker, ⁶​gestational_mean,
+## #   ⁷​maternal_weight_mean, ⁸​maternal_age_mean&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s first explore the model that only includes gestational days in the model, that is, this is a simple linear regression model. &lt;em&gt;Note&lt;/em&gt;: I mean centered gestational days for this model.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight = \beta_{0} + \beta_{1} days + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;baby_lm &amp;lt;- lm(birth_weight ~ gestational_mean, data = baby)
+
+glance(baby_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+##       &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     0.166        0.165  16.7    233. 3.40e-48     1 -4973. 9953. 9968. 328608.
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy(baby_lm) |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term             estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)       119.        0.489     244.        0
+## 2 gestational_mean    0.467     0.031      15.3       0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s next explore another simple linear regression model that only includes whether a mother smoked or not. This model is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight = \beta_{0} + \beta_{2} smoker + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;baby_smoker &amp;lt;- lm(birth_weight ~ maternal_smoker, data = baby)
+
+glance(baby_smoker)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.sq…¹ sigma stati…²  p.value    df logLik    AIC    BIC devia…³
+##       &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1    0.0609     0.0601  17.8    76.0 9.46e-18     1 -5043. 10092. 10107. 370056.
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy(baby_smoker) |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term                estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)           123.       0.665    185.         0
+## 2 maternal_smokerTRUE    -9.27     1.06      -8.72       0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The idea behind ANCOVA is that we know that gestational days is an important predictor in understanding variation in the birth weight of the baby. This may not be a predictor that is of most interest to our research question of knowing whether or not there are differences in birth weight between those that smoked vs did not smoke when the baby was in the womb. There may be some sampling bias occurring, that is, those that smoked may have fewer gestational days compared to those that did not smoke. This fact may drive the differences in the mean difference of birth weight. As a results, we would want to adjust for the effect of gestational days prior to evaluating the mean difference of smoker status.&lt;/p&gt;
+&lt;p&gt;Below is a descriptive figure trying to show the relationship between birth weight and gestational days by smoker status.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(birth_weight ~ gestational_days, data = baby, color = ~maternal_smoker, size = 4) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, size = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-ancova_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Below, let’s fit the traditional ANCOVA model, that contains a single continuous covariate (gestational days) and the categorical predictor. The model would be:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight = \beta_{0} + \beta_{1} days + \beta_{2} smoker + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;baby_ancova &amp;lt;- lm(birth_weight ~ gestational_mean + maternal_smoker, data = baby)
+
+glance(baby_ancova)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+##       &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     0.216        0.214  16.2    161. 1.71e-62     2 -4937. 9883. 9903. 309075.
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy(baby_ancova) |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term                estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)          123.        0.608    202.         0
+## 2 gestational_mean       0.451     0.03      15.2        0
+## 3 maternal_smokerTRUE   -8.37      0.973     -8.60       0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The model above can be partioned to better show the specific terms in the model.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight_{smoker} = (\beta_{0} + \beta_{2}) + \beta_{1} days + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight_{non-smoker} = \beta_{0} + \beta_{1} days + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;More explicitly, the term, &lt;span class=&#34;math inline&#34;&gt;\(\beta_{2}\)&lt;/span&gt; above reflects a mean level change on the intercept after controlling for the effects of gestational days.&lt;/p&gt;
+&lt;div id=&#34;adjusted-means&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adjusted Means&lt;/h2&gt;
+&lt;p&gt;Let’s compare the means from this ANCOVA model compared to the unconditional means.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;uncond_mean &amp;lt;- df_stats(birth_weight ~ maternal_smoker, data = baby, mean) %&amp;gt;%
+   mutate(maternal_smoker = as.character(maternal_smoker))
+
+cond_mean &amp;lt;- data.frame(maternal_smoker = c(&amp;#39;FALSE&amp;#39;, &amp;#39;TRUE&amp;#39;), cond_mean = c(122.74, 122.74 - 8.37))
+
+combine_means &amp;lt;- full_join(uncond_mean, cond_mean)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Joining, by = &amp;quot;maternal_smoker&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;combine_means&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       response maternal_smoker     mean cond_mean
+## 1 birth_weight           FALSE 123.0853    122.74
+## 2 birth_weight            TRUE 113.8192    114.37&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note, the conditional mean used the fact that the gestational days were mean centered, therefore, a value of 0 was included in the above equations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;interaction-between-continuous-and-categorical-predictor&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Interaction between continuous and categorical predictor&lt;/h2&gt;
+&lt;p&gt;One assumption in classical ANCOVA is to assume that the effect of the adjusting covariate is the same for each group. Although, this is a classical assumption, this is an empirical question that we can explore given the data. This can be explored by the introduction of an interaction.&lt;/p&gt;
+&lt;p&gt;This new model would be:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight = \beta_{0} + \beta_{1} days + \beta_{2} smoker + \beta_{3} days:smoker + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where the &lt;span class=&#34;math inline&#34;&gt;\(:\)&lt;/span&gt; in the equation above represents the interaction effect between gestational days and smoker status. An interaction is testing if the slope for gestational days is the same for those that smoke vs those that did not smoke.&lt;/p&gt;
+&lt;p&gt;More explicitly, we can partition the model above into the following two regression equations.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight_{smoker} = (\beta_{0} + \beta_{2}) + (\beta_{1} + \beta_{3}) days + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight_{non-smoker} = \beta_{0} + \beta_{1} days + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;baby_lm_int &amp;lt;- lm(birth_weight ~ gestational_mean * maternal_smoker, data = baby)
+# baby_lm_int &amp;lt;- lm(birth_weight ~ gestational_mean + maternal_smoker + gestational_mean:maternal_smoker, 
+#    data = baby)
+
+glance(baby_lm_int)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+##       &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     0.225        0.223  16.2    113. 2.41e-64     3 -4930. 9871. 9896. 305427.
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy(baby_lm_int) |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term                                 estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                                   &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                           123.        0.605    203.         0
+## 2 gestational_mean                        0.37      0.037     10.1        0
+## 3 maternal_smokerTRUE                    -8.26      0.969     -8.52       0
+## 4 gestational_mean:maternal_smokerTRUE    0.231     0.062      3.74       0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What do the 4 terms represent now?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; is the intercept for the reference group (non-smokers) when all other attributes in the model are equal to 0.&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt; is the slope for the reference group (non-smokers), controlling for the smoker status.&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_{2}\)&lt;/span&gt; is the average change for those that smoke, controlling for differences in gestational days.&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_{3}\)&lt;/span&gt; is the average slope difference for those that smoke compared to those that did not smoke.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Often, it is easier to combine the terms to be compared directly. For example, given the example above, we could combine &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_{2}\)&lt;/span&gt; to get the estimated intercept for those that smoke. Then we could do something similar for the slope terms for those that smoke.&lt;/p&gt;
+&lt;div id=&#34;hypotheses-being-tested&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Hypotheses being tested&lt;/h3&gt;
+&lt;p&gt;The hypotheses being tested here for the &lt;span class=&#34;math inline&#34;&gt;\(\beta_{2}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_{3}\)&lt;/span&gt; are as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \beta_{2} = 0
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \beta_{3} = 0
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;These can be a little bit untenable, therefore stating them in words can help.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_{0}: \beta_{2} = 0\)&lt;/span&gt;, is really testing, is there a mean difference between the reference and focal groups, controlling for the other terms in the model. This is inherently a conditional or adjusted means question.&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_{0}: \beta_{3} = 0\)&lt;/span&gt;, is really testing, is there a slope difference comparing the focal and reference groups, controlling for other terms in the model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-more-than-1-covariate-to-adjustcondition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Including more than 1 covariate to adjust/condition&lt;/h2&gt;
+&lt;p&gt;It is also possible to adjust for more than one covariate. For example, maybe we thought adjusting for the weight, height, and age of the mother would also be a good idea. This can be done to remove any variation associated with that attribute prior to making exploring the mean difference in the attributes of interest.&lt;/p&gt;
+&lt;p&gt;This model would now be:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight = \beta_{0} + \beta_{1} days + \beta_{4} mother\_weight + \beta_{5} mother\_height + \beta_{6} mother\_age + \beta_{2} smoker + \beta_{3} days:smoker + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;These can also be partitioned into two separate equations.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight_{smoker} = (\beta_{0} + \beta_{2}) + (\beta_{1} + \beta_{3}) days + \beta_{4} mother\_weight + \beta_{5} mother\_height + \beta_{6} mother\_age + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+weight_{non-smoker} = \beta_{0} + \beta_{1} days + \beta_{4} mother\_weight + \beta_{5} mother\_height + \beta_{6} mother\_age + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;baby_lm_int_w &amp;lt;- lm(birth_weight ~ gestational_mean + maternal_pregnancy_weight + maternal_height + maternal_age + maternal_smoker + gestational_mean:maternal_smoker, 
+    data = baby)
+
+glance(baby_lm_int_w)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+##       &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     0.260        0.256  15.8    68.3 6.14e-73     6 -4903. 9822. 9863. 291631.
+## # … with 2 more variables: df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy(baby_lm_int_w) |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 × 5
+##   term                                 estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                                   &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                            43.5      12.3       3.54    0    
+## 2 gestational_mean                        0.365     0.036    10.1     0    
+## 3 maternal_pregnancy_weight               0.052     0.025     2.06    0.039
+## 4 maternal_height                         1.10      0.204     5.41    0    
+## 5 maternal_age                            0.07      0.081     0.873   0.383
+## 6 maternal_smokerTRUE                    -8.20      0.952    -8.62    0    
+## 7 gestational_mean:maternal_smokerTRUE    0.208     0.061     3.44    0.001&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;How could the appropriate conditional means be computed here? Also, what happened to the intercept in this model, why is it so small?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

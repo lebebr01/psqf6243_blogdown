@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Bootstrap The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework.">
+  <meta name="description" content="More details on pairwise contrasts Last week the idea of pairwise contrasts were introduced. Here is a more formal discussion of pairwise contrasts and controlling of familywise type I error rates.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/12-pairwise/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/12-pairwise/">
 
   
   
@@ -281,15 +281,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/08-bootstrap/">
-  <meta property="og:title" content="Bootstrap | PSQF 6243">
-  <meta property="og:description" content="Bootstrap The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/12-pairwise/">
+  <meta property="og:title" content="Pairwise Contrasts | PSQF 6243">
+  <meta property="og:description" content="More details on pairwise contrasts Last week the idea of pairwise contrasts were introduced. Here is a more formal discussion of pairwise contrasts and controlling of familywise type I error rates."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2022-10-18T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2022-11-10T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2022-10-18T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2022-11-10T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +308,7 @@
 
 
 
-  <title>Bootstrap | PSQF 6243</title>
+  <title>Pairwise Contrasts | PSQF 6243</title>
 
 </head>
 
@@ -807,7 +807,7 @@
 
 
 
-  <li class="active"><a href="/lectures/08-bootstrap/">Bootstrap</a></li>
+  <li class=""><a href="/lectures/08-bootstrap/">Bootstrap</a></li>
 
 
 
@@ -823,7 +823,7 @@
 
 
 
-  <li class=""><a href="/lectures/12-pairwise/">Pairwise Contrasts</a></li>
+  <li class="active"><a href="/lectures/12-pairwise/">Pairwise Contrasts</a></li>
 
 
 
@@ -852,29 +852,7 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#bootstrap">Bootstrap</a>
-      <ul>
-        <li><a href="#bootstrapping-steps">Bootstrapping Steps</a></li>
-        <li><a href="#resampling-with-replacement">Resampling with replacement</a></li>
-        <li><a href="#more-practical-example">More practical example</a></li>
-        <li><a href="#two-guiding-questions">Two Guiding Questions</a></li>
-        <li><a href="#bivariate-exploration">Bivariate exploration</a></li>
-        <li><a href="#estimate-parameters">Estimate Parameters</a></li>
-        <li><a href="#resample-these-data">Resample these data</a>
-          <ul>
-            <li><a href="#questions-to-consider">Questions to consider</a></li>
-          </ul>
-        </li>
-        <li><a href="#make-sure-futureapply-is-installed">Make sure future.apply is installed</a></li>
-        <li><a href="#replicate">Replicate</a></li>
-        <li><a href="#visualize-results">Visualize results</a></li>
-        <li><a href="#change-the-n-value">Change the N value</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+      
 
       
     </div>
@@ -887,24 +865,26 @@
         <div class="docs-article-container">
           
 
-          <h1>Bootstrap</h1>
+          <h1>Pairwise Contrasts</h1>
 
           <div class="article-style">
-            <h1 id="bootstrap">Bootstrap</h1>
-<p>The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.</p>
-<h2 id="bootstrapping-steps">Bootstrapping Steps</h2>
-<p>The following are the steps when performing a bootstrap.</p>
-<ol>
-<li>Treat the sample data as the population.</li>
-<li>Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.</li>
-<li>Estimate the model using the resampled data from step 2.</li>
-<li>Repeat steps 2 and 3 many many times (eg, 10,000 or more).</li>
-<li>Visualize distribution of effect of interest</li>
-</ol>
-<h2 id="resampling-with-replacement">Resampling with replacement</h2>
-<p>What is meant by sampling with replacement? Let&rsquo;s do an example.</p>
-<pre><code class="language-r">library(tidyverse)
-</code></pre>
+            
+
+<div id="TOC">
+
+</div>
+
+<div id="more-details-on-pairwise-contrasts" class="section level1">
+<h1>More details on pairwise contrasts</h1>
+<p>Last week the idea of pairwise contrasts were introduced. Here is a more formal discussion of pairwise contrasts and controlling of familywise type I error rates.</p>
+<div id="bonferroni-method" class="section level2">
+<h2>Bonferroni Method</h2>
+<p>This method is introduced first, primarily due to its simplicity. This is not the best measure to use however as will be discussed below. The Bonferroni method makes the following adjustment:</p>
+<p><span class="math display">\[
+\alpha_{new} = \frac{\alpha}{m}
+\]</span></p>
+<p>Where <span class="math inline">\(m\)</span> is the number of hypotheses being tested. Let’s use a specific example to frame this based on the baseball data.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
@@ -912,296 +892,239 @@
 ## ✔ readr   2.1.2      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-</code></pre>
-<pre><code class="language-r">fruit &lt;- data.frame(name = c('watermelon', 'apple', 'orange', 'kumquat', 'grapes', 'canteloupe', 'kiwi', 'banana')) %&gt;%
-    mutate(obs_num = 1:n())
-
-fruit
-</code></pre>
-<pre><code>##         name obs_num
-## 1 watermelon       1
-## 2      apple       2
-## 3     orange       3
-## 4    kumquat       4
-## 5     grapes       5
-## 6 canteloupe       6
-## 7       kiwi       7
-## 8     banana       8
-</code></pre>
-<pre><code class="language-r">slice_sample(fruit, n = nrow(fruit), replace = FALSE)
-</code></pre>
-<pre><code>##         name obs_num
-## 1     orange       3
-## 2       kiwi       7
-## 3 watermelon       1
-## 4    kumquat       4
-## 5 canteloupe       6
-## 6     grapes       5
-## 7      apple       2
-## 8     banana       8
-</code></pre>
-<pre><code class="language-r">slice_sample(fruit, n = nrow(fruit), replace = TRUE)
-</code></pre>
-<pre><code>##         name obs_num
-## 1 watermelon       1
-## 2     banana       8
-## 3       kiwi       7
-## 4 canteloupe       6
-## 5       kiwi       7
-## 6       kiwi       7
-## 7       kiwi       7
-## 8 watermelon       1
-</code></pre>
-<h2 id="more-practical-example">More practical example</h2>
-<p>Let&rsquo;s load some data to do a more practical example. The following data come from a <a href="https://nces.ed.gov/timss/" target="_blank" rel="noopener">TIMSS</a> on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.</p>
-<ul>
-<li><strong>IDSTUD</strong>: A unique student ID</li>
-<li><strong>ITBIRTHM</strong>: The birth month of the student</li>
-<li><strong>ITBIRTHY</strong>: The birth year of the student</li>
-<li><strong>ITSEX</strong>: The birth sex of the student</li>
-<li><strong>ASDAGE</strong>: The age of the student (at time of test)</li>
-<li><strong>ASSSCI01</strong>: Overall science scale score</li>
-<li><strong>ASSEAR01</strong>: Earth science scale score</li>
-<li><strong>ASSLIF01</strong>: Life science scale score</li>
-<li><strong>ASSPHY01</strong>: Physics scale score</li>
-<li><strong>ASSKNO01</strong>: Science knowing scale score</li>
-<li><strong>ASSAPP01</strong>: Science applying scale score</li>
-<li><strong>ASSREA01</strong>: Science reasoning scale score</li>
-</ul>
-<pre><code class="language-r">library(tidyverse)
-
-timss &lt;- readr::read_csv('https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv') |&gt; 
-   filter(ASDAGE &lt; 15)
-</code></pre>
-<pre><code>## Rows: 10029 Columns: 12
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-</code></pre>
-<pre><code class="language-r">head(timss)
-</code></pre>
-<pre><code>## # A tibble: 6 × 12
-##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEA…¹ ASSLI…² ASSPH…³ ASSKN…⁴
-##    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1  10101        6     2005     2   9.92     505.    445.    408.    458.    530.
-## 2  10102       10     2005     2   9.58     401.    291.    323.    297.    379.
-## 3  10103        1     2005     1  10.3      542.    440.    529.    529.    521.
-## 4  10104        6     2005     2   9.92     544.    534.    552.    557.    538.
-## 5  10105        6     2005     2   9.92     588.    555.    500.    559.    533.
-## 6  10106       12     2005     1   9.42     583.    556.    585.    562.    526.
-## # … with 2 more variables: ASSAPP01 &lt;dbl&gt;, ASSREA01 &lt;dbl&gt;, and abbreviated
-## #   variable names ¹​ASSEAR01, ²​ASSLIF01, ³​ASSPHY01, ⁴​ASSKNO01
-</code></pre>
-<h2 id="two-guiding-questions">Two Guiding Questions</h2>
-<ol>
-<li>Is the age of a student related to their overall science scale score?</li>
-<li>Is the life science scale score related to the overall science scale score?</li>
-</ol>
-<h2 id="bivariate-exploration">Bivariate exploration</h2>
-<p>It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of &ldquo;%%&rdquo; below and fill in the appropriate predictor in place of &ldquo;^^&rdquo;. You may also want to fill in an appropriate axis labels in place of &ldquo;@@&rdquo; below.</p>
-<ul>
-<li>Summarize the bivariate association</li>
-</ul>
-<pre><code class="language-r">library(ggformula)
-</code></pre>
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(Lahman)
+library(ggformula)</code></pre>
 <pre><code>## Loading required package: ggstance
-</code></pre>
-<pre><code>## 
-## Attaching package: 'ggstance'
-</code></pre>
-<pre><code>## The following objects are masked from 'package:ggplot2':
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
 ## 
 ##     geom_errorbarh, GeomErrorbarh
-</code></pre>
-<pre><code>## Loading required package: scales
-</code></pre>
-<pre><code>## 
-## Attaching package: 'scales'
-</code></pre>
-<pre><code>## The following object is masked from 'package:purrr':
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     discard
-</code></pre>
-<pre><code>## The following object is masked from 'package:readr':
+## 
+## The following object is masked from &#39;package:readr&#39;:
 ## 
 ##     col_factor
-</code></pre>
-<pre><code>## Loading required package: ggridges
-</code></pre>
-<pre><code>## 
+## 
+## Loading required package: ggridges
+## 
 ## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
-</code></pre>
-<pre><code class="language-r">theme_set(theme_bw(base_size = 18))
+##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
 
-gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&gt; 
-  gf_smooth(method = 'lm', size = 1.5) |&gt;
-  gf_smooth(method = 'loess', size = 1.5, color = 'green') |&gt;
-  gf_labs(x = &quot;Age&quot;,
-          y = &quot;Overall Science Score&quot;)
-</code></pre>
-<p><img src="/lectures/08-bootstrap_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<h2 id="estimate-parameters">Estimate Parameters</h2>
-<p>To do this, fill in the outcome of interest in place of &ldquo;%%&rdquo; below and fill in the appropriate predictor in place of &ldquo;^^&rdquo;.</p>
-<ul>
-<li>Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)</li>
-</ul>
-<pre><code class="language-r">timss_model &lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
+career &lt;- Batting %&gt;%
+  filter(AB &gt; 100) %&gt;%
+  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&gt;%
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- Appearances %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) %&gt;%
+  rowwise() %&gt;%
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) %&gt;%
+  select(-G_1b, -G_2b, -G_3b, -G_ss) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) %&gt;%
+  pivot_longer(catcher:infield,
+               names_to = &quot;position&quot;) %&gt;%
+  filter(value &gt; 0) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  slice_max(value) %&gt;%
+  select(playerID, lgID, position) %&gt;%
+  inner_join(career)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+## Joining, by = c(&quot;playerID&quot;, &quot;lgID&quot;)</code></pre>
+<pre class="r"><code>career &lt;- People %&gt;%
+  tbl_df() %&gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
+  inner_join(career, by = &quot;playerID&quot;)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.</code></pre>
+<pre class="r"><code>career &lt;- career %&gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
 
-summary(timss_model)
-</code></pre>
+head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   playerID  name               lgID  position     H    AB average league_dummy
+##   &lt;chr&gt;     &lt;chr&gt;              &lt;fct&gt; &lt;chr&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;
+## 1 abbotje01 Jeff Abbott        AL    outfield   127   459   0.277            0
+## 2 abbotku01 Kurt Abbott        AL    infield     33   123   0.268            0
+## 3 abbotku01 Kurt Abbott        NL    infield    455  1780   0.256            1
+## 4 abercre01 Reggie Abercrombie NL    outfield    54   255   0.212            1
+## 5 abernbr01 Brent Abernathy    AL    infield    194   767   0.253            0
+## 6 abnersh01 Shawn Abner        AL    outfield    81   309   0.262            0</code></pre>
+<pre class="r"><code>position_lm &lt;- lm(average ~ 1 + position, data = career)
+
+broom::tidy(position_lm)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term             estimate std.error statistic  p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)        0.241    0.00140    172.   0       
+## 2 positiondh         0.0165   0.00345      4.79 1.75e- 6
+## 3 positioninfield    0.0136   0.00161      8.44 4.80e-17
+## 4 positionoutfield   0.0147   0.00163      9.00 4.05e-19</code></pre>
+<pre class="r"><code>count(career, position)</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   position     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 catcher    410
+## 2 dh          81
+## 3 infield   1248
+## 4 outfield  1136</code></pre>
+<p>Given that there are 4 groups, if all pairwise comparisons were of interest, the following would be all possible <strong>NULL</strong> hypotheses. Note, I am assuming that each of these has a matching alternative hypothesis that states the groups differences are <em>different</em> from 0.</p>
+<p><span class="math display">\[
+H_{0}: \mu_{catcher} - \mu_{dh} = 0 \\
+H_{0}: \mu_{catcher} - \mu_{infield} = 0 \\
+H_{0}: \mu_{catcher} - \mu_{outfield} = 0 \\
+H_{0}: \mu_{dh} - \mu_{infield} = 0 \\
+H_{0}: \mu_{dh} - \mu_{outfield} = 0 \\
+H_{0}: \mu_{infield} - \mu_{outfield} = 0 \\
+\]</span></p>
+<p>In general, to find the total number of hypotheses, you can use the combinations formula:</p>
+<p><span class="math display">\[
+C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!}
+\]</span></p>
+<p>For our example this would lead to:</p>
+<p><span class="math display">\[
+\binom{4}{2} = \frac{4!}{2!(4 - 2)!} = \frac{4 * 3 * 2 * 1}{2 * 1 * (2 * 1)} = \frac{24}{4} = 6
+\]</span></p>
+<p>Therefore, using bonferroni’s correction, our new alpha would be:</p>
+<p><span class="math display">\[
+\alpha_{new} = \frac{.05}{6} = .0083
+\]</span></p>
+<p>Alternatively, you could also adjust the p-values to make them smaller and still use .05 (or any other predetermined familywise <span class="math inline">\(\alpha\)</span> value).</p>
+<p><span class="math display">\[
+p_{new} = \frac{p_{original}}{m}
+\]</span></p>
+<p>This is what most software programs do automatically for you.</p>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;bonf&#39;)</code></pre>
 <pre><code>## 
-## Call:
-## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -305.769  -51.969    4.919   56.707  272.217 
+## data:  career$average and career$position 
 ## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  613.563     17.064  35.956  &lt; 2e-16 ***
-## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##          catcher dh infield
+## dh       1.0e-05 -  -      
+## infield  2.9e-16 1  -      
+## outfield &lt; 2e-16 1  1      
 ## 
-## Residual standard error: 80.89 on 10025 degrees of freedom
-## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
-## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05
-</code></pre>
-<pre><code class="language-r">confint(timss_model)
-</code></pre>
-<pre><code>##                  2.5 %     97.5 %
-## (Intercept) 580.114047 647.012616
-## ASDAGE       -9.957345  -3.415915
-</code></pre>
-<h2 id="resample-these-data">Resample these data</h2>
-<p>For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.</p>
-<pre><code class="language-r">slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
-  count(IDSTUD)
-</code></pre>
-<pre><code>## # A tibble: 6,356 × 2
-##    IDSTUD     n
-##     &lt;dbl&gt; &lt;int&gt;
-##  1  10105     3
-##  2  10108     1
-##  3  10110     1
-##  4  10111     1
-##  5  10112     2
-##  6  10113     1
-##  7  10116     2
-##  8  10117     1
-##  9  10118     1
-## 10  10119     1
-## # … with 6,346 more rows
-</code></pre>
-<pre><code class="language-r">resamp_lm &lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
-  lm(ASSSCI01 ~ ASDAGE, data = .)
-
-summary(resamp_lm)
-</code></pre>
+## P value adjustment method: bonferroni</code></pre>
+</div>
+<div id="what-is-a-type-i-error" class="section level2">
+<h2>What is a type I error?</h2>
+<p>Before moving to why you should care, let’s more formally talk about type I errors. Suppose we have the following table of possible outcomes:</p>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="31%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"><span class="math inline">\(H_{0}\)</span> true</th>
+<th align="right"><span class="math inline">\(H_{0}\)</span> false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Reject <span class="math inline">\(H_{0}\)</span></td>
+<td align="right">Type I Error (<span class="math inline">\(\alpha\)</span>)</td>
+<td align="right">Correct - Power (<span class="math inline">\(1 - \beta\)</span>)</td>
+</tr>
+<tr class="even">
+<td align="left">Retain <span class="math inline">\(H_{0}\)</span></td>
+<td align="right">Correct (<span class="math inline">\(1 - \alpha\)</span>)</td>
+<td align="right">Type II Error (<span class="math inline">\(\beta\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Type I error</strong> is when the null hypothesis is true in the population, but the statistical evidence <em>supports the alternative hypothesis</em>.
+<strong>Type II error</strong> is when the null hypothesis is false in the population, but the statistical evidence <em>supports the null hypothesis</em>.</p>
+<p>Here is a good link for an interactive app that shows many of these terms visually: <a href="https://rpsychologist.com/d3/nhst/" class="uri">https://rpsychologist.com/d3/nhst/</a>.</p>
+<div id="type-m-and-type-s-errors" class="section level3">
+<h3>Type M and Type S errors</h3>
+<p>These were first defined by Gelman and Tuerlinckx (2000) and is also in section 4.4 of <em>Regression and Other Stories</em> textbook.</p>
+<ul>
+<li>Type S (sign) occurs when the sign of the estimated effect is in the opposite direction as the true effect.</li>
+<li>Type M (magnitude) occurse when the magnitude of the estimated effect is much different (often larger) than the true effect.</li>
+</ul>
+<p>These really shift the narrative away from achieving statistical signficiance and moving toward proper estimation of effects or precision, this is a better goal in my opinion.</p>
+</div>
+</div>
+<div id="holm-bonferroni-procedure" class="section level2">
+<h2>Holm-Bonferroni Procedure</h2>
+<p>The boneferroni procedure will be overly conservative and I wouldn’t recommend it’s use in practice. If you want a simple approach to p-value adjustment, I’d recommend just setting a specific value for the alpha value to be more conservative, for example setting it to 0.01.</p>
+<p>The Holm-Bonferroni approach is an adjustment method that is more powerful then the original bonferroni procedure, but does not come with onerous assumptions. The Holm-Boneferroni procedure uses the following steps for adjustment.</p>
+<p>Suppose there are <span class="math inline">\(m\)</span> p-values (ie, <span class="math inline">\(m\)</span> null hypotheses). First, order these from smallest to largest, be sure to keep track of which hypothese the p-value is associated with. Then,
+1. Is the smallest p-value <strong>less than</strong> <span class="math inline">\(\alpha / m\)</span>, if yes, provide evidence for the alternative hypothesis and proceed to the next p-value, it not stop.
+2. Is the second smallest p-value <strong>less than</strong> $ / m - 1$, if eys, provide evidence for the alternative hypothesis and proceed to the next p-value, if not stop.
+3. Continue, comparing the p-values in order to the following adjust alpha,</p>
+<p><span class="math display">\[
+\alpha_{new_{k}} = \frac{\alpha}{m + 1 - k}
+\]</span></p>
+<p>where is <span class="math inline">\(k\)</span> is the rank of the p-values when ordered from smallest to largest.</p>
+<p>Similar to the bonferroni, the p-values can be adjusted with the following formula:</p>
+<p><span class="math display">\[
+p_{adj} = min(1, max((m + 1 - k) * p_{k} ))
+\]</span></p>
+<p>where is <span class="math inline">\(k\)</span> is the rank of the p-values when ordered from smallest to largest.</p>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;holm&#39;)</code></pre>
 <pre><code>## 
-## Call:
-## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -303.996  -51.161    4.522   57.275  271.654 
+## data:  career$average and career$position 
 ## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  580.886     17.169  33.834   &lt;2e-16 ***
-## ASDAGE        -3.571      1.680  -2.126   0.0335 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##          catcher dh infield
+## dh       7.0e-06 -  -      
+## infield  2.4e-16 1  -      
+## outfield &lt; 2e-16 1  1      
 ## 
-## Residual standard error: 80.45 on 10025 degrees of freedom
-## Multiple R-squared:  0.0004508,	Adjusted R-squared:  0.0003511 
-## F-statistic: 4.521 on 1 and 10025 DF,  p-value: 0.03351
-</code></pre>
-<pre><code class="language-r">confint(resamp_lm)
-</code></pre>
-<pre><code>##                  2.5 %      97.5 %
-## (Intercept) 547.232078 614.5395568
-## ASDAGE       -6.863595  -0.2788938
-</code></pre>
-<h3 id="questions-to-consider">Questions to consider</h3>
-<ol>
-<li>Do the parameter estimates differ from before? Why or why not?</li>
-<li>Would you come to substantially different conclusions from the original analysis? Why or why not?</li>
-</ol>
-<p>Let&rsquo;s now repeat this a bunch of times.</p>
-<pre><code class="language-r">set.seed(2022)
-
-resample_timss &lt;- function(data, model_equation) {
-  timss_resample &lt;- slice_sample(data, n = nrow(data), replace = TRUE)
-
-  
-  lm(model_equation, data = timss_resample) %&gt;%
-    coef()
-}
-</code></pre>
-<p>Run this function a bunch of times manually, what happens to the estimates? Why is this happening?</p>
-<pre><code class="language-r">resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)
-</code></pre>
-<pre><code>## (Intercept)      ASDAGE 
-##  593.768824   -4.636762
-</code></pre>
-<h2 id="make-sure-futureapply-is-installed">Make sure future.apply is installed</h2>
-<p>The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the <code>#</code> symbol) in the first line of code to (hopefully) install the package yourself.</p>
-<pre><code class="language-r"># install.packages(&quot;future.apply&quot;)
-library(future.apply)
-</code></pre>
-<pre><code>## Loading required package: future
-</code></pre>
-<pre><code class="language-r">plan(multisession)
-</code></pre>
-<h2 id="replicate">Replicate</h2>
-<p>The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.</p>
-<pre><code class="language-r">timss_coef &lt;- future.apply::future_replicate(10000, resample_timss(data = timss, 
-                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&gt;
-                        dplyr::bind_rows() |&gt; 
-                        tidyr::pivot_longer(cols = everything())
-
-head(timss_coef)
-</code></pre>
-<pre><code>## # A tibble: 6 × 2
-##   name         value
-##   &lt;chr&gt;        &lt;dbl&gt;
-## 1 (Intercept) 610.  
-## 2 ASDAGE       -6.56
-## 3 (Intercept) 603.  
-## 4 ASDAGE       -5.67
-## 5 (Intercept) 620.  
-## 6 ASDAGE       -7.25
-</code></pre>
-<h2 id="visualize-results">Visualize results</h2>
-<p>The following code visualizes the results of the analysis above. Explore the following questions.</p>
-<ol>
-<li>What does this distribution show/represent?</li>
-<li>What are key features of this distribution?</li>
-<li>How do these values compare to the original linear regression results?
-<ul>
-<li>Are there comparable statistics here compared to those?</li>
-</ul>
-</li>
-</ol>
-<pre><code class="language-r">gf_density(~ value, data = timss_coef) %&gt;%
-  gf_facet_wrap(~ name, scales = 'free') %&gt;%
-  gf_labs(x = &quot;Regression Estimates&quot;)
-</code></pre>
-<p><img src="/lectures/08-bootstrap_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<h2 id="change-the-n-value">Change the N value</h2>
-<p>Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).</p>
-<ul>
-<li>What happens to the resulting figure when the N increases?</li>
-<li>What value for N seems to be reasonable? Why?</li>
-</ul>
+## P value adjustment method: holm</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value</code></pre>
+<pre><code>##               catcher        dh   infield
+## dh       1.747816e-06        NA        NA
+## infield  4.802093e-17 0.3745381        NA
+## outfield 4.051053e-19 0.5776818 0.3567626</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value[3] * (6 + 1 - 1)</code></pre>
+<pre><code>## [1] 2.430632e-18</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value[2] * (6 + 1 - 2)</code></pre>
+<pre><code>## [1] 2.401046e-16</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value[1] * (6 + 1 - 3)</code></pre>
+<pre><code>## [1] 6.991264e-06</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value[9] * (6 + 1 - 4)</code></pre>
+<pre><code>## [1] 1.070288</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value[5] * (6 + 1 - 5)</code></pre>
+<pre><code>## [1] 0.7490762</code></pre>
+<pre class="r"><code>pairwise.t.test(career$average, career$position, p.adjust = &#39;none&#39;)$p.value[6] * (6 + 1 - 6)</code></pre>
+<pre><code>## [1] 0.5776818</code></pre>
+</div>
+<div id="exploring-assumptions-for-model-with-categorical-attributes" class="section level2">
+<h2>Exploring assumptions for model with categorical attributes</h2>
+<pre class="r"><code>plot(position_lm, which = 1:5)</code></pre>
+<p><img src="/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-2.png" width="672" /><img src="/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-3.png" width="672" /><img src="/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-4.png" width="672" /><img src="/lectures/12-pairwise_files/figure-html/unnamed-chunk-8-5.png" width="672" /></p>
+</div>
+</div>
 
           </div>
 
@@ -1219,14 +1142,14 @@ head(timss_coef)
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/07-regression-conditions/" rel="next">Data Conditions for Valid Inference</a>
+    <a href="/lectures/11-regression-categorical/" rel="next">Regression Categorical</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/09-multiple-regression/" rel="prev">Multiple Regression</a>
+    <a href="/lectures/13-multiple-categorical/" rel="prev">Multiple Categorical Attributes</a>
   </div>
   
 </div>
@@ -1236,7 +1159,7 @@ head(timss_coef)
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Oct 18, 2022</p>
+          <p>Last updated on Nov 10, 2022</p>
 
           
 
