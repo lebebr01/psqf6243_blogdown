@@ -34,11 +34,10 @@
   
     
   
-  <meta name="description" content="Comparing t-distribution with normal distribution This short set of notes will show some differences in the t-distribution with varying degrees of freedom with a normal distribution. This
-df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do.">
+  <meta name="description" content="Modeling non-linearity Although linear regression has the word, linear, in the name, this is really is misnomer. Regression is able to be more flexible, but the idea of linear regression is that the coeffecients, the \(\beta\) terms, are additive.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/06-t-vs-norm/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/15-nonlinear/">
 
   
 
@@ -267,7 +266,7 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do.">
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/06-t-vs-norm/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/15-nonlinear/">
 
   
   
@@ -282,16 +281,15 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do.">
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/06-t-vs-norm/">
-  <meta property="og:title" content="t-distribution vs Normal distribution | PSQF 6243">
-  <meta property="og:description" content="Comparing t-distribution with normal distribution This short set of notes will show some differences in the t-distribution with varying degrees of freedom with a normal distribution. This
-df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/15-nonlinear/">
+  <meta property="og:title" content="Modeling Non-linearity | PSQF 6243">
+  <meta property="og:description" content="Modeling non-linearity Although linear regression has the word, linear, in the name, this is really is misnomer. Regression is able to be more flexible, but the idea of linear regression is that the coeffecients, the \(\beta\) terms, are additive."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2022-09-20T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2022-12-05T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2022-09-20T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2022-12-05T00:00:00&#43;00:00">
   
 
   
@@ -310,7 +308,7 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do."><meta property="o
 
 
 
-  <title>t-distribution vs Normal distribution | PSQF 6243</title>
+  <title>Modeling Non-linearity | PSQF 6243</title>
 
 </head>
 
@@ -801,7 +799,7 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do."><meta property="o
 
 
 
-  <li class="active"><a href="/lectures/06-t-vs-norm/">t-distribution vs Normal distribution</a></li>
+  <li class=""><a href="/lectures/06-t-vs-norm/">t-distribution vs Normal distribution</a></li>
 
 
 
@@ -837,7 +835,7 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do."><meta property="o
 
 
 
-  <li class=""><a href="/lectures/15-nonlinear/">Modeling Non-linearity</a></li>
+  <li class="active"><a href="/lectures/15-nonlinear/">Modeling Non-linearity</a></li>
 
 
 
@@ -862,11 +860,7 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do."><meta property="o
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#comparing-t-distribution-with-normal-distribution">Comparing t-distribution with normal distribution</a></li>
-  </ul>
-</nav>
+      
 
       
     </div>
@@ -879,86 +873,312 @@ df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000) t_dist &lt;- do."><meta property="o
         <div class="docs-article-container">
           
 
-          <h1>t-distribution vs Normal distribution</h1>
+          <h1>Modeling Non-linearity</h1>
 
           <div class="article-style">
-            <h1 id="comparing-t-distribution-with-normal-distribution">Comparing t-distribution with normal distribution</h1>
-<p>This short set of notes will show some differences in the t-distribution with varying degrees of freedom with a normal distribution. This</p>
-<pre><code class="language-r">df &lt;- c(2, 10, 15, 20, 30, 50, 100, 1000)
+            
 
-t_dist &lt;- do.call('rbind', lapply(seq_along(df), function(xx) data.frame(value = seq(-5, 5, .01), density = dt(seq(-5, 5, .01), df = df[xx]), df = df[xx], normal = FALSE)))
+<div id="TOC">
 
-z_dist &lt;- data.frame(value = seq(-5, 5, .01), density = dnorm(seq(-5, 5, .01)), normal = TRUE, df = 0)
+</div>
 
-dist &lt;- rbind(t_dist, z_dist)
-
-head(dist)
-</code></pre>
-<pre><code>##   value     density df normal
-## 1 -5.00 0.007127781  2  FALSE
-## 2 -4.99 0.007167524  2  FALSE
-## 3 -4.98 0.007207557  2  FALSE
-## 4 -4.97 0.007247883  2  FALSE
-## 5 -4.96 0.007288503  2  FALSE
-## 6 -4.95 0.007329422  2  FALSE
-</code></pre>
-<pre><code class="language-r">library(tidyverse)
-</code></pre>
+<div id="modeling-non-linearity" class="section level1">
+<h1>Modeling non-linearity</h1>
+<p>Although linear regression has the word, <em>linear</em>, in the name, this is really is misnomer. Regression is able to be more flexible, but the idea of linear regression is that the coeffecients, the <span class="math inline">\(\beta\)</span> terms, are additive. For example,</p>
+<p><span class="math display">\[
+Y = \beta_{0} + \beta_{1} X + \beta_{2} X^2 + \beta_{3} X^3 + \epsilon
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+Y = \beta_{0} + \beta_{1} log(X) + \epsilon
+\]</span></p>
+<p>are both additive in the coefficients, therefore are special cases of regression for terms that would result in predictive curves that would be non-linear.</p>
+<div id="non-linear-in-the-parameters" class="section level3">
+<h3>Non-linear in the parameters</h3>
+<p>There are a series of models that can be non-linear in the parameters. An example is the logistic population-growth model (Shryock, Siegel, et al., 1973):</p>
+<p><span class="math display">\[
+Y = \frac{\beta_{1}}{1 + exp(\beta_{2} + \beta_{3}X)} + \epsilon
+\]</span></p>
+<p>We are going to focus on an example for the first example, modeling non-linear associations while keeping the regression model additive.</p>
+</div>
+<div id="non-linear-example" class="section level2">
+<h2>Non-linear example</h2>
+<p>Let’s explore some weather data from Australia.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-</code></pre>
-<pre><code class="language-r">library(ggformula)
-</code></pre>
-<pre><code>## Loading required package: ggstance
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
 ## 
-## Attaching package: 'ggstance'
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
 ## 
-## The following objects are masked from 'package:ggplot2':
+## Attaching package: &#39;mosaic&#39;
 ## 
-##     geom_errorbarh, GeomErrorbarh
+## The following object is masked from &#39;package:Matrix&#39;:
 ## 
-## Loading required package: scales
+##     mean
 ## 
-## Attaching package: 'scales'
+## The following objects are masked from &#39;package:dplyr&#39;:
 ## 
-## The following object is masked from 'package:purrr':
+##     count, do, tally
 ## 
-##     discard
+## The following object is masked from &#39;package:purrr&#39;:
 ## 
-## The following object is masked from 'package:readr':
+##     cross
 ## 
-##     col_factor
+## The following object is masked from &#39;package:ggplot2&#39;:
 ## 
-## Loading required package: ggridges
+##     stat
 ## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
-</code></pre>
-<pre><code class="language-r">library(patchwork)
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre class="r"><code>library(broom)
+library(ggformula)
+library(lubridate)</code></pre>
+<pre><code>## Loading required package: timechange
+## 
+## Attaching package: &#39;lubridate&#39;
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 16))
 
-theme_set(theme_bw(base_size = 18))
+aus_weather &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/weatherAUS.csv&quot;) |&gt; 
+    filter(Location %in% c(&#39;Adelaide&#39;, &#39;Canberra&#39;)) |&gt;
+    mutate(day_of_year = yday(Date))</code></pre>
+<pre><code>## Rows: 142193 Columns: 24
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr   (6): Location, WindGustDir, WindDir9am, WindDir3pm, RainToday, RainTom...
+## dbl  (17): MinTemp, MaxTemp, Rainfall, Evaporation, Sunshine, WindGustSpeed,...
+## date  (1): Date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>count(aus_weather, Location)</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   Location     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 Adelaide  3090
+## 2 Canberra  3418</code></pre>
+<pre class="r"><code>head(aus_weather)</code></pre>
+<pre><code>## # A tibble: 6 × 25
+##   Date       Location MinTemp MaxTemp Rainfall Evapora…¹ Sunsh…² WindG…³ WindG…⁴
+##   &lt;date&gt;     &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1 2007-11-01 Canberra     8      24.3      0         3.4     6.3 NW           30
+## 2 2007-11-02 Canberra    14      26.9      3.6       4.4     9.7 ENE          39
+## 3 2007-11-03 Canberra    13.7    23.4      3.6       5.8     3.3 NW           85
+## 4 2007-11-04 Canberra    13.3    15.5     39.8       7.2     9.1 NW           54
+## 5 2007-11-05 Canberra     7.6    16.1      2.8       5.6    10.6 SSE          50
+## 6 2007-11-06 Canberra     6.2    16.9      0         5.8     8.2 SE           44
+## # … with 16 more variables: WindDir9am &lt;chr&gt;, WindDir3pm &lt;chr&gt;,
+## #   WindSpeed9am &lt;dbl&gt;, WindSpeed3pm &lt;dbl&gt;, Humidity9am &lt;dbl&gt;,
+## #   Humidity3pm &lt;dbl&gt;, Pressure9am &lt;dbl&gt;, Pressure3pm &lt;dbl&gt;, Cloud9am &lt;dbl&gt;,
+## #   Cloud3pm &lt;dbl&gt;, Temp9am &lt;dbl&gt;, Temp3pm &lt;dbl&gt;, RainToday &lt;chr&gt;,
+## #   RISK_MM &lt;dbl&gt;, RainTomorrow &lt;chr&gt;, day_of_year &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​Evaporation, ²​Sunshine, ³​WindGustDir, ⁴​WindGustSpeed</code></pre>
+<pre class="r"><code>gf_point(Temp3pm ~ day_of_year, data = aus_weather) |&gt;
+  gf_labs(x = &quot;Day of Year&quot;,
+          y = &quot;Temperature (Celsius)&quot;)</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(Temp3pm ~ day_of_year, data = aus_weather, color = ~ Location) |&gt;
+  gf_labs(x = &quot;Day of Year&quot;,
+          y = &quot;Temperature (Celsius)&quot;)</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(Temp3pm ~ day_of_year, data = aus_weather, color = ~ Location, alpha = .3) |&gt;
+gf_smooth(method = &#39;lm&#39;, size = 4) |&gt; 
+  gf_labs(x = &quot;Day of Year&quot;,
+          y = &quot;Temperature (Celsius)&quot;)</code></pre>
+<pre><code>## Warning: Removed 11 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(Temp3pm ~ day_of_year, data = aus_weather, color = ~ Location, alpha = .3) |&gt;
+gf_smooth(method = &#39;&#39;, size = 4) |&gt; 
+  gf_labs(x = &quot;Day of Year&quot;,
+          y = &quot;Temperature (Celsius)&quot;)</code></pre>
+<pre><code>## Warning: Removed 11 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Computation failed in `stat_smooth()`
+## Caused by error in `get()`:
+## ! invalid first argument</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>linear_mod &lt;- lm(Temp3pm ~ day_of_year + Location, data = aus_weather)</code></pre>
+<pre class="r"><code>summary(linear_mod)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Temp3pm ~ day_of_year + Location, data = aus_weather)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -16.012  -5.489  -0.940   4.646  22.684 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      23.9680663  0.1900207  126.13   &lt;2e-16 ***
+## day_of_year      -0.0128942  0.0007959  -16.20   &lt;2e-16 ***
+## LocationCanberra -2.1539876  0.1679972  -12.82   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.762 on 6494 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.06113,    Adjusted R-squared:  0.06084 
+## F-statistic: 211.4 on 2 and 6494 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>plot(linear_mod, which = 1:5)</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-1.png" width="672" /><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-2.png" width="672" /><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-3.png" width="672" /><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-4.png" width="672" /><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-5.png" width="672" /></p>
+<pre class="r"><code>resid_linear &lt;- broom::augment(linear_mod)
 
-dist %&gt;%
-filter(df %in% c(0, 2)) %&gt;%
-gf_point(density ~ value, color = ~ normal, size = 1) %&gt;%
-  gf_refine(theme(legend.position = 'none')) /
-dist %&gt;%
-filter(df %in% c(0, 10)) %&gt;%
-gf_point(density ~ value, color = ~ normal, size = 1) %&gt;%
-  gf_refine(theme(legend.position = 'none')) / 
-  dist %&gt;%
-filter(df %in% c(0, 100)) %&gt;%
-gf_point(density ~ value, color = ~ normal, size = 1) %&gt;%
-  gf_refine(theme(legend.position = 'none'))
-</code></pre>
-<p><img src="/lectures/06-t-vs-norm_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+gf_point(.resid ~ .fitted, data = resid_linear, color = ~ Location) |&gt; 
+  gf_hline(yintercept = 0, size = 1.5)</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>quad_model &lt;- lm(Temp3pm ~ poly(day_of_year, 2) + Location, 
+                 data = aus_weather)
+
+summary(quad_model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Temp3pm ~ poly(day_of_year, 2) + Location, data = aus_weather)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.8321  -2.9490  -0.5725   2.6229  17.4332 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)             21.66025    0.08304  260.84   &lt;2e-16 ***
+## poly(day_of_year, 2)1 -109.89896    4.61906  -23.79   &lt;2e-16 ***
+## poly(day_of_year, 2)2  399.00995    4.61940   86.38   &lt;2e-16 ***
+## LocationCanberra        -2.22383    0.11461  -19.40   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.613 on 6493 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.5631, Adjusted R-squared:  0.5629 
+## F-statistic:  2790 on 3 and 6493 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>resid_quad &lt;- broom::augment(quad_model)
+
+head(resid_quad)</code></pre>
+<pre><code>## # A tibble: 6 × 9
+##   .rownames Temp3pm poly(day_of…¹ Locat…² .fitted    .hat .sigma .cooksd .std.…³
+##   &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1            23.6        0.0144 Canber…    19.8 5.29e-4   4.61 8.92e-5  0.821 
+## 2 2            25.7        0.0146 Canber…    19.9 5.35e-4   4.61 2.10e-4  1.25  
+## 3 3            20.2        0.0147 Canber…    20.0 5.42e-4   4.61 1.74e-7  0.0359
+## 4 4            14.1        0.0148 Canber…    20.1 5.49e-4   4.61 2.36e-4 -1.31  
+## 5 5            15.4        0.0149 Canber…    20.3 5.56e-4   4.61 1.55e-4 -1.05  
+## 6 6            14.8        0.0150 Canber…    20.4 5.64e-4   4.61 2.06e-4 -1.21  
+## # … with 1 more variable: `poly(day_of_year, 2)`[2] &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​`poly(day_of_year, 2)`[,&quot;1&quot;], ²​Location, ³​.std.resid</code></pre>
+<pre class="r"><code>gf_point(.std.resid ~ .fitted, data = resid_quad, color = ~ Location) |&gt;
+gf_hline(yintercept = 0, size = 1.5)</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>quad_model_2 &lt;- lm(Temp3pm ~ day_of_year + I(day_of_year^2) + Location, 
+                 data = aus_weather)
+
+summary(quad_model_2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Temp3pm ~ day_of_year + I(day_of_year^2) + Location, 
+##     data = aus_weather)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.8321  -2.9490  -0.5725   2.6229  17.4332 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       3.502e+01  1.821e-01  192.28   &lt;2e-16 ***
+## day_of_year      -1.944e-01  2.170e-03  -89.57   &lt;2e-16 ***
+## I(day_of_year^2)  4.979e-04  5.764e-06   86.38   &lt;2e-16 ***
+## LocationCanberra -2.224e+00  1.146e-01  -19.40   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.613 on 6493 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.5631, Adjusted R-squared:  0.5629 
+## F-statistic:  2790 on 3 and 6493 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>resid_quad_2 &lt;- broom::augment(quad_model_2)
+
+head(resid_quad_2)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   .rowna…¹ Temp3pm day_o…² I(day…³ Locat…⁴ .fitted .resid    .hat .sigma .cooksd
+##   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;I&lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1           23.6     305   93025 Canber…    19.8  3.79  5.29e-4   4.61 8.92e-5
+## 2 2           25.7     306   93636 Canber…    19.9  5.78  5.35e-4   4.61 2.10e-4
+## 3 3           20.2     307   94249 Canber…    20.0  0.165 5.42e-4   4.61 1.74e-7
+## 4 4           14.1     308   94864 Canber…    20.1 -6.05  5.49e-4   4.61 2.36e-4
+## 5 5           15.4     309   95481 Canber…    20.3 -4.86  5.56e-4   4.61 1.55e-4
+## 6 6           14.8     310   96100 Canber…    20.4 -5.57  5.64e-4   4.61 2.06e-4
+## # … with 1 more variable: .std.resid &lt;dbl&gt;, and abbreviated variable names
+## #   ¹​.rownames, ²​day_of_year, ³​`I(day_of_year^2)`, ⁴​Location</code></pre>
+<pre class="r"><code>gf_point(Temp3pm ~ day_of_year, data = resid_quad_2, color = ~ Location, alpha = .3) |&gt; 
+  gf_line(.fitted ~ day_of_year, color = ~ Location, data = resid_quad_2, size = 4)</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>quad_model_3 &lt;- lm(Temp3pm ~ poly(day_of_year, 2) * Location, 
+                 data = aus_weather)
+
+summary(quad_model_3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Temp3pm ~ poly(day_of_year, 2) * Location, data = aus_weather)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.2571  -2.9927  -0.5634   2.5809  17.7627 
+## 
+## Coefficients:
+##                                          Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                              21.65852    0.08291 261.220  &lt; 2e-16
+## poly(day_of_year, 2)1                  -114.77043    6.71386 -17.095  &lt; 2e-16
+## poly(day_of_year, 2)2                   376.21298    6.72202  55.967  &lt; 2e-16
+## LocationCanberra                         -2.22306    0.11443 -19.428  &lt; 2e-16
+## poly(day_of_year, 2)1:LocationCanberra    9.03072    9.23824   0.978    0.328
+## poly(day_of_year, 2)2:LocationCanberra   43.03473    9.24005   4.657 3.27e-06
+##                                           
+## (Intercept)                            ***
+## poly(day_of_year, 2)1                  ***
+## poly(day_of_year, 2)2                  ***
+## LocationCanberra                       ***
+## poly(day_of_year, 2)1:LocationCanberra    
+## poly(day_of_year, 2)2:LocationCanberra ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.606 on 6491 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.5646, Adjusted R-squared:  0.5643 
+## F-statistic:  1684 on 5 and 6491 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>quad_model_3 &lt;- lm(Temp3pm ~ day_of_year * Location + I(day_of_year^2) * Location, 
+                 data = aus_weather)
+resid_quad_3 &lt;- broom::augment(quad_model_3)
+
+gf_point(Temp3pm ~ day_of_year, data = resid_quad_3, color = ~ Location, alpha = .3) |&gt; 
+  gf_line(.fitted ~ day_of_year, color = ~ Location, data = resid_quad_3, size = 4)</code></pre>
+<p><img src="/lectures/15-nonlinear_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+</div>
 
           </div>
 
@@ -976,14 +1196,14 @@ gf_point(density ~ value, color = ~ normal, size = 1) %&gt;%
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/05-regression-inference/" rel="next">Regression Inference</a>
+    <a href="/lectures/14-ancova/" rel="next">Analysis of Covariance</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/07-regression-conditions/" rel="prev">Data Conditions for Valid Inference</a>
+    <a href="/lectures/16-effect-size/" rel="prev">Effect Sizes</a>
   </div>
   
 </div>
@@ -993,7 +1213,7 @@ gf_point(density ~ value, color = ~ normal, size = 1) %&gt;%
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Sep 20, 2022</p>
+          <p>Last updated on Dec 5, 2022</p>
 
           
 

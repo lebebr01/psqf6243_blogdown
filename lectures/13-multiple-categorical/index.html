@@ -833,6 +833,14 @@
 
   <li class=""><a href="/lectures/14-ancova/">Analysis of Covariance</a></li>
 
+
+
+  <li class=""><a href="/lectures/15-nonlinear/">Modeling Non-linearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/16-effect-size/">Effect Sizes</a></li>
+
       
     
 
@@ -897,10 +905,10 @@
 </ul>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -933,10 +941,13 @@
 <pre class="r"><code>theme_set(theme_bw(base_size = 18))
 
 temp &lt;- tempfile()
-download.file(&quot;https://u626n26h74f16ig1p3pt0f2g-wpengine.netdna-ssl.com/wp-content/uploads/2021/10/indego-trips-2021-q3.zip&quot;, temp)
+download.file(&quot;https://bicycletransit.wpenginepowered.com/wp-content/uploads/2021/10/indego-trips-2021-q3.zip&quot;, temp)
 bike &lt;- readr::read_csv(unz(temp, &quot;indego-trips-2021-q3.csv&quot;)) %&gt;%
    filter(duration &lt;= 120 &amp; passholder_type != &#39;Walk-up&#39;)</code></pre>
-<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+## e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
 <pre><code>## Rows: 300432 Columns: 15
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -970,6 +981,8 @@ head(bike)</code></pre>
 <p>Let’s explore this descriptively.</p>
 <pre class="r"><code>gf_density(~ duration, data = bike) %&gt;%
   gf_labs(x = &quot;Duration, in minutes&quot;)</code></pre>
+<pre><code>## Warning: `stat(density)` was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(density)` instead.</code></pre>
 <p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>gf_violin(bike_type ~ duration, data = bike, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&gt;%
   gf_labs(x = &quot;Duration, in minutes&quot;, y = &quot;&quot;) </code></pre>
@@ -1025,6 +1038,8 @@ mean_duration</code></pre>
   gf_line(size = 1.5, group = ~ trip_route_category) %&gt;%
   gf_labs(x = &quot;&quot;, y = &quot;Model Predicted Values&quot;, color = &#39;Trip Route&#39;) %&gt;%
   gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.</code></pre>
 <p><img src="/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Back to the coefficients to really understand what these are.</p>
 <pre class="r"><code>broom::tidy(bike_lm) |&gt;

@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 16 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 05 Dec 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -4672,10 +4672,10 @@ broom::tidy(position_lm)
 &lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; is the number of hypotheses being tested. Let’s use a specific example to frame this based on the baseball data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -4968,10 +4968,10 @@ p_{adj} = min(1, max((m + 1 - k) * p_{k} ))
 &lt;/ul&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -5004,10 +5004,13 @@ p_{adj} = min(1, max((m + 1 - k) * p_{k} ))
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
 
 temp &amp;lt;- tempfile()
-download.file(&amp;quot;https://u626n26h74f16ig1p3pt0f2g-wpengine.netdna-ssl.com/wp-content/uploads/2021/10/indego-trips-2021-q3.zip&amp;quot;, temp)
+download.file(&amp;quot;https://bicycletransit.wpenginepowered.com/wp-content/uploads/2021/10/indego-trips-2021-q3.zip&amp;quot;, temp)
 bike &amp;lt;- readr::read_csv(unz(temp, &amp;quot;indego-trips-2021-q3.csv&amp;quot;)) %&amp;gt;%
    filter(duration &amp;lt;= 120 &amp;amp; passholder_type != &amp;#39;Walk-up&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: One or more parsing issues, see `problems()` for details&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+## e.g.:
+##   dat &amp;lt;- vroom(...)
+##   problems(dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Rows: 300432 Columns: 15
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &amp;quot;,&amp;quot;
@@ -5041,6 +5044,8 @@ head(bike)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s explore this descriptively.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ duration, data = bike) %&amp;gt;%
   gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `stat(density)` was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(density)` instead.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(bike_type ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
   gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
@@ -5096,6 +5101,8 @@ mean_duration&lt;/code&gt;&lt;/pre&gt;
   gf_line(size = 1.5, group = ~ trip_route_category) %&amp;gt;%
   gf_labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;) %&amp;gt;%
   gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/13-multiple-categorical_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Back to the coefficients to really understand what these are.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm) |&amp;gt;
@@ -5314,10 +5321,10 @@ three_way_predict_int&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This section of notes will explore an analysis procedure classically known as Analysis of Covariance (ANCOVA). This methodology is aimed to answer the following question, &lt;em&gt;Is there a difference in groups, after controlling for other covariates&lt;/em&gt;. Here, covariates refer to another attribute in the data that is thought to influence or explain variation in the outcome, therefore, this method is meant to remove, control, or partition the variance associated with the covariate (or multiple covariates) to evaluate the conditional or adjusted means.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
@@ -5422,6 +5429,8 @@ glance(baby_smoker)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Below is a descriptive figure trying to show the relationship between birth weight and gestational days by smoker status.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(birth_weight ~ gestational_days, data = baby, color = ~maternal_smoker, size = 4) %&amp;gt;%
   gf_smooth(method = &amp;#39;lm&amp;#39;, size = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-ancova_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Below, let’s fit the traditional ANCOVA model, that contains a single continuous covariate (gestational days) and the categorical predictor. The model would be:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -5565,6 +5574,579 @@ glance(baby_lm_int_w)&lt;/code&gt;&lt;/pre&gt;
 ## 6 maternal_smokerTRUE                    -8.20      0.952    -8.62    0    
 ## 7 gestational_mean:maternal_smokerTRUE    0.208     0.061     3.44    0.001&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;How could the appropriate conditional means be computed here? Also, what happened to the intercept in this model, why is it so small?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Modeling Non-linearity</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/15-nonlinear/</link>
+      <pubDate>Mon, 05 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/15-nonlinear/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;modeling-non-linearity&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Modeling non-linearity&lt;/h1&gt;
+&lt;p&gt;Although linear regression has the word, &lt;em&gt;linear&lt;/em&gt;, in the name, this is really is misnomer. Regression is able to be more flexible, but the idea of linear regression is that the coeffecients, the &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt; terms, are additive. For example,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X + \beta_{2} X^2 + \beta_{3} X^3 + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} log(X) + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;are both additive in the coefficients, therefore are special cases of regression for terms that would result in predictive curves that would be non-linear.&lt;/p&gt;
+&lt;div id=&#34;non-linear-in-the-parameters&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Non-linear in the parameters&lt;/h3&gt;
+&lt;p&gt;There are a series of models that can be non-linear in the parameters. An example is the logistic population-growth model (Shryock, Siegel, et al., 1973):&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \frac{\beta_{1}}{1 + exp(\beta_{2} + \beta_{3}X)} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We are going to focus on an example for the first example, modeling non-linear associations while keeping the regression model additive.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;non-linear-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Non-linear example&lt;/h2&gt;
+&lt;p&gt;Let’s explore some weather data from Australia.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(broom)
+library(ggformula)
+library(lubridate)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: timechange
+## 
+## Attaching package: &amp;#39;lubridate&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     date, intersect, setdiff, union&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 16))
+
+aus_weather &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/weatherAUS.csv&amp;quot;) |&amp;gt; 
+    filter(Location %in% c(&amp;#39;Adelaide&amp;#39;, &amp;#39;Canberra&amp;#39;)) |&amp;gt;
+    mutate(day_of_year = yday(Date))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 142193 Columns: 24
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr   (6): Location, WindGustDir, WindDir9am, WindDir3pm, RainToday, RainTom...
+## dbl  (17): MinTemp, MaxTemp, Rainfall, Evaporation, Sunshine, WindGustSpeed,...
+## date  (1): Date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(aus_weather, Location)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 2
+##   Location     n
+##   &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
+## 1 Adelaide  3090
+## 2 Canberra  3418&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(aus_weather)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 25
+##   Date       Location MinTemp MaxTemp Rainfall Evapora…¹ Sunsh…² WindG…³ WindG…⁴
+##   &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1 2007-11-01 Canberra     8      24.3      0         3.4     6.3 NW           30
+## 2 2007-11-02 Canberra    14      26.9      3.6       4.4     9.7 ENE          39
+## 3 2007-11-03 Canberra    13.7    23.4      3.6       5.8     3.3 NW           85
+## 4 2007-11-04 Canberra    13.3    15.5     39.8       7.2     9.1 NW           54
+## 5 2007-11-05 Canberra     7.6    16.1      2.8       5.6    10.6 SSE          50
+## 6 2007-11-06 Canberra     6.2    16.9      0         5.8     8.2 SE           44
+## # … with 16 more variables: WindDir9am &amp;lt;chr&amp;gt;, WindDir3pm &amp;lt;chr&amp;gt;,
+## #   WindSpeed9am &amp;lt;dbl&amp;gt;, WindSpeed3pm &amp;lt;dbl&amp;gt;, Humidity9am &amp;lt;dbl&amp;gt;,
+## #   Humidity3pm &amp;lt;dbl&amp;gt;, Pressure9am &amp;lt;dbl&amp;gt;, Pressure3pm &amp;lt;dbl&amp;gt;, Cloud9am &amp;lt;dbl&amp;gt;,
+## #   Cloud3pm &amp;lt;dbl&amp;gt;, Temp9am &amp;lt;dbl&amp;gt;, Temp3pm &amp;lt;dbl&amp;gt;, RainToday &amp;lt;chr&amp;gt;,
+## #   RISK_MM &amp;lt;dbl&amp;gt;, RainTomorrow &amp;lt;chr&amp;gt;, day_of_year &amp;lt;dbl&amp;gt;, and abbreviated
+## #   variable names ¹​Evaporation, ²​Sunshine, ³​WindGustDir, ⁴​WindGustSpeed&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(Temp3pm ~ day_of_year, data = aus_weather) |&amp;gt;
+  gf_labs(x = &amp;quot;Day of Year&amp;quot;,
+          y = &amp;quot;Temperature (Celsius)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 11 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(Temp3pm ~ day_of_year, data = aus_weather, color = ~ Location) |&amp;gt;
+  gf_labs(x = &amp;quot;Day of Year&amp;quot;,
+          y = &amp;quot;Temperature (Celsius)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 11 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(Temp3pm ~ day_of_year, data = aus_weather, color = ~ Location, alpha = .3) |&amp;gt;
+gf_smooth(method = &amp;#39;lm&amp;#39;, size = 4) |&amp;gt; 
+  gf_labs(x = &amp;quot;Day of Year&amp;quot;,
+          y = &amp;quot;Temperature (Celsius)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 11 rows containing non-finite values (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 11 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(Temp3pm ~ day_of_year, data = aus_weather, color = ~ Location, alpha = .3) |&amp;gt;
+gf_smooth(method = &amp;#39;&amp;#39;, size = 4) |&amp;gt; 
+  gf_labs(x = &amp;quot;Day of Year&amp;quot;,
+          y = &amp;quot;Temperature (Celsius)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 11 rows containing non-finite values (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Computation failed in `stat_smooth()`
+## Caused by error in `get()`:
+## ! invalid first argument&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 11 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;linear_mod &amp;lt;- lm(Temp3pm ~ day_of_year + Location, data = aus_weather)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(linear_mod)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Temp3pm ~ day_of_year + Location, data = aus_weather)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -16.012  -5.489  -0.940   4.646  22.684 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)      23.9680663  0.1900207  126.13   &amp;lt;2e-16 ***
+## day_of_year      -0.0128942  0.0007959  -16.20   &amp;lt;2e-16 ***
+## LocationCanberra -2.1539876  0.1679972  -12.82   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 6.762 on 6494 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.06113,    Adjusted R-squared:  0.06084 
+## F-statistic: 211.4 on 2 and 6494 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(linear_mod, which = 1:5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-10-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resid_linear &amp;lt;- broom::augment(linear_mod)
+
+gf_point(.resid ~ .fitted, data = resid_linear, color = ~ Location) |&amp;gt; 
+  gf_hline(yintercept = 0, size = 1.5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quad_model &amp;lt;- lm(Temp3pm ~ poly(day_of_year, 2) + Location, 
+                 data = aus_weather)
+
+summary(quad_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Temp3pm ~ poly(day_of_year, 2) + Location, data = aus_weather)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.8321  -2.9490  -0.5725   2.6229  17.4332 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)             21.66025    0.08304  260.84   &amp;lt;2e-16 ***
+## poly(day_of_year, 2)1 -109.89896    4.61906  -23.79   &amp;lt;2e-16 ***
+## poly(day_of_year, 2)2  399.00995    4.61940   86.38   &amp;lt;2e-16 ***
+## LocationCanberra        -2.22383    0.11461  -19.40   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 4.613 on 6493 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.5631, Adjusted R-squared:  0.5629 
+## F-statistic:  2790 on 3 and 6493 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resid_quad &amp;lt;- broom::augment(quad_model)
+
+head(resid_quad)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 9
+##   .rownames Temp3pm poly(day_of…¹ Locat…² .fitted    .hat .sigma .cooksd .std.…³
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 1            23.6        0.0144 Canber…    19.8 5.29e-4   4.61 8.92e-5  0.821 
+## 2 2            25.7        0.0146 Canber…    19.9 5.35e-4   4.61 2.10e-4  1.25  
+## 3 3            20.2        0.0147 Canber…    20.0 5.42e-4   4.61 1.74e-7  0.0359
+## 4 4            14.1        0.0148 Canber…    20.1 5.49e-4   4.61 2.36e-4 -1.31  
+## 5 5            15.4        0.0149 Canber…    20.3 5.56e-4   4.61 1.55e-4 -1.05  
+## 6 6            14.8        0.0150 Canber…    20.4 5.64e-4   4.61 2.06e-4 -1.21  
+## # … with 1 more variable: `poly(day_of_year, 2)`[2] &amp;lt;dbl&amp;gt;, and abbreviated
+## #   variable names ¹​`poly(day_of_year, 2)`[,&amp;quot;1&amp;quot;], ²​Location, ³​.std.resid&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.std.resid ~ .fitted, data = resid_quad, color = ~ Location) |&amp;gt;
+gf_hline(yintercept = 0, size = 1.5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quad_model_2 &amp;lt;- lm(Temp3pm ~ day_of_year + I(day_of_year^2) + Location, 
+                 data = aus_weather)
+
+summary(quad_model_2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Temp3pm ~ day_of_year + I(day_of_year^2) + Location, 
+##     data = aus_weather)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.8321  -2.9490  -0.5725   2.6229  17.4332 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)       3.502e+01  1.821e-01  192.28   &amp;lt;2e-16 ***
+## day_of_year      -1.944e-01  2.170e-03  -89.57   &amp;lt;2e-16 ***
+## I(day_of_year^2)  4.979e-04  5.764e-06   86.38   &amp;lt;2e-16 ***
+## LocationCanberra -2.224e+00  1.146e-01  -19.40   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 4.613 on 6493 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.5631, Adjusted R-squared:  0.5629 
+## F-statistic:  2790 on 3 and 6493 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resid_quad_2 &amp;lt;- broom::augment(quad_model_2)
+
+head(resid_quad_2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 11
+##   .rowna…¹ Temp3pm day_o…² I(day…³ Locat…⁴ .fitted .resid    .hat .sigma .cooksd
+##   &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;I&amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 1           23.6     305   93025 Canber…    19.8  3.79  5.29e-4   4.61 8.92e-5
+## 2 2           25.7     306   93636 Canber…    19.9  5.78  5.35e-4   4.61 2.10e-4
+## 3 3           20.2     307   94249 Canber…    20.0  0.165 5.42e-4   4.61 1.74e-7
+## 4 4           14.1     308   94864 Canber…    20.1 -6.05  5.49e-4   4.61 2.36e-4
+## 5 5           15.4     309   95481 Canber…    20.3 -4.86  5.56e-4   4.61 1.55e-4
+## 6 6           14.8     310   96100 Canber…    20.4 -5.57  5.64e-4   4.61 2.06e-4
+## # … with 1 more variable: .std.resid &amp;lt;dbl&amp;gt;, and abbreviated variable names
+## #   ¹​.rownames, ²​day_of_year, ³​`I(day_of_year^2)`, ⁴​Location&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(Temp3pm ~ day_of_year, data = resid_quad_2, color = ~ Location, alpha = .3) |&amp;gt; 
+  gf_line(.fitted ~ day_of_year, color = ~ Location, data = resid_quad_2, size = 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quad_model_3 &amp;lt;- lm(Temp3pm ~ poly(day_of_year, 2) * Location, 
+                 data = aus_weather)
+
+summary(quad_model_3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Temp3pm ~ poly(day_of_year, 2) * Location, data = aus_weather)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.2571  -2.9927  -0.5634   2.5809  17.7627 
+## 
+## Coefficients:
+##                                          Estimate Std. Error t value Pr(&amp;gt;|t|)
+## (Intercept)                              21.65852    0.08291 261.220  &amp;lt; 2e-16
+## poly(day_of_year, 2)1                  -114.77043    6.71386 -17.095  &amp;lt; 2e-16
+## poly(day_of_year, 2)2                   376.21298    6.72202  55.967  &amp;lt; 2e-16
+## LocationCanberra                         -2.22306    0.11443 -19.428  &amp;lt; 2e-16
+## poly(day_of_year, 2)1:LocationCanberra    9.03072    9.23824   0.978    0.328
+## poly(day_of_year, 2)2:LocationCanberra   43.03473    9.24005   4.657 3.27e-06
+##                                           
+## (Intercept)                            ***
+## poly(day_of_year, 2)1                  ***
+## poly(day_of_year, 2)2                  ***
+## LocationCanberra                       ***
+## poly(day_of_year, 2)1:LocationCanberra    
+## poly(day_of_year, 2)2:LocationCanberra ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 4.606 on 6491 degrees of freedom
+##   (11 observations deleted due to missingness)
+## Multiple R-squared:  0.5646, Adjusted R-squared:  0.5643 
+## F-statistic:  1684 on 5 and 6491 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quad_model_3 &amp;lt;- lm(Temp3pm ~ day_of_year * Location + I(day_of_year^2) * Location, 
+                 data = aus_weather)
+resid_quad_3 &amp;lt;- broom::augment(quad_model_3)
+
+gf_point(Temp3pm ~ day_of_year, data = resid_quad_3, color = ~ Location, alpha = .3) |&amp;gt; 
+  gf_line(.fitted ~ day_of_year, color = ~ Location, data = resid_quad_3, size = 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-nonlinear_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Effect Sizes</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/16-effect-size/</link>
+      <pubDate>Mon, 05 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/16-effect-size/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;effect-sizes&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Effect Sizes&lt;/h1&gt;
+&lt;p&gt;An &lt;strong&gt;effect size&lt;/strong&gt; is the magnitude of the relationship between two attributes. This magnitude can be reported and interpreted on many different metrics, many of which that we have already considered, some of which we have not. The term &lt;em&gt;effect size&lt;/em&gt; is often miscontrued to mean a standardized magnitude of relationship, but this is not needed, but can be helpful in some situations.&lt;/p&gt;
+&lt;p&gt;As a slight aside, there is a field, called &lt;em&gt;meta-analysis&lt;/em&gt; that is used to statistically combine effect sizes across multiple studies conducted on a similar topic. The goal of these studies is to understand the aggregate effect size (i.e., average effect size), but also if there is any heterogeneity in those effect sizes.&lt;/p&gt;
+&lt;div id=&#34;simple-effect-size---slopes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Simple Effect Size - slopes&lt;/h2&gt;
+&lt;p&gt;To understand the magnitude of the effect, the slope estimates can be an unstandardized effect size measure. This is true for both continuous and categorical predictor attributes. For the continuous attributes it would represent a true slope, but for a categorical predictors it would represent a mean difference going from the reference group to the focal group.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;standardized-effect-sizes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Standardized effect sizes&lt;/h2&gt;
+&lt;p&gt;Standardized effect sizes can also be considered, these can be helpful to compare across studies where the sample is different or is from a different population. The standardization usually comes from taking the standard deviations into account, this then turns the slope into a metric that is interpreted in terms of standard deviation units. We discussed this earlier in the semester with standardized regression slopes.&lt;/p&gt;
+&lt;div id=&#34;continuous-predictor-attributes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Continuous predictor attributes&lt;/h3&gt;
+&lt;p&gt;We can also use this formula to convert any unstandardized regression coefficients into a standardized metric.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+b^{&amp;#39;}_{k} = b_{k} * \frac{s_{x_{k}}}{s_{y}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s do an example as a reminder.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+##  learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+airquality &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 6917 Columns: 10
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wind &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1537 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;airquality &amp;lt;- airquality |&amp;gt;
+   left_join(wind, by = c(&amp;#39;cbsa_name&amp;#39;, &amp;#39;date&amp;#39;)) |&amp;gt; 
+   drop_na() |&amp;gt;
+   mutate(avg_wind_mc = avg_wind - mean(avg_wind))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 14
+##   date           id   poc pm2.5 daily_aqi site_…¹ aqs_p…² cbsa_…³ cbsa_…⁴ county
+##   &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; 
+## 1 1/1/21  190130009     1  15.1        57 Water … PM2.5 …   47940 Waterl… Black…
+## 2 1/4/21  190130009     1  13.3        54 Water … PM2.5 …   47940 Waterl… Black…
+## 3 1/7/21  190130009     1  20.5        69 Water … PM2.5 …   47940 Waterl… Black…
+## 4 1/10/21 190130009     1  14.3        56 Water … PM2.5 …   47940 Waterl… Black…
+## 5 1/13/21 190130009     1  13.7        54 Water … PM2.5 …   47940 Waterl… Black…
+## 6 1/16/21 190130009     1   5.3        22 Water … PM2.5 …   47940 Waterl… Black…
+## # … with 4 more variables: avg_wind &amp;lt;dbl&amp;gt;, max_wind &amp;lt;dbl&amp;gt;,
+## #   max_wind_hours &amp;lt;dbl&amp;gt;, avg_wind_mc &amp;lt;dbl&amp;gt;, and abbreviated variable names
+## #   ¹​site_name, ²​aqs_parameter_desc, ³​cbsa_code, ⁴​cbsa_name&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_mc &amp;lt;- lm(daily_aqi ~ avg_wind_mc + max_wind, data = airquality)
+
+broom::tidy(air_lm_mc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term        estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)    27.4      1.47      18.6  2.80e-74
+## 2 avg_wind_mc    -4.43     0.300    -14.8  3.31e-48
+## 3 max_wind        1.58     0.201      7.87 4.52e-15&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is a package called &lt;code&gt;QuantPsyc&lt;/code&gt; that has a convenience function to compute standardized regression coefficients, named &lt;code&gt;lm.beta()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;QuantPsyc::lm.beta(air_lm_mc) |&amp;gt; round(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## avg_wind_mc    max_wind 
+##      -0.584       0.312&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;categorical-predictor-attributes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Categorical Predictor Attributes&lt;/h3&gt;
+&lt;p&gt;When including categorical attributes, the slope represents a mean difference between the reference group to the focal group.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_county &amp;lt;- lm(daily_aqi ~ county, data = airquality)
+
+broom::tidy(air_county)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8 × 5
+##   term                estimate std.error statistic     p.value
+##   &amp;lt;chr&amp;gt;                  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1 (Intercept)            38.7      0.923     42.0  0          
+## 2 countyClinton           3.56     1.20       2.97 0.00299    
+## 3 countyJohnson           4.37     1.36       3.21 0.00132    
+## 4 countyLinn              4.03     1.34       3.02 0.00256    
+## 5 countyMuscatine        -1.48     1.06      -1.39 0.164      
+## 6 countyPolk             -5.90     1.13      -5.21 0.000000197
+## 7 countyPottawattamie    -6.52     3.69      -1.76 0.0777     
+## 8 countyScott             1.84     1.09       1.69 0.0915&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(airquality, county)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8 × 2
+##   county            n
+##   &amp;lt;chr&amp;gt;         &amp;lt;int&amp;gt;
+## 1 Black Hawk      405
+## 2 Clinton         588
+## 3 Johnson         348
+## 4 Linn            371
+## 5 Muscatine      1243
+## 6 Polk            806
+## 7 Pottawattamie    27
+## 8 Scott          1033&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are two related effect sizes, cohen’s D and hedges g. Hedges g is related to cohen’s D by implementing a correction factor as cohen’s D tend to have a slight bias.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+d = \frac{\bar{Y}_{1} - \bar{Y}_{2}}{s_{within}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where the numerator represents the raw mean difference between two independent groups. The denominator is the pooled standard deviation. The pooled standard deviation for two independent groups is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+s_{within} = \sqrt{\frac{(n_{1} - 1) s^{2}_{1} + (n_{2} - 1) s^{2}_{2}}{n_{1} + n_{2} - 2}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The correction factor to convert cohen’s d to hedges g is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+J = 1 - \frac{3}{4 (n_{1} + n_{2} - 2) - 1}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then, take&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+g = J * d
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In terms of regression coefficients, we can do this directly with the regression slopes that represent a mean difference.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+g = J * \frac{\hat{\beta_{1}}}{s_{within}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(air_county)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8 × 5
+##   term                estimate std.error statistic     p.value
+##   &amp;lt;chr&amp;gt;                  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1 (Intercept)            38.7      0.923     42.0  0          
+## 2 countyClinton           3.56     1.20       2.97 0.00299    
+## 3 countyJohnson           4.37     1.36       3.21 0.00132    
+## 4 countyLinn              4.03     1.34       3.02 0.00256    
+## 5 countyMuscatine        -1.48     1.06      -1.39 0.164      
+## 6 countyPolk             -5.90     1.13      -5.21 0.000000197
+## 7 countyPottawattamie    -6.52     3.69      -1.76 0.0777     
+## 8 countyScott             1.84     1.09       1.69 0.0915&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(daily_aqi ~ county, mean, sd, length, data = airquality)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    response        county     mean       sd length
+## 1 daily_aqi    Black Hawk 38.73827 17.33495    405
+## 2 daily_aqi       Clinton 42.30272 20.06328    588
+## 3 daily_aqi       Johnson 43.10345 19.10914    348
+## 4 daily_aqi          Linn 42.76819 20.28354    371
+## 5 daily_aqi     Muscatine 37.25664 17.68327   1243
+## 6 daily_aqi          Polk 32.84243 18.57304    806
+## 7 daily_aqi Pottawattamie 32.22222 13.75705     27
+## 8 daily_aqi         Scott 40.57696 18.52664   1033&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pooled_sd &amp;lt;- sqrt(((405 - 1) * 17.3^2 + (348 - 1) * 19.1^2) / (405 + 348 - 2))
+pooled_sd&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 18.15389&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;round(4.365 / pooled_sd, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.24&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1 - (3 / (4 * (405 + 348 - 2) - 1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.999001&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;round(0.999 * (4.365 / pooled_sd), 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2402&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When you have an ANCOVA type model, you would want to use the regression slopes which would represent adjusted means rather than the raw means.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_county &amp;lt;- lm(daily_aqi ~ avg_wind_mc + max_wind + county, data = airquality)
+
+broom::tidy(air_county)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 × 5
+##    term                estimate std.error statistic  p.value
+##    &amp;lt;chr&amp;gt;                  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1 (Intercept)           29.0       1.77     16.4   8.95e-59
+##  2 avg_wind_mc           -4.29      0.303   -14.1   1.74e-44
+##  3 max_wind               1.48      0.203     7.29  3.69e-13
+##  4 countyClinton          0.203     1.17      0.174 8.62e- 1
+##  5 countyJohnson          1.68      1.31      1.28  2.01e- 1
+##  6 countyLinn             3.88      1.28      3.02  2.51e- 3
+##  7 countyMuscatine       -4.02      1.04     -3.88  1.07e- 4
+##  8 countyPolk            -2.83      1.09     -2.59  9.71e- 3
+##  9 countyPottawattamie   -9.37      3.54     -2.65  8.05e- 3
+## 10 countyScott            0.862     1.04      0.827 4.08e- 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;round(0.999 * (1.679 / pooled_sd), 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0924&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For more details on effect sizes from regression models see:&lt;/p&gt;
+&lt;p&gt;Ariel M. Aloe, Christopher G. Thompson, Zhijiang Liu &amp;amp; Lifeng Lin (2022)
+Estimating Partial Standardized Mean Differences from Regression Models, The Journal of
+Experimental Education, 90:4, 898-915, DOI: 10.1080/00220973.2021.1966605&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

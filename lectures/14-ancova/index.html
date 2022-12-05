@@ -833,6 +833,14 @@
 
   <li class="active"><a href="/lectures/14-ancova/">Analysis of Covariance</a></li>
 
+
+
+  <li class=""><a href="/lectures/15-nonlinear/">Modeling Non-linearity</a></li>
+
+
+
+  <li class=""><a href="/lectures/16-effect-size/">Effect Sizes</a></li>
+
       
     
 
@@ -879,10 +887,10 @@
 <p>This section of notes will explore an analysis procedure classically known as Analysis of Covariance (ANCOVA). This methodology is aimed to answer the following question, <em>Is there a difference in groups, after controlling for other covariates</em>. Here, covariates refer to another attribute in the data that is thought to influence or explain variation in the outcome, therefore, this method is meant to remove, control, or partition the variance associated with the covariate (or multiple covariates) to evaluate the conditional or adjusted means.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+## ✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
 ## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
 ## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
@@ -987,6 +995,8 @@ glance(baby_smoker)</code></pre>
 <p>Below is a descriptive figure trying to show the relationship between birth weight and gestational days by smoker status.</p>
 <pre class="r"><code>gf_point(birth_weight ~ gestational_days, data = baby, color = ~maternal_smoker, size = 4) %&gt;%
   gf_smooth(method = &#39;lm&#39;, size = 1)</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.</code></pre>
 <p><img src="/lectures/14-ancova_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Below, let’s fit the traditional ANCOVA model, that contains a single continuous covariate (gestational days) and the categorical predictor. The model would be:</p>
 <p><span class="math display">\[
@@ -1152,6 +1162,12 @@ glance(baby_lm_int_w)</code></pre>
     <a href="/lectures/13-multiple-categorical/" rel="next">Multiple Categorical Attributes</a>
   </div>
   
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/lectures/15-nonlinear/" rel="prev">Modeling Non-linearity</a>
+  </div>
   
 </div>
 
