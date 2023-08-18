@@ -15,7 +15,7 @@
     <item>
       <title>Welcome</title>
       <link>https://psqf6243.brandonlebeau.org/content/00-getting-started/</link>
-      <pubDate>Mon, 22 Aug 2022 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/00-getting-started/</guid>
       <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
 &lt;ul&gt;
@@ -23,11 +23,11 @@
 &lt;li&gt;Review the schedule&lt;/li&gt;
 &lt;li&gt;Review, accessing the IDAS page
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://psqf-6243-0002.idas.aws.cloud.uiowa.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
 &lt;li&gt;RStudio Server, to access you can switch via the &amp;ldquo;New&amp;rdquo; button on Jupyter Notebooks.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/r/40cahs1wma&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/r/k5mWc5JbZg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -35,12 +35,12 @@
     <item>
       <title>IDAS Introduction</title>
       <link>https://psqf6243.brandonlebeau.org/content/00a-idas/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/00a-idas/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;This page is meant as a way to give some introduction and how to access the IDAS used for the course.&lt;/p&gt;
 &lt;h2 id=&#34;access&#34;&gt;Access&lt;/h2&gt;
-&lt;p&gt;The IDAS server can be accessed via the following link directly: &lt;a href=&#34;http://psqf-6243-0002.idas.aws.cloud.uiowa.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Access IDAS&lt;/a&gt;. Upon going here, you will be prompted to log in with your HawkID. Finally, to use the IDAS, you will need to have DUO authentication activated.&lt;/p&gt;
+&lt;p&gt;The IDAS server can be accessed via the following link directly: &lt;a href=&#34;https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Access IDAS&lt;/a&gt;. Upon going here, you will be prompted to log in with your HawkID. Finally, to use the IDAS, you will need to have DUO authentication activated.&lt;/p&gt;
 &lt;p&gt;Here is a good link if you have not set up DUO authentication before from ITS. It may take a few hours or up to a day to be granted access to the IDAS after setting up DUO authentication for the first time, &lt;a href=&#34;https://its.uiowa.edu/duo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DUO Authentication Docs&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;idas-specifics&#34;&gt;IDAS Specifics&lt;/h2&gt;
 &lt;p&gt;The IDAS by default will launch in Jupyter Lab mode and will sync all course materials that I have posted for the course. The syncing of remote materials will never overwrite anything that you have manually edited by you, the student. For this reason, if I notice a breaking change, I usually post a new updated file with a new name.&lt;/p&gt;
@@ -53,307 +53,6 @@
 &lt;p&gt;This disconnects/stops the server instance so that the resources can be allocated to others wishing to use the service.&lt;/p&gt;
 &lt;h2 id=&#34;common-issues&#34;&gt;Common issues&lt;/h2&gt;
 &lt;p&gt;ITS has established a &lt;a href=&#34;https://wiki.uiowa.edu/display/hpcdocs/Troubleshooting&amp;#43;Common&amp;#43;Issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wiki page&lt;/a&gt; for common problems that occur and other documentation related to the IDAS.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 1</title>
-      <link>https://psqf6243.brandonlebeau.org/content/01-week1/</link>
-      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/01-week1/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to the course. Primary content will be a review to set the basis for the remainder of the semester.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read syllabus, ask any questions&lt;/li&gt;
-&lt;li&gt;Review &lt;a href=&#34;../../lectures/01-review/&#34;&gt;introductory statistics content&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Explore R code from introductory slides&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Review introductory statistics content
-&lt;ul&gt;
-&lt;li&gt;Chapters 2 - 4 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/visualization.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Optional, complete &lt;a href=&#34;https://forms.office.com/r/40cahs1wma&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;p&gt;None this week.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 2</title>
-      <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
-      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Recognize a linear regression formula&lt;/li&gt;
-&lt;li&gt;Interpret regression parameters&lt;/li&gt;
-&lt;li&gt;Specify a linear regression in statistical software&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;p&gt;TBA&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 3</title>
-      <link>https://psqf6243.brandonlebeau.org/content/03-week3/</link>
-      <pubDate>Tue, 06 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/03-week3/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Define a residual or error from a regression model.&lt;/li&gt;
-&lt;li&gt;Explore benefits of centering predictor attributes.&lt;/li&gt;
-&lt;li&gt;Engage with linear regression parameter estimation.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optional, Read 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#least-squares-regression&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Quiz 1 to come soon&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../../assignments/actitivy/activity1/&#34;&gt;Activity 1&lt;/a&gt; - Due Around September 19th&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 4</title>
-      <link>https://psqf6243.brandonlebeau.org/content/04-week4/</link>
-      <pubDate>Tue, 13 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/04-week4/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Digging deeper into linear regression. Time will be spent to show/prove via simulation the least square criterion that is minimized by the regression estimates. The foundation for inference using classical statistical methods will be explored.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Understand the least squares minimization for regression.&lt;/li&gt;
-&lt;li&gt;Explore inference for regression parameters.&lt;/li&gt;
-&lt;li&gt;Define what a standard error is.&lt;/li&gt;
-&lt;li&gt;Define null hypothesis significance testing (NHST)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read 24.4 of &lt;a href=&#34;https://openintro-ims.netlify.app/inf-model-slr.html#mathslope&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Quiz 2 &amp;ndash; To come &amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../../assignments/activity/activity1/&#34;&gt;Activity 1&lt;/a&gt; &amp;ndash; Due around September 19th&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 5</title>
-      <link>https://psqf6243.brandonlebeau.org/content/05-week5/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/05-week5/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Digging deeper into linear regression inference using classical procedures. Further definitions of confidence intervals, sampling distribution, and interpretations of p-values.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Construct a confidence interval&lt;/li&gt;
-&lt;li&gt;Define the sampling distribution&lt;/li&gt;
-&lt;li&gt;Perform significance testing&lt;/li&gt;
-&lt;li&gt;Interpret p-value as a continuous probability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional, Read 24.4 of &lt;a href=&#34;https://openintro-ims.netlify.app/inf-model-slr.html#mathslope&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Optional, Read &lt;a href=&#34;https://doi.org/10.1080/00031305.2016.1154108&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ASA statement on p-values&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;../../assignments/activity/activity1/&#34;&gt;Activity 1&lt;/a&gt; &amp;ndash; Due around September 19th&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../../assignments/activity/activity2/&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz2/&#34;&gt;Quiz 2&lt;/a&gt; &amp;ndash; Due September 26th&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 6</title>
-      <link>https://psqf6243.brandonlebeau.org/content/06-week6/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/06-week6/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Regression conditions for valid inferences. Topics will explore evaluation of residuals for checking of conditions.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Define what a residual is&lt;/li&gt;
-&lt;li&gt;Define common statistical conditions for linear regression&lt;/li&gt;
-&lt;li&gt;Interpret residual plots&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Section 11.1 of Regression and Other Stories &lt;a href=&#34;https://users.aalto.fi/~ave/ROS.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Regression and Other Stories&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;../../assignments/activity/activity2/&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
-&lt;li&gt;Activity 3 &amp;ndash; Coming soon&lt;/li&gt;
-&lt;li&gt;Quiz 3 &amp;ndash; Coming soon&lt;/li&gt;
-&lt;li&gt;Assignment 1 - coming soon, likely due around October 10th &amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 7</title>
-      <link>https://psqf6243.brandonlebeau.org/content/07-week7/</link>
-      <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/07-week7/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Discussion of data conditions for valid linear regression inference.&lt;/li&gt;
-&lt;li&gt;Exploration of utilizing a bootstrap for a robust alternative to inference for regression parameters.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Define a residual&lt;/li&gt;
-&lt;li&gt;Explore key data conditions&lt;/li&gt;
-&lt;li&gt;Define the bootstrap procedure&lt;/li&gt;
-&lt;li&gt;Define and explain the steps to conduct a bootstrap&lt;/li&gt;
-&lt;li&gt;Interpret bootstrap results&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/estimation-bootstrap-and-uncertainty.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 12 of &lt;a href=&#34;https://openintro-ims.netlify.app/foundations-bootstrapping.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 17th&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 4&lt;/a&gt; - Due around October 10th.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 10th&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 24th&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 8 and 9</title>
-      <link>https://psqf6243.brandonlebeau.org/content/08-week8/</link>
-      <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/08-week8/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Introduction of multiple linear regression. This will allow for more than 1 quantitative predictor to be added to the regression model.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Define multiple linear regression&lt;/li&gt;
-&lt;li&gt;Interpret multiple linear regression coefficients&lt;/li&gt;
-&lt;li&gt;Explain variance decomposition&lt;/li&gt;
-&lt;li&gt;Compare multiple models&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 3.2 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-mlr.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 17th&lt;/li&gt;
-&lt;li&gt;Quiz 5 &amp;ndash; coming soon.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 10th&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 24th&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 10</title>
-      <link>https://psqf6243.brandonlebeau.org/content/10-week10/</link>
-      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/10-week10/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Additional comparison of multiple comparisons of models for identifying which model fits the data the best.&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Compare multiple models&lt;/li&gt;
-&lt;li&gt;Identify nested vs non-nested models&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 3.3 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 11</title>
-      <link>https://psqf6243.brandonlebeau.org/content/11-week11/</link>
-      <pubDate>Fri, 04 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/11-week11/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Generalize the regression model to using categorical predictors with more than 2 groups. In this section, exploration of dummy/indicator coding for coding of categorical predictors will be the focus. Interpretation of model parameters will be the focus&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Identify a categorical attribute&lt;/li&gt;
-&lt;li&gt;Define dummy/indicator coding for categorical attributes with more than 2 categories&lt;/li&gt;
-&lt;li&gt;Interpret regression results from dummy coded categorical attribute&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Chapter 3.6.6 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 7.2.6 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#categorical-predictor-two-levels&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Week 12</title>
-      <link>https://psqf6243.brandonlebeau.org/content/12-week12/</link>
-      <pubDate>Fri, 04 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/content/12-week12/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Explore pairwise comparisons for categorical predictors with multiple categories. Discuss familywise error rate and p-value adjustment procedures. Start exploring interactions between two categorical and between a categorical and continuous attribute (ANCOVA).&lt;/p&gt;
-&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Identify hypotheses for pairwise comparison procedures&lt;/li&gt;
-&lt;li&gt;Define familywise error rate&lt;/li&gt;
-&lt;li&gt;Interpret p-values from adjustment methods&lt;/li&gt;
-&lt;li&gt;Interpret interaction effects&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Read Brambor, T., Clark, W. R., &amp;amp; Golder, M. (2006). &lt;a href=&#34;http://mattgolder.com/files/research/pa_final.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Understanding interaction models: Improving empirical analyses&lt;/a&gt;. Political Analysis, 14, 63–82.&lt;/li&gt;
-&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Optional: Read Frost, J. (2018). &lt;a href=&#34;https://statisticsbyjim.com/regression/interaction-effects/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Understanding Interaction Effects in Statistics&lt;/a&gt;. [blog post]&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
