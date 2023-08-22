@@ -12,5 +12,224 @@
       <link>https://psqf6243.brandonlebeau.org/lectures/</link>
     </image>
     
+    <item>
+      <title>Review</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/01-review/</link>
+      <pubDate>Tue, 22 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/01-review/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;review-for-psqf-6243&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Review for PSQF 6243&lt;/h1&gt;
+&lt;p&gt;This serves as a non-exhaustive review for the course. These are elements that I assume you have knowledge of prior to starting the course.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Variable vs constant attributes&lt;/li&gt;
+&lt;li&gt;Types of variables (ie., nominal, ordinal, integer, ratio)&lt;/li&gt;
+&lt;li&gt;Descriptive Statistics (eg., mean, median, standard deviation, variance, percentiles)&lt;/li&gt;
+&lt;li&gt;Higher order moments (eg., skewness and kurtosis)&lt;/li&gt;
+&lt;li&gt;Exploring/summarizing univariate distributions (eg., histogram or density figure)&lt;/li&gt;
+&lt;li&gt;What is a statistical model? Why do we use them?&lt;/li&gt;
+&lt;li&gt;Population vs Sample&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;examples&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Examples&lt;/h2&gt;
+&lt;p&gt;Mario Kart 64 world record data:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;variable&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;class&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;track&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Track name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;type&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;factor&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Single or three lap record&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;shortcut&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;factor&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Shortcut or non-shortcut record&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;player&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Player’s name&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;system_played&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Used system (NTSC or PAL)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;date&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;date&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;World record date&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;time_period&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;period&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Time as &lt;code&gt;hms&lt;/code&gt; period&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;time&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Time in seconds&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;record_duration&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Record duration in days&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load some libraries
+library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(lubridate)
+library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(e1071)
+
+theme_set(theme_bw(base_size = 18))
+
+# load in some data
+mariokart &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv&amp;#39;) %&amp;gt;%
+    mutate(year = year(date),
+           month = month(date),
+           day = month(date))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 2334 Columns: 9
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (6): track, type, shortcut, player, system_played, time_period
+## dbl  (2): time, record_duration
+## date (1): date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(mariokart)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
+##   track         type  shortcut player system_played date       time_period  time
+##   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;         &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1 Luigi Raceway Thre… No       Salam  NTSC          1997-02-15 2M 12.99S    133.
+## 2 Luigi Raceway Thre… No       Booth  NTSC          1997-02-16 2M 9.99S     130.
+## 3 Luigi Raceway Thre… No       Salam  NTSC          1997-02-16 2M 8.99S     129.
+## 4 Luigi Raceway Thre… No       Salam  NTSC          1997-02-28 2M 6.99S     127.
+## 5 Luigi Raceway Thre… No       Gregg… NTSC          1997-03-07 2M 4.51S     125.
+## 6 Luigi Raceway Thre… No       Rocky… NTSC          1997-04-30 2M 2.89S     123.
+## # ℹ 4 more variables: record_duration &amp;lt;dbl&amp;gt;, year &amp;lt;dbl&amp;gt;, month &amp;lt;dbl&amp;gt;, day &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# univariate distribution of time
+gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;% 
+   gf_labs(x = &amp;quot;Time (in seconds)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/01-review_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ time, data = mariokart) %&amp;gt;% 
+   gf_labs(x = &amp;quot;Time (in seconds)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/01-review_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(~ time, data = mariokart, mean, median, sd, skewness, kurtosis, quantile(probs = c(0.1, 0.5, 0.9)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response     mean median      sd skewness kurtosis   10%   50%     90%
+## 1     time 90.62383  86.19 66.6721 1.771732 3.844745 31.31 86.19 171.961&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bivariate-association&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bivariate Association&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(time ~ record_duration, data = mariokart)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.06736739&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(time ~ record_duration, data = mariokart) %&amp;gt;%
+  gf_labs(x = &amp;quot;How long the record was held&amp;quot;,
+          y = &amp;quot;Time (in seconds)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/01-review_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Questions&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What is problematic about the analyses above? Why?&lt;/li&gt;
+&lt;li&gt;What could be done to improve the analyses above?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
