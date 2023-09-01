@@ -903,79 +903,137 @@
 <li>answers to the questions below</li>
 <li>include any relevant statistics/figures that support your answer.</li>
 </ol>
-<p>Finally, upload the final document to <a href="https://uiowa.instructure.com/courses/196816/assignments/1745908" target="_blank" rel="noopener">ICON</a>.</p>
+<p>Finally, upload the final document to ICON (direct link to come).</p>
 <h3 id="due-date">Due Date</h3>
 <p><em>Due around</em> <strong>October 2nd, 2023</strong>. No penalty for late submissions as long as it is submitted by December 11th.</p>
 <h2 id="data">Data</h2>
-<p>The data for this activity is rideshare data from about three weeks in 2018 for Boston, MA. The data originally come from <a href="https://www.kaggle.com/brllrb/uber-and-lyft-dataset-boston-ma" target="_blank" rel="noopener">Kaggle</a>. I have done some processing to randomly select 2,500 records from the larger data for our use and have trimmed down the data attributes.</p>
-<p>The data can be obtained in <a href="https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/rideshare_small.csv" target="_blank" rel="noopener">csv format</a>. A short description for each attribute is as follows.</p>
+<p>The data for this activity comes from the <a href="https://github.com/rfordatascience/tidytuesday" target="_blank" rel="noopener">Tidy Tuesday</a> project. The data contain 19,405 rows and 28 columns about tornados from around the United States between 2007 and 2022. A data description for each column in the data is shown below (<a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-08-09" target="_blank" rel="noopener">see the Tidy Tuesday page for more information</a>)</p>
+<p>The data can be obtained in <a href="https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/tornados.csv" target="_blank" rel="noopener">csv format</a>. A short description for each attribute is as follows. These data are also found within the &ldquo;data&rdquo; folder inside the IDAS.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Attribute Name</th>
-<th style="text-align:left">Description</th>
+<th style="text-align:left">variable</th>
+<th style="text-align:left">class</th>
+<th style="text-align:left">description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">id</td>
-<td style="text-align:left">Unique identifier for each row</td>
+<td style="text-align:left">om</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Tornado number. Effectively an ID for this tornado in this year.</td>
 </tr>
 <tr>
-<td style="text-align:left">hour</td>
-<td style="text-align:left">The hour of the ride</td>
+<td style="text-align:left">yr</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Year, 1950-2022.</td>
 </tr>
 <tr>
-<td style="text-align:left">day</td>
-<td style="text-align:left">The day of the ride</td>
+<td style="text-align:left">mo</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Month, 1-12.</td>
 </tr>
 <tr>
-<td style="text-align:left">month</td>
-<td style="text-align:left">The month of the ride, either 11 = November or 12 = December</td>
+<td style="text-align:left">dy</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Day of the month, 1-31.</td>
 </tr>
 <tr>
-<td style="text-align:left">price</td>
-<td style="text-align:left">The total price of the ride, in $</td>
+<td style="text-align:left">date</td>
+<td style="text-align:left">date</td>
+<td style="text-align:left">Date.</td>
 </tr>
 <tr>
-<td style="text-align:left">temperature</td>
-<td style="text-align:left">The outside temperature at the time of the ride, in Fahrenheit</td>
+<td style="text-align:left">time</td>
+<td style="text-align:left">time</td>
+<td style="text-align:left">Time.</td>
 </tr>
 <tr>
-<td style="text-align:left">distance</td>
-<td style="text-align:left">Total distance of the ride, in miles</td>
+<td style="text-align:left">tz</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="noopener">Canonical tz database timezone</a>.</td>
 </tr>
 <tr>
-<td style="text-align:left">surge_multiplier</td>
-<td style="text-align:left">The surge multiplier for the cost of rides</td>
+<td style="text-align:left">datetime_utc</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left">Date and time normalized to UTC.</td>
 </tr>
 <tr>
-<td style="text-align:left">humidity</td>
-<td style="text-align:left">The humidity at the time of the ride</td>
+<td style="text-align:left">st</td>
+<td style="text-align:left">character</td>
+<td style="text-align:left">Two-letter postal abbreviation for the state (DC = Washington, DC; PR = Puerto Rico; VI = Virgin Islands).</td>
+</tr>
+<tr>
+<td style="text-align:left">stf</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">State FIPS (Federal Information Processing Standards) number.</td>
+</tr>
+<tr>
+<td style="text-align:left">mag</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Magnitude on the F scale (EF beginning in 2007). Some of these values are estimated (see fc).</td>
+</tr>
+<tr>
+<td style="text-align:left">inj</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Number of injuries. When summing for state totals, use sn == 1 (see below).</td>
+</tr>
+<tr>
+<td style="text-align:left">fat</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">Number of fatalities. When summing for state totals, use sn == 1 (see below).</td>
+</tr>
+<tr>
+<td style="text-align:left">loss</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">Estimated property loss information in dollars. Prior to 1996, values were grouped into ranges. The reported number for such years is the maximum of its range.</td>
+</tr>
+<tr>
+<td style="text-align:left">slat</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">Starting latitude in decimal degrees.</td>
+</tr>
+<tr>
+<td style="text-align:left">slon</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">Starting longitude in decimal degrees.</td>
+</tr>
+<tr>
+<td style="text-align:left">elat</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">Ending latitude in decimal degrees.</td>
 </tr>
 </tbody>
 </table>
+<p>|elon         |double    |Ending longitude in decimal degrees. |
+|len          |double    |Length in miles. |
+|wid          |double    |Width in yards. |
+|ns           |integer   |Number of states affected by this tornado. 1, 2, or 3. |
+|sn           |integer   |State number for this row. 1 means the row contains the entire track information for this state, 0 means there is at least one more entry for this state for this tornado (om + yr). |
+|f1           |integer   |FIPS code for the 1st county. |
+|f2           |integer   |FIPS code for the 2nd county. |
+|f3           |integer   |FIPS code for the 3rd county. |
+|f4           |integer   |FIPS code for the 4th county. |
+|fc           |logical   |Was the mag column estimated? |
+|log_loss.    |double.   |The log of the loss attribute |</p>
 <h2 id="guiding-question">Guiding Question</h2>
-<p>Does the distance of the ride explain variation in the price of the ride?</p>
+<p>Does the length or width of the tornado explain significant variation in the log loss of the tornado?</p>
 <h2 id="questions">Questions</h2>
 <ol>
 <li>
-<p>Explore the distribution of the price of the rides descriptively. In a few sentences, summarize key elements of the distribution, for instance discussing elements related to <strong>shape</strong>, <strong>center</strong>, <strong>variation</strong>, and/or <strong>extreme values</strong>.</p>
+<p>Refresh your descriptive analyses from the previous activity, if you did not explore the length or width of the tornado, please do that here.</p>
 </li>
 <li>
-<p>Explore the bivariate distribution of the price of ride and distance of rides. In a few sentences, summarize key elements of the relationship between price and distance. You may wish to include the following elements of the association, <strong>strength</strong>, <strong>direction</strong>, and/or <strong>form</strong>.</p>
+<p>Does the association between length or width of the tornado and log loss of the tornado appear to be linear? Why or why not?</p>
 </li>
 <li>
-<p>Does the association between price and distance of rides appear to be linear? Why or why not?</p>
-</li>
-<li>
-<p>Fit a linear regression to answer the research question highlighted above. Interpret the intercept and slope of the linear regression. That is, what do these terms mean?</p>
+<p>Fit a linear regression to answer the research question highlighted above. <em>Select only 1 attribute above to start for this activity</em> Interpret the intercept and slope of the linear regression. That is, what do these terms mean?</p>
 </li>
 <li>
 <p>What are the r-squared and sigma estimates from the linear regression? Interpret these two values in the context of the problem. That is, what do these two terms mean in the context of the data and this problem?</p>
 </li>
 <li>
-<p>Finally, in a couple sentences, provide a summary of the overall model. Does the model appear to be useful to predict the price of a ride with only the distance of the ride? <em>Use statistics from the analysis steps above to support your answer.</em></p>
+<p>Finally, in a couple sentences, provide a summary of the overall model. Does the model appear to be useful to predict or explain variation in the log loss of the tornado with either length or width of the tornado? <em>Use statistics from the analysis steps above to support your answer.</em></p>
 </li>
 </ol>
 
