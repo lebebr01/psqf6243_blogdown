@@ -125,19 +125,63 @@
 &lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;Ending latitude in decimal degrees.&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;elon&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Ending longitude in decimal degrees.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;len&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Length in miles.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;wid&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Width in yards.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ns&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Number of states affected by this tornado. 1, 2, or 3.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;sn&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;State number for this row. 1 means the row contains the entire track information for this state, 0 means there is at least one more entry for this state for this tornado (om + yr).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f1&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 1st county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f2&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 2nd county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f3&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 3rd county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f4&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 4th county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;fc&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;logical&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Was the mag column estimated?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;log_loss.&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double.&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The log of the loss attribute&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;|elon         |double    |Ending longitude in decimal degrees. |
-|len          |double    |Length in miles. |
-|wid          |double    |Width in yards. |
-|ns           |integer   |Number of states affected by this tornado. 1, 2, or 3. |
-|sn           |integer   |State number for this row. 1 means the row contains the entire track information for this state, 0 means there is at least one more entry for this state for this tornado (om + yr). |
-|f1           |integer   |FIPS code for the 1st county. |
-|f2           |integer   |FIPS code for the 2nd county. |
-|f3           |integer   |FIPS code for the 3rd county. |
-|f4           |integer   |FIPS code for the 4th county. |
-|fc           |logical   |Was the mag column estimated? |
-|log_loss.    |double.   |The log of the loss attribute |&lt;/p&gt;
 &lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -281,19 +325,63 @@
 &lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;Ending latitude in decimal degrees.&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;elon&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Ending longitude in decimal degrees.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;len&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Length in miles.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;wid&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Width in yards.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ns&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Number of states affected by this tornado. 1, 2, or 3.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;sn&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;State number for this row. 1 means the row contains the entire track information for this state, 0 means there is at least one more entry for this state for this tornado (om + yr).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f1&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 1st county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f2&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 2nd county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f3&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 3rd county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;f4&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;FIPS code for the 4th county.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;fc&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;logical&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Was the mag column estimated?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;log_loss.&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double.&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The log of the loss attribute&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;|elon         |double    |Ending longitude in decimal degrees. |
-|len          |double    |Length in miles. |
-|wid          |double    |Width in yards. |
-|ns           |integer   |Number of states affected by this tornado. 1, 2, or 3. |
-|sn           |integer   |State number for this row. 1 means the row contains the entire track information for this state, 0 means there is at least one more entry for this state for this tornado (om + yr). |
-|f1           |integer   |FIPS code for the 1st county. |
-|f2           |integer   |FIPS code for the 2nd county. |
-|f3           |integer   |FIPS code for the 3rd county. |
-|f4           |integer   |FIPS code for the 4th county. |
-|fc           |logical   |Was the mag column estimated? |
-|log_loss.    |double.   |The log of the loss attribute |&lt;/p&gt;
 &lt;h2 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h2&gt;
 &lt;p&gt;Does the length or width of the tornado explain significant variation in the log loss of the tornado?&lt;/p&gt;
 &lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
