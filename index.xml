@@ -1777,6 +1777,304 @@ gf_line(density ~ value, data = t_dist) %&amp;gt;%
     </item>
     
     <item>
+      <title>Linear Regression - In Class</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass/</link>
+      <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction-to-linear-regression&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction to Linear Regression&lt;/h1&gt;
+&lt;p&gt;This week will dive into linear regression, the foundation of this course. The exploration into linear regression will first start with the case when we have 2 &lt;strong&gt;continuous&lt;/strong&gt; attributes. One of those attributes will be the &lt;em&gt;outcome&lt;/em&gt; or &lt;em&gt;attribute of interest&lt;/em&gt; whereas the other will used as a &lt;em&gt;predictor&lt;/em&gt;. The outcome or attribute of interest is sometimes referred to as the dependent variable and the predictor is sometimes referred to as the independent variable. One way to think about this is that the dependent variable depends or is a function of the other attributes of interest. In linear regression terms, it could also be said that the independent variable &lt;strong&gt;explains variation&lt;/strong&gt; in the dependent variable (more on this later).&lt;/p&gt;
+&lt;p&gt;Of note, variable is a typical word used in statistics, I’ve come to like the word &lt;strong&gt;attribute&lt;/strong&gt; instead of variable. I will tend to use attribute, as in, a data attribute, but these are roughly interchangeable in my terminology.&lt;/p&gt;
+&lt;p&gt;We may write this general model as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; is the outcome attribute. It is also known as the dependent variable. The &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; term is the predictor/covariate attribute. It is also known as the independent variable. The &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is a random error term, more on this later. Finally, &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt; are unknown population coefficients that we are interested in estimating. More on this later too.&lt;/p&gt;
+&lt;div id=&#34;specific-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Specific example&lt;/h2&gt;
+&lt;p&gt;The data used for this section of the course is from the 2019 WNBA season. These data are part of the &lt;a href=&#34;https://www.bayesrulesbook.com/&#34;&gt;&lt;em&gt;bayesrules&lt;/em&gt; package/book&lt;/a&gt;. The data contain 146 rows, one for each WNBA player sampled, and 32 attributes for that player. The R packages are loaded and the first few rows of the data are shown below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)
+
+basketball &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/basketball.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 146 Columns: 32
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (2): player_name, team
+## dbl (29): height, weight, year, age, games_played, games_started, avg_minute...
+## lgl  (1): starter
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(basketball)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 32
+##   player_name     height weight  year team    age games_played games_started
+##   &amp;lt;chr&amp;gt;            &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;
+## 1 Natalie Achonwa     75    190  2019 IND      26           30            18
+## 2 Kayla Alexander     76    195  2019 CHI      28            3             0
+## 3 Rebecca Allen       74    162  2019 NYL      26           24             2
+## 4 Jillian Alleyne     74    193  2019 MIN      24            5             0
+## 5 Kristine Anigwe     76    200  2019 TOT      22           27             0
+## 6 Kristine Anigwe     76    200  2019 CON      22           17             0
+## # ℹ 24 more variables: avg_minutes_played &amp;lt;dbl&amp;gt;, avg_field_goals &amp;lt;dbl&amp;gt;,
+## #   avg_field_goal_attempts &amp;lt;dbl&amp;gt;, field_goal_pct &amp;lt;dbl&amp;gt;,
+## #   avg_three_pointers &amp;lt;dbl&amp;gt;, avg_three_pointer_attempts &amp;lt;dbl&amp;gt;,
+## #   three_pointer_pct &amp;lt;dbl&amp;gt;, avg_two_pointers &amp;lt;dbl&amp;gt;,
+## #   avg_two_pointer_attempts &amp;lt;dbl&amp;gt;, two_pointer_pct &amp;lt;dbl&amp;gt;,
+## #   avg_free_throws &amp;lt;dbl&amp;gt;, avg_free_throw_attempts &amp;lt;dbl&amp;gt;, free_throw_pct &amp;lt;dbl&amp;gt;,
+## #   avg_offensive_rb &amp;lt;dbl&amp;gt;, avg_defensive_rb &amp;lt;dbl&amp;gt;, avg_rb &amp;lt;dbl&amp;gt;, …&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;guiding-question&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Guiding Question&lt;/h2&gt;
+&lt;p&gt;Suppose we are interested in exploring if players tend to score more points by playing more minutes in the season. That is, those that play more may have more opportunities to score more points. More generally, the relationship between average points in each game by the total minutes played across the season.&lt;/p&gt;
+&lt;p&gt;One first step in an analysis would be to explore each distribution independently first. I’m going to leave that as an exercise for you to do on your own.&lt;/p&gt;
+&lt;p&gt;The next step would be to explore the bivariate figure of these two attributes. As both of these attributes are continuous ratio type attributes, a scatterplot would be one way to visualize this. A scatterplot takes each X,Y pair of data and plots those coordinates. This can be done in R with the following code.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;) |&amp;gt;
+  gf_smooth()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;loess&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(avg_points ~ total_minutes, 
+    data = basketball) |&amp;gt; 
+round(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.848&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;round(cor(avg_points ~ total_minutes, data = basketball), 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.848&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Questions to consider&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What can be noticed about the relationship between these two attributes?&lt;/li&gt;
+&lt;li&gt;Does there appear to be a relationship between the two?&lt;/li&gt;
+&lt;li&gt;Is this relationship perfect?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-a-smoother-line&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adding a smoother line&lt;/h2&gt;
+&lt;p&gt;Adding a smoother line to the figure can help to guide how strong the relationship may be. In general, there are two types of smoothers that we will consider in this course. One is flexible and data dependent. This means that the functional form of the relationship is flexible to allow the data to specify if there are in non-linear aspects. The second is a linear or straight-line approach.&lt;/p&gt;
+&lt;p&gt;I’m going to add both to the figure below. The flexible (in this case this is a LOESS curve) curve is darker blue, the linear line is lighter blue.&lt;/p&gt;
+&lt;p&gt;Does there appear to be much difference in the relationship across the two lines?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_smooth(linewidth = 2.5) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2.5, linetype = 2, color = &amp;#39;green&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;loess&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;filter(basketball, total_minutes &amp;lt;= 0)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 32
+##   player_name      height weight  year team    age games_played games_started
+##   &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;
+## 1 Angel McCoughtry     73    173  2019 ATL      32            1             1
+## # ℹ 24 more variables: avg_minutes_played &amp;lt;dbl&amp;gt;, avg_field_goals &amp;lt;dbl&amp;gt;,
+## #   avg_field_goal_attempts &amp;lt;dbl&amp;gt;, field_goal_pct &amp;lt;dbl&amp;gt;,
+## #   avg_three_pointers &amp;lt;dbl&amp;gt;, avg_three_pointer_attempts &amp;lt;dbl&amp;gt;,
+## #   three_pointer_pct &amp;lt;dbl&amp;gt;, avg_two_pointers &amp;lt;dbl&amp;gt;,
+## #   avg_two_pointer_attempts &amp;lt;dbl&amp;gt;, two_pointer_pct &amp;lt;dbl&amp;gt;,
+## #   avg_free_throws &amp;lt;dbl&amp;gt;, avg_free_throw_attempts &amp;lt;dbl&amp;gt;, free_throw_pct &amp;lt;dbl&amp;gt;,
+## #   avg_offensive_rb &amp;lt;dbl&amp;gt;, avg_defensive_rb &amp;lt;dbl&amp;gt;, avg_rb &amp;lt;dbl&amp;gt;, …&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimating-linear-regression-coefficients&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimating linear regression coefficients&lt;/h2&gt;
+&lt;p&gt;The linear regression coefficients can be estimated within any statistical software (or by hand, even if tedious). Within R, the primary function is &lt;code&gt;lm()&lt;/code&gt; to estimate a linear regression. The primary argument is a formula similar to the regression formula shown above at the top of the notes.&lt;/p&gt;
+&lt;p&gt;This equation could be written more directly for our specific problem.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Avg\_points = \beta_{0} + \beta_{1} Minutes\_Played + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;One way to read this equation is that the number of minutes played for each player helps to understand variation or differences in the average points scored for that player. Or, average points is modeled or explained by minutes played.&lt;/p&gt;
+&lt;p&gt;For the R formula, instead of an $ = $, you could insert a ~.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wnba_reg &amp;lt;- lm(avg_points ~ total_minutes, data = basketball)
+coef(wnba_reg) |&amp;gt; round(4)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   (Intercept) total_minutes 
+##        1.1356        0.0101&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;100 * .01&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;interpretting-linear-regression-terms&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Interpretting linear regression terms&lt;/h2&gt;
+&lt;p&gt;Now that we have estimates for the linear regression terms, how are these interpretted? The linear regression equation with these estimates plugged in would look like the following:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{avg\_points} = 1.1356 + .0101 min\_played
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+avg\_points = 1.1356 + .0101 min\_played + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where instead of &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt;, the estimated values from this single season were inserted. Note the &lt;span class=&#34;math inline&#34;&gt;\(\hat{avg\_points}\)&lt;/span&gt;, which the caret symbol is read as a hat, that is, average points hat, is a very important small distinction. This now represents the predicted values for the linear regression. That means, that the predicted value for the average number of points is assumed to function solely based on the minutes a player played. We could put in any value for the minutes played and get an estimated average number of points out.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.1356&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.1457&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 100&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.1456&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * mean(basketball$total_minutes)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 5.342042&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * 5000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 51.6356&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * -50&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.6306&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;1.1356 + .0101 * -5000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -49.3644&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also notice from the equation above with the estimated coefficients, there is no longer any error. More on this later, but I wanted to point that out now. Back to model interpretations, these can become a bit more obvious with the values computed above by inputting specific values for the total minutes played.&lt;/p&gt;
+&lt;p&gt;First, for the intercept (&lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt;), notice that for the first computation above when 0 total minutes was input into the equation, that the same value for the intercept estimate was returned. This highlights what the intercept is, the average number of points scored when the X attribute (minutes played) equals 0.&lt;/p&gt;
+&lt;p&gt;The slope, (&lt;span class=&#34;math inline&#34;&gt;\(\beta_{1}\)&lt;/span&gt;), term is the average change in the outcome (average points here) for a one unit change in the predictor attribute (minutes played). Therefore, the slope here is 0.0101, which means that the average points scores increases by about 0.01 points for every additional minute played. This effect is additive, meaning that the 0.01 for a one unit change, say from 100 to 101 minutes, will remain when increasing from 101 to 102 minutes.&lt;/p&gt;
+&lt;p&gt;The predictions coming from the linear regression are the same as the light blue dashed line shown in the figure above and recreated here without the dark blue line.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, linewidth = 3, color = &amp;#39;blue&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_histogram(~ avg_points, data = basketball)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-about-the-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What about the error?&lt;/h2&gt;
+&lt;p&gt;So far the error has been disregarded, but where did it go? The error didn’t disappear, it is actually in the figure just created above. Where can you see the error? Why was it disregarded when creating the predicted values?&lt;/p&gt;
+&lt;p&gt;The short answer is that the error in a linear regression is commonly assumed to follow a Normal distribution with a mean of 0 and some variance, &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;. Sometimes this is written in math notation as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\epsilon \sim N(0, \sigma^2)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From this notation, can you see why the error was disregarded earlier when generating predictions?&lt;/p&gt;
+&lt;p&gt;In short, on average, the error is assumed to be 0 across all the sample data. The error will be smaller when the data are more closely clustered around the linear regression line and larger when the data are not clustered around the linear regression line. In the simple case with a single predictor, the error would be minimized when the correlation is closest to 1 in absolute value and largest when the correlation close to or equals 0.&lt;/p&gt;
+&lt;div id=&#34;estimating-error-in-linear-regression&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Estimating error in linear regression&lt;/h3&gt;
+&lt;p&gt;This comes from partitioning of variance that you maybe heard from a design of experiment or analysis of variance course. More specifically, the variance in the outcome can be partioned or split into two components, those that the independent attribute helped to explain vs those that it can not explain. The part that can be explained is sometimes referred to as the &lt;em&gt;sum of squares regression&lt;/em&gt; (SSR), the portion that is unexplained is referred to as the &lt;em&gt;sum of squares error&lt;/em&gt; (SSE). This could be written in math notation as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sum (Y - \bar{Y})^2 = \sum (Y - \hat{Y})^2 + \sum (\hat{Y} - \bar{Y})^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{Y} = \beta_{0} + \beta_{1} minutes
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SS_{reg} = \sum (\hat{Y} - \bar{Y})^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SS_{error} = \sum (Y - \hat{Y})^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SS_{Total} = \sum (Y - \bar{Y})^2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s try to visualize what this means.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_hline(yintercept = ~mean(avg_points), data = basketball) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;lightblue&amp;#39;) %&amp;gt;%
+  gf_segment(avg_points + mean(avg_points) ~ total_minutes + total_minutes, data = basketball, color = &amp;#39;#FF7F7F&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_hline(yintercept = ~mean(avg_points), data = basketball) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;lightblue&amp;#39;) %&amp;gt;%
+  gf_segment(avg_points + fitted(wnba_reg) ~ total_minutes + total_minutes, data = basketball, color = &amp;#39;#65a765&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(avg_points ~ total_minutes, data = basketball, size = 4, alpha = .5) %&amp;gt;% 
+  gf_hline(yintercept = ~mean(avg_points), data = basketball) %&amp;gt;%
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linetype = 2, color = &amp;#39;lightblue&amp;#39;) %&amp;gt;%
+  gf_segment(mean(avg_points) + fitted(wnba_reg) ~ total_minutes + total_minutes, data = basketball, color = &amp;#39;#FFD580&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Total Minutes Played&amp;quot;,
+          y = &amp;quot;Average Points Scored&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;another-related-measure-of-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Another related measure of error&lt;/h2&gt;
+&lt;p&gt;Another way to get a measure of how well the model is performing, would be a statistic called R-squared. This statistic is a function of the sum of squares described above.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+R^{2} = 1 - \frac{SS_{error}}{SS_{total}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+R^{2} = \frac{SS_{reg}}{SS_{total}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s compute the sum of square and get a value for &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sigma ^2 = \frac{SS_{error}}{ n - 2}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sigma = \sqrt{\sigma^2}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;basketball %&amp;gt;%
+summarise(ss_total = sum((avg_points - mean(avg_points))^2),
+          ss_error = sum((avg_points - fitted(wnba_reg))^2),
+          ss_reg = sum((fitted(wnba_reg) - mean(avg_points))^2)) %&amp;gt;%
+mutate(r_square = 1 - ss_error / ss_total,
+       r_square2 = ss_reg / ss_total)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 5
+##   ss_total ss_error ss_reg r_square r_square2
+##      &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1    2004.     564.  1440.    0.719     0.719&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(wnba_reg)$r.square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.7185315&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(wnba_reg)$sigma&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.979045&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sigma_hat_square &amp;lt;- 563.9929 / (nrow(basketball) - 2)
+sigma_hat &amp;lt;- sqrt(sigma_hat_square)
+
+sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.916617&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sigma_hat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.979045&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sd(basketball$avg_points)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3.717388&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Activity 1</title>
       <link>https://psqf6243.brandonlebeau.org/assignments/activity/activity1/</link>
       <pubDate>Mon, 29 Aug 2022 00:00:00 +0000</pubDate>
