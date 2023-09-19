@@ -34,10 +34,11 @@
   
     
   
-  <meta name="description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $.">
+  <meta name="description" content="In class activity - September 13, 2023 This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.
+The data used for this activity comes from medical insurance claims.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/">
 
   
 
@@ -266,7 +267,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/">
 
   
   
@@ -281,15 +282,16 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
-  <meta property="og:title" content="Least Squares Minimization | PSQF 6243">
-  <meta property="og:description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/">
+  <meta property="og:title" content="Regression in class | PSQF 6243">
+  <meta property="og:description" content="In class activity - September 13, 2023 This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.
+The data used for this activity comes from medical insurance claims."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2023-09-07T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2023-09-21T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2023-09-07T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2023-09-21T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +310,7 @@
 
 
 
-  <title>Least Squares Minimization | PSQF 6243</title>
+  <title>Regression in class | PSQF 6243</title>
 
 </head>
 
@@ -787,7 +789,7 @@
 
 
 
-  <li class="active"><a href="/lectures/04-least-squares-simulation/">Least Squares Minimization</a></li>
+  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Minimization</a></li>
 
 
 
@@ -795,7 +797,7 @@
 
 
 
-  <li class=""><a href="/lectures/05a-regression-in-class/">Regression in class</a></li>
+  <li class="active"><a href="/lectures/05a-regression-in-class/">Regression in class</a></li>
 
 
 
@@ -837,7 +839,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Least Squares Minimization</h1>
+          <h1>Regression in class</h1>
 
           <div class="article-style">
             
@@ -846,17 +848,57 @@
 
 </div>
 
-<div id="example-to-show-least-squares-minimization" class="section level2">
-<h2>Example to show least squares minimization</h2>
-<p>This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $.</p>
-<p>In this example, we will generate some data so that we know what the truth is. Then, upon data generation, we will compute a bunch of different values for the linear slope and y-intercept. For each combination of the y-intercept and slope, I will compute the sum of squares error depicted above.</p>
-<div id="simulate-some-data" class="section level3">
-<h3>Simulate some data</h3>
-<p>The following example simulates data based on the following linear regression formula:</p>
-<p><span class="math display">\[
-Y = 5 + 0.5 X + \epsilon
-\]</span></p>
-<p>More explicitly, the simulation allows us to specify what the intercept and slope is in the population. These are specified below in the <code>reg_weights</code> simulation argument.</p>
+<div id="in-class-activity---september-13-2023" class="section level1">
+<h1>In class activity - September 13, 2023</h1>
+<p>This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.</p>
+<p>The data used for this activity comes from medical insurance claims.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attribute</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">age</td>
+<td align="left">integer</td>
+<td align="left">Age of individual</td>
+</tr>
+<tr class="even">
+<td align="left">sex</td>
+<td align="left">character</td>
+<td align="left">Sex of individual at birth</td>
+</tr>
+<tr class="odd">
+<td align="left">bmi</td>
+<td align="left">integer</td>
+<td align="left">Body mass index</td>
+</tr>
+<tr class="even">
+<td align="left">children</td>
+<td align="left">integer</td>
+<td align="left">Number of children covered on insurance</td>
+</tr>
+<tr class="odd">
+<td align="left">smoker</td>
+<td align="left">character</td>
+<td align="left">Whether individuals smokes or not</td>
+</tr>
+<tr class="even">
+<td align="left">region</td>
+<td align="left">character</td>
+<td align="left">Region of the United States</td>
+</tr>
+<tr class="odd">
+<td align="left">charges</td>
+<td align="left">integer</td>
+<td align="left">Medical charges</td>
+</tr>
+</tbody>
+</table>
+<p>The following code chunk reads in the data and shows the first 6 rows.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
@@ -868,145 +910,246 @@ Y = 5 + 0.5 X + \epsilon
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>library(simglm)
-
-theme_set(theme_bw(base_size = 18))
-
-set.seed(2023)
-
-sim_arguments &lt;- list(
-    formula = y ~ x,
-    fixed = list(x = list(var_type = &#39;continuous&#39;, mean = 100, sd = 20)),
-    error = list(variance = 100),
-    sample_size = 1000,
-    reg_weights = c(5, .5)
-)
-
-sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) |&gt;
-  simulate_error(sim_arguments) |&gt;
-  generate_response(sim_arguments)
-
-head(sim_data)</code></pre>
-<pre><code>##   X.Intercept.         x level1_id      error fixed_outcome random_effects
-## 1            1  98.32431         1 -2.6862147      54.16216              0
-## 2            1  80.34113         2 -1.1886232      45.17056              0
-## 3            1  62.49865         3  0.6545456      36.24933              0
-## 4            1  96.27711         4 12.9091527      53.13855              0
-## 5            1  87.33029         5 -4.5144816      48.66514              0
-## 6            1 121.81595         6 19.5705749      65.90797              0
-##          y
-## 1 51.47594
-## 2 43.98194
-## 3 36.90387
-## 4 66.04771
-## 5 44.15066
-## 6 85.47855</code></pre>
-</div>
-<div id="visualize-the-simulated-data" class="section level3">
-<h3>Visualize the Simulated Data</h3>
-<p>The following code visualizes the simulated data from above. What would you estimate the correlation to be?</p>
 <pre class="r"><code>library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggstance&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+<pre><code>## Loading required package: ggstance
 ## 
-##     geom_errorbarh, GeomErrorbarh</code></pre>
-<pre><code>## Loading required package: scales</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## Attaching package: &#39;ggstance&#39;
 ## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## The following objects are masked from &#39;package:ggplot2&#39;:
 ## 
-##     col_factor</code></pre>
-<pre><code>## Loading required package: ggridges</code></pre>
-<pre><code>## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
 ## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>gf_point(y ~ x, data = sim_data, size = 4) |&gt;
-  gf_smooth(method = &#39;lm&#39;)</code></pre>
-<p><img src="/lectures/04-least-squares-simulation_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &#39;mosaic&#39;
+## 
+## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean
+## 
+## The following object is masked from &#39;package:scales&#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre class="r"><code>charges &lt;- read_csv(&quot;https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/insurance.csv&quot;)</code></pre>
+<pre><code>## Rows: 1338 Columns: 7
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): sex, smoker, region
+## dbl (4): age, bmi, children, charges
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>head(charges)</code></pre>
+<pre><code>## # A tibble: 6 × 7
+##     age sex      bmi children smoker region    charges
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;
+## 1    19 female  27.9        0 yes    southwest  16885.
+## 2    18 male    33.8        1 no     southeast   1726.
+## 3    28 male    33          3 no     southeast   4449.
+## 4    33 male    22.7        0 no     northwest  21984.
+## 5    32 male    28.9        0 no     northwest   3867.
+## 6    31 female  25.7        0 no     southeast   3757.</code></pre>
+<div id="descriptive-analysis" class="section level2">
+<h2>Descriptive analysis</h2>
+<p>Pick 2 integer attributes and explore those two attributes descriptively. Think about key characteristics about these two attributes.</p>
 </div>
-<div id="estimate-regression-coefficients" class="section level3">
-<h3>Estimate Regression Coefficients</h3>
-<p>Even though we know what truth is, there is error involved in the simulation process, therefore, the population values specified above will not equal the exact regression coefficients estimated. Below, we estimate what those regression coefficients are.</p>
-<pre class="r"><code>sim_lm &lt;- lm (y ~ x, data = sim_data)
-coef(sim_lm)</code></pre>
-<pre><code>## (Intercept)           x 
-##   5.1260093   0.5002076</code></pre>
+<div id="fitting-the-linear-model" class="section level2">
+<h2>Fitting the linear model</h2>
+<p>Fit the linear model to estimate the regression parameters. Then do the following:</p>
+<ol style="list-style-type: decimal">
+<li>Extract the linear model estimates.</li>
+</ol>
+<ul>
+<li>Example text</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Interpret the slope and intercept.</li>
+<li>Interpret the standard errors</li>
+<li>Interpret overall model fit.</li>
+</ol>
 </div>
-<div id="create-different-combinations-of-intercept-and-slope-coefficients" class="section level3">
-<h3>Create different combinations of intercept and slope coefficients</h3>
-<p>The following code generates a sequence of intercept and corresponding slope conditions. We will use these different values to estimate the sum of squares error shown at the top of the notes for each of these intercept and slope values to show that the regression estimates are optimal to minimize the sum of square error.</p>
-<pre class="r"><code>y_intercept &lt;- seq(0, 15, by = .25)
-slope &lt;- seq(0, 1.5, by = .01)
-
-conditions &lt;- rbind(expand.grid(y_intercept = y_intercept, 
-                          slope = slope),
-                          coef(sim_lm))
-
-tail(conditions)</code></pre>
-<pre><code>##      y_intercept     slope
-## 9207   14.000000 1.5000000
-## 9208   14.250000 1.5000000
-## 9209   14.500000 1.5000000
-## 9210   14.750000 1.5000000
-## 9211   15.000000 1.5000000
-## 9212    5.126009 0.5002076</code></pre>
-<pre class="r"><code>dim(conditions)</code></pre>
-<pre><code>## [1] 9212    2</code></pre>
+<div id="conduct-inference" class="section level2">
+<h2>Conduct Inference</h2>
+<p>Suppose we wished to use this data to make broader claims to a population of interest. Let us perform classical inference using the NHST framework. Do the following:</p>
+<ol style="list-style-type: decimal">
+<li>Establish the statistical hypotheses.</li>
+<li>Extract and interpret the test-statistics and p-values</li>
+<li>What do the test-statistics and p-values tell us about the statistical hypotheses?</li>
+<li>What do the test-statistics and p-values tell us about the magnitude (i.e., size) of effect?</li>
+<li>What do the test-statistics and p-values tell us about the practical implications of the effect?</li>
+</ol>
 </div>
-<div id="showing-two-combinations" class="section level3">
-<h3>Showing Two Combinations</h3>
-<p>Here we visualize two possible slope conditions. Which one seems better for the data?</p>
-<pre class="r"><code>gf_point(y ~ x, data = sim_data, size = 4) |&gt;
-  gf_smooth(method = &#39;lm&#39;) |&gt;
-  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 1), linetype = 2, size = 2) |&gt;
-  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 855), linetype = 2, color = &#39;lightgreen&#39;, size = 2) |&gt;
-  gf_refine(coord_cartesian(xlim = c(0, 160), ylim = c(0, 120)))</code></pre>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<p><img src="/lectures/04-least-squares-simulation_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-</div>
-<div id="compute-sum-of-squares-error" class="section level3">
-<h3>Compute Sum of Squares Error</h3>
-<p>The following code creates a new function that computes the sum of square error. The function takes two arguments, the combination of intercept and slope values and the simulated data. The output is the sigma or average error from the regression line. The first code chunk below performs the computation for a single condition. The second code chunk does it for all of the conditions.</p>
-<pre class="r"><code>sum_square_error &lt;- function(conditions, sim_data) {
-    fitted &lt;- conditions[[&#39;y_intercept&#39;]] + conditions[[&#39;slope&#39;]] * sim_data[[&#39;x&#39;]]
-
-    deviation &lt;- sim_data[[&#39;y&#39;]] - fitted
-
-    sqrt((sum(deviation^2) / (nrow(sim_data) - 2)))
-}
-
-sum_square_error(conditions[1892, ], sim_data)</code></pre>
-<pre><code>## [1] 26.25721</code></pre>
-<pre class="r"><code>summary(sim_lm)$sigma</code></pre>
-<pre><code>## [1] 9.738423</code></pre>
-<pre class="r"><code>library(future)
-
-plan(multicore)</code></pre>
-<pre><code>## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
-## processing (&#39;multicore&#39;) is not supported when running R from RStudio because
-## it is considered unstable. For more details, how to control forked processing
-## or not, and how to silence this warning in future R sessions, see
-## ?parallelly::supportsMulticore</code></pre>
-<pre class="r"><code>conditions$sse &lt;- unlist(lapply(1:nrow(conditions), function(xx) sum_square_error(conditions[xx, ], sim_data)))
-
-head(conditions)</code></pre>
-<pre><code>##   y_intercept slope      sse
-## 1        0.00     0 56.72588
-## 2        0.25     0 56.48344
-## 3        0.50     0 56.24108
-## 4        0.75     0 55.99878
-## 5        1.00     0 55.75655
-## 6        1.25     0 55.51440</code></pre>
+<div id="compute-confidence-interval" class="section level2">
+<h2>Compute confidence interval</h2>
+<p>Compute a confidence interval in the following steps.</p>
+<ol style="list-style-type: decimal">
+<li>Establish the confidence level</li>
+<li>Compute the confidence interval.</li>
+<li>Interpret the confidence interval.</li>
+<li>What does the confidence interval tell us about magnitude or practical implications of the effect?</li>
+</ol>
+<pre class="r"><code>theme_set(theme_bw(base_size = 16))</code></pre>
+<pre class="r"><code>gf_density(~ charges, data = charges)</code></pre>
+<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>df_stats(~ charges, data = charges, mean, median, sd, IQR)</code></pre>
+<pre><code>##   response     mean   median       sd      IQR
+## 1  charges 13270.42 9382.033 12110.01 11899.63</code></pre>
+<pre class="r"><code>gf_point(charges ~ age, data = charges, size = 5, alpha = .25) |&gt;
+  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
+<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ sex, size = 5, alpha = .25) |&gt;
+  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
+<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ smoker, size = 5, alpha = .25) |&gt;
+  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
+<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ region, size = 5, alpha = .25) |&gt;
+  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
+<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ smoker, size = 5, alpha = .25) |&gt;
+  gf_smooth(method = &#39;lm&#39;, linewidth = 3) |&gt; 
+  gf_facet_wrap(~ sex)</code></pre>
+<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>df_stats(charges ~ age, data = charges,  mean, median, sd, min, max)</code></pre>
+<pre><code>##    response age      mean    median        sd       min      max
+## 1   charges  18  7086.218  2198.190 10198.460  1121.874 38792.69
+## 2   charges  19  9747.909  2135.892 12469.537  1241.565 39722.75
+## 3   charges  20 10159.698  2459.720 12049.625  1391.529 38344.57
+## 4   charges  21  4730.464  2254.424  6168.059  1515.345 26018.95
+## 5   charges  22 10012.933  2641.156 14653.364  1665.000 44501.40
+## 6   charges  23 12419.820  3594.538 13421.332  1815.876 40904.20
+## 7   charges  24 10648.016  3045.138 12203.651  1969.614 38126.25
+## 8   charges  25  9838.365  3750.149 11551.289  2137.654 42112.24
+## 9   charges  26  6133.825  3388.882  7765.729  2302.300 36085.22
+## 10  charges  27 12184.702  4544.324 11941.822  2483.736 39611.76
+## 11  charges  28  9069.188  4344.951 11428.968  2689.495 51194.56
+## 12  charges  29 10430.159  4906.410 10680.198  2866.091 44585.46
+## 13  charges  30 12719.110  4837.582 12515.212  3554.203 40932.43
+## 14  charges  31 10196.981  4738.268 13646.443  3260.199 58571.07
+## 15  charges  32  9220.300  4672.016  9346.679  3866.855 37607.53
+## 16  charges  33 12351.533  6210.083 12877.616  3704.354 55135.40
+## 17  charges  34 11613.528  5490.092 11735.073  3935.180 43943.88
+## 18  charges  35 11307.182  5836.520 10699.982  4746.344 39983.43
+## 19  charges  36 12204.476  5478.037 12884.342  4399.731 43753.34
+## 20  charges  37 18019.912  6985.507 15125.287  4646.759 46113.51
+## 21  charges  38  8102.734  6455.863  7328.907  5383.536 41949.24
+## 22  charges  39 11778.243  7512.267  8633.210  5649.715 40103.89
+## 23  charges  40 11772.251  7077.189  9908.913  5415.661 40003.33
+## 24  charges  41  9653.746  6875.961  8859.592  5699.837 40273.65
+## 25  charges  42 13061.039  7443.643 10707.617  5966.887 43896.38
+## 26  charges  43 19267.279 18767.738 13529.394  6250.435 45863.21
+## 27  charges  44 15859.397  8023.135 14394.949  6948.701 48885.14
+## 28  charges  45 14830.200  8603.823 13722.542  7222.786 62592.87
+## 29  charges  46 14342.591  8825.086 12159.483  7147.105 46151.12
+## 30  charges  47 17654.000  9715.841 12208.024  8062.764 44202.65
+## 31  charges  48 14632.500  9447.382 10163.267  7789.635 45702.02
+## 32  charges  49 12696.006  9681.120  7531.013  8116.680 39727.61
+## 33  charges  50 15663.003 10107.221 10939.124  8442.667 42856.84
+## 34  charges  51 15682.256  9875.680 12707.113  8782.469 47462.89
+## 35  charges  52 18256.270 11396.900 12408.353  9140.951 60021.40
+## 36  charges  53 16020.931 11157.174 10096.072  9487.644 46661.44
+## 37  charges  54 18758.546 11816.449 14216.087  9850.432 63770.43
+## 38  charges  55 16164.545 11880.231 10107.690 10214.636 44423.80
+## 39  charges  56 15025.516 11658.247  9204.315 10577.087 43921.18
+## 40  charges  57 16447.185 11893.878  9987.941 10959.330 48675.52
+## 41  charges  58 13878.928 11931.125  7437.417 11345.519 47496.49
+## 42  charges  59 18895.870 12928.791 11170.560 11743.299 48970.25
+## 43  charges  60 21979.419 13204.286 14923.698 12142.579 52590.83
+## 44  charges  61 22024.458 13635.638 12525.159 12557.605 48517.56
+## 45  charges  62 19163.857 13844.797 10320.270 12957.118 46718.16
+## 46  charges  63 19884.998 14349.854 11850.935 13390.559 48824.45
+## 47  charges  64 23275.531 15528.758 13029.842 13822.803 49577.66</code></pre>
+<pre class="r"><code>cor(charges ~ age, data = charges) |&gt; 
+round(3)</code></pre>
+<pre><code>## [1] 0.299</code></pre>
+<p>Type text <strong>bold</strong> <em>italic</em></p>
+<pre class="r"><code>charge_mod &lt;- lm(charges ~ age, data = charges)</code></pre>
+<pre class="r"><code>charge_mod_c &lt;- lm(charges ~ I(age - min(age)), data = charges)</code></pre>
+<pre class="r"><code>summary(charge_mod)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = charges ~ age, data = charges)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+##  -8059  -6671  -5939   5440  47829 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   3165.9      937.1   3.378 0.000751 ***
+## age            257.7       22.5  11.453  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 11560 on 1336 degrees of freedom
+## Multiple R-squared:  0.08941,	Adjusted R-squared:  0.08872 
+## F-statistic: 131.2 on 1 and 1336 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>broom::tidy(charge_mod)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    3166.     937.       3.38 7.51e- 4
+## 2 age             258.      22.5     11.5  4.89e-29</code></pre>
+<pre class="r"><code>broom::tidy(charge_mod_c)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term              estimate std.error statistic  p.value
+##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)          7805.     572.       13.6 9.77e-40
+## 2 I(age - min(age))     258.      22.5      11.5 4.89e-29</code></pre>
+<pre class="r"><code>broom::glance(charge_mod)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared  sigma statistic  p.value    df  logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1    0.0894        0.0887 11560.      131. 4.89e-29     1 -14415. 28836. 28852.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre class="r"><code>confint(charge_mod, level = 0.99)</code></pre>
+<pre><code>##                0.5 %    99.5 %
+## (Intercept) 748.4946 5583.2755
+## age         199.6774  315.7679</code></pre>
 </div>
 </div>
 
@@ -1026,14 +1169,14 @@ head(conditions)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/03-regression-estimates/" rel="next">Regression Estimation</a>
+    <a href="/lectures/05-regression-inference/" rel="next">Inference for regression parameters</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/05-regression-inference/" rel="prev">Inference for regression parameters</a>
+    <a href="/lectures/06-regression-conditions/" rel="prev">Conditions for Linear Regression</a>
   </div>
   
 </div>
@@ -1043,7 +1186,7 @@ head(conditions)</code></pre>
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Sep 7, 2023</p>
+          <p>Last updated on Sep 21, 2023</p>
 
           
 

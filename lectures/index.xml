@@ -1622,6 +1622,324 @@ gf_line(density ~ value, data = t_dist) %&amp;gt;%
     </item>
     
     <item>
+      <title>Regression in class</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/</link>
+      <pubDate>Thu, 21 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;in-class-activity---september-13-2023&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;In class activity - September 13, 2023&lt;/h1&gt;
+&lt;p&gt;This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.&lt;/p&gt;
+&lt;p&gt;The data used for this activity comes from medical insurance claims.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Attribute&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Type&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;age&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;integer&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Age of individual&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;sex&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Sex of individual at birth&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;bmi&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;integer&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Body mass index&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;children&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;integer&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Number of children covered on insurance&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;smoker&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Whether individuals smokes or not&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;region&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;character&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Region of the United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;charges&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;integer&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Medical charges&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The following code chunk reads in the data and shows the first 6 rows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;charges &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/insurance.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 1338 Columns: 7
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (3): sex, smoker, region
+## dbl (4): age, bmi, children, charges
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(charges)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 7
+##     age sex      bmi children smoker region    charges
+##   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
+## 1    19 female  27.9        0 yes    southwest  16885.
+## 2    18 male    33.8        1 no     southeast   1726.
+## 3    28 male    33          3 no     southeast   4449.
+## 4    33 male    22.7        0 no     northwest  21984.
+## 5    32 male    28.9        0 no     northwest   3867.
+## 6    31 female  25.7        0 no     southeast   3757.&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;descriptive-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Descriptive analysis&lt;/h2&gt;
+&lt;p&gt;Pick 2 integer attributes and explore those two attributes descriptively. Think about key characteristics about these two attributes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fitting-the-linear-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Fitting the linear model&lt;/h2&gt;
+&lt;p&gt;Fit the linear model to estimate the regression parameters. Then do the following:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Extract the linear model estimates.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Example text&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Interpret the slope and intercept.&lt;/li&gt;
+&lt;li&gt;Interpret the standard errors&lt;/li&gt;
+&lt;li&gt;Interpret overall model fit.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conduct-inference&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conduct Inference&lt;/h2&gt;
+&lt;p&gt;Suppose we wished to use this data to make broader claims to a population of interest. Let us perform classical inference using the NHST framework. Do the following:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Establish the statistical hypotheses.&lt;/li&gt;
+&lt;li&gt;Extract and interpret the test-statistics and p-values&lt;/li&gt;
+&lt;li&gt;What do the test-statistics and p-values tell us about the statistical hypotheses?&lt;/li&gt;
+&lt;li&gt;What do the test-statistics and p-values tell us about the magnitude (i.e., size) of effect?&lt;/li&gt;
+&lt;li&gt;What do the test-statistics and p-values tell us about the practical implications of the effect?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;compute-confidence-interval&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Compute confidence interval&lt;/h2&gt;
+&lt;p&gt;Compute a confidence interval in the following steps.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Establish the confidence level&lt;/li&gt;
+&lt;li&gt;Compute the confidence interval.&lt;/li&gt;
+&lt;li&gt;Interpret the confidence interval.&lt;/li&gt;
+&lt;li&gt;What does the confidence interval tell us about magnitude or practical implications of the effect?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 16))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ charges, data = charges)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(~ charges, data = charges, mean, median, sd, IQR)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response     mean   median       sd      IQR
+## 1  charges 13270.42 9382.033 12110.01 11899.63&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(charges ~ age, data = charges, size = 5, alpha = .25) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(charges ~ age, data = charges, color = ~ sex, size = 5, alpha = .25) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(charges ~ age, data = charges, color = ~ smoker, size = 5, alpha = .25) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(charges ~ age, data = charges, color = ~ region, size = 5, alpha = .25) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(charges ~ age, data = charges, color = ~ smoker, size = 5, alpha = .25) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 3) |&amp;gt; 
+  gf_facet_wrap(~ sex)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(charges ~ age, data = charges,  mean, median, sd, min, max)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    response age      mean    median        sd       min      max
+## 1   charges  18  7086.218  2198.190 10198.460  1121.874 38792.69
+## 2   charges  19  9747.909  2135.892 12469.537  1241.565 39722.75
+## 3   charges  20 10159.698  2459.720 12049.625  1391.529 38344.57
+## 4   charges  21  4730.464  2254.424  6168.059  1515.345 26018.95
+## 5   charges  22 10012.933  2641.156 14653.364  1665.000 44501.40
+## 6   charges  23 12419.820  3594.538 13421.332  1815.876 40904.20
+## 7   charges  24 10648.016  3045.138 12203.651  1969.614 38126.25
+## 8   charges  25  9838.365  3750.149 11551.289  2137.654 42112.24
+## 9   charges  26  6133.825  3388.882  7765.729  2302.300 36085.22
+## 10  charges  27 12184.702  4544.324 11941.822  2483.736 39611.76
+## 11  charges  28  9069.188  4344.951 11428.968  2689.495 51194.56
+## 12  charges  29 10430.159  4906.410 10680.198  2866.091 44585.46
+## 13  charges  30 12719.110  4837.582 12515.212  3554.203 40932.43
+## 14  charges  31 10196.981  4738.268 13646.443  3260.199 58571.07
+## 15  charges  32  9220.300  4672.016  9346.679  3866.855 37607.53
+## 16  charges  33 12351.533  6210.083 12877.616  3704.354 55135.40
+## 17  charges  34 11613.528  5490.092 11735.073  3935.180 43943.88
+## 18  charges  35 11307.182  5836.520 10699.982  4746.344 39983.43
+## 19  charges  36 12204.476  5478.037 12884.342  4399.731 43753.34
+## 20  charges  37 18019.912  6985.507 15125.287  4646.759 46113.51
+## 21  charges  38  8102.734  6455.863  7328.907  5383.536 41949.24
+## 22  charges  39 11778.243  7512.267  8633.210  5649.715 40103.89
+## 23  charges  40 11772.251  7077.189  9908.913  5415.661 40003.33
+## 24  charges  41  9653.746  6875.961  8859.592  5699.837 40273.65
+## 25  charges  42 13061.039  7443.643 10707.617  5966.887 43896.38
+## 26  charges  43 19267.279 18767.738 13529.394  6250.435 45863.21
+## 27  charges  44 15859.397  8023.135 14394.949  6948.701 48885.14
+## 28  charges  45 14830.200  8603.823 13722.542  7222.786 62592.87
+## 29  charges  46 14342.591  8825.086 12159.483  7147.105 46151.12
+## 30  charges  47 17654.000  9715.841 12208.024  8062.764 44202.65
+## 31  charges  48 14632.500  9447.382 10163.267  7789.635 45702.02
+## 32  charges  49 12696.006  9681.120  7531.013  8116.680 39727.61
+## 33  charges  50 15663.003 10107.221 10939.124  8442.667 42856.84
+## 34  charges  51 15682.256  9875.680 12707.113  8782.469 47462.89
+## 35  charges  52 18256.270 11396.900 12408.353  9140.951 60021.40
+## 36  charges  53 16020.931 11157.174 10096.072  9487.644 46661.44
+## 37  charges  54 18758.546 11816.449 14216.087  9850.432 63770.43
+## 38  charges  55 16164.545 11880.231 10107.690 10214.636 44423.80
+## 39  charges  56 15025.516 11658.247  9204.315 10577.087 43921.18
+## 40  charges  57 16447.185 11893.878  9987.941 10959.330 48675.52
+## 41  charges  58 13878.928 11931.125  7437.417 11345.519 47496.49
+## 42  charges  59 18895.870 12928.791 11170.560 11743.299 48970.25
+## 43  charges  60 21979.419 13204.286 14923.698 12142.579 52590.83
+## 44  charges  61 22024.458 13635.638 12525.159 12557.605 48517.56
+## 45  charges  62 19163.857 13844.797 10320.270 12957.118 46718.16
+## 46  charges  63 19884.998 14349.854 11850.935 13390.559 48824.45
+## 47  charges  64 23275.531 15528.758 13029.842 13822.803 49577.66&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(charges ~ age, data = charges) |&amp;gt; 
+round(3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.299&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Type text &lt;strong&gt;bold&lt;/strong&gt; &lt;em&gt;italic&lt;/em&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;charge_mod &amp;lt;- lm(charges ~ age, data = charges)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;charge_mod_c &amp;lt;- lm(charges ~ I(age - min(age)), data = charges)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(charge_mod)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = charges ~ age, data = charges)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+##  -8059  -6671  -5939   5440  47829 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)   3165.9      937.1   3.378 0.000751 ***
+## age            257.7       22.5  11.453  &amp;lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 11560 on 1336 degrees of freedom
+## Multiple R-squared:  0.08941,	Adjusted R-squared:  0.08872 
+## F-statistic: 131.2 on 1 and 1336 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(charge_mod)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term        estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)    3166.     937.       3.38 7.51e- 4
+## 2 age             258.      22.5     11.5  4.89e-29&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(charge_mod_c)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term              estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)          7805.     572.       13.6 9.77e-40
+## 2 I(age - min(age))     258.      22.5      11.5 4.89e-29&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::glance(charge_mod)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squared  sigma statistic  p.value    df  logLik    AIC    BIC
+##       &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+## 1    0.0894        0.0887 11560.      131. 4.89e-29     1 -14415. 28836. 28852.
+## # ℹ 3 more variables: deviance &amp;lt;dbl&amp;gt;, df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(charge_mod, level = 0.99)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                0.5 %    99.5 %
+## (Intercept) 748.4946 5583.2755
+## age         199.6774  315.7679&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Conditions for Linear Regression</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/06-regression-conditions/</link>
       <pubDate>Tue, 12 Sep 2023 00:00:00 +0000</pubDate>
