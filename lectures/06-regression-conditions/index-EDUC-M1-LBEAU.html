@@ -1,0 +1,1437 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Conditions for Linear Regression The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:
+\[ Y - \hat{Y} \]
+These are the deviations in the observed scores from the predicted scores from the linear regression.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/06-regression-conditions/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3aad675291f323c3cd47ae187f0bf0d6.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/06-regression-conditions/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/06-regression-conditions/">
+  <meta property="og:title" content="Conditions for Linear Regression | PSQF 6243">
+  <meta property="og:description" content="Conditions for Linear Regression The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:
+\[ Y - \hat{Y} \]
+These are the deviations in the observed scores from the predicted scores from the linear regression."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2023-09-12T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2023-09-12T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Conditions for Linear Regression | PSQF 6243</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7de282f2047be3c570af3a58788341e7.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#logistics"><span>Logistics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Syllabus</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Schedule</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Content</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/lectures/"><span>Lecture Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/assignments/"><span>Assignments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/code/"><span>Software Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>People</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      
+      
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
+      
+
+
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/02a-in-class-activity/">Linear Regression - In Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/03-regression-estimates/">Regression Estimation</a></li>
+
+
+
+  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Minimization</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Inference for regression parameters</a></li>
+
+
+
+  <li class="active"><a href="/lectures/06-regression-conditions/">Conditions for Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression-inclass/">Linear Regression - In Class</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Conditions for Linear Regression</h1>
+
+          <div class="article-style">
+            
+
+<div id="TOC">
+
+</div>
+
+<div id="conditions-for-linear-regression" class="section level1">
+<h1>Conditions for Linear Regression</h1>
+<p>The conditions surrounding linear regression typically surround the residuals. Residuals are defined as:</p>
+<p><span class="math display">\[
+Y - \hat{Y}
+\]</span></p>
+<p>These are the deviations in the observed scores from the predicted scores from the linear regression. Recall, through least square estimation that these residauls will sum to 0, therefore, their mean would also be equal to 0. However, there are certain conditions about these residuals that are made for the linear regression model to have the inferences be appropriate. We’ll talk more about what the implications for violating these conditions will have on the linear regression model, but first, the conditions.</p>
+<ol style="list-style-type: decimal">
+<li>Approximately Normally distributed residuals</li>
+<li>Homogeneity of variance</li>
+<li>Uncorrelated residuals</li>
+<li>Error term is uncorrelated with the predictor attribute</li>
+<li>Linearity and additivity of the model.</li>
+</ol>
+<p>Each of these will be discussed in turn.</p>
+<p>Data conditions that are not directly testable:</p>
+<ol style="list-style-type: decimal">
+<li>Validity</li>
+<li>Representativeness</li>
+</ol>
+<div id="approximately-normally-distributed-residuals" class="section level2">
+<h2>Approximately Normally distributed residuals</h2>
+<p>The first assumption is that the residuals are at least approximately Normally distributed. This assumption is really only much of a concern when the sample size is small. If the sample size is larger, the Central Limit Thereom (CLT) states that the distribution of the statstics will be approximately normally distributed. The threshold for the CLT to be properly invoked is about 30. Larger then this, the residuals do not need to be approximately normally distributed. Even still, exploring the distribution of the residuals can still be helpful and can also be helpful to identify potential extreme values.</p>
+<p>This example will make use of the air quality data one more time.</p>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>The data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
+<table>
+<colgroup>
+<col width="43%" />
+<col width="56%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">Date of observation</td>
+</tr>
+<tr class="even">
+<td align="left">id</td>
+<td align="left">Site ID</td>
+</tr>
+<tr class="odd">
+<td align="left">poc</td>
+<td align="left">Parameter Occurrence Code (POC)</td>
+</tr>
+<tr class="even">
+<td align="left">pm2.5</td>
+<td align="left">Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)</td>
+</tr>
+<tr class="odd">
+<td align="left">daily_aqi</td>
+<td align="left">Average air quality index</td>
+</tr>
+<tr class="even">
+<td align="left">site_name</td>
+<td align="left">Site Name</td>
+</tr>
+<tr class="odd">
+<td align="left">aqs_parameter_desc</td>
+<td align="left">Text Description of Observation</td>
+</tr>
+<tr class="even">
+<td align="left">cbsa_code</td>
+<td align="left">Core Based Statistical Area (CBSA) ID</td>
+</tr>
+<tr class="odd">
+<td align="left">cbsa_name</td>
+<td align="left">CBSA Name</td>
+</tr>
+<tr class="even">
+<td align="left">county</td>
+<td align="left">County in Iowa</td>
+</tr>
+<tr class="odd">
+<td align="left">avg_wind</td>
+<td align="left">Average daily wind speed (in knots)</td>
+</tr>
+<tr class="even">
+<td align="left">max_wind</td>
+<td align="left">Maximum daily wind speed (in knots)</td>
+</tr>
+<tr class="odd">
+<td align="left">max_wind_hours</td>
+<td align="left">Time of maximum daily wind speed</td>
+</tr>
+</tbody>
+</table>
+<div id="guiding-question" class="section level4">
+<h4>Guiding Question</h4>
+<p>How is average daily wind speed related to the daily air quality index?</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &#39;mosaic&#39;
+## 
+## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean
+## 
+## The following object is masked from &#39;package:scales&#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&quot;)</code></pre>
+<pre><code>## Rows: 6917 Columns: 10
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>wind &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&quot;)</code></pre>
+<pre><code>## Rows: 1537 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>airquality &lt;- airquality %&gt;%
+   left_join(wind, by = c(&#39;cbsa_name&#39;, &#39;date&#39;)) %&gt;% 
+   drop_na()</code></pre>
+<pre><code>## Warning in left_join(., wind, by = c(&quot;cbsa_name&quot;, &quot;date&quot;)): Detected an unexpected many-to-many relationship between `x` and `y`.
+## ℹ Row 21 of `x` matches multiple rows in `y`.
+## ℹ Row 1 of `y` matches multiple rows in `x`.
+## ℹ If a many-to-many relationship is expected, set `relationship =
+##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre class="r"><code>air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+coef(air_lm)</code></pre>
+<pre><code>## (Intercept)    avg_wind 
+##   48.222946   -2.211798</code></pre>
+<p>The residuals can be saved with the <code>resid()</code> function. These can also be added to the original data, which are particularly helpful.</p>
+<pre class="r"><code>head(resid(air_lm))</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  15.283427  11.186742  25.191433  15.398540   8.246896 -12.749410</code></pre>
+<pre class="r"><code>airquality$residuals &lt;- resid(air_lm)
+head(airquality)</code></pre>
+<pre><code>## # A tibble: 6 × 14
+##   date           id   poc pm2.5 daily_aqi site_name aqs_parameter_desc cbsa_code
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
+## 1 1/1/21  190130009     1  15.1        57 Water To… PM2.5 - Local Con…     47940
+## 2 1/4/21  190130009     1  13.3        54 Water To… PM2.5 - Local Con…     47940
+## 3 1/7/21  190130009     1  20.5        69 Water To… PM2.5 - Local Con…     47940
+## 4 1/10/21 190130009     1  14.3        56 Water To… PM2.5 - Local Con…     47940
+## 5 1/13/21 190130009     1  13.7        54 Water To… PM2.5 - Local Con…     47940
+## 6 1/16/21 190130009     1   5.3        22 Water To… PM2.5 - Local Con…     47940
+## # ℹ 6 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
+## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;, residuals &lt;dbl&gt;</code></pre>
+<pre class="r"><code>gf_density(~ residuals, data = airquality) %&gt;%
+  gf_labs(x = &quot;Residuals&quot;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(airquality, aes(sample = residuals)) + 
+  stat_qq(size = 5) + 
+  stat_qq_line(size = 2)</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
+<div id="standardized-residuals" class="section level3">
+<h3>Standardized Residuals</h3>
+<p>Standardized residuals can be another way to explore the residuals. These will now be standardized to have a variance of 1, similar to that of a Z-score. These can be computed as:</p>
+<p><span class="math display">\[
+standardized\ residuals = \frac{\epsilon_{i}}{SD_{\epsilon}}
+\]</span></p>
+<p>Within R, these can be computed using the function <code>rstandard()</code>. Furthermore, these can be computed from another package called broom with the <code>augment()</code> function.</p>
+<pre class="r"><code>head(rstandard(air_lm))</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  0.8466153  0.6196983  1.3955421  0.8529766  0.4568937 -0.7062638</code></pre>
+<pre class="r"><code>library(broom)
+
+resid_diagnostics &lt;- augment(air_lm)
+head(resid_diagnostics)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   daily_aqi avg_wind .fitted .resid     .hat .sigma   .cooksd .std.resid
+##       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1        57     2.94    41.7  15.3  0.000266   18.1 0.0000953      0.847
+## 2        54     2.45    42.8  11.2  0.000318   18.1 0.0000611      0.620
+## 3        69     2.00    43.8  25.2  0.000380   18.1 0.000370       1.40 
+## 4        56     3.45    40.6  15.4  0.000230   18.1 0.0000836      0.853
+## 5        54     1.12    45.8   8.25 0.000539   18.1 0.0000563      0.457
+## 6        22     6.09    34.7 -12.7  0.000319   18.1 0.0000795     -0.706</code></pre>
+<pre class="r"><code>gf_density(~ .std.resid, data = resid_diagnostics) %&gt;%
+  gf_labs(x = &quot;Standardized Residuals&quot;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(resid_diagnostics, aes(sample = .std.resid)) + 
+  stat_qq(size = 5) + 
+  stat_qq_line(size = 2)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="homogeneity-of-variance" class="section level2">
+<h2>Homogeneity of variance</h2>
+<p>Homoegeneity of variance is an assumption that is of larger concern compared to normality of the residuals. Homoogeneity of variance is an assumption that states that the variance of the residuals are similar across the predicted or fitted values from the regression line. This assumption can be explored by looking at the residuals (standardized or raw residuals), by the fitted or predicted values. Within this plot, the range of residuals should be similar across the range of fitted or predicted values.</p>
+<pre class="r"><code>gf_point(.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&gt;%
+  gf_smooth(method = &#39;loess&#39;, size = 2) %&gt;%
+  gf_labs(x = &#39;Fitted Values&#39;,
+          y = &#39;Residuals&#39;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>gf_point(.std.resid ~ .fitted, data = resid_diagnostics, size = 5, alpha = .15) %&gt;%
+  gf_smooth(method = &#39;loess&#39;, size = 2) %&gt;%
+  gf_labs(x = &#39;Fitted Values&#39;,
+          y = &#39;Standardized Residuals&#39;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Another figure that can also be helpful for the homogeneity of variance assumption is one that rescales the residuals on the y-axis. The rescaling makes all the standardized residuals positive (takes the absolute value) and then takes the square root of this.</p>
+<pre class="r"><code>resid_diagnostics %&gt;%
+  mutate(sqrt_abs_sresid = sqrt(abs(.std.resid))) %&gt;%
+  gf_point(sqrt_abs_sresid ~ .fitted, size = 5, alpha = .15) %&gt;%
+  gf_smooth(method = &#39;loess&#39;, size = 2) %&gt;%
+  gf_labs(x = &#39;Fitted Values&#39;,
+          y = &#39;Sqrt Abs Standardized Residuals&#39;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="data-with-high-leverage" class="section level2">
+<h2>Data with high leverage</h2>
+<p>Data with high leverage are extreme values that may significantly impact the regression estimates. These statistics include extreme values for the outcome or predictor attributes. Cook’s distance is one statistic that can help to identify points with high impact/leverage for the regression estimates. Cook’s distance is a statistic that represents how much change there would be in the fitted values if the point was removed when estimating the regression coefficients. There is some disagreement between what type of thresholds to use for Cook’s distance, but one rule of thumb is Cook’s distance greater than 1. There has also been some research showing that Cook’s distance follows an F-distribution, so a more specific value could be computed. The rule of thumb for greater than 1 comes from the F distribution for large samples.</p>
+<pre class="r"><code>resid_diagnostics %&gt;%
+  mutate(obs_num = 1:n()) %&gt;%
+  gf_col(.cooksd ~ obs_num, fill = &#39;black&#39;, color = &#39;black&#39;) %&gt;%
+  gf_labs(x = &quot;Observation Number&quot;,
+          y = &quot;Cook&#39;s Distance&quot;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Another leave one out statistic is the studentized deleted residuals. These are computed by removing a data point, refitting the regression model, then generate a predicted value for the X value for the data point removed. Then the residual is computed the same as before and is standardized like the standardized residuals above. The function in R to compute these is <code>rstudent()</code>.</p>
+<pre class="r"><code>head(rstudent(air_lm))</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  0.8465904  0.6196587  1.3956793  0.8529524  0.4568561 -0.7062271</code></pre>
+<pre class="r"><code>airquality$student_residuals &lt;- rstudent(air_lm)
+head(airquality)</code></pre>
+<pre><code>## # A tibble: 6 × 15
+##   date           id   poc pm2.5 daily_aqi site_name aqs_parameter_desc cbsa_code
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
+## 1 1/1/21  190130009     1  15.1        57 Water To… PM2.5 - Local Con…     47940
+## 2 1/4/21  190130009     1  13.3        54 Water To… PM2.5 - Local Con…     47940
+## 3 1/7/21  190130009     1  20.5        69 Water To… PM2.5 - Local Con…     47940
+## 4 1/10/21 190130009     1  14.3        56 Water To… PM2.5 - Local Con…     47940
+## 5 1/13/21 190130009     1  13.7        54 Water To… PM2.5 - Local Con…     47940
+## 6 1/16/21 190130009     1   5.3        22 Water To… PM2.5 - Local Con…     47940
+## # ℹ 7 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
+## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;, residuals &lt;dbl&gt;,
+## #   student_residuals &lt;dbl&gt;</code></pre>
+<pre class="r"><code>airquality %&gt;%
+  mutate(obs_num = 1:n()) %&gt;%
+  gf_point(student_residuals ~ obs_num, size = 5, alpha = .15) %&gt;%
+  gf_hline(yintercept = ~ 3, color = &#39;blue&#39;, size = 2) %&gt;%
+  gf_labs(x = &quot;Observation Number&quot;,
+          y = &quot;Studentized Residuals&quot;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Leverage can be another measure to help detect outliers in X values. The hat values that were computed from the <code>augment()</code> function above and can be interpreted as the distance the X scores are from the center of all X predictors. In the case of a single predictor, the hat values are the distance the X score is from the mean of X. The hat values will also sum up to the number of predictors and will always range between 0 and 1.</p>
+<pre class="r"><code>resid_diagnostics %&gt;%
+  mutate(obs_num = 1:n()) %&gt;%
+  gf_col(.hat ~ obs_num, fill = &#39;black&#39;, color = &#39;black&#39;) %&gt;%
+  gf_labs(x = &quot;Observation Number&quot;,
+          y = &quot;Hat Values (leverage)&quot;)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>plot(air_lm, which = 1:5)</code></pre>
+<p><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-17-1.png" width="672" /><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-17-2.png" width="672" /><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-17-3.png" width="672" /><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-17-4.png" width="672" /><img src="/lectures/06-regression-conditions_files/figure-html/unnamed-chunk-17-5.png" width="672" /></p>
+</div>
+<div id="solutions-to-overcome-data-conditions-not-being-met" class="section level2">
+<h2>Solutions to overcome data conditions not being met</h2>
+<p>There are some strategies that can be done when a variety of data conditions for linear regression have not been met. In general, the strategies stem around generalizing the model and adding some complexity.</p>
+<p>The following are options that would be possible:</p>
+<ol style="list-style-type: decimal">
+<li>Add interactions or other non-linear terms</li>
+<li>Use more complicated model
+<ul>
+<li>weighted least squares for homogeneity of variance concerns</li>
+<li>models that include measurement error</li>
+<li>mixed models for correlated data</li>
+</ul></li>
+<li>Transform the data.</li>
+</ol>
+</div>
+</div>
+
+          </div>
+
+          
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/05-regression-inference/" rel="next">Inference for regression parameters</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/lectures/02-linear-regression-inclass/" rel="prev">Linear Regression - In Class</a>
+  </div>
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Sep 12, 2023</p>
+
+          
+
+
+
+          
+
+
+
+
+          
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.d4185df71ecf716f1c4e7ef5f3d4e2b8.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

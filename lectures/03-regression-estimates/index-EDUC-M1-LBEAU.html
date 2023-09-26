@@ -1,0 +1,1470 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3aad675291f323c3cd47ae187f0bf0d6.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+  <meta property="og:title" content="Regression Estimation | PSQF 6243">
+  <meta property="og:description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2023-08-29T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2023-08-29T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Regression Estimation | PSQF 6243</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7de282f2047be3c570af3a58788341e7.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#logistics"><span>Logistics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Syllabus</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Schedule</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Content</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/lectures/"><span>Lecture Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/assignments/"><span>Assignments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/code/"><span>Software Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>People</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      
+      
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
+      
+
+
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/02a-in-class-activity/">Linear Regression - In Class</a></li>
+
+
+
+  <li class="active"><a href="/lectures/03-regression-estimates/">Regression Estimation</a></li>
+
+
+
+  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Minimization</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Inference for regression parameters</a></li>
+
+
+
+  <li class=""><a href="/lectures/06-regression-conditions/">Conditions for Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression-inclass/">Linear Regression - In Class</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Regression Estimation</h1>
+
+          <div class="article-style">
+            
+
+<div id="TOC">
+
+</div>
+
+<div id="understanding-regression-parameters" class="section level1">
+<h1>Understanding Regression Parameters</h1>
+<p>This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean. We will consider the estimation formulas in part of this to gain a sense of how these can be computed.</p>
+<div id="new-example-data" class="section level2">
+<h2>New Example Data</h2>
+<p>The new data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
+<table>
+<colgroup>
+<col width="43%" />
+<col width="56%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">Date of observation</td>
+</tr>
+<tr class="even">
+<td align="left">id</td>
+<td align="left">Site ID</td>
+</tr>
+<tr class="odd">
+<td align="left">poc</td>
+<td align="left">Parameter Occurrence Code (POC)</td>
+</tr>
+<tr class="even">
+<td align="left">pm2.5</td>
+<td align="left">Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)</td>
+</tr>
+<tr class="odd">
+<td align="left">daily_aqi</td>
+<td align="left">Average air quality index</td>
+</tr>
+<tr class="even">
+<td align="left">site_name</td>
+<td align="left">Site Name</td>
+</tr>
+<tr class="odd">
+<td align="left">aqs_parameter_desc</td>
+<td align="left">Text Description of Observation</td>
+</tr>
+<tr class="even">
+<td align="left">cbsa_code</td>
+<td align="left">Core Based Statistical Area (CBSA) ID</td>
+</tr>
+<tr class="odd">
+<td align="left">cbsa_name</td>
+<td align="left">CBSA Name</td>
+</tr>
+<tr class="even">
+<td align="left">county</td>
+<td align="left">County in Iowa</td>
+</tr>
+<tr class="odd">
+<td align="left">avg_wind</td>
+<td align="left">Average daily wind speed (in knots)</td>
+</tr>
+<tr class="even">
+<td align="left">max_wind</td>
+<td align="left">Maximum daily wind speed (in knots)</td>
+</tr>
+<tr class="odd">
+<td align="left">max_wind_hours</td>
+<td align="left">Time of maximum daily wind speed</td>
+</tr>
+</tbody>
+</table>
+<div id="guiding-question" class="section level3">
+<h3>Guiding Question</h3>
+<p>How is average daily wind speed related to the daily air quality index?</p>
+</div>
+</div>
+<div id="bivariate-figure" class="section level2">
+<h2>Bivariate Figure</h2>
+<p>Note, below I do a bit of post-processing to combine data from different POC values within a single CBSA.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &#39;mosaic&#39;
+## 
+## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean
+## 
+## The following object is masked from &#39;package:scales&#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&quot;)</code></pre>
+<pre><code>## Rows: 6917 Columns: 10
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
+## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>wind &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&quot;)</code></pre>
+<pre><code>## Rows: 1537 Columns: 5
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): date, cbsa_name
+## dbl (3): avg_wind, max_wind, max_wind_hours
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>airquality &lt;- airquality %&gt;%
+   left_join(wind, by = c(&#39;cbsa_name&#39;, &#39;date&#39;)) %&gt;% 
+   drop_na()</code></pre>
+<pre><code>## Warning in left_join(., wind, by = c(&quot;cbsa_name&quot;, &quot;date&quot;)): Detected an unexpected many-to-many relationship between `x` and `y`.
+## ℹ Row 21 of `x` matches multiple rows in `y`.
+## ℹ Row 1 of `y` matches multiple rows in `x`.
+## ℹ If a many-to-many relationship is expected, set `relationship =
+##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre class="r"><code>head(airquality)</code></pre>
+<pre><code>## # A tibble: 6 × 13
+##   date           id   poc pm2.5 daily_aqi site_name aqs_parameter_desc cbsa_code
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
+## 1 1/1/21  190130009     1  15.1        57 Water To… PM2.5 - Local Con…     47940
+## 2 1/4/21  190130009     1  13.3        54 Water To… PM2.5 - Local Con…     47940
+## 3 1/7/21  190130009     1  20.5        69 Water To… PM2.5 - Local Con…     47940
+## 4 1/10/21 190130009     1  14.3        56 Water To… PM2.5 - Local Con…     47940
+## 5 1/13/21 190130009     1  13.7        54 Water To… PM2.5 - Local Con…     47940
+## 6 1/16/21 190130009     1   5.3        22 Water To… PM2.5 - Local Con…     47940
+## # ℹ 5 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
+## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;</code></pre>
+<pre class="r"><code>dim(airquality)</code></pre>
+<pre><code>## [1] 4821   13</code></pre>
+<pre class="r"><code>gf_point(daily_aqi ~ avg_wind, data = airquality, size = 4, alpha = .15) %&gt;%
+  gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
+          y = &quot;Daily Air Quality&quot;) %&gt;%
+  gf_smooth() %&gt;%
+  gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;, linetype = 2)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
+<p><img src="/lectures/03-regression-estimates_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>cor(daily_aqi ~ avg_wind, data = airquality) |&gt; round(3)</code></pre>
+<pre><code>## [1] -0.292</code></pre>
+<pre class="r"><code>air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
+coef(air_lm) |&gt; round(3)</code></pre>
+<pre><code>## (Intercept)    avg_wind 
+##      48.223      -2.212</code></pre>
+<pre class="r"><code>summary(air_lm)$r.square |&gt; round(3)</code></pre>
+<pre><code>## [1] 0.085</code></pre>
+<pre class="r"><code>summary(air_lm)$sigma |&gt; round(3)</code></pre>
+<pre><code>## [1] 18.055</code></pre>
+<div id="interpreting-these-estimates" class="section level3">
+<h3>Interpreting these estimates</h3>
+<p>What do these parameter estimates mean in this context?</p>
+<p><strong>Intercept:</strong> This is the model implied ______ when the ________ equals 0.<br />
+<strong>Slope:</strong> For each 1 unit change in ____ there is a -2.2 unit decrease in <strong><em>.<br />
+<strong>R-Square:</strong> The </em></strong>__ in ____ is explained by ____.<br />
+<strong>Sigma:</strong> The _____ distance each point is from ____.</p>
+</div>
+</div>
+<div id="centering-predictors" class="section level2">
+<h2>Centering predictors</h2>
+<p>There are times when centering of predictors can be helpful for interpretation of the model parameters. This can be helpful when 0 is not a practically useful characteristic of the attribute or for more specific tests of certain elements of the X attribute.</p>
+<div id="mean-centering" class="section level3">
+<h3>Mean Centering</h3>
+<p>Mean centering is where the mean of the attribute is subtracted from each value. This is a linear transformation where each data point is subtracted by a constant, the mean. This means that the distance between points do not change.</p>
+<pre class="r"><code>airquality &lt;- airquality %&gt;%
+  mutate(avg_wind_mc = avg_wind - mean(avg_wind),
+         avg_wind_maxc = avg_wind - max(avg_wind),
+         avg_wind_10 = avg_wind - 10)
+
+gf_point(daily_aqi ~ avg_wind_mc, data = airquality, size = 4, alpha = .15) %&gt;%
+  gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
+          y = &quot;Daily Air Quality&quot;) %&gt;%
+  gf_smooth() %&gt;%
+  gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;, linetype = 2)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
+<p><img src="/lectures/03-regression-estimates_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>air_lm_mc &lt;- lm(daily_aqi ~ avg_wind_mc, data = airquality)
+coef(air_lm_mc)</code></pre>
+<pre><code>## (Intercept) avg_wind_mc 
+##   38.788011   -2.211798</code></pre>
+<pre class="r"><code>summary(air_lm_mc)$r.square</code></pre>
+<pre><code>## [1] 0.08528019</code></pre>
+<pre class="r"><code>summary(air_lm_mc)$sigma</code></pre>
+<pre><code>## [1] 18.05479</code></pre>
+<pre class="r"><code>air_lm_maxc &lt;- lm(daily_aqi ~ avg_wind_maxc, data = airquality)
+coef(air_lm_maxc)</code></pre>
+<pre><code>##   (Intercept) avg_wind_maxc 
+##      5.968391     -2.211798</code></pre>
+<pre class="r"><code>summary(air_lm_maxc)$r.square</code></pre>
+<pre><code>## [1] 0.08528019</code></pre>
+<pre class="r"><code>summary(air_lm_maxc)$sigma</code></pre>
+<pre><code>## [1] 18.05479</code></pre>
+<pre class="r"><code>air_lm_10 &lt;- lm(daily_aqi ~ avg_wind_10, data = airquality)
+coef(air_lm_10)</code></pre>
+<pre><code>## (Intercept) avg_wind_10 
+##   26.104968   -2.211798</code></pre>
+<pre class="r"><code>summary(air_lm_10)$r.square</code></pre>
+<pre><code>## [1] 0.08528019</code></pre>
+<pre class="r"><code>summary(air_lm_10)$sigma</code></pre>
+<pre><code>## [1] 18.05479</code></pre>
+</div>
+</div>
+<div id="standardized-regression" class="section level2">
+<h2>Standardized Regression</h2>
+<p>Another type of regression that can be done is one in which the attributes are standardized prior to estimating the linear regression. What is meant by standardizing? This is converting the attributes into z-scores:</p>
+<p><span class="math display">\[
+Z_{api} = \frac{(aqi - \bar{aqi})}{s_{aqi}}
+\]</span></p>
+<pre class="r"><code>airquality &lt;- airquality %&gt;%
+  mutate(z_aqi = scale(daily_aqi),
+         z_aqi2 = (daily_aqi - mean(daily_aqi)) / sd(daily_aqi),
+         z_wind = scale(avg_wind))
+
+head(airquality)</code></pre>
+<pre><code>## # A tibble: 6 × 19
+##   date           id   poc pm2.5 daily_aqi site_name aqs_parameter_desc cbsa_code
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
+## 1 1/1/21  190130009     1  15.1        57 Water To… PM2.5 - Local Con…     47940
+## 2 1/4/21  190130009     1  13.3        54 Water To… PM2.5 - Local Con…     47940
+## 3 1/7/21  190130009     1  20.5        69 Water To… PM2.5 - Local Con…     47940
+## 4 1/10/21 190130009     1  14.3        56 Water To… PM2.5 - Local Con…     47940
+## 5 1/13/21 190130009     1  13.7        54 Water To… PM2.5 - Local Con…     47940
+## 6 1/16/21 190130009     1   5.3        22 Water To… PM2.5 - Local Con…     47940
+## # ℹ 11 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
+## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;, avg_wind_mc &lt;dbl&gt;,
+## #   avg_wind_maxc &lt;dbl&gt;, avg_wind_10 &lt;dbl&gt;, z_aqi &lt;dbl[,1]&gt;, z_aqi2 &lt;dbl&gt;,
+## #   z_wind &lt;dbl[,1]&gt;</code></pre>
+<pre class="r"><code>air_lm_s &lt;- lm(z_aqi ~ z_wind, data = airquality)
+coef(air_lm_s)</code></pre>
+<pre><code>##   (Intercept)        z_wind 
+## -6.712023e-16 -2.920277e-01</code></pre>
+<pre class="r"><code>summary(air_lm_s)$r.square</code></pre>
+<pre><code>## [1] 0.08528019</code></pre>
+<pre class="r"><code>summary(air_lm_s)$sigma</code></pre>
+<pre><code>## [1] 0.9565091</code></pre>
+<p>We can also use this formula to convert any unstandardized regression coefficients into a standardized metric.</p>
+<p><span class="math display">\[
+b^{&#39;}_{k} = b_{k} * \frac{s_{x_{k}}}{s_{y}}
+\]</span></p>
+<pre class="r"><code>-2.211 * sd(airquality$avg_wind) / sd(airquality$daily_aqi)</code></pre>
+<pre><code>## [1] -0.2919224</code></pre>
+<pre class="r"><code>cor(daily_aqi ~ avg_wind, data = airquality)</code></pre>
+<pre><code>## [1] -0.2920277</code></pre>
+</div>
+<div id="parameter-estimation" class="section level2">
+<h2>Parameter Estimation</h2>
+<p>Now that we looked how the parameters are impacted by some changes in the model specification, how are these parameters actually estimated? I will show two ways, one is general, the other is specific to this simple case with a single predictor/covariate attribute. In general, linear regression (or more generally the general linear model) uses least square estimation. This means that the the parameters in the model minimize the squared distance between the observed and predicted values. That is, least squares estimates minimize this criterion:</p>
+<p><span class="math display">\[
+\sum (Y - \hat{Y})^2
+\]</span></p>
+<div id="specific-example" class="section level3">
+<h3>Specific example</h3>
+<p>Calculus can be used to show that these two equations can be solved simultanuously to get estimates for <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> that minimize the criterion above. These formulas are:</p>
+<p><span class="math display">\[
+b_{1} = \frac{\sum(X - \bar{X})(Y - \bar{Y})}{\sum(X - \bar{X})^2}
+\]</span>
+<span class="math display">\[
+b_{0} = \bar{Y} - b_{1}\bar{X}
+\]</span></p>
+<p>Let’s use R to get these quantities.</p>
+<pre class="r"><code>b1 &lt;- with(airquality, 
+      sum((avg_wind - mean(avg_wind)) * (daily_aqi - mean(daily_aqi))) / sum((avg_wind - mean(avg_wind))^2)
+)
+b0 &lt;- with(airquality, 
+      mean(daily_aqi) - b1 * mean(avg_wind)
+)
+b0</code></pre>
+<pre><code>## [1] 48.22295</code></pre>
+<pre class="r"><code>b1</code></pre>
+<pre><code>## [1] -2.211798</code></pre>
+<pre class="r"><code>coef(air_lm)</code></pre>
+<pre><code>## (Intercept)    avg_wind 
+##   48.222946   -2.211798</code></pre>
+</div>
+<div id="general-approach" class="section level3">
+<h3>General Approach</h3>
+<p>When there are more than one predictor, the number of equations gets a bit unyieldy, therefore, there is a general analytic approach that works for any set of predictor attributes. The general approach uses matrix algebra (anyone take linear algebra?), to achieve their estimates. This general form is:</p>
+<p><span class="math display">\[
+\mathbf{b} = \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1} \left( \mathbf{X}^{`} \mathbf{Y} \right).
+\]</span>
+Where <span class="math inline">\(\mathbf{b}\)</span> is a vector of estimated regression coefficients, <span class="math inline">\(\mathbf{X}\)</span> is a matrix of covariate/predictor attributes (called the design matrix), and <span class="math inline">\(\mathbf{Y}\)</span> is a vector of the outcome attribute.</p>
+<p>Below, I show what these would look like for the air quality example that has been used and solve for the regression coefficients.</p>
+<pre class="r"><code>X &lt;- model.matrix(air_lm)
+head(X)</code></pre>
+<pre><code>##   (Intercept) avg_wind
+## 1           1 2.941667
+## 2           1 2.445833
+## 3           1 1.995833
+## 4           1 3.445833
+## 5           1 1.116667
+## 6           1 6.091667</code></pre>
+<pre class="r"><code>Y &lt;- as.matrix(airquality$daily_aqi)
+head(Y)</code></pre>
+<pre><code>##      [,1]
+## [1,]   57
+## [2,]   54
+## [3,]   69
+## [4,]   56
+## [5,]   54
+## [6,]   22</code></pre>
+<pre class="r"><code>X_X &lt;- solve(t(X) %*% X)
+X_X</code></pre>
+<pre><code>##               (Intercept)      avg_wind
+## (Intercept)  0.0008152474 -1.424894e-04
+## avg_wind    -0.0001424894  3.340328e-05</code></pre>
+<pre class="r"><code>X_Y &lt;- t(X) %*% Y
+X_Y</code></pre>
+<pre><code>##               [,1]
+## (Intercept) 186997
+## avg_wind    731464</code></pre>
+<pre class="r"><code>X_X %*% X_Y</code></pre>
+<pre><code>##                  [,1]
+## (Intercept) 48.222946
+## avg_wind    -2.211798</code></pre>
+<pre class="r"><code>coef(air_lm)</code></pre>
+<pre><code>## (Intercept)    avg_wind 
+##   48.222946   -2.211798</code></pre>
+</div>
+</div>
+</div>
+
+          </div>
+
+          
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/02a-in-class-activity/" rel="next">Linear Regression - In Class</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/lectures/04-least-squares-simulation/" rel="prev">Least Squares Minimization</a>
+  </div>
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Aug 29, 2023</p>
+
+          
+
+
+
+          
+
+
+
+
+          
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.d4185df71ecf716f1c4e7ef5f3d4e2b8.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

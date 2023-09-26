@@ -1,0 +1,1484 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Regression with Categorical Predictors This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/10-regression-categorical/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3aad675291f323c3cd47ae187f0bf0d6.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/10-regression-categorical/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/10-regression-categorical/">
+  <meta property="og:title" content="An R Markdown document converted from &#34;content/lectures/10-regression-categorical.ipynb&#34; | PSQF 6243">
+  <meta property="og:description" content="Regression with Categorical Predictors This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
+  
+    
+    
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>An R Markdown document converted from &#34;content/lectures/10-regression-categorical.ipynb&#34; | PSQF 6243</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7de282f2047be3c570af3a58788341e7.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">PSQF 6243</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#logistics"><span>Logistics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/syllabus/"><span>Syllabus</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule/"><span>Schedule</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/content/"><span>Content</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/lectures/"><span>Lecture Notes</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/assignments/"><span>Assignments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/code/"><span>Software Resources</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>People</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>An R Markdown document converted from &#34;content/lectures/10-regression-categorical.ipynb&#34;</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 1, 0001
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<div id="regression-with-categorical-predictors" class="section level1">
+<h1>Regression with Categorical Predictors</h1>
+<p>This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(Lahman)
+library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance
+## 
+## Attaching package: &#39;ggstance&#39;
+## 
+## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &#39;scales&#39;
+## 
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard
+## 
+## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+career &lt;- Batting %&gt;%
+  filter(AB &gt; 100) %&gt;%
+  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&gt;%
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- People %&gt;%
+  tbl_df() %&gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
+  inner_join(career, by = &quot;playerID&quot;) %&gt;%
+  dplyr::select(-playerID)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   name               lgID      H    AB average
+##   &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1 Jeff Abbott        AL      127   459   0.277
+## 2 Kurt Abbott        AL       33   123   0.268
+## 3 Kurt Abbott        NL      455  1780   0.256
+## 4 Reggie Abercrombie NL       54   255   0.212
+## 5 Brent Abernathy    AL      194   767   0.253
+## 6 Shawn Abner        AL       81   309   0.262</code></pre>
+<div id="question" class="section level2">
+<h2>Question</h2>
+<p>Suppose we are interested in the batting average of baseball players since 1990, that is, the average is:</p>
+<p><span class="math display">\[
+average = \frac{number\ of\ hits}{number\ of\ atbats}
+\]</span></p>
+<p>Let’s first visualize this.</p>
+<pre class="r"><code>gf_density(~ average, data = career) %&gt;%
+  gf_labs(x = &quot;Batting Average&quot;)</code></pre>
+<p><img src="/lectures/10-regression-categorical_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>What if we hypothesized that the batting average will differ based on the league that players played in.</p>
+<pre class="r"><code>gf_violin(lgID ~ average, data = career, fill = &#39;gray80&#39;, draw_quantiles = c(&#39;0.1&#39;, &#39;0.5&#39;, &#39;0.9&#39;)) %&gt;%
+  gf_labs(x = &quot;Batting Average&quot;,
+          y = &quot;League&quot;)</code></pre>
+<p><img src="/lectures/10-regression-categorical_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>The distributions seem similar, but what if we wanted to go a step further and estimate a model to explore if there are really differences or not. For example, suppose we were interested in:</p>
+<p><span class="math display">\[
+H_{0}: \mu_{NL} = \mu_{AL}
+\]</span></p>
+<p>What type of model could we use? What about linear regression?</p>
+</div>
+<div id="linear-regression-with-categorical-attributes" class="section level2">
+<h2>Linear Regression with Categorical Attributes</h2>
+<p>Since these notes are happening, you can assume it is possible. But how can a categorical attribute with categories rather than numbers be included in the linear regression model?</p>
+<p>The answer is that they can’t. We need a new representation of the categorical attribute, enter dummy or indicator coding.</p>
+<div id="dummyindicator-coding" class="section level3">
+<h3>Dummy/Indicator Coding</h3>
+<p>Suppose we use the following logic:</p>
+<p>If NL, then give a value of 1, else give a value of 0.</p>
+<p>Does this give the same information as before?</p>
+<table>
+<thead>
+<tr class="header">
+<th>League ID</th>
+<th>Dummy League ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AL</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>NL</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>What would this look like for the actual data?</p>
+<pre class="r"><code>career &lt;- career %&gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
+
+head(career, n = 10)</code></pre>
+<pre><code>## # A tibble: 10 × 6
+##    name               lgID      H    AB average league_dummy
+##    &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Jeff Abbott        AL      127   459   0.277            0
+##  2 Kurt Abbott        AL       33   123   0.268            0
+##  3 Kurt Abbott        NL      455  1780   0.256            1
+##  4 Reggie Abercrombie NL       54   255   0.212            1
+##  5 Brent Abernathy    AL      194   767   0.253            0
+##  6 Shawn Abner        AL       81   309   0.262            0
+##  7 Shawn Abner        NL       19   115   0.165            1
+##  8 CJ Abrams          NL       70   284   0.246            1
+##  9 Bobby Abreu        AL      858  3061   0.280            0
+## 10 Bobby Abreu        NL     1602  5373   0.298            1</code></pre>
+<p>Now that there is a numeric attribute, these can be added into the linear regression model.</p>
+<pre class="r"><code>average_lm &lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)  0.252     0.000758   333.      0    
+## 2 league_dummy 0.000558  0.00107      0.522   0.602</code></pre>
+<p>How are these terms interpreted now?</p>
+<pre class="r"><code>df_stats(average ~ league_dummy, data = career, mean, sd, length)</code></pre>
+<pre><code>##   response league_dummy      mean         sd length
+## 1  average            0 0.2518959 0.02895094   1461
+## 2  average            1 0.2524535 0.02896021   1477</code></pre>
+<pre class="r"><code>average_lm2 &lt;- lm(average ~ lgID, data = career)
+
+broom::tidy(average_lm2)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept) 0.252     0.000758   333.      0    
+## 2 lgIDNL      0.000558  0.00107      0.522   0.602</code></pre>
+<pre class="r"><code>t.test(average ~ lgID, data = career, var.equal = TRUE)</code></pre>
+<pre><code>## 
+## 	Two Sample t-test
+## 
+## data:  average by lgID
+## t = -0.52189, df = 2936, p-value = 0.6018
+## alternative hypothesis: true difference in means between group AL and group NL is not equal to 0
+## 95 percent confidence interval:
+##  -0.002652537  0.001537330
+## sample estimates:
+## mean in group AL mean in group NL 
+##        0.2518959        0.2524535</code></pre>
+</div>
+</div>
+<div id="values-other-than-01" class="section level2">
+<h2>Values other than 0/1</h2>
+<p>First, I want to build off of the first part of the notes on regression with categorical predictors. Before generalizing to more than two groups, let’s first explore what happens when values other than 0/1 are used for the categorical attribute. The following three dummy/indicator attributes will be used:</p>
+<ol style="list-style-type: decimal">
+<li>1 = NL, 0 = AL</li>
+<li>1 = NL, 2 = AL</li>
+<li>100 = NL, 0 = AL</li>
+</ol>
+<p>Make some predictions about what you think will happen in the three separate regressions?</p>
+<pre class="r"><code>library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &lt;- Batting %&gt;%
+  filter(AB &gt; 100) %&gt;%
+  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&gt;%
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- People %&gt;%
+  tbl_df() %&gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
+  inner_join(career, by = &quot;playerID&quot;) %&gt;%
+  dplyr::select(-playerID)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>career &lt;- career %&gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0),
+         league_dummy_12 = ifelse(lgID == &#39;NL&#39;, 1, 2),
+         league_dummy_100 = ifelse(lgID == &#39;NL&#39;, 100, 0))
+
+head(career, n = 10)</code></pre>
+<pre><code>## # A tibble: 10 × 8
+##    name  lgID      H    AB average league_dummy league_dummy_12 league_dummy_100
+##    &lt;chr&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Jeff… AL      127   459   0.277            0               2                0
+##  2 Kurt… AL       33   123   0.268            0               2                0
+##  3 Kurt… NL      455  1780   0.256            1               1              100
+##  4 Regg… NL       54   255   0.212            1               1              100
+##  5 Bren… AL      194   767   0.253            0               2                0
+##  6 Shaw… AL       81   309   0.262            0               2                0
+##  7 Shaw… NL       19   115   0.165            1               1              100
+##  8 CJ A… NL       70   284   0.246            1               1              100
+##  9 Bobb… AL      858  3061   0.280            0               2                0
+## 10 Bobb… NL     1602  5373   0.298            1               1              100</code></pre>
+<pre class="r"><code>average_lm &lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)  0.252     0.000758   333.      0    
+## 2 league_dummy 0.000558  0.00107      0.522   0.602</code></pre>
+<pre class="r"><code>average_lm_12 &lt;- lm(average ~ league_dummy_12, data = career)
+
+broom::tidy(average_lm_12)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term             estimate std.error statistic p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)      0.253      0.00169   150.      0    
+## 2 league_dummy_12 -0.000558   0.00107    -0.522   0.602</code></pre>
+<pre class="r"><code>average_lm_100 &lt;- lm(average ~ league_dummy_100, data = career)
+
+broom::tidy(average_lm_100)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term               estimate std.error statistic p.value
+##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)      0.252      0.000758    333.      0    
+## 2 league_dummy_100 0.00000558 0.0000107     0.522   0.602</code></pre>
+<p>Before moving to more than 2 groups, any thoughts on how we could run a one-sample t-test using a linear regression? For example, suppose this null hypothesis wanted to be explored.</p>
+<p><span class="math display">\[
+H_{0}: \mu_{BA} = .2
+\]</span></p>
+<p><span class="math display">\[
+H_{A}: \mu_{BA} \neq .2
+\]</span></p>
+</div>
+<div id="generalize-to-more-than-2-groups" class="section level2">
+<h2>Generalize to more than 2 groups</h2>
+<p>The ability to use regression with categorical attributes of more than 2 groups is possible and an extension of the 2 groups model shown above. First, let’s think about how we could represent three categories as numeric attributes. Suppose we had the following 4 categories of baseball players.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Position</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Outfield</td>
+</tr>
+<tr class="even">
+<td align="left">Infield</td>
+</tr>
+<tr class="odd">
+<td align="left">Catcher</td>
+</tr>
+<tr class="even">
+<td align="left">Designated Hitter</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>library(GeomMLBStadiums)
+
+ggplot() + 
+  geom_mlb_stadium(stadium_segments = &quot;all&quot;) + 
+  facet_wrap(~team) + 
+  coord_fixed() + 
+  theme_void()</code></pre>
+<p><img src="/lectures/10-regression-categorical_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &lt;- Batting %&gt;%
+  filter(AB &gt; 100) %&gt;%
+  anti_join(Pitching, by = &quot;playerID&quot;) %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(H = sum(H), AB = sum(AB)) %&gt;%
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- Appearances %&gt;%
+  filter(yearID &gt; 1990) %&gt;%
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) %&gt;%
+  rowwise() %&gt;%
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) %&gt;%
+  select(-G_1b, -G_2b, -G_3b, -G_ss) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) %&gt;%
+  pivot_longer(catcher:infield,
+               names_to = &quot;position&quot;) %&gt;%
+  filter(value &gt; 0) %&gt;%
+  group_by(playerID, lgID) %&gt;%
+  slice_max(value) %&gt;%
+  select(playerID, lgID, position) %&gt;%
+  inner_join(career)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+## Joining with `by = join_by(playerID, lgID)`</code></pre>
+<pre class="r"><code>career &lt;- People %&gt;%
+  tbl_df() %&gt;%
+  dplyr::select(playerID, nameFirst, nameLast) %&gt;%
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) %&gt;%
+  inner_join(career, by = &quot;playerID&quot;)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>career &lt;- career %&gt;%
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
+
+count(career, position)</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   position     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 catcher    415
+## 2 dh          83
+## 3 infield   1279
+## 4 outfield  1165</code></pre>
+<pre class="r"><code>gf_violin(position ~ average, data = career, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) %&gt;%
+  gf_labs(x = &quot;Batting Average&quot;,
+          y = &quot;&quot;)</code></pre>
+<p><img src="/lectures/10-regression-categorical_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>career &lt;- career %&gt;%
+  mutate(outfield = ifelse(position == &#39;outfield&#39;, 1, 0),
+         infield = ifelse(position == &#39;infield&#39;, 1, 0),
+         catcher = ifelse(position == &#39;catcher&#39;, 1, 0))
+
+head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   playerID  name        lgID  position     H    AB average league_dummy outfield
+##   &lt;chr&gt;     &lt;chr&gt;       &lt;fct&gt; &lt;chr&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1 abbotje01 Jeff Abbott AL    outfield   127   459   0.277            0        1
+## 2 abbotku01 Kurt Abbott AL    infield     33   123   0.268            0        0
+## 3 abbotku01 Kurt Abbott NL    infield    455  1780   0.256            1        0
+## 4 abercre01 Reggie Abe… NL    outfield    54   255   0.212            1        1
+## 5 abernbr01 Brent Aber… AL    infield    194   767   0.253            0        0
+## 6 abnersh01 Shawn Abner AL    outfield    81   309   0.262            0        1
+## # ℹ 2 more variables: infield &lt;dbl&gt;, catcher &lt;dbl&gt;</code></pre>
+<pre class="r"><code>position_lm &lt;- lm(average ~ 1 + outfield + infield + catcher, data = career)
+
+broom::tidy(position_lm)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term         estimate std.error statistic   p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)  0.255      0.00314    81.3   0        
+## 2 outfield    -0.000610   0.00325    -0.188 0.851    
+## 3 infield     -0.00218    0.00324    -0.672 0.501    
+## 4 catcher     -0.0144     0.00344    -4.19  0.0000288</code></pre>
+<pre class="r"><code>df_stats(average ~ position, data = career, mean)</code></pre>
+<pre><code>##   response position      mean
+## 1  average  catcher 0.2409461
+## 2  average       dh 0.2553577
+## 3  average  infield 0.2531783
+## 4  average outfield 0.2547475</code></pre>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://psqf6243.brandonlebeau.org/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1c7f48a60fee8ac47c4cc5fee1488333_95373_270x270_fill_q90_lanczos_center.jpg" alt=""></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://psqf6243.brandonlebeau.org/"></a></h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home" target="_blank" rel="noopener">
+        <i class="fab fa-r-project"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://brandonlebeau.org/" target="_blank" rel="noopener">
+        <i class="fas fa-globe"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://uiowa.instructure.com/courses/214414" target="_blank" rel="noopener">
+        <i class="fas fa-chalkboard"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.d4185df71ecf716f1c4e7ef5f3d4e2b8.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

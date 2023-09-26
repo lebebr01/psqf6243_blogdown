@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Content | PSQF 6243</title>
+    <link>https://psqf6243.brandonlebeau.org/content/</link>
+      <atom:link href="https://psqf6243.brandonlebeau.org/content/index.xml" rel="self" type="application/rss+xml" />
+    <description>Content</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 19 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
+      <title>Content</title>
+      <link>https://psqf6243.brandonlebeau.org/content/</link>
+    </image>
+    
+    <item>
+      <title>Welcome</title>
+      <link>https://psqf6243.brandonlebeau.org/content/00-getting-started/</link>
+      <pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/00-getting-started/</guid>
+      <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Review the syllabus&lt;/li&gt;
+&lt;li&gt;Review the schedule&lt;/li&gt;
+&lt;li&gt;Review, accessing the IDAS page
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Notebooks&lt;/a&gt; version of IDAS&lt;/li&gt;
+&lt;li&gt;RStudio Server, to access you can switch via the &amp;ldquo;New&amp;rdquo; button on Jupyter Notebooks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/r/k5mWc5JbZg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IDAS Introduction</title>
+      <link>https://psqf6243.brandonlebeau.org/content/00a-idas/</link>
+      <pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/00a-idas/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This page is meant as a way to give some introduction and how to access the IDAS used for the course.&lt;/p&gt;
+&lt;h2 id=&#34;access&#34;&gt;Access&lt;/h2&gt;
+&lt;p&gt;The IDAS server can be accessed via the following link directly: &lt;a href=&#34;https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Access IDAS&lt;/a&gt;. Upon going here, you will be prompted to log in with your HawkID. Finally, to use the IDAS, you will need to have DUO authentication activated.&lt;/p&gt;
+&lt;p&gt;Here is a good link if you have not set up DUO authentication before from ITS. It may take a few hours or up to a day to be granted access to the IDAS after setting up DUO authentication for the first time, &lt;a href=&#34;https://its.uiowa.edu/duo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DUO Authentication Docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;idas-specifics&#34;&gt;IDAS Specifics&lt;/h2&gt;
+&lt;p&gt;The IDAS by default will launch in Jupyter Lab mode and will sync all course materials that I have posted for the course. The syncing of remote materials will never overwrite anything that you have manually edited by you, the student. For this reason, if I notice a breaking change, I usually post a new updated file with a new name.&lt;/p&gt;
+&lt;p&gt;You can also access RStudio server within the IDAS for the course as well. This can be accessed by clicking on &amp;ldquo;RStudio&amp;rdquo; from the launcher page. You should still have access to all of the course files that are automatically synced for you within the RStudio environment.&lt;/p&gt;
+&lt;h2 id=&#34;shutting-down-idas&#34;&gt;Shutting down IDAS&lt;/h2&gt;
+&lt;p&gt;When you are finished working in the IDAS, you should go to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;File &amp;gt; Hub Control Panel &amp;gt; Stop My Server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This disconnects/stops the server instance so that the resources can be allocated to others wishing to use the service.&lt;/p&gt;
+&lt;h2 id=&#34;common-issues&#34;&gt;Common issues&lt;/h2&gt;
+&lt;p&gt;ITS has established a &lt;a href=&#34;https://wiki.uiowa.edu/display/hpcdocs/Troubleshooting&amp;#43;Common&amp;#43;Issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wiki page&lt;/a&gt; for common problems that occur and other documentation related to the IDAS.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 1</title>
+      <link>https://psqf6243.brandonlebeau.org/content/01-week1/</link>
+      <pubDate>Tue, 22 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/01-week1/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to the course. Primary content will be a review to set the basis for the remainder of the semester.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read syllabus, ask any questions&lt;/li&gt;
+&lt;li&gt;Review &lt;a href=&#34;../../lectures/01-review/&#34;&gt;introductory statistics content&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Explore R code from introductory slides&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Review introductory statistics content
+&lt;ul&gt;
+&lt;li&gt;Chapters 2 - 4 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/visualization.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Optional, complete &lt;a href=&#34;https://forms.office.com/r/k5mWc5JbZg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;p&gt;None this week.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 2</title>
+      <link>https://psqf6243.brandonlebeau.org/content/02-week2/</link>
+      <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/02-week2/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Recognize a linear regression formula&lt;/li&gt;
+&lt;li&gt;Interpret regression parameters&lt;/li&gt;
+&lt;li&gt;Specify a linear regression in statistical software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optional, Read 7.1 and 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#model-slr&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;p&gt;TBA&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 3</title>
+      <link>https://psqf6243.brandonlebeau.org/content/03-week3/</link>
+      <pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/03-week3/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This week is an introduction to linear regression. The primary goal of this week is to introduce the model and get familiar with the basic interpretation of parameters.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define a residual or error from a regression model.&lt;/li&gt;
+&lt;li&gt;Explore benefits of centering predictor attributes.&lt;/li&gt;
+&lt;li&gt;Engage with linear regression parameter estimation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 1 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read Chapter 7 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/linear-regression.html#simple-regression-continuous-predictor&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optional, Read 7.2 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-slr.html#least-squares-regression&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Quiz 1 to come soon&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/actitivy/activity1/&#34;&gt;Activity 1&lt;/a&gt; - Due Around September 18th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/actitivy/activity2/&#34;&gt;Activity 2&lt;/a&gt; - Due Around October 2nd&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 4</title>
+      <link>https://psqf6243.brandonlebeau.org/content/04-week4/</link>
+      <pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/04-week4/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Digging deeper into linear regression. Time will be spent to show/prove via simulation the least square criterion that is minimized by the regression estimates. The foundation for inference using classical statistical methods will be explored.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Understand the least squares minimization for regression.&lt;/li&gt;
+&lt;li&gt;Explore inference for regression parameters.&lt;/li&gt;
+&lt;li&gt;Define what a standard error is.&lt;/li&gt;
+&lt;li&gt;Define null hypothesis significance testing (NHST)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read 24.4 of &lt;a href=&#34;https://openintro-ims.netlify.app/inf-model-slr.html#mathslope&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Quiz 2 &amp;ndash; To come &amp;hellip;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/actitivy/activity1/&#34;&gt;Activity 1&lt;/a&gt; - Due Around September 18th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/actitivy/activity2/&#34;&gt;Activity 2&lt;/a&gt; - Due Around October 2nd&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
