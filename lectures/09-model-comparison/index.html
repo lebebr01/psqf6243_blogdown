@@ -34,8 +34,7 @@
   
     
   
-  <meta name="description" content="Model Comparison This section of multiple regression is going to explore model comparison, to guide the selection of the best fitting model from a set of competing models.
-library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.">
+  <meta name="description" content="Model Comparison This section of multiple regression is going to explore model comparison, to guide the selection of the best fitting model from a set of competing models.">
 
   
   <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/09-model-comparison/">
@@ -283,13 +282,14 @@ library(tidyverse) ## ── Attaching core tidyverse packages ─────�
   
   <meta property="og:site_name" content="PSQF 6243">
   <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/09-model-comparison/">
-  <meta property="og:title" content="An R Markdown document converted from &#34;content/lectures/09-model-comparison.ipynb&#34; | PSQF 6243">
-  <meta property="og:description" content="Model Comparison This section of multiple regression is going to explore model comparison, to guide the selection of the best fitting model from a set of competing models.
-library(tidyverse) ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:title" content="Multiple Comparisons | PSQF 6243">
+  <meta property="og:description" content="Model Comparison This section of multiple regression is going to explore model comparison, to guide the selection of the best fitting model from a set of competing models."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
+      <meta property="article:published_time" content="2023-09-26T00:00:00&#43;00:00">
     
+    <meta property="article:modified_time" content="2023-09-26T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +308,7 @@ library(tidyverse) ## ── Attaching core tidyverse packages ─────�
 
 
 
-  <title>An R Markdown document converted from &#34;content/lectures/09-model-comparison.ipynb&#34; | PSQF 6243</title>
+  <title>Multiple Comparisons | PSQF 6243</title>
 
 </head>
 
@@ -712,90 +712,155 @@ library(tidyverse) ## ── Attaching core tidyverse packages ─────�
   </div>
 
   <div class="page-body">
-    <article class="article">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-<div class="article-container pt-3">
-  <h1>An R Markdown document converted from &#34;content/lectures/09-model-comparison.ipynb&#34;</h1>
-
-  
-
-  
     
 
 
-<div class="article-metadata">
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">Search...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
 
   
   
+    
+
+    
+      
+
+      
+      
+      
+
 
   
-  <span class="article-date">
+    
+    
     
     
       
     
-    Jan 1, 0001
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-</div>
-
-
-
-  <div class="article-container">
-
-    <div class="article-style">
+    
+      <ul class="nav docs-sidenav">
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
+    
       
 
+
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression/">Introduction to Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/02a-in-class-activity/">Linear Regression - In Class</a></li>
+
+
+
+  <li class=""><a href="/lectures/03-regression-estimates/">Regression Estimation</a></li>
+
+
+
+  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Minimization</a></li>
+
+
+
+  <li class=""><a href="/lectures/05-regression-inference/">Inference for regression parameters</a></li>
+
+
+
+  <li class=""><a href="/lectures/05a-regression-in-class/">Regression in class</a></li>
+
+
+
+  <li class=""><a href="/lectures/06-regression-conditions/">Conditions for Linear Regression</a></li>
+
+
+
+  <li class=""><a href="/lectures/07-bootstrap/">Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-multiple-regression/">Multiple Regression</a></li>
+
+
+
+  <li class="active"><a href="/lectures/09-model-comparison/">Multiple Comparisons</a></li>
+
+
+
+  <li class=""><a href="/lectures/10-regression-categorical/">Regression with Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/02-linear-regression-inclass/">Linear Regression - In Class</a></li>
+
+      
+    
+
+    
+      </ul>
+    
+
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
+      </ul>
+
+      
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+
+          <h1>Multiple Comparisons</h1>
+
+          <div class="article-style">
+            
+
+<div id="TOC">
+
+</div>
 
 <div id="model-comparison" class="section level1">
 <h1>Model Comparison</h1>
@@ -1014,130 +1079,57 @@ aictab(list(cost_lm, act_lm),
 </div>
 </div>
 
-    </div>
+          </div>
 
-    
-
-
+          
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
   
   
   
-    
-  
-  
-  
-  <div class="media author-card content-widget-hr">
-    
-      
-      <a href="https://psqf6243.brandonlebeau.org/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu1c7f48a60fee8ac47c4cc5fee1488333_95373_270x270_fill_q90_lanczos_center.jpg" alt=""></a>
-    
-
-    <div class="media-body">
-      <h5 class="card-title"><a href="https://psqf6243.brandonlebeau.org/"></a></h5>
-      
-      
-      <ul class="network-icon" aria-hidden="true">
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home" target="_blank" rel="noopener">
-        <i class="fab fa-r-project"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://brandonlebeau.org/" target="_blank" rel="noopener">
-        <i class="fas fa-globe"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://uiowa.instructure.com/courses/214414" target="_blank" rel="noopener">
-        <i class="fas fa-chalkboard"></i>
-      </a>
-    </li>
-  
-</ul>
-
-    </div>
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/08-multiple-regression/" rel="next">Multiple Regression</a>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/lectures/10-regression-categorical/" rel="prev">Regression with Categorical Predictors</a>
   </div>
-</article>
-  </div>
+  
+</div>
 
-  <div class="page-footer">
-    
-    
-    <div class="container">
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>Last updated on Sep 26, 2023</p>
+
+          
+
+
+
+          
+
+
+
+
+          
+
+
+        </div>
+
+      </article>
+
       <footer class="site-footer">
   
 
@@ -1165,7 +1157,15 @@ aictab(list(cost_lm, act_lm),
   </p>
 </footer>
 
-    </div>
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
     
   </div>
 
@@ -1253,6 +1253,11 @@ aictab(list(cost_lm, act_lm),
     
 
     
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
     
 
     
