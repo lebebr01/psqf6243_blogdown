@@ -2835,24 +2835,24 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1 watermelon       1
-## 2     banana       8
-## 3      apple       2
-## 4 canteloupe       6
-## 5    kumquat       4
-## 6     orange       3
-## 7       kiwi       7
-## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
+## 1     banana       8
+## 2     orange       3
+## 3    kumquat       4
+## 4 watermelon       1
+## 5 canteloupe       6
+## 6     grapes       5
+## 7      apple       2
+## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     banana       8
-## 2      apple       2
-## 3 watermelon       1
-## 4     grapes       5
-## 5       kiwi       7
-## 6       kiwi       7
+## 1       kiwi       7
+## 2 watermelon       1
+## 3      apple       2
+## 4      apple       2
+## 5      apple       2
+## 6 watermelon       1
 ## 7     grapes       5
-## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
+## 8 watermelon       1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
@@ -2998,6 +2998,375 @@ head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;What happens to the resulting figure when the N increases?&lt;/li&gt;
 &lt;li&gt;What value for N seems to be reasonable? Why?&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bootstrap - In Class Portion</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/</link>
+      <pubDate>Thu, 28 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;bootstrap&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bootstrap&lt;/h1&gt;
+&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.&lt;/p&gt;
+&lt;div id=&#34;bootstrapping-steps&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bootstrapping Steps&lt;/h2&gt;
+&lt;p&gt;The following are the steps when performing a bootstrap.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Treat the sample data as the population.&lt;/li&gt;
+&lt;li&gt;Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.&lt;/li&gt;
+&lt;li&gt;Estimate the model using the resampled data from step 2.&lt;/li&gt;
+&lt;li&gt;Repeat steps 2 and 3 many many times (eg, 10,000 or more).&lt;/li&gt;
+&lt;li&gt;Visualize distribution of effect of interest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resampling-with-replacement&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resampling with replacement&lt;/h2&gt;
+&lt;p&gt;What is meant by sampling with replacement? Let’s do an example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fruit &amp;lt;- data.frame(name = c(&amp;#39;watermelon&amp;#39;, &amp;#39;apple&amp;#39;, 
+                             &amp;#39;orange&amp;#39;, &amp;#39;kumquat&amp;#39;, 
+                             &amp;#39;grapes&amp;#39;, &amp;#39;canteloupe&amp;#39;, 
+                             &amp;#39;kiwi&amp;#39;, &amp;#39;banana&amp;#39;)) |&amp;gt;
+    mutate(obs_num = 1:n())
+
+fruit&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 watermelon       1
+## 2      apple       2
+## 3     orange       3
+## 4    kumquat       4
+## 5     grapes       5
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1    kumquat       4
+## 2      apple       2
+## 3 watermelon       1
+## 4 canteloupe       6
+## 5       kiwi       7
+## 6     grapes       5
+## 7     orange       3
+## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 canteloupe       6
+## 2 watermelon       1
+## 3     banana       8
+## 4     orange       3
+## 5 canteloupe       6
+## 6     banana       8
+## 7      apple       2
+## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1    kumquat       4
+## 2 canteloupe       6
+## 3    kumquat       4
+## 4      apple       2
+## 5      apple       2
+## 6     orange       3
+## 7 canteloupe       6
+## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;More practical example&lt;/h2&gt;
+&lt;p&gt;Let’s load some data to do a more practical example. The following data come from a &lt;a href=&#34;https://nces.ed.gov/timss/&#34;&gt;TIMSS&lt;/a&gt; on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IDSTUD&lt;/strong&gt;: A unique student ID&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHM&lt;/strong&gt;: The birth month of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHY&lt;/strong&gt;: The birth year of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITSEX&lt;/strong&gt;: The birth sex of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASDAGE&lt;/strong&gt;: The age of the student (at time of test)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSSCI01&lt;/strong&gt;: Overall science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSEAR01&lt;/strong&gt;: Earth science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSLIF01&lt;/strong&gt;: Life science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSPHY01&lt;/strong&gt;: Physics scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSKNO01&lt;/strong&gt;: Science knowing scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSAPP01&lt;/strong&gt;: Science applying scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSREA01&lt;/strong&gt;: Science reasoning scale score&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+timss &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv&amp;#39;) |&amp;gt; 
+   filter(ASDAGE &amp;lt; 15)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 10029 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
+##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEAR01 ASSLIF01 ASSPHY01
+##    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1  10101        6     2005     2   9.92     505.     445.     408.     458.
+## 2  10102       10     2005     2   9.58     401.     291.     323.     297.
+## 3  10103        1     2005     1  10.3      542.     440.     529.     529.
+## 4  10104        6     2005     2   9.92     544.     534.     552.     557.
+## 5  10105        6     2005     2   9.92     588.     555.     500.     559.
+## 6  10106       12     2005     1   9.42     583.     556.     585.     562.
+## # ℹ 3 more variables: ASSKNO01 &amp;lt;dbl&amp;gt;, ASSAPP01 &amp;lt;dbl&amp;gt;, ASSREA01 &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;two-guiding-questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Two Guiding Questions&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Is the age of a student related to their overall science scale score?&lt;/li&gt;
+&lt;li&gt;Is the life science scale score related to the overall science scale score?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bivariate-exploration&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bivariate exploration&lt;/h2&gt;
+&lt;p&gt;It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”. You may also want to fill in an appropriate axis labels in place of “@@” below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summarize the bivariate association&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, size = 1.5) |&amp;gt;
+  gf_smooth(method = &amp;#39;loess&amp;#39;, size = 1.5, color = &amp;#39;green&amp;#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;Age&amp;quot;,
+          y = &amp;quot;Overall Science&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mosaic::cor(ASSSCI01 ~ ASDAGE, data = timss) |&amp;gt; round(2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.04&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimate-parameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimate Parameters&lt;/h2&gt;
+&lt;p&gt;To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_model &amp;lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
+
+summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resample-these-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resample these data&lt;/h2&gt;
+&lt;p&gt;For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(timss, n = nrow(timss), replace = TRUE) |&amp;gt; 
+  count(IDSTUD) |&amp;gt;
+  arrange(-n) |&amp;gt;
+  head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
+##    IDSTUD     n
+##     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
+## 1  630315     7
+## 2  320210     6
+## 3  820106     6
+## 4 1590716     6
+## 5  100213     5
+## 6  100526     5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
+  lm(ASSSCI01 ~ ASDAGE, data = .)
+
+summary(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -306.206  -51.669    4.522   56.847  273.474 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  636.401     16.881  37.700  &amp;lt; 2e-16 ***
+## ASDAGE        -8.945      1.650  -5.421 6.06e-08 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 80.41 on 10025 degrees of freedom
+## Multiple R-squared:  0.002923,	Adjusted R-squared:  0.002824 
+## F-statistic: 29.39 on 1 and 10025 DF,  p-value: 6.06e-08&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                2.5 %     97.5 %
+## (Intercept) 603.3115 669.491006
+## ASDAGE      -12.1791  -5.710494&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;nrow(timss)^nrow(timss)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] Inf&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Questions to consider&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Do the parameter estimates differ from before? Why or why not?&lt;/li&gt;
+&lt;li&gt;Would you come to substantially different conclusions from the original analysis? Why or why not?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let’s now repeat this a bunch of times.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(2022)
+
+resample_timss &amp;lt;- function(data, model_equation) {
+  timss_resample &amp;lt;- slice_sample(data, n = nrow(data), replace = TRUE)
+
+  lm(model_equation, data = timss_resample) |&amp;gt;
+    coef()
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Run this function a bunch of times manually, what happens to the estimates? Why is this happening?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)      ASDAGE 
+##  593.768824   -4.636762&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-sure-future.apply-is-installed&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Make sure future.apply is installed&lt;/h2&gt;
+&lt;p&gt;The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the &lt;code&gt;#&lt;/code&gt; symbol) in the first line of code to (hopefully) install the package yourself.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;future.apply&amp;quot;)
+library(future.apply)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: future&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plan(multisession)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replicate&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Replicate&lt;/h2&gt;
+&lt;p&gt;The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_coef &amp;lt;- future.apply::future_replicate(10000, 
+                        resample_timss(data = timss, 
+                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&amp;gt;
+                        dplyr::bind_rows() |&amp;gt; 
+                        tidyr::pivot_longer(cols = everything())
+
+#head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualize-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualize results&lt;/h2&gt;
+&lt;p&gt;The following code visualizes the results of the analysis above. Explore the following questions.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What does this distribution show/represent?&lt;/li&gt;
+&lt;li&gt;What are key features of this distribution?&lt;/li&gt;
+&lt;li&gt;How do these values compare to the original linear regression results?
+&lt;ul&gt;
+&lt;li&gt;Are there comparable statistics here compared to those?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ value, data = timss_coef) |&amp;gt;
+  gf_facet_wrap(~ name, scales = &amp;#39;free&amp;#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;Regression Estimates&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;change-the-n-value&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Change the N value&lt;/h2&gt;
+&lt;p&gt;Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What happens to the resulting figure when the N increases?&lt;/li&gt;
+&lt;li&gt;What value for N seems to be reasonable? Why?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
+##   name         value
+##   &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 (Intercept) 610.  
+## 2 ASDAGE       -6.56
+## 3 (Intercept) 603.  
+## 4 ASDAGE       -5.67
+## 5 (Intercept) 620.  
+## 6 ASDAGE       -7.25&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(value ~ name, data = timss_coef, 
+         mean, median, sd, IQR)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response        name       mean     median        sd       IQR
+## 1    value (Intercept) 613.863905 614.021876 20.493175 27.714280
+## 2    value      ASDAGE  -6.714967  -6.740487  2.005943  2.728819&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(-6.687 - 0) / 2.012&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -3.323559&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pnorm(-3.3235, lower.tail = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0004444771&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pnorm(-3.3235, lower.tail = TRUE) * 2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0008889542&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(timss_model, which = 1:5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(value ~ name, data = timss_coef, 
+         quantile(c(0.025, 0.975)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response        name      2.5%      97.5%
+## 1    value (Intercept) 574.15367 653.425218
+## 2    value      ASDAGE -10.57731  -2.829617&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

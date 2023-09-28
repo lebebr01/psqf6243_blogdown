@@ -34,11 +34,10 @@
   
     
   
-  <meta name="description" content="In class activity - September 13, 2023 This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.
-The data used for this activity comes from medical insurance claims.">
+  <meta name="description" content="Bootstrap The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/">
 
   
 
@@ -267,7 +266,7 @@ The data used for this activity comes from medical insurance claims.">
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/">
 
   
   
@@ -282,16 +281,15 @@ The data used for this activity comes from medical insurance claims.">
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/05a-regression-in-class/">
-  <meta property="og:title" content="Regression in class | PSQF 6243">
-  <meta property="og:description" content="In class activity - September 13, 2023 This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.
-The data used for this activity comes from medical insurance claims."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/">
+  <meta property="og:title" content="Bootstrap - In Class Portion | PSQF 6243">
+  <meta property="og:description" content="Bootstrap The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2023-09-21T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2023-09-28T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2023-09-21T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2023-09-28T00:00:00&#43;00:00">
   
 
   
@@ -310,7 +308,7 @@ The data used for this activity comes from medical insurance claims."><meta prop
 
 
 
-  <title>Regression in class | PSQF 6243</title>
+  <title>Bootstrap - In Class Portion | PSQF 6243</title>
 
 </head>
 
@@ -797,7 +795,7 @@ The data used for this activity comes from medical insurance claims."><meta prop
 
 
 
-  <li class="active"><a href="/lectures/05a-regression-in-class/">Regression in class</a></li>
+  <li class=""><a href="/lectures/05a-regression-in-class/">Regression in class</a></li>
 
 
 
@@ -809,7 +807,7 @@ The data used for this activity comes from medical insurance claims."><meta prop
 
 
 
-  <li class=""><a href="/lectures/07-bootstrap-class/">Bootstrap - In Class Portion</a></li>
+  <li class="active"><a href="/lectures/07-bootstrap-class/">Bootstrap - In Class Portion</a></li>
 
 
 
@@ -859,7 +857,7 @@ The data used for this activity comes from medical insurance claims."><meta prop
         <div class="docs-article-container">
           
 
-          <h1>Regression in class</h1>
+          <h1>Bootstrap - In Class Portion</h1>
 
           <div class="article-style">
             
@@ -868,57 +866,23 @@ The data used for this activity comes from medical insurance claims."><meta prop
 
 </div>
 
-<div id="in-class-activity---september-13-2023" class="section level1">
-<h1>In class activity - September 13, 2023</h1>
-<p>This activity is intended to give you some practice interpreting regression coefficients and also conducting inference.</p>
-<p>The data used for this activity comes from medical insurance claims.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Attribute</th>
-<th align="left">Type</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">age</td>
-<td align="left">integer</td>
-<td align="left">Age of individual</td>
-</tr>
-<tr class="even">
-<td align="left">sex</td>
-<td align="left">character</td>
-<td align="left">Sex of individual at birth</td>
-</tr>
-<tr class="odd">
-<td align="left">bmi</td>
-<td align="left">integer</td>
-<td align="left">Body mass index</td>
-</tr>
-<tr class="even">
-<td align="left">children</td>
-<td align="left">integer</td>
-<td align="left">Number of children covered on insurance</td>
-</tr>
-<tr class="odd">
-<td align="left">smoker</td>
-<td align="left">character</td>
-<td align="left">Whether individuals smokes or not</td>
-</tr>
-<tr class="even">
-<td align="left">region</td>
-<td align="left">character</td>
-<td align="left">Region of the United States</td>
-</tr>
-<tr class="odd">
-<td align="left">charges</td>
-<td align="left">integer</td>
-<td align="left">Medical charges</td>
-</tr>
-</tbody>
-</table>
-<p>The following code chunk reads in the data and shows the first 6 rows.</p>
+<div id="bootstrap" class="section level1">
+<h1>Bootstrap</h1>
+<p>The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.</p>
+<div id="bootstrapping-steps" class="section level2">
+<h2>Bootstrapping Steps</h2>
+<p>The following are the steps when performing a bootstrap.</p>
+<ol style="list-style-type: decimal">
+<li>Treat the sample data as the population.</li>
+<li>Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.</li>
+<li>Estimate the model using the resampled data from step 2.</li>
+<li>Repeat steps 2 and 3 many many times (eg, 10,000 or more).</li>
+<li>Visualize distribution of effect of interest</li>
+</ol>
+</div>
+<div id="resampling-with-replacement" class="section level2">
+<h2>Resampling with replacement</h2>
+<p>What is meant by sampling with replacement? Let’s do an example.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
@@ -930,246 +894,331 @@ The data used for this activity comes from medical insurance claims."><meta prop
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance
-## 
-## Attaching package: &#39;ggstance&#39;
-## 
-## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
-## 
-## Attaching package: &#39;scales&#39;
-## 
-## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard
-## 
-## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor
-## 
-## Loading required package: ggridges
-## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>library(mosaic)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2
-## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Attaching package: &#39;mosaic&#39;
-## 
-## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean
-## 
-## The following object is masked from &#39;package:scales&#39;:
-## 
-##     rescale
-## 
-## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally
-## 
-## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross
-## 
-## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat
-## 
-## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre class="r"><code>charges &lt;- read_csv(&quot;https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/insurance.csv&quot;)</code></pre>
-<pre><code>## Rows: 1338 Columns: 7
+<pre class="r"><code>fruit &lt;- data.frame(name = c(&#39;watermelon&#39;, &#39;apple&#39;, 
+                             &#39;orange&#39;, &#39;kumquat&#39;, 
+                             &#39;grapes&#39;, &#39;canteloupe&#39;, 
+                             &#39;kiwi&#39;, &#39;banana&#39;)) |&gt;
+    mutate(obs_num = 1:n())
+
+fruit</code></pre>
+<pre><code>##         name obs_num
+## 1 watermelon       1
+## 2      apple       2
+## 3     orange       3
+## 4    kumquat       4
+## 5     grapes       5
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     banana       8</code></pre>
+<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
+<pre><code>##         name obs_num
+## 1    kumquat       4
+## 2      apple       2
+## 3 watermelon       1
+## 4 canteloupe       6
+## 5       kiwi       7
+## 6     grapes       5
+## 7     orange       3
+## 8     banana       8</code></pre>
+<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
+<pre><code>##         name obs_num
+## 1 canteloupe       6
+## 2 watermelon       1
+## 3     banana       8
+## 4     orange       3
+## 5 canteloupe       6
+## 6     banana       8
+## 7      apple       2
+## 8     grapes       5</code></pre>
+<pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
+<pre><code>##         name obs_num
+## 1    kumquat       4
+## 2 canteloupe       6
+## 3    kumquat       4
+## 4      apple       2
+## 5      apple       2
+## 6     orange       3
+## 7 canteloupe       6
+## 8       kiwi       7</code></pre>
+</div>
+<div id="more-practical-example" class="section level2">
+<h2>More practical example</h2>
+<p>Let’s load some data to do a more practical example. The following data come from a <a href="https://nces.ed.gov/timss/">TIMSS</a> on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.</p>
+<ul>
+<li><strong>IDSTUD</strong>: A unique student ID</li>
+<li><strong>ITBIRTHM</strong>: The birth month of the student</li>
+<li><strong>ITBIRTHY</strong>: The birth year of the student</li>
+<li><strong>ITSEX</strong>: The birth sex of the student</li>
+<li><strong>ASDAGE</strong>: The age of the student (at time of test)</li>
+<li><strong>ASSSCI01</strong>: Overall science scale score</li>
+<li><strong>ASSEAR01</strong>: Earth science scale score</li>
+<li><strong>ASSLIF01</strong>: Life science scale score</li>
+<li><strong>ASSPHY01</strong>: Physics scale score</li>
+<li><strong>ASSKNO01</strong>: Science knowing scale score</li>
+<li><strong>ASSAPP01</strong>: Science applying scale score</li>
+<li><strong>ASSREA01</strong>: Science reasoning scale score</li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+
+timss &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv&#39;) |&gt; 
+   filter(ASDAGE &lt; 15)</code></pre>
+<pre><code>## Rows: 10029 Columns: 12
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr (3): sex, smoker, region
-## dbl (4): age, bmi, children, charges
+## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>head(charges)</code></pre>
-<pre><code>## # A tibble: 6 × 7
-##     age sex      bmi children smoker region    charges
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;
-## 1    19 female  27.9        0 yes    southwest  16885.
-## 2    18 male    33.8        1 no     southeast   1726.
-## 3    28 male    33          3 no     southeast   4449.
-## 4    33 male    22.7        0 no     northwest  21984.
-## 5    32 male    28.9        0 no     northwest   3867.
-## 6    31 female  25.7        0 no     southeast   3757.</code></pre>
-<div id="descriptive-analysis" class="section level2">
-<h2>Descriptive analysis</h2>
-<p>Pick 2 integer attributes and explore those two attributes descriptively. Think about key characteristics about these two attributes.</p>
+<pre class="r"><code>head(timss)</code></pre>
+<pre><code>## # A tibble: 6 × 12
+##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEAR01 ASSLIF01 ASSPHY01
+##    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1  10101        6     2005     2   9.92     505.     445.     408.     458.
+## 2  10102       10     2005     2   9.58     401.     291.     323.     297.
+## 3  10103        1     2005     1  10.3      542.     440.     529.     529.
+## 4  10104        6     2005     2   9.92     544.     534.     552.     557.
+## 5  10105        6     2005     2   9.92     588.     555.     500.     559.
+## 6  10106       12     2005     1   9.42     583.     556.     585.     562.
+## # ℹ 3 more variables: ASSKNO01 &lt;dbl&gt;, ASSAPP01 &lt;dbl&gt;, ASSREA01 &lt;dbl&gt;</code></pre>
 </div>
-<div id="fitting-the-linear-model" class="section level2">
-<h2>Fitting the linear model</h2>
-<p>Fit the linear model to estimate the regression parameters. Then do the following:</p>
+<div id="two-guiding-questions" class="section level2">
+<h2>Two Guiding Questions</h2>
 <ol style="list-style-type: decimal">
-<li>Extract the linear model estimates.</li>
+<li>Is the age of a student related to their overall science scale score?</li>
+<li>Is the life science scale score related to the overall science scale score?</li>
 </ol>
+</div>
+<div id="bivariate-exploration" class="section level2">
+<h2>Bivariate exploration</h2>
+<p>It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”. You may also want to fill in an appropriate axis labels in place of “@@” below.</p>
 <ul>
-<li>Example text</li>
+<li>Summarize the bivariate association</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Interpret the slope and intercept.</li>
-<li>Interpret the standard errors</li>
-<li>Interpret overall model fit.</li>
-</ol>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggstance&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh</code></pre>
+<pre><code>## Loading required package: scales</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## Loading required package: ggridges</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+
+gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&gt; 
+  gf_smooth(method = &#39;lm&#39;, size = 1.5) |&gt;
+  gf_smooth(method = &#39;loess&#39;, size = 1.5, color = &#39;green&#39;) |&gt;
+  gf_labs(x = &quot;Age&quot;,
+          y = &quot;Overall Science&quot;)</code></pre>
+<p><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>mosaic::cor(ASSSCI01 ~ ASDAGE, data = timss) |&gt; round(2)</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>## [1] -0.04</code></pre>
 </div>
-<div id="conduct-inference" class="section level2">
-<h2>Conduct Inference</h2>
-<p>Suppose we wished to use this data to make broader claims to a population of interest. Let us perform classical inference using the NHST framework. Do the following:</p>
-<ol style="list-style-type: decimal">
-<li>Establish the statistical hypotheses.</li>
-<li>Extract and interpret the test-statistics and p-values</li>
-<li>What do the test-statistics and p-values tell us about the statistical hypotheses?</li>
-<li>What do the test-statistics and p-values tell us about the magnitude (i.e., size) of effect?</li>
-<li>What do the test-statistics and p-values tell us about the practical implications of the effect?</li>
-</ol>
-</div>
-<div id="compute-confidence-interval" class="section level2">
-<h2>Compute confidence interval</h2>
-<p>Compute a confidence interval in the following steps.</p>
-<ol style="list-style-type: decimal">
-<li>Establish the confidence level</li>
-<li>Compute the confidence interval.</li>
-<li>Interpret the confidence interval.</li>
-<li>What does the confidence interval tell us about magnitude or practical implications of the effect?</li>
-</ol>
-<pre class="r"><code>theme_set(theme_bw(base_size = 16))</code></pre>
-<pre class="r"><code>gf_density(~ charges, data = charges)</code></pre>
-<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>df_stats(~ charges, data = charges, mean, median, sd, IQR)</code></pre>
-<pre><code>##   response     mean   median       sd      IQR
-## 1  charges 13270.42 9382.033 12110.01 11899.63</code></pre>
-<pre class="r"><code>gf_point(charges ~ age, data = charges, size = 5, alpha = .25) |&gt;
-  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
-<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ sex, size = 5, alpha = .25) |&gt;
-  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
-<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ smoker, size = 5, alpha = .25) |&gt;
-  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
-<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ region, size = 5, alpha = .25) |&gt;
-  gf_smooth(method = &#39;lm&#39;, linewidth = 3)</code></pre>
-<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(charges ~ age, data = charges, color = ~ smoker, size = 5, alpha = .25) |&gt;
-  gf_smooth(method = &#39;lm&#39;, linewidth = 3) |&gt; 
-  gf_facet_wrap(~ sex)</code></pre>
-<p><img src="/lectures/05a-regression-in-class_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre class="r"><code>df_stats(charges ~ age, data = charges,  mean, median, sd, min, max)</code></pre>
-<pre><code>##    response age      mean    median        sd       min      max
-## 1   charges  18  7086.218  2198.190 10198.460  1121.874 38792.69
-## 2   charges  19  9747.909  2135.892 12469.537  1241.565 39722.75
-## 3   charges  20 10159.698  2459.720 12049.625  1391.529 38344.57
-## 4   charges  21  4730.464  2254.424  6168.059  1515.345 26018.95
-## 5   charges  22 10012.933  2641.156 14653.364  1665.000 44501.40
-## 6   charges  23 12419.820  3594.538 13421.332  1815.876 40904.20
-## 7   charges  24 10648.016  3045.138 12203.651  1969.614 38126.25
-## 8   charges  25  9838.365  3750.149 11551.289  2137.654 42112.24
-## 9   charges  26  6133.825  3388.882  7765.729  2302.300 36085.22
-## 10  charges  27 12184.702  4544.324 11941.822  2483.736 39611.76
-## 11  charges  28  9069.188  4344.951 11428.968  2689.495 51194.56
-## 12  charges  29 10430.159  4906.410 10680.198  2866.091 44585.46
-## 13  charges  30 12719.110  4837.582 12515.212  3554.203 40932.43
-## 14  charges  31 10196.981  4738.268 13646.443  3260.199 58571.07
-## 15  charges  32  9220.300  4672.016  9346.679  3866.855 37607.53
-## 16  charges  33 12351.533  6210.083 12877.616  3704.354 55135.40
-## 17  charges  34 11613.528  5490.092 11735.073  3935.180 43943.88
-## 18  charges  35 11307.182  5836.520 10699.982  4746.344 39983.43
-## 19  charges  36 12204.476  5478.037 12884.342  4399.731 43753.34
-## 20  charges  37 18019.912  6985.507 15125.287  4646.759 46113.51
-## 21  charges  38  8102.734  6455.863  7328.907  5383.536 41949.24
-## 22  charges  39 11778.243  7512.267  8633.210  5649.715 40103.89
-## 23  charges  40 11772.251  7077.189  9908.913  5415.661 40003.33
-## 24  charges  41  9653.746  6875.961  8859.592  5699.837 40273.65
-## 25  charges  42 13061.039  7443.643 10707.617  5966.887 43896.38
-## 26  charges  43 19267.279 18767.738 13529.394  6250.435 45863.21
-## 27  charges  44 15859.397  8023.135 14394.949  6948.701 48885.14
-## 28  charges  45 14830.200  8603.823 13722.542  7222.786 62592.87
-## 29  charges  46 14342.591  8825.086 12159.483  7147.105 46151.12
-## 30  charges  47 17654.000  9715.841 12208.024  8062.764 44202.65
-## 31  charges  48 14632.500  9447.382 10163.267  7789.635 45702.02
-## 32  charges  49 12696.006  9681.120  7531.013  8116.680 39727.61
-## 33  charges  50 15663.003 10107.221 10939.124  8442.667 42856.84
-## 34  charges  51 15682.256  9875.680 12707.113  8782.469 47462.89
-## 35  charges  52 18256.270 11396.900 12408.353  9140.951 60021.40
-## 36  charges  53 16020.931 11157.174 10096.072  9487.644 46661.44
-## 37  charges  54 18758.546 11816.449 14216.087  9850.432 63770.43
-## 38  charges  55 16164.545 11880.231 10107.690 10214.636 44423.80
-## 39  charges  56 15025.516 11658.247  9204.315 10577.087 43921.18
-## 40  charges  57 16447.185 11893.878  9987.941 10959.330 48675.52
-## 41  charges  58 13878.928 11931.125  7437.417 11345.519 47496.49
-## 42  charges  59 18895.870 12928.791 11170.560 11743.299 48970.25
-## 43  charges  60 21979.419 13204.286 14923.698 12142.579 52590.83
-## 44  charges  61 22024.458 13635.638 12525.159 12557.605 48517.56
-## 45  charges  62 19163.857 13844.797 10320.270 12957.118 46718.16
-## 46  charges  63 19884.998 14349.854 11850.935 13390.559 48824.45
-## 47  charges  64 23275.531 15528.758 13029.842 13822.803 49577.66</code></pre>
-<pre class="r"><code>cor(charges ~ age, data = charges) |&gt; 
-round(3)</code></pre>
-<pre><code>## [1] 0.299</code></pre>
-<p>Type text <strong>bold</strong> <em>italic</em></p>
-<pre class="r"><code>charge_mod &lt;- lm(charges ~ age, data = charges)</code></pre>
-<pre class="r"><code>charge_mod_c &lt;- lm(charges ~ I(age - min(age)), data = charges)</code></pre>
-<pre class="r"><code>summary(charge_mod)</code></pre>
+<div id="estimate-parameters" class="section level2">
+<h2>Estimate Parameters</h2>
+<p>To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”.</p>
+<ul>
+<li>Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)</li>
+</ul>
+<pre class="r"><code>timss_model &lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
+
+summary(timss_model)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = charges ~ age, data = charges)
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-##  -8059  -6671  -5939   5440  47829 
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   3165.9      937.1   3.378 0.000751 ***
-## age            257.7       22.5  11.453  &lt; 2e-16 ***
+## (Intercept)  613.563     17.064  35.956  &lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 11560 on 1336 degrees of freedom
-## Multiple R-squared:  0.08941,	Adjusted R-squared:  0.08872 
-## F-statistic: 131.2 on 1 and 1336 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>broom::tidy(charge_mod)</code></pre>
-<pre><code>## # A tibble: 2 × 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)    3166.     937.       3.38 7.51e- 4
-## 2 age             258.      22.5     11.5  4.89e-29</code></pre>
-<pre class="r"><code>broom::tidy(charge_mod_c)</code></pre>
-<pre><code>## # A tibble: 2 × 5
-##   term              estimate std.error statistic  p.value
-##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)          7805.     572.       13.6 9.77e-40
-## 2 I(age - min(age))     258.      22.5      11.5 4.89e-29</code></pre>
-<pre class="r"><code>broom::glance(charge_mod)</code></pre>
-<pre><code>## # A tibble: 1 × 12
-##   r.squared adj.r.squared  sigma statistic  p.value    df  logLik    AIC    BIC
-##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1    0.0894        0.0887 11560.      131. 4.89e-29     1 -14415. 28836. 28852.
-## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<pre class="r"><code>confint(charge_mod, level = 0.99)</code></pre>
-<pre><code>##                0.5 %    99.5 %
-## (Intercept) 748.4946 5583.2755
-## age         199.6774  315.7679</code></pre>
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05</code></pre>
+<pre class="r"><code>confint(timss_model)</code></pre>
+<pre><code>##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915</code></pre>
+</div>
+<div id="resample-these-data" class="section level2">
+<h2>Resample these data</h2>
+<p>For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.</p>
+<pre class="r"><code>slice_sample(timss, n = nrow(timss), replace = TRUE) |&gt; 
+  count(IDSTUD) |&gt;
+  arrange(-n) |&gt;
+  head()</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##    IDSTUD     n
+##     &lt;dbl&gt; &lt;int&gt;
+## 1  630315     7
+## 2  320210     6
+## 3  820106     6
+## 4 1590716     6
+## 5  100213     5
+## 6  100526     5</code></pre>
+<pre class="r"><code>resamp_lm &lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
+  lm(ASSSCI01 ~ ASDAGE, data = .)
+
+summary(resamp_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -306.206  -51.669    4.522   56.847  273.474 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  636.401     16.881  37.700  &lt; 2e-16 ***
+## ASDAGE        -8.945      1.650  -5.421 6.06e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 80.41 on 10025 degrees of freedom
+## Multiple R-squared:  0.002923,	Adjusted R-squared:  0.002824 
+## F-statistic: 29.39 on 1 and 10025 DF,  p-value: 6.06e-08</code></pre>
+<pre class="r"><code>confint(resamp_lm)</code></pre>
+<pre><code>##                2.5 %     97.5 %
+## (Intercept) 603.3115 669.491006
+## ASDAGE      -12.1791  -5.710494</code></pre>
+<pre class="r"><code>nrow(timss)^nrow(timss)</code></pre>
+<pre><code>## [1] Inf</code></pre>
+<div id="questions-to-consider" class="section level3">
+<h3>Questions to consider</h3>
+<ol style="list-style-type: decimal">
+<li>Do the parameter estimates differ from before? Why or why not?</li>
+<li>Would you come to substantially different conclusions from the original analysis? Why or why not?</li>
+</ol>
+<p>Let’s now repeat this a bunch of times.</p>
+<pre class="r"><code>set.seed(2022)
+
+resample_timss &lt;- function(data, model_equation) {
+  timss_resample &lt;- slice_sample(data, n = nrow(data), replace = TRUE)
+
+  lm(model_equation, data = timss_resample) |&gt;
+    coef()
+}</code></pre>
+<p>Run this function a bunch of times manually, what happens to the estimates? Why is this happening?</p>
+<pre class="r"><code>resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)</code></pre>
+<pre><code>## (Intercept)      ASDAGE 
+##  593.768824   -4.636762</code></pre>
+</div>
+</div>
+<div id="make-sure-future.apply-is-installed" class="section level2">
+<h2>Make sure future.apply is installed</h2>
+<p>The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the <code>#</code> symbol) in the first line of code to (hopefully) install the package yourself.</p>
+<pre class="r"><code># install.packages(&quot;future.apply&quot;)
+library(future.apply)</code></pre>
+<pre><code>## Loading required package: future</code></pre>
+<pre class="r"><code>plan(multisession)</code></pre>
+</div>
+<div id="replicate" class="section level2">
+<h2>Replicate</h2>
+<p>The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.</p>
+<pre class="r"><code>timss_coef &lt;- future.apply::future_replicate(10000, 
+                        resample_timss(data = timss, 
+                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&gt;
+                        dplyr::bind_rows() |&gt; 
+                        tidyr::pivot_longer(cols = everything())
+
+#head(timss_coef)</code></pre>
+</div>
+<div id="visualize-results" class="section level2">
+<h2>Visualize results</h2>
+<p>The following code visualizes the results of the analysis above. Explore the following questions.</p>
+<ol style="list-style-type: decimal">
+<li>What does this distribution show/represent?</li>
+<li>What are key features of this distribution?</li>
+<li>How do these values compare to the original linear regression results?
+<ul>
+<li>Are there comparable statistics here compared to those?</li>
+</ul></li>
+</ol>
+<pre class="r"><code>gf_density(~ value, data = timss_coef) |&gt;
+  gf_facet_wrap(~ name, scales = &#39;free&#39;) |&gt;
+  gf_labs(x = &quot;Regression Estimates&quot;)</code></pre>
+<p><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="change-the-n-value" class="section level2">
+<h2>Change the N value</h2>
+<p>Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).</p>
+<ul>
+<li>What happens to the resulting figure when the N increases?</li>
+<li>What value for N seems to be reasonable? Why?</li>
+</ul>
+<pre class="r"><code>head(timss_coef)</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   name         value
+##   &lt;chr&gt;        &lt;dbl&gt;
+## 1 (Intercept) 610.  
+## 2 ASDAGE       -6.56
+## 3 (Intercept) 603.  
+## 4 ASDAGE       -5.67
+## 5 (Intercept) 620.  
+## 6 ASDAGE       -7.25</code></pre>
+<pre class="r"><code>df_stats(value ~ name, data = timss_coef, 
+         mean, median, sd, IQR)</code></pre>
+<pre><code>##   response        name       mean     median        sd       IQR
+## 1    value (Intercept) 613.863905 614.021876 20.493175 27.714280
+## 2    value      ASDAGE  -6.714967  -6.740487  2.005943  2.728819</code></pre>
+<pre class="r"><code>(-6.687 - 0) / 2.012</code></pre>
+<pre><code>## [1] -3.323559</code></pre>
+<pre class="r"><code>pnorm(-3.3235, lower.tail = TRUE)</code></pre>
+<pre><code>## [1] 0.0004444771</code></pre>
+<pre class="r"><code>pnorm(-3.3235, lower.tail = TRUE) * 2</code></pre>
+<pre><code>## [1] 0.0008889542</code></pre>
+<pre class="r"><code>summary(timss_model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05</code></pre>
+<pre class="r"><code>plot(timss_model, which = 1:5)</code></pre>
+<p><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-1.png" width="672" /><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-2.png" width="672" /><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-3.png" width="672" /><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-4.png" width="672" /><img src="/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-5.png" width="672" /></p>
+<pre class="r"><code>confint(timss_model)</code></pre>
+<pre><code>##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915</code></pre>
+<pre class="r"><code>df_stats(value ~ name, data = timss_coef, 
+         quantile(c(0.025, 0.975)))</code></pre>
+<pre><code>##   response        name      2.5%      97.5%
+## 1    value (Intercept) 574.15367 653.425218
+## 2    value      ASDAGE -10.57731  -2.829617</code></pre>
 </div>
 </div>
 
@@ -1189,14 +1238,14 @@ round(3)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/05-regression-inference/" rel="next">Inference for regression parameters</a>
+    <a href="/lectures/07-bootstrap/" rel="next">Bootstrap</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/06-regression-conditions/" rel="prev">Conditions for Linear Regression</a>
+    <a href="/lectures/08-multiple-regression/" rel="prev">Multiple Regression</a>
   </div>
   
 </div>
@@ -1206,7 +1255,7 @@ round(3)</code></pre>
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Sep 21, 2023</p>
+          <p>Last updated on Sep 28, 2023</p>
 
           
 
