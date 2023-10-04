@@ -2355,24 +2355,24 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     banana       8
-## 2     orange       3
-## 3    kumquat       4
-## 4 watermelon       1
-## 5 canteloupe       6
-## 6     grapes       5
-## 7      apple       2
-## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+## 1 watermelon       1
+## 2     banana       8
+## 3      apple       2
+## 4 canteloupe       6
+## 5    kumquat       4
+## 6     orange       3
+## 7       kiwi       7
+## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1       kiwi       7
-## 2 watermelon       1
-## 3      apple       2
-## 4      apple       2
-## 5      apple       2
-## 6 watermelon       1
+## 1     banana       8
+## 2      apple       2
+## 3 watermelon       1
+## 4     grapes       5
+## 5       kiwi       7
+## 6       kiwi       7
 ## 7     grapes       5
-## 8 watermelon       1&lt;/code&gt;&lt;/pre&gt;
+## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;

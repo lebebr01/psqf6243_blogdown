@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 28 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 04 Oct 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -1476,6 +1476,40 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>Week 7</title>
+      <link>https://psqf6243.brandonlebeau.org/content/07-week7/</link>
+      <pubDate>Wed, 04 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/07-week7/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrapup of multiple linear regression.&lt;/li&gt;
+&lt;li&gt;Regression with Categorical Predictors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define multiple linear regression&lt;/li&gt;
+&lt;li&gt;Interpret multiple linear regression coefficients&lt;/li&gt;
+&lt;li&gt;Explain variance decomposition&lt;/li&gt;
+&lt;li&gt;Interpret coefficients for categorical predictors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 3.2 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-mlr.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 2nd&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 16th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 4&lt;/a&gt; - Due around October 16th.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 9th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 23rd&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Inference for regression parameters</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/05-regression-inference/</link>
       <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
@@ -2835,24 +2869,24 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     banana       8
-## 2     orange       3
-## 3    kumquat       4
-## 4 watermelon       1
-## 5 canteloupe       6
-## 6     grapes       5
-## 7      apple       2
-## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+## 1 watermelon       1
+## 2     banana       8
+## 3      apple       2
+## 4 canteloupe       6
+## 5    kumquat       4
+## 6     orange       3
+## 7       kiwi       7
+## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1       kiwi       7
-## 2 watermelon       1
-## 3      apple       2
-## 4      apple       2
-## 5      apple       2
-## 6 watermelon       1
+## 1     banana       8
+## 2      apple       2
+## 3 watermelon       1
+## 4     grapes       5
+## 5       kiwi       7
+## 6       kiwi       7
 ## 7     grapes       5
-## 8 watermelon       1&lt;/code&gt;&lt;/pre&gt;
+## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
