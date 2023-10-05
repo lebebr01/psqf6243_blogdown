@@ -811,6 +811,10 @@
 
 
 
+  <li class=""><a href="/lectures/08-multiple-regression-class/">Multiple Regression - In Class Notes</a></li>
+
+
+
   <li class=""><a href="/lectures/08-multiple-regression/">Multiple Regression</a></li>
 
 
@@ -868,7 +872,7 @@
 
 <div id="bootstrap" class="section level1">
 <h1>Bootstrap</h1>
-<p>The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.</p>
+<p>The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to perform the procedure.</p>
 <div id="bootstrapping-steps" class="section level2">
 <h2>Bootstrapping Steps</h2>
 <p>The following are the steps when performing a bootstrap.</p>
@@ -912,34 +916,34 @@ fruit</code></pre>
 ## 8     banana       8</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1    kumquat       4
+## 1     orange       3
 ## 2      apple       2
 ## 3 watermelon       1
-## 4 canteloupe       6
-## 5       kiwi       7
-## 6     grapes       5
-## 7     orange       3
-## 8     banana       8</code></pre>
+## 4     banana       8
+## 5    kumquat       4
+## 6       kiwi       7
+## 7     grapes       5
+## 8 canteloupe       6</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
 ## 1 canteloupe       6
-## 2 watermelon       1
-## 3     banana       8
-## 4     orange       3
-## 5 canteloupe       6
-## 6     banana       8
-## 7      apple       2
+## 2     banana       8
+## 3 watermelon       1
+## 4 watermelon       1
+## 5 watermelon       1
+## 6 canteloupe       6
+## 7       kiwi       7
 ## 8     grapes       5</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1    kumquat       4
-## 2 canteloupe       6
-## 3    kumquat       4
-## 4      apple       2
-## 5      apple       2
-## 6     orange       3
-## 7 canteloupe       6
-## 8       kiwi       7</code></pre>
+## 1      apple       2
+## 2 watermelon       1
+## 3 watermelon       1
+## 4       kiwi       7
+## 5     banana       8
+## 6     banana       8
+## 7    kumquat       4
+## 8     orange       3</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1071,12 +1075,12 @@ summary(timss_model)</code></pre>
 <pre><code>## # A tibble: 6 × 2
 ##    IDSTUD     n
 ##     &lt;dbl&gt; &lt;int&gt;
-## 1  630315     7
-## 2  320210     6
-## 3  820106     6
-## 4 1590716     6
-## 5  100213     5
-## 6  100526     5</code></pre>
+## 1  820301     6
+## 2 1030426     6
+## 3 1280108     6
+## 4  140307     5
+## 5  190209     5
+## 6  440606     5</code></pre>
 <pre class="r"><code>resamp_lm &lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
   lm(ASSSCI01 ~ ASDAGE, data = .)
 
@@ -1087,22 +1091,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -306.206  -51.669    4.522   56.847  273.474 
+## -305.283  -51.613    6.068   56.467  271.105 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  636.401     16.881  37.700  &lt; 2e-16 ***
-## ASDAGE        -8.945      1.650  -5.421 6.06e-08 ***
+## (Intercept)  591.927     16.779  35.277  &lt; 2e-16 ***
+## ASDAGE        -4.555      1.641  -2.775  0.00553 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 80.41 on 10025 degrees of freedom
-## Multiple R-squared:  0.002923,	Adjusted R-squared:  0.002824 
-## F-statistic: 29.39 on 1 and 10025 DF,  p-value: 6.06e-08</code></pre>
+## Residual standard error: 80.42 on 10025 degrees of freedom
+## Multiple R-squared:  0.0007674,	Adjusted R-squared:  0.0006678 
+## F-statistic: 7.699 on 1 and 10025 DF,  p-value: 0.005534</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
-<pre><code>##                2.5 %     97.5 %
-## (Intercept) 603.3115 669.491006
-## ASDAGE      -12.1791  -5.710494</code></pre>
+<pre><code>##                  2.5 %     97.5 %
+## (Intercept) 559.035867 624.818134
+## ASDAGE       -7.772069  -1.337081</code></pre>
 <pre class="r"><code>nrow(timss)^nrow(timss)</code></pre>
 <pre><code>## [1] Inf</code></pre>
 <div id="questions-to-consider" class="section level3">
@@ -1245,7 +1249,7 @@ library(future.apply)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/08-multiple-regression/" rel="prev">Multiple Regression</a>
+    <a href="/lectures/08-multiple-regression-class/" rel="prev">Multiple Regression - In Class Notes</a>
   </div>
   
 </div>

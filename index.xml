@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 04 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 05 Oct 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -1478,33 +1478,34 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>Week 7</title>
       <link>https://psqf6243.brandonlebeau.org/content/07-week7/</link>
-      <pubDate>Wed, 04 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
       <guid>https://psqf6243.brandonlebeau.org/content/07-week7/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Wrapup of multiple linear regression.&lt;/li&gt;
-&lt;li&gt;Regression with Categorical Predictors&lt;/li&gt;
+&lt;li&gt;Discussion of data conditions for valid linear regression inference.&lt;/li&gt;
+&lt;li&gt;Exploration of utilizing a bootstrap for a robust alternative to inference for regression parameters.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Define multiple linear regression&lt;/li&gt;
-&lt;li&gt;Interpret multiple linear regression coefficients&lt;/li&gt;
-&lt;li&gt;Explain variance decomposition&lt;/li&gt;
-&lt;li&gt;Interpret coefficients for categorical predictors&lt;/li&gt;
+&lt;li&gt;Define a residual&lt;/li&gt;
+&lt;li&gt;Explore key data conditions&lt;/li&gt;
+&lt;li&gt;Define the bootstrap procedure&lt;/li&gt;
+&lt;li&gt;Define and explain the steps to conduct a bootstrap&lt;/li&gt;
+&lt;li&gt;Interpret bootstrap results&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Read Chapter 3.2 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-mlr.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://lebebr01.github.io/stat_thinking/estimation-bootstrap-and-uncertainty.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Statistical Reasoning through Computation and R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 12 of &lt;a href=&#34;https://openintro-ims.netlify.app/foundations-bootstrapping.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 2nd&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 16th&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 4&lt;/a&gt; - Due around October 16th.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 9th&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 23rd&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 17th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz4/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 4&lt;/a&gt; - Due around October 10th.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 10th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 24th&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1874,6 +1875,37 @@ gf_line(density ~ value, data = t_dist) %&amp;gt;%
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 8 and 9</title>
+      <link>https://psqf6243.brandonlebeau.org/content/08-week8/</link>
+      <pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/08-week8/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Introduction of multiple linear regression. This will allow for more than 1 quantitative predictor to be added to the regression model.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Define multiple linear regression&lt;/li&gt;
+&lt;li&gt;Interpret multiple linear regression coefficients&lt;/li&gt;
+&lt;li&gt;Explain variance decomposition&lt;/li&gt;
+&lt;li&gt;Compare multiple models&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 3.2 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;An Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 8 of &lt;a href=&#34;https://openintro-ims.netlify.app/model-mlr.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 2&lt;/a&gt; &amp;ndash; Due around October 3rd&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/activity/activity3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Activity 3&lt;/a&gt; &amp;ndash; Due around October 17th&lt;/li&gt;
+&lt;li&gt;Quiz 5 &amp;ndash; coming soon.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 1&lt;/a&gt; - Due around October 10th&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://psqf6243.brandonlebeau.org/assignments/assignment/assignment2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Assignment 2&lt;/a&gt; - Due around October 24th&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -2869,24 +2901,24 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1 watermelon       1
-## 2     banana       8
+## 1     banana       8
+## 2     grapes       5
 ## 3      apple       2
-## 4 canteloupe       6
-## 5    kumquat       4
+## 4    kumquat       4
+## 5 watermelon       1
 ## 6     orange       3
 ## 7       kiwi       7
-## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
+## 8 canteloupe       6&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     banana       8
-## 2      apple       2
-## 3 watermelon       1
-## 4     grapes       5
-## 5       kiwi       7
-## 6       kiwi       7
-## 7     grapes       5
-## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
+## 1       kiwi       7
+## 2    kumquat       4
+## 3       kiwi       7
+## 4    kumquat       4
+## 5 canteloupe       6
+## 6      apple       2
+## 7     orange       3
+## 8      apple       2&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
@@ -3050,7 +3082,7 @@ head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div id=&#34;bootstrap&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Bootstrap&lt;/h1&gt;
-&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.&lt;/p&gt;
+&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to perform the procedure.&lt;/p&gt;
 &lt;div id=&#34;bootstrapping-steps&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Bootstrapping Steps&lt;/h2&gt;
 &lt;p&gt;The following are the steps when performing a bootstrap.&lt;/p&gt;
@@ -3094,34 +3126,34 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
+## 1     orange       3
 ## 2      apple       2
 ## 3 watermelon       1
-## 4 canteloupe       6
-## 5       kiwi       7
-## 6     grapes       5
-## 7     orange       3
-## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
+## 4     banana       8
+## 5    kumquat       4
+## 6       kiwi       7
+## 7     grapes       5
+## 8 canteloupe       6&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
 ## 1 canteloupe       6
-## 2 watermelon       1
-## 3     banana       8
-## 4     orange       3
-## 5 canteloupe       6
-## 6     banana       8
-## 7      apple       2
+## 2     banana       8
+## 3 watermelon       1
+## 4 watermelon       1
+## 5 watermelon       1
+## 6 canteloupe       6
+## 7       kiwi       7
 ## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
-## 2 canteloupe       6
-## 3    kumquat       4
-## 4      apple       2
-## 5      apple       2
-## 6     orange       3
-## 7 canteloupe       6
-## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+## 1      apple       2
+## 2 watermelon       1
+## 3 watermelon       1
+## 4       kiwi       7
+## 5     banana       8
+## 6     banana       8
+## 7    kumquat       4
+## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
@@ -3253,12 +3285,12 @@ summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
 ##    IDSTUD     n
 ##     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
-## 1  630315     7
-## 2  320210     6
-## 3  820106     6
-## 4 1590716     6
-## 5  100213     5
-## 6  100526     5&lt;/code&gt;&lt;/pre&gt;
+## 1  820301     6
+## 2 1030426     6
+## 3 1280108     6
+## 4  140307     5
+## 5  190209     5
+## 6  440606     5&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
   lm(ASSSCI01 ~ ASDAGE, data = .)
 
@@ -3269,22 +3301,22 @@ summary(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -306.206  -51.669    4.522   56.847  273.474 
+## -305.283  -51.613    6.068   56.467  271.105 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  636.401     16.881  37.700  &amp;lt; 2e-16 ***
-## ASDAGE        -8.945      1.650  -5.421 6.06e-08 ***
+## (Intercept)  591.927     16.779  35.277  &amp;lt; 2e-16 ***
+## ASDAGE        -4.555      1.641  -2.775  0.00553 ** 
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
 ## 
-## Residual standard error: 80.41 on 10025 degrees of freedom
-## Multiple R-squared:  0.002923,	Adjusted R-squared:  0.002824 
-## F-statistic: 29.39 on 1 and 10025 DF,  p-value: 6.06e-08&lt;/code&gt;&lt;/pre&gt;
+## Residual standard error: 80.42 on 10025 degrees of freedom
+## Multiple R-squared:  0.0007674,	Adjusted R-squared:  0.0006678 
+## F-statistic: 7.699 on 1 and 10025 DF,  p-value: 0.005534&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                2.5 %     97.5 %
-## (Intercept) 603.3115 669.491006
-## ASDAGE      -12.1791  -5.710494&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
+## (Intercept) 559.035867 624.818134
+## ASDAGE       -7.772069  -1.337081&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;nrow(timss)^nrow(timss)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] Inf&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
@@ -3401,6 +3433,386 @@ library(future.apply)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   response        name      2.5%      97.5%
 ## 1    value (Intercept) 574.15367 653.425218
 ## 2    value      ASDAGE -10.57731  -2.829617&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple Regression - In Class Notes</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class/</link>
+      <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;multiple-regression&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Multiple Regression&lt;/h1&gt;
+&lt;p&gt;So far, the course has considered a single continuous predictor attribute. That is, in the following equation, we have only considered a single &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; attribute.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;However, there are many situations where we would want more than one predictor attribute in the data. We can simply add another predictor attribute and this would look like the following regression equation.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(X_{1}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(X_{2}\)&lt;/span&gt; are two different predictors attributes. Let’s dive right into some data to explore this a bit more.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X_{1}^{X_{2}} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;div id=&#34;data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Data&lt;/h2&gt;
+&lt;p&gt;For this portion, using data from the college scorecard representing information about higher education institutions.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+college &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/College-scorecard-4143.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 7058 Columns: 16
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (6): instnm, city, stabbr, preddeg, region, locale
+## dbl (10): adm_rate, actcmmid, ugds, costt4_a, costt4_p, tuitionfee_in, tuiti...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(college)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 16
+##   instnm     city  stabbr preddeg region locale adm_rate actcmmid  ugds costt4_a
+##   &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 Alabama A… Norm… AL     Bachel… South… City:…    0.903       18  4824    22886
+## 2 Universit… Birm… AL     Bachel… South… City:…    0.918       25 12866    24129
+## 3 Amridge U… Mont… AL     Bachel… South… City:…   NA           NA   322    15080
+## 4 Universit… Hunt… AL     Bachel… South… City:…    0.812       28  6917    22108
+## 5 Alabama S… Mont… AL     Bachel… South… City:…    0.979       18  4189    19413
+## 6 The Unive… Tusc… AL     Bachel… South… City:…    0.533       28 32387    28836
+## # ℹ 6 more variables: costt4_p &amp;lt;dbl&amp;gt;, tuitionfee_in &amp;lt;dbl&amp;gt;,
+## #   tuitionfee_out &amp;lt;dbl&amp;gt;, debt_mdn &amp;lt;dbl&amp;gt;, grad_debt_mdn &amp;lt;dbl&amp;gt;, female &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question&lt;/h2&gt;
+&lt;p&gt;Suppose we were interested in exploring admission rates and which attributes helped to explain variation in admission rates.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ adm_rate, data = college) %&amp;gt;%
+  gf_labs(x = &amp;quot;Admission Rate&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite values (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(adm_rate ~ ugds, data = college, size = 4, alpha = .4) %&amp;gt;%
+  gf_smooth(method = &amp;#39;loess&amp;#39;, linewidth = 3) %&amp;gt;%
+  gf_labs(x = &amp;quot;Enrollment Size&amp;quot;,
+          y = &amp;quot;Admission Rate&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite values (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;filter(college, ugds &amp;gt; 50000)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 9 × 16
+##   instnm     city  stabbr preddeg region locale adm_rate actcmmid  ugds costt4_a
+##   &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 Universit… Orla… FL     Bachel… South… Subur…    0.499       27 56366    20950
+## 2 Miami Dad… Miami FL     Associ… South… City:…   NA           NA 51015    12476
+## 3 Ivy Tech … Indi… IN     Certif… Great… City:…   NA           NA 61700    12438
+## 4 Southern … Manc… NH     Bachel… New E… Subur…    0.780       NA 68214    49005
+## 5 Houston C… Hous… TX     Associ… South… City:…   NA           NA 56976     9956
+## 6 Lone Star… The … TX     Associ… South… City:…   NA           NA 59107    11411
+## 7 Texas A &amp;amp;… Coll… TX     Bachel… South… City:…    0.705       28 52568    28143
+## 8 Western G… Salt… UT     Bachel… Rocky… Subur…   NA           NA 72385       NA
+## 9 Universit… Tempe AZ     Bachel… South… City:…   NA           NA 77269    20083
+## # ℹ 6 more variables: costt4_p &amp;lt;dbl&amp;gt;, tuitionfee_in &amp;lt;dbl&amp;gt;,
+## #   tuitionfee_out &amp;lt;dbl&amp;gt;, debt_mdn &amp;lt;dbl&amp;gt;, grad_debt_mdn &amp;lt;dbl&amp;gt;, female &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;GGally&amp;quot;)
+library(GGally)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;GGally&amp;#39;:
+##   method from   
+##   +.gg   ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggpairs(college[c(&amp;#39;adm_rate&amp;#39;, &amp;#39;actcmmid&amp;#39;, &amp;#39;costt4_a&amp;#39;, &amp;#39;tuitionfee_in&amp;#39;)])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite values (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5769 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5236 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5199 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing non-finite values (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5777 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5769 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5236 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5777 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 3486 rows containing non-finite values (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 3486 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5199 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 3486 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 3049 rows containing non-finite values (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s now fit a multiple regression model.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;college &amp;lt;- mutate(college, 
+                  cost_a_1000 = costt4_a / 1000,
+                 act_mean = actcmmid - mean(actcmmid, 
+                                           na.rm = TRUE))
+
+select(college, actcmmid, act_mean) |&amp;gt; head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
+##   actcmmid act_mean
+##      &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1       18    -5.43
+## 2       25     1.57
+## 3       NA    NA   
+## 4       28     4.57
+## 5       18    -5.43
+## 6       28     4.57&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adm_mult_reg &amp;lt;- lm(adm_rate ~ 
+                   I(actcmmid - mean(actcmmid, 
+                                    na.rm = TRUE)) + 
+                   I(cost_a_1000 - mean(cost_a_1000,
+                                       na.rm = TRUE)), 
+                   data = college)
+
+broom::tidy(adm_mult_reg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term                                     estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;                                       &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                               0.683    0.00635     108.   0       
+## 2 I(actcmmid - mean(actcmmid, na.rm = TRU… -0.0167   0.00165     -10.1  3.46e-23
+## 3 I(cost_a_1000 - mean(cost_a_1000, na.rm… -0.00230  0.000405     -5.69 1.55e- 8&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This model is now the following form:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Admission\ Rate = 1.1 + -0.017 ACT + -0.000002 cost + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Why are these parameter estimates so small?&lt;/li&gt;
+&lt;li&gt;How well is the overall model doing?&lt;/li&gt;
+&lt;li&gt;Are both terms important in understanding variation in admission rates? How can you tell?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variance-decomposition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Variance decomposition&lt;/h2&gt;
+&lt;p&gt;Ultimately, multiple regression is a decomposition of variance. Recall,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sum (Y - \bar{Y})^2 =  \sum (\hat{Y} - \bar{Y})^2 + \sum (Y - \hat{Y})^2  \\[10pt]
+SS_{Total} = SS_{Regression} + SS_{Error}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Multiple regression still does this, but now, there are two attributes going into helping explain variation in the regression portion of the variance decomposition. How is this variance decomposed by default? For linear regression, the variance decomposition is commonly done using type I sum of square decomposition. What does this mean? Essentially, this means that additional terms are added to determine if they help explain variation over and above the other terms in the model. This is a conditional variance added. For example, given the model above, the variance decomposition could be broken down into the following.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SS_{Total} = SS_{Regression} + SS_{Error}   \\[10pt]
+SS_{Total} = SS_{X_{1}} + SS_{X_{2} | X_{1}} + SS_{Error}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;act_lm &amp;lt;- lm(adm_rate ~ actcmmid, data = college)
+
+summary(act_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.71615 -0.12521  0.02024  0.14490  0.37314 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  1.180914   0.032988   35.80   &amp;lt;2e-16 ***
+## actcmmid    -0.022162   0.001391  -15.93   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1844 on 1287 degrees of freedom
+##   (5769 observations deleted due to missingness)
+## Multiple R-squared:  0.1647,	Adjusted R-squared:  0.1641 
+## F-statistic: 253.8 on 1 and 1287 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;act_lm &amp;lt;- lm(adm_rate ~ actcmmid, data = college)
+
+summary(act_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.71615 -0.12521  0.02024  0.14490  0.37314 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  1.180914   0.032988   35.80   &amp;lt;2e-16 ***
+## actcmmid    -0.022162   0.001391  -15.93   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1844 on 1287 degrees of freedom
+##   (5769 observations deleted due to missingness)
+## Multiple R-squared:  0.1647,	Adjusted R-squared:  0.1641 
+## F-statistic: 253.8 on 1 and 1287 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sqrt(.034017)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.184437&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(act_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## actcmmid     1  8.635  8.6351  253.84 &amp;lt; 2.2e-16 ***
+## Residuals 1287 43.781  0.0340                      
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(adm_mult_reg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##                                                    Df Sum Sq Mean Sq F value
+## I(actcmmid - mean(actcmmid, na.rm = TRUE))          1  8.386  8.3861 255.092
+## I(cost_a_1000 - mean(cost_a_1000, na.rm = TRUE))    1  1.065  1.0655  32.411
+## Residuals                                        1278 42.014  0.0329        
+##                                                     Pr(&amp;gt;F)    
+## I(actcmmid - mean(actcmmid, na.rm = TRUE))       &amp;lt; 2.2e-16 ***
+## I(cost_a_1000 - mean(cost_a_1000, na.rm = TRUE)) 1.546e-08 ***
+## Residuals                                                     
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cost_lm &amp;lt;- lm(adm_rate ~ costt4_a, 
+              data = drop_na(college, costt4_a, actcmmid))
+
+summary(cost_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ costt4_a, data = drop_na(college, costt4_a, 
+##     actcmmid))
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.56548 -0.12036  0.02441  0.13285  0.36629 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  8.257e-01  1.357e-02   60.83   &amp;lt;2e-16 ***
+## costt4_a    -4.579e-06  3.496e-07  -13.10   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1884 on 1279 degrees of freedom
+## Multiple R-squared:  0.1183,	Adjusted R-squared:  0.1176 
+## F-statistic: 171.6 on 1 and 1279 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(cost_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## costt4_a     1  6.088  6.0885  171.61 &amp;lt; 2.2e-16 ***
+## Residuals 1279 45.377  0.0355                      
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adm_mult_cost &amp;lt;- lm(adm_rate ~ costt4_a + actcmmid,
+                    data = college)
+anova(adm_mult_cost)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## costt4_a     1  6.088  6.0885   185.2 &amp;lt; 2.2e-16 ***
+## actcmmid     1  3.363  3.3631   102.3 &amp;lt; 2.2e-16 ***
+## Residuals 1278 42.014  0.0329                      
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(car)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: carData&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;car&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     recode&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     some&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Anova(adm_mult_cost, type = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Anova Table (Type III tests)
+## 
+## Response: adm_rate
+##             Sum Sq   Df  F value    Pr(&amp;gt;F)    
+## (Intercept) 38.294    1 1164.836 &amp;lt; 2.2e-16 ***
+## costt4_a     1.065    1   32.411 1.546e-08 ***
+## actcmmid     3.363    1  102.301 &amp;lt; 2.2e-16 ***
+## Residuals   42.014 1278                       
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;more_than_2 &amp;lt;- lm(adm_rate ~ costt4_a + 
+   actcmmid + 
+   tuitionfee_in + 
+   ugds + 
+   debt_mdn, 
+   data = college)
+
+broom::tidy(more_than_2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 5
+##   term              estimate   std.error statistic   p.value
+##   &amp;lt;chr&amp;gt;                &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1 (Intercept)    1.01        0.0406         25.0   1.98e-112
+## 2 costt4_a      -0.00000616  0.00000200     -3.08  2.15e-  3
+## 3 actcmmid      -0.0160      0.00187        -8.55  3.52e- 17
+## 4 tuitionfee_in  0.00000210  0.00000212      0.989 3.23e-  1
+## 5 ugds          -0.000000197 0.000000823    -0.239 8.11e-  1
+## 6 debt_mdn       0.0000117   0.00000129      9.08  4.21e- 19&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(more_than_2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##                 Df Sum Sq Mean Sq  F value Pr(&amp;gt;F)    
+## costt4_a         1  6.175  6.1745 201.9919 &amp;lt;2e-16 ***
+## actcmmid         1  3.281  3.2812 107.3402 &amp;lt;2e-16 ***
+## tuitionfee_in    1  0.073  0.0727   2.3795 0.1232    
+## ugds             1  0.000  0.0003   0.0086 0.9261    
+## debt_mdn         1  2.518  2.5178  82.3654 &amp;lt;2e-16 ***
+## Residuals     1268 38.761  0.0306                    
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::glance(more_than_2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1     0.237         0.234 0.175      78.8 4.26e-72     5   417. -820. -784.
+## # ℹ 3 more variables: deviance &amp;lt;dbl&amp;gt;, df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;names(college)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;instnm&amp;quot;         &amp;quot;city&amp;quot;           &amp;quot;stabbr&amp;quot;         &amp;quot;preddeg&amp;quot;       
+##  [5] &amp;quot;region&amp;quot;         &amp;quot;locale&amp;quot;         &amp;quot;adm_rate&amp;quot;       &amp;quot;actcmmid&amp;quot;      
+##  [9] &amp;quot;ugds&amp;quot;           &amp;quot;costt4_a&amp;quot;       &amp;quot;costt4_p&amp;quot;       &amp;quot;tuitionfee_in&amp;quot; 
+## [13] &amp;quot;tuitionfee_out&amp;quot; &amp;quot;debt_mdn&amp;quot;       &amp;quot;grad_debt_mdn&amp;quot;  &amp;quot;female&amp;quot;        
+## [17] &amp;quot;cost_a_1000&amp;quot;    &amp;quot;act_mean&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
