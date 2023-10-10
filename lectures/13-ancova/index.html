@@ -34,11 +34,10 @@
   
     
   
-  <meta name="description" content="Multiple Regression So far, the course has considered a single continuous predictor attribute. That is, in the following equation, we have only considered a single \(X\) attribute.
-\[ Y = \beta_{0} &#43; \beta_{1} X &#43; \epsilon \]">
+  <meta name="description" content="Analysis of Covariance This section of notes will explore an analysis procedure classically known as Analysis of Covariance (ANCOVA). This methodology is aimed to answer the following question, Is there a difference in groups, after controlling for other covariates.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/13-ancova/">
 
   
 
@@ -267,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/13-ancova/">
 
   
   
@@ -282,16 +281,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class/">
-  <meta property="og:title" content="Multiple Regression - In Class Notes | PSQF 6243">
-  <meta property="og:description" content="Multiple Regression So far, the course has considered a single continuous predictor attribute. That is, in the following equation, we have only considered a single \(X\) attribute.
-\[ Y = \beta_{0} &#43; \beta_{1} X &#43; \epsilon \]"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/13-ancova/">
+  <meta property="og:title" content="Analysis of Covariance | PSQF 6243">
+  <meta property="og:description" content="Analysis of Covariance This section of notes will explore an analysis procedure classically known as Analysis of Covariance (ANCOVA). This methodology is aimed to answer the following question, Is there a difference in groups, after controlling for other covariates."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2023-10-05T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2023-10-10T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2023-10-05T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2023-10-10T00:00:00&#43;00:00">
   
 
   
@@ -310,7 +308,7 @@
 
 
 
-  <title>Multiple Regression - In Class Notes | PSQF 6243</title>
+  <title>Analysis of Covariance | PSQF 6243</title>
 
 </head>
 
@@ -813,7 +811,7 @@
 
 
 
-  <li class="active"><a href="/lectures/08-multiple-regression-class/">Multiple Regression - In Class Notes</a></li>
+  <li class=""><a href="/lectures/08-multiple-regression-class/">Multiple Regression - In Class Notes</a></li>
 
 
 
@@ -837,7 +835,7 @@
 
 
 
-  <li class=""><a href="/lectures/13-ancova/">Analysis of Covariance</a></li>
+  <li class="active"><a href="/lectures/13-ancova/">Analysis of Covariance</a></li>
 
 
 
@@ -875,7 +873,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Multiple Regression - In Class Notes</h1>
+          <h1>Analysis of Covariance</h1>
 
           <div class="article-style">
             
@@ -884,23 +882,9 @@
 
 </div>
 
-<div id="multiple-regression" class="section level1">
-<h1>Multiple Regression</h1>
-<p>So far, the course has considered a single continuous predictor attribute. That is, in the following equation, we have only considered a single <span class="math inline">\(X\)</span> attribute.</p>
-<p><span class="math display">\[
-Y = \beta_{0} + \beta_{1} X + \epsilon
-\]</span></p>
-<p>However, there are many situations where we would want more than one predictor attribute in the data. We can simply add another predictor attribute and this would look like the following regression equation.</p>
-<p><span class="math display">\[
-Y = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + \epsilon
-\]</span></p>
-<p>where <span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_{2}\)</span> are two different predictors attributes. Let’s dive right into some data to explore this a bit more.</p>
-<p><span class="math display">\[
-Y = \beta_{0} + \beta_{1} X_{1}^{X_{2}} + \epsilon
-\]</span></p>
-<div id="data" class="section level2">
-<h2>Data</h2>
-<p>For this portion, using data from the college scorecard representing information about higher education institutions.</p>
+<div id="analysis-of-covariance" class="section level1">
+<h1>Analysis of Covariance</h1>
+<p>This section of notes will explore an analysis procedure classically known as Analysis of Covariance (ANCOVA). This methodology is aimed to answer the following question, <em>Is there a difference in groups, after controlling for other covariates</em>. Here, covariates refer to another attribute in the data that is thought to influence or explain variation in the outcome, therefore, this method is meant to remove, control, or partition the variance associated with the covariate (or multiple covariates) to evaluate the conditional or adjusted means.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
@@ -938,316 +922,223 @@ Y = \beta_{0} + \beta_{1} X_{1}^{X_{2}} + \epsilon
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
 ## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>theme_set(theme_bw(base_size = 18))
+<pre class="r"><code>library(broom)
 
-college &lt;- read_csv(&quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/College-scorecard-4143.csv&quot;)</code></pre>
-<pre><code>## Rows: 7058 Columns: 16
+theme_set(theme_bw(base_size = 18))
+
+baby &lt;- read_csv(&quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/baby.csv&quot;) %&gt;%
+   mutate(gestational_mean = gestational_days - mean(gestational_days),
+          maternal_weight_mean = maternal_pregnancy_weight - mean(maternal_pregnancy_weight),
+          maternal_age_mean = maternal_age - mean(maternal_age),
+          maternal_height_mean = maternal_height - mean(maternal_height))</code></pre>
+<pre><code>## Rows: 1174 Columns: 6
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr  (6): instnm, city, stabbr, preddeg, region, locale
-## dbl (10): adm_rate, actcmmid, ugds, costt4_a, costt4_p, tuitionfee_in, tuiti...
+## dbl (5): birth_weight, gestational_days, maternal_age, maternal_height, mate...
+## lgl (1): maternal_smoker
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>head(college)</code></pre>
-<pre><code>## # A tibble: 6 × 16
-##   instnm     city  stabbr preddeg region locale adm_rate actcmmid  ugds costt4_a
-##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Alabama A… Norm… AL     Bachel… South… City:…    0.903       18  4824    22886
-## 2 Universit… Birm… AL     Bachel… South… City:…    0.918       25 12866    24129
-## 3 Amridge U… Mont… AL     Bachel… South… City:…   NA           NA   322    15080
-## 4 Universit… Hunt… AL     Bachel… South… City:…    0.812       28  6917    22108
-## 5 Alabama S… Mont… AL     Bachel… South… City:…    0.979       18  4189    19413
-## 6 The Unive… Tusc… AL     Bachel… South… City:…    0.533       28 32387    28836
-## # ℹ 6 more variables: costt4_p &lt;dbl&gt;, tuitionfee_in &lt;dbl&gt;,
-## #   tuitionfee_out &lt;dbl&gt;, debt_mdn &lt;dbl&gt;, grad_debt_mdn &lt;dbl&gt;, female &lt;dbl&gt;</code></pre>
-</div>
-<div id="question" class="section level2">
-<h2>Question</h2>
-<p>Suppose we were interested in exploring admission rates and which attributes helped to explain variation in admission rates.</p>
-<pre class="r"><code>gf_density(~ adm_rate, data = college) %&gt;%
-  gf_labs(x = &quot;Admission Rate&quot;)</code></pre>
-<pre><code>## Warning: Removed 5039 rows containing non-finite values (`stat_density()`).</code></pre>
-<p><img src="/lectures/08-multiple-regression-class_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(adm_rate ~ ugds, data = college, size = 4, alpha = .4) %&gt;%
-  gf_smooth(method = &#39;loess&#39;, linewidth = 3) %&gt;%
-  gf_labs(x = &quot;Enrollment Size&quot;,
-          y = &quot;Admission Rate&quot;)</code></pre>
-<pre><code>## Warning: Removed 5039 rows containing non-finite values (`stat_smooth()`).</code></pre>
-<pre><code>## Warning: Removed 5039 rows containing missing values (`geom_point()`).</code></pre>
-<p><img src="/lectures/08-multiple-regression-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>filter(college, ugds &gt; 50000)</code></pre>
-<pre><code>## # A tibble: 9 × 16
-##   instnm     city  stabbr preddeg region locale adm_rate actcmmid  ugds costt4_a
-##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Universit… Orla… FL     Bachel… South… Subur…    0.499       27 56366    20950
-## 2 Miami Dad… Miami FL     Associ… South… City:…   NA           NA 51015    12476
-## 3 Ivy Tech … Indi… IN     Certif… Great… City:…   NA           NA 61700    12438
-## 4 Southern … Manc… NH     Bachel… New E… Subur…    0.780       NA 68214    49005
-## 5 Houston C… Hous… TX     Associ… South… City:…   NA           NA 56976     9956
-## 6 Lone Star… The … TX     Associ… South… City:…   NA           NA 59107    11411
-## 7 Texas A &amp;… Coll… TX     Bachel… South… City:…    0.705       28 52568    28143
-## 8 Western G… Salt… UT     Bachel… Rocky… Subur…   NA           NA 72385       NA
-## 9 Universit… Tempe AZ     Bachel… South… City:…   NA           NA 77269    20083
-## # ℹ 6 more variables: costt4_p &lt;dbl&gt;, tuitionfee_in &lt;dbl&gt;,
-## #   tuitionfee_out &lt;dbl&gt;, debt_mdn &lt;dbl&gt;, grad_debt_mdn &lt;dbl&gt;, female &lt;dbl&gt;</code></pre>
-<pre class="r"><code># install.packages(&quot;GGally&quot;)
-library(GGally)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
-##   method from   
-##   +.gg   ggplot2</code></pre>
-<pre class="r"><code>ggpairs(college[c(&#39;adm_rate&#39;, &#39;actcmmid&#39;, &#39;costt4_a&#39;, &#39;tuitionfee_in&#39;)])</code></pre>
-<pre><code>## Warning: Removed 5039 rows containing non-finite values (`stat_density()`).</code></pre>
-<pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-## Removed 5769 rows containing missing values</code></pre>
-<pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-## Removed 5236 rows containing missing values</code></pre>
-<pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-## Removed 5199 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 5769 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 5769 rows containing non-finite values (`stat_density()`).</code></pre>
-<pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-## Removed 5777 rows containing missing values</code></pre>
-<pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-## Removed 5769 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 5236 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 5777 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 3486 rows containing non-finite values (`stat_density()`).</code></pre>
-<pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-## Removed 3486 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 5199 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 5769 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 3486 rows containing missing values (`geom_point()`).</code></pre>
-<pre><code>## Warning: Removed 3049 rows containing non-finite values (`stat_density()`).</code></pre>
-<p><img src="/lectures/08-multiple-regression-class_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Let’s now fit a multiple regression model.</p>
-<pre class="r"><code>college &lt;- mutate(college, 
-                  cost_a_1000 = costt4_a / 1000,
-                 act_mean = actcmmid - mean(actcmmid, 
-                                           na.rm = TRUE))
-
-select(college, actcmmid, act_mean) |&gt; head()</code></pre>
-<pre><code>## # A tibble: 6 × 2
-##   actcmmid act_mean
-##      &lt;dbl&gt;    &lt;dbl&gt;
-## 1       18    -5.43
-## 2       25     1.57
-## 3       NA    NA   
-## 4       28     4.57
-## 5       18    -5.43
-## 6       28     4.57</code></pre>
-<pre class="r"><code>adm_mult_reg &lt;- lm(adm_rate ~ 
-                   I(actcmmid - mean(actcmmid, 
-                                    na.rm = TRUE)) + 
-                   I(cost_a_1000 - mean(cost_a_1000,
-                                       na.rm = TRUE)), 
-                   data = college)
-
-broom::tidy(adm_mult_reg)</code></pre>
-<pre><code>## # A tibble: 3 × 5
-##   term                                     estimate std.error statistic  p.value
-##   &lt;chr&gt;                                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)                               0.683    0.00635     108.   0       
-## 2 I(actcmmid - mean(actcmmid, na.rm = TRU… -0.0167   0.00165     -10.1  3.46e-23
-## 3 I(cost_a_1000 - mean(cost_a_1000, na.rm… -0.00230  0.000405     -5.69 1.55e- 8</code></pre>
-<p>This model is now the following form:</p>
+<pre class="r"><code>head(baby)</code></pre>
+<pre><code>## # A tibble: 6 × 10
+##   birth_weight gestational_days maternal_age maternal_height
+##          &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;
+## 1          120              284           27              62
+## 2          113              282           33              64
+## 3          128              279           28              64
+## 4          108              282           23              67
+## 5          136              286           25              62
+## 6          138              244           33              62
+## # ℹ 6 more variables: maternal_pregnancy_weight &lt;dbl&gt;, maternal_smoker &lt;lgl&gt;,
+## #   gestational_mean &lt;dbl&gt;, maternal_weight_mean &lt;dbl&gt;,
+## #   maternal_age_mean &lt;dbl&gt;, maternal_height_mean &lt;dbl&gt;</code></pre>
+<p>Let’s first explore the model that only includes gestational days in the model, that is, this is a simple linear regression model. <em>Note</em>: I mean centered gestational days for this model.</p>
 <p><span class="math display">\[
-Admission\ Rate = 1.1 + -0.017 ACT + -0.000002 cost + \epsilon
+weight = \beta_{0} + \beta_{1} days + \epsilon
 \]</span></p>
-<ol style="list-style-type: decimal">
-<li>Why are these parameter estimates so small?</li>
-<li>How well is the overall model doing?</li>
-<li>Are both terms important in understanding variation in admission rates? How can you tell?</li>
-</ol>
-</div>
-<div id="variance-decomposition" class="section level2">
-<h2>Variance decomposition</h2>
-<p>Ultimately, multiple regression is a decomposition of variance. Recall,</p>
-<p><span class="math display">\[
-\sum (Y - \bar{Y})^2 =  \sum (\hat{Y} - \bar{Y})^2 + \sum (Y - \hat{Y})^2  \\[10pt]
-SS_{Total} = SS_{Regression} + SS_{Error}
-\]</span></p>
-<p>Multiple regression still does this, but now, there are two attributes going into helping explain variation in the regression portion of the variance decomposition. How is this variance decomposed by default? For linear regression, the variance decomposition is commonly done using type I sum of square decomposition. What does this mean? Essentially, this means that additional terms are added to determine if they help explain variation over and above the other terms in the model. This is a conditional variance added. For example, given the model above, the variance decomposition could be broken down into the following.</p>
-<p><span class="math display">\[
-SS_{Total} = SS_{Regression} + SS_{Error}   \\[10pt]
-SS_{Total} = SS_{X_{1}} + SS_{X_{2} | X_{1}} + SS_{Error}
-\]</span></p>
-<pre class="r"><code>act_lm &lt;- lm(adm_rate ~ actcmmid, data = college)
+<pre class="r"><code>baby_lm &lt;- lm(birth_weight ~ gestational_mean, data = baby)
 
-summary(act_lm)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = adm_rate ~ actcmmid, data = college)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.71615 -0.12521  0.02024  0.14490  0.37314 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.180914   0.032988   35.80   &lt;2e-16 ***
-## actcmmid    -0.022162   0.001391  -15.93   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.1844 on 1287 degrees of freedom
-##   (5769 observations deleted due to missingness)
-## Multiple R-squared:  0.1647,	Adjusted R-squared:  0.1641 
-## F-statistic: 253.8 on 1 and 1287 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>act_lm &lt;- lm(adm_rate ~ actcmmid, data = college)
-
-summary(act_lm)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = adm_rate ~ actcmmid, data = college)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.71615 -0.12521  0.02024  0.14490  0.37314 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.180914   0.032988   35.80   &lt;2e-16 ***
-## actcmmid    -0.022162   0.001391  -15.93   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.1844 on 1287 degrees of freedom
-##   (5769 observations deleted due to missingness)
-## Multiple R-squared:  0.1647,	Adjusted R-squared:  0.1641 
-## F-statistic: 253.8 on 1 and 1287 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>sqrt(.034017)</code></pre>
-<pre><code>## [1] 0.184437</code></pre>
-<pre class="r"><code>anova(act_lm)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: adm_rate
-##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## actcmmid     1  8.635  8.6351  253.84 &lt; 2.2e-16 ***
-## Residuals 1287 43.781  0.0340                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>anova(adm_mult_reg)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: adm_rate
-##                                                    Df Sum Sq Mean Sq F value
-## I(actcmmid - mean(actcmmid, na.rm = TRUE))          1  8.386  8.3861 255.092
-## I(cost_a_1000 - mean(cost_a_1000, na.rm = TRUE))    1  1.065  1.0655  32.411
-## Residuals                                        1278 42.014  0.0329        
-##                                                     Pr(&gt;F)    
-## I(actcmmid - mean(actcmmid, na.rm = TRUE))       &lt; 2.2e-16 ***
-## I(cost_a_1000 - mean(cost_a_1000, na.rm = TRUE)) 1.546e-08 ***
-## Residuals                                                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>cost_lm &lt;- lm(adm_rate ~ costt4_a, 
-              data = drop_na(college, costt4_a, actcmmid))
-
-summary(cost_lm)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = adm_rate ~ costt4_a, data = drop_na(college, costt4_a, 
-##     actcmmid))
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.56548 -0.12036  0.02441  0.13285  0.36629 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  8.257e-01  1.357e-02   60.83   &lt;2e-16 ***
-## costt4_a    -4.579e-06  3.496e-07  -13.10   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.1884 on 1279 degrees of freedom
-## Multiple R-squared:  0.1183,	Adjusted R-squared:  0.1176 
-## F-statistic: 171.6 on 1 and 1279 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>anova(cost_lm)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: adm_rate
-##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## costt4_a     1  6.088  6.0885  171.61 &lt; 2.2e-16 ***
-## Residuals 1279 45.377  0.0355                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>adm_mult_cost &lt;- lm(adm_rate ~ costt4_a + actcmmid,
-                    data = college)
-anova(adm_mult_cost)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: adm_rate
-##             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## costt4_a     1  6.088  6.0885   185.2 &lt; 2.2e-16 ***
-## actcmmid     1  3.363  3.3631   102.3 &lt; 2.2e-16 ***
-## Residuals 1278 42.014  0.0329                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>library(car)</code></pre>
-<pre><code>## Loading required package: carData</code></pre>
-<pre><code>## 
-## Attaching package: &#39;car&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     recode</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     some</code></pre>
-<pre class="r"><code>Anova(adm_mult_cost, type = 3)</code></pre>
-<pre><code>## Anova Table (Type III tests)
-## 
-## Response: adm_rate
-##             Sum Sq   Df  F value    Pr(&gt;F)    
-## (Intercept) 38.294    1 1164.836 &lt; 2.2e-16 ***
-## costt4_a     1.065    1   32.411 1.546e-08 ***
-## actcmmid     3.363    1  102.301 &lt; 2.2e-16 ***
-## Residuals   42.014 1278                       
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>more_than_2 &lt;- lm(adm_rate ~ costt4_a + 
-   actcmmid + 
-   tuitionfee_in + 
-   ugds + 
-   debt_mdn, 
-   data = college)
-
-broom::tidy(more_than_2)</code></pre>
-<pre><code>## # A tibble: 6 × 5
-##   term              estimate   std.error statistic   p.value
-##   &lt;chr&gt;                &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)    1.01        0.0406         25.0   1.98e-112
-## 2 costt4_a      -0.00000616  0.00000200     -3.08  2.15e-  3
-## 3 actcmmid      -0.0160      0.00187        -8.55  3.52e- 17
-## 4 tuitionfee_in  0.00000210  0.00000212      0.989 3.23e-  1
-## 5 ugds          -0.000000197 0.000000823    -0.239 8.11e-  1
-## 6 debt_mdn       0.0000117   0.00000129      9.08  4.21e- 19</code></pre>
-<pre class="r"><code>anova(more_than_2)</code></pre>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: adm_rate
-##                 Df Sum Sq Mean Sq  F value Pr(&gt;F)    
-## costt4_a         1  6.175  6.1745 201.9919 &lt;2e-16 ***
-## actcmmid         1  3.281  3.2812 107.3402 &lt;2e-16 ***
-## tuitionfee_in    1  0.073  0.0727   2.3795 0.1232    
-## ugds             1  0.000  0.0003   0.0086 0.9261    
-## debt_mdn         1  2.518  2.5178  82.3654 &lt;2e-16 ***
-## Residuals     1268 38.761  0.0306                    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>broom::glance(more_than_2)</code></pre>
+glance(baby_lm)</code></pre>
 <pre><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.237         0.234 0.175      78.8 4.26e-72     5   417. -820. -784.
+## 1     0.166         0.165  16.7      233. 3.40e-48     1 -4973. 9953. 9968.
 ## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<pre class="r"><code>names(college)</code></pre>
-<pre><code>##  [1] &quot;instnm&quot;         &quot;city&quot;           &quot;stabbr&quot;         &quot;preddeg&quot;       
-##  [5] &quot;region&quot;         &quot;locale&quot;         &quot;adm_rate&quot;       &quot;actcmmid&quot;      
-##  [9] &quot;ugds&quot;           &quot;costt4_a&quot;       &quot;costt4_p&quot;       &quot;tuitionfee_in&quot; 
-## [13] &quot;tuitionfee_out&quot; &quot;debt_mdn&quot;       &quot;grad_debt_mdn&quot;  &quot;female&quot;        
-## [17] &quot;cost_a_1000&quot;    &quot;act_mean&quot;</code></pre>
+<pre class="r"><code>tidy(baby_lm) |&gt; 
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term             estimate std.error statistic p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)       119.        0.489     244.        0
+## 2 gestational_mean    0.467     0.031      15.3       0</code></pre>
+<p>Let’s next explore another simple linear regression model that only includes whether a mother smoked or not. This model is:</p>
+<p><span class="math display">\[
+weight = \beta_{0} + \beta_{2} smoker + \epsilon
+\]</span></p>
+<pre class="r"><code>baby_smoker &lt;- lm(birth_weight ~ maternal_smoker, data = baby)
+
+glance(baby_smoker)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1    0.0609        0.0601  17.8      76.0 9.46e-18     1 -5043. 10092. 10107.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre class="r"><code>tidy(baby_smoker) |&gt; 
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term                estimate std.error statistic p.value
+##   &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)           123.       0.665    185.         0
+## 2 maternal_smokerTRUE    -9.27     1.06      -8.72       0</code></pre>
+<p>The idea behind ANCOVA is that we know that gestational days is an important predictor in understanding variation in the birth weight of the baby. This may not be a predictor that is of most interest to our research question of knowing whether or not there are differences in birth weight between those that smoked vs did not smoke when the baby was in the womb. There may be some sampling bias occurring, that is, those that smoked may have fewer gestational days compared to those that did not smoke. This fact may drive the differences in the mean difference of birth weight. As a results, we would want to adjust for the effect of gestational days prior to evaluating the mean difference of smoker status.</p>
+<p>Below is a descriptive figure trying to show the relationship between birth weight and gestational days by smoker status.</p>
+<pre class="r"><code>gf_point(birth_weight ~ gestational_days, data = baby, color = ~maternal_smoker, size = 4) %&gt;%
+  gf_smooth(method = &#39;lm&#39;, size = 1)</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="/lectures/13-ancova_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Below, let’s fit the traditional ANCOVA model, that contains a single continuous covariate (gestational days) and the categorical predictor. The model would be:</p>
+<p><span class="math display">\[
+weight = \beta_{0} + \beta_{1} days + \beta_{2} smoker + \epsilon
+\]</span></p>
+<pre class="r"><code>baby_ancova &lt;- lm(birth_weight ~ gestational_mean + maternal_smoker, data = baby)
+
+glance(baby_ancova)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.216         0.214  16.2      161. 1.71e-62     2 -4937. 9883. 9903.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre class="r"><code>tidy(baby_ancova) |&gt; 
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 3 × 5
+##   term                estimate std.error statistic p.value
+##   &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)          123.        0.608    202.         0
+## 2 gestational_mean       0.451     0.03      15.2        0
+## 3 maternal_smokerTRUE   -8.37      0.973     -8.60       0</code></pre>
+<p>The model above can be partioned to better show the specific terms in the model.</p>
+<p><span class="math display">\[
+weight_{smoker} = (\beta_{0} + \beta_{2}) + \beta_{1} days + \epsilon
+\]</span></p>
+<p><span class="math display">\[
+weight_{non-smoker} = \beta_{0} + \beta_{1} days + \epsilon
+\]</span></p>
+<p>More explicitly, the term, <span class="math inline">\(\beta_{2}\)</span> above reflects a mean level change on the intercept after controlling for the effects of gestational days.</p>
+<div id="adjusted-means" class="section level2">
+<h2>Adjusted Means</h2>
+<p>Let’s compare the means from this ANCOVA model compared to the unconditional means.</p>
+<pre class="r"><code>uncond_mean &lt;- df_stats(birth_weight ~ maternal_smoker, data = baby, mean) %&gt;%
+   mutate(maternal_smoker = as.character(maternal_smoker))
+
+cond_mean &lt;- data.frame(maternal_smoker = c(&#39;FALSE&#39;, &#39;TRUE&#39;), cond_mean = c(122.74, 122.74 - 8.37))
+
+combine_means &lt;- full_join(uncond_mean, cond_mean)</code></pre>
+<pre><code>## Joining with `by = join_by(maternal_smoker)`</code></pre>
+<pre class="r"><code>combine_means</code></pre>
+<pre><code>##       response maternal_smoker     mean cond_mean
+## 1 birth_weight           FALSE 123.0853    122.74
+## 2 birth_weight            TRUE 113.8192    114.37</code></pre>
+<p>Note, the conditional mean used the fact that the gestational days were mean centered, therefore, a value of 0 was included in the above equations.</p>
+</div>
+<div id="interaction-between-continuous-and-categorical-predictor" class="section level2">
+<h2>Interaction between continuous and categorical predictor</h2>
+<p>One assumption in classical ANCOVA is to assume that the effect of the adjusting covariate is the same for each group. Although, this is a classical assumption, this is an empirical question that we can explore given the data. This can be explored by the introduction of an interaction.</p>
+<p>This new model would be:</p>
+<p><span class="math display">\[
+weight = \beta_{0} + \beta_{1} days + \beta_{2} smoker + \beta_{3} days:smoker + \epsilon
+\]</span></p>
+<p>where the <span class="math inline">\(:\)</span> in the equation above represents the interaction effect between gestational days and smoker status. An interaction is testing if the slope for gestational days is the same for those that smoke vs those that did not smoke.</p>
+<p>More explicitly, we can partition the model above into the following two regression equations.</p>
+<p><span class="math display">\[
+weight_{smoker} = (\beta_{0} + \beta_{2}) + (\beta_{1} + \beta_{3}) days + \epsilon
+\]</span></p>
+<p><span class="math display">\[
+weight_{non-smoker} = \beta_{0} + \beta_{1} days + \epsilon
+\]</span></p>
+<pre class="r"><code>baby_lm_int &lt;- lm(birth_weight ~ gestational_mean * maternal_smoker, data = baby)
+# baby_lm_int &lt;- lm(birth_weight ~ gestational_mean + maternal_smoker + gestational_mean:maternal_smoker, 
+#    data = baby)
+
+glance(baby_lm_int)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.225         0.223  16.2      113. 2.41e-64     3 -4930. 9871. 9896.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre class="r"><code>tidy(baby_lm_int) |&gt; 
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term                                 estimate std.error statistic p.value
+##   &lt;chr&gt;                                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                           123.        0.605    203.         0
+## 2 gestational_mean                        0.37      0.037     10.1        0
+## 3 maternal_smokerTRUE                    -8.26      0.969     -8.52       0
+## 4 gestational_mean:maternal_smokerTRUE    0.231     0.062      3.74       0</code></pre>
+<p>What do the 4 terms represent now?</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\beta_{0}\)</span> is the intercept for the reference group (non-smokers) when all other attributes in the model are equal to 0.</li>
+<li><span class="math inline">\(\beta_{1}\)</span> is the slope for the reference group (non-smokers), controlling for the smoker status.</li>
+<li><span class="math inline">\(\beta_{2}\)</span> is the average change for those that smoke, controlling for differences in gestational days.</li>
+<li><span class="math inline">\(\beta_{3}\)</span> is the average slope difference for those that smoke compared to those that did not smoke.</li>
+</ol>
+<p>Often, it is easier to combine the terms to be compared directly. For example, given the example above, we could combine <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{2}\)</span> to get the estimated intercept for those that smoke. Then we could do something similar for the slope terms for those that smoke.</p>
+<div id="hypotheses-being-tested" class="section level3">
+<h3>Hypotheses being tested</h3>
+<p>The hypotheses being tested here for the <span class="math inline">\(\beta_{2}\)</span> and <span class="math inline">\(\beta_{3}\)</span> are as follows:</p>
+<p><span class="math display">\[
+H_{0}: \beta_{2} = 0
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+H_{0}: \beta_{3} = 0
+\]</span></p>
+<p>These can be a little bit untenable, therefore stating them in words can help.</p>
+<ul>
+<li><span class="math inline">\(H_{0}: \beta_{2} = 0\)</span>, is really testing, is there a mean difference between the reference and focal groups, controlling for the other terms in the model. This is inherently a conditional or adjusted means question.</li>
+<li><span class="math inline">\(H_{0}: \beta_{3} = 0\)</span>, is really testing, is there a slope difference comparing the focal and reference groups, controlling for other terms in the model.</li>
+</ul>
+</div>
+</div>
+<div id="including-more-than-1-covariate-to-adjustcondition" class="section level2">
+<h2>Including more than 1 covariate to adjust/condition</h2>
+<p>It is also possible to adjust for more than one covariate. For example, maybe we thought adjusting for the weight, height, and age of the mother would also be a good idea. This can be done to remove any variation associated with that attribute prior to making exploring the mean difference in the attributes of interest.</p>
+<p>This model would now be:</p>
+<p><span class="math display">\[
+weight = \beta_{0} + \beta_{1} days + \beta_{4} mother\_weight + \beta_{5} mother\_height + \beta_{6} mother\_age + \beta_{2} smoker + \beta_{3} days:smoker + \epsilon
+\]</span></p>
+<p>These can also be partitioned into two separate equations.</p>
+<p><span class="math display">\[
+weight_{smoker} = (\beta_{0} + \beta_{2}) + (\beta_{1} + \beta_{3}) days + \beta_{4} mother\_weight + \beta_{5} mother\_height + \beta_{6} mother\_age + \epsilon
+\]</span></p>
+<p><span class="math display">\[
+weight_{non-smoker} = \beta_{0} + \beta_{1} days + \beta_{4} mother\_weight + \beta_{5} mother\_height + \beta_{6} mother\_age + \epsilon
+\]</span></p>
+<pre class="r"><code>baby_lm_int_w &lt;- lm(birth_weight ~ gestational_mean + maternal_pregnancy_weight + maternal_height + maternal_age + maternal_smoker + gestational_mean:maternal_smoker, 
+    data = baby)
+
+glance(baby_lm_int_w)</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.260         0.256  15.8      68.3 6.14e-73     6 -4903. 9822. 9863.
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre class="r"><code>tidy(baby_lm_int_w) |&gt; 
+  mutate_if(is.double, round, 3)</code></pre>
+<pre><code>## # A tibble: 7 × 5
+##   term                                 estimate std.error statistic p.value
+##   &lt;chr&gt;                                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                            43.5      12.3       3.54    0    
+## 2 gestational_mean                        0.365     0.036    10.1     0    
+## 3 maternal_pregnancy_weight               0.052     0.025     2.06    0.039
+## 4 maternal_height                         1.10      0.204     5.41    0    
+## 5 maternal_age                            0.07      0.081     0.873   0.383
+## 6 maternal_smokerTRUE                    -8.20      0.952    -8.62    0    
+## 7 gestational_mean:maternal_smokerTRUE    0.208     0.061     3.44    0.001</code></pre>
+<p>How could the appropriate conditional means be computed here? Also, what happened to the intercept in this model, why is it so small?</p>
 </div>
 </div>
 
@@ -1267,14 +1158,14 @@ broom::tidy(more_than_2)</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/07-bootstrap-class/" rel="next">Bootstrap - In Class Portion</a>
+    <a href="/lectures/12-multiple-categorical/" rel="next">Multiple Categorical Predictors</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/08-multiple-regression/" rel="prev">Multiple Regression</a>
+    <a href="/lectures/02-linear-regression-inclass/" rel="prev">Linear Regression - In Class</a>
   </div>
   
 </div>
@@ -1284,7 +1175,7 @@ broom::tidy(more_than_2)</code></pre>
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Oct 5, 2023</p>
+          <p>Last updated on Oct 10, 2023</p>
 
           
 

@@ -827,6 +827,18 @@
 
 
 
+  <li class=""><a href="/lectures/11-pairwise/">Pairwise Contrasts</a></li>
+
+
+
+  <li class=""><a href="/lectures/12-multiple-categorical/">Multiple Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/13-ancova/">Analysis of Covariance</a></li>
+
+
+
   <li class=""><a href="/lectures/02-linear-regression-inclass/">Linear Regression - In Class</a></li>
 
       
@@ -916,34 +928,34 @@ fruit</code></pre>
 ## 8     banana       8</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1     orange       3
-## 2      apple       2
-## 3 watermelon       1
-## 4     banana       8
-## 5    kumquat       4
-## 6       kiwi       7
-## 7     grapes       5
-## 8 canteloupe       6</code></pre>
+## 1    kumquat       4
+## 2       kiwi       7
+## 3     orange       3
+## 4     grapes       5
+## 5      apple       2
+## 6 canteloupe       6
+## 7     banana       8
+## 8 watermelon       1</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1 canteloupe       6
+## 1    kumquat       4
 ## 2     banana       8
 ## 3 watermelon       1
 ## 4 watermelon       1
 ## 5 watermelon       1
-## 6 canteloupe       6
-## 7       kiwi       7
+## 6     banana       8
+## 7 canteloupe       6
 ## 8     grapes       5</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1      apple       2
-## 2 watermelon       1
-## 3 watermelon       1
-## 4       kiwi       7
-## 5     banana       8
-## 6     banana       8
-## 7    kumquat       4
-## 8     orange       3</code></pre>
+## 1    kumquat       4
+## 2     grapes       5
+## 3     grapes       5
+## 4 watermelon       1
+## 5 watermelon       1
+## 6     grapes       5
+## 7     banana       8
+## 8     grapes       5</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>
@@ -1075,12 +1087,12 @@ summary(timss_model)</code></pre>
 <pre><code>## # A tibble: 6 × 2
 ##    IDSTUD     n
 ##     &lt;dbl&gt; &lt;int&gt;
-## 1  820301     6
-## 2 1030426     6
-## 3 1280108     6
-## 4  140307     5
-## 5  190209     5
-## 6  440606     5</code></pre>
+## 1  180307     6
+## 2 1510101     6
+## 3 1610206     6
+## 4 1850125     6
+## 5 2200104     6
+## 6 2200109     6</code></pre>
 <pre class="r"><code>resamp_lm &lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&gt;% 
   lm(ASSSCI01 ~ ASDAGE, data = .)
 
@@ -1091,22 +1103,22 @@ summary(resamp_lm)</code></pre>
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -305.283  -51.613    6.068   56.467  271.105 
+## -304.713  -50.793    4.936   55.816  273.191 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  591.927     16.779  35.277  &lt; 2e-16 ***
-## ASDAGE        -4.555      1.641  -2.775  0.00553 ** 
+## (Intercept)  637.618     16.771  38.020  &lt; 2e-16 ***
+## ASDAGE        -9.032      1.638  -5.513 3.62e-08 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 80.42 on 10025 degrees of freedom
-## Multiple R-squared:  0.0007674,	Adjusted R-squared:  0.0006678 
-## F-statistic: 7.699 on 1 and 10025 DF,  p-value: 0.005534</code></pre>
+## Residual standard error: 80.56 on 10025 degrees of freedom
+## Multiple R-squared:  0.003022,	Adjusted R-squared:  0.002923 
+## F-statistic: 30.39 on 1 and 10025 DF,  p-value: 3.62e-08</code></pre>
 <pre class="r"><code>confint(resamp_lm)</code></pre>
-<pre><code>##                  2.5 %     97.5 %
-## (Intercept) 559.035867 624.818134
-## ASDAGE       -7.772069  -1.337081</code></pre>
+<pre><code>##                 2.5 %     97.5 %
+## (Intercept) 604.74378 670.491549
+## ASDAGE      -12.24392  -5.820631</code></pre>
 <pre class="r"><code>nrow(timss)^nrow(timss)</code></pre>
 <pre><code>## [1] Inf</code></pre>
 <div id="questions-to-consider" class="section level3">
