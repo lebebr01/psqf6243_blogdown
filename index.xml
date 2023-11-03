@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 10 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -99,9 +99,9 @@ library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -302,9 +302,9 @@ Y = \beta_{0} + \beta_{1} X + \epsilon
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -603,9 +603,9 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -868,9 +868,9 @@ visualize_relationship &amp;lt;- function(outcome, predictor, data = penguins,
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -1079,7 +1079,7 @@ head(airquality)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;air_lm_s &amp;lt;- lm(z_aqi ~ z_wind, data = airquality)
 coef(air_lm_s)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##   (Intercept)        z_wind 
-## -6.712023e-16 -2.920277e-01&lt;/code&gt;&lt;/pre&gt;
+## -2.113006e-15 -2.920277e-01&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_s)$r.square&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.08528019&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(air_lm_s)$sigma&lt;/code&gt;&lt;/pre&gt;
@@ -1292,9 +1292,9 @@ Y = 5 + 0.5 X + \epsilon
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -1644,9 +1644,9 @@ SE( ) = &lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -1973,9 +1973,9 @@ gf_line(density ~ value, data = t_dist) %&amp;gt;%
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -2594,9 +2594,9 @@ Y - \hat{Y}
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -3007,9 +3007,9 @@ head(airquality)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -3029,24 +3029,24 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
+## 1     banana       8
+## 2     grapes       5
+## 3 canteloupe       6
+## 4 watermelon       1
+## 5     orange       3
+## 6    kumquat       4
+## 7      apple       2
+## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1      apple       2
 ## 2       kiwi       7
 ## 3     orange       3
 ## 4     grapes       5
-## 5     banana       8
+## 5 watermelon       1
 ## 6 watermelon       1
 ## 7      apple       2
-## 8 canteloupe       6&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     orange       3
-## 2     grapes       5
-## 3     banana       8
-## 4 watermelon       1
-## 5      apple       2
-## 6     orange       3
-## 7 canteloupe       6
-## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+## 8 watermelon       1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
@@ -3198,375 +3198,6 @@ head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Bootstrap - In Class Portion</title>
-      <link>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/</link>
-      <pubDate>Thu, 28 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/</guid>
-      <description>
-
-&lt;div id=&#34;TOC&#34;&gt;
-
-&lt;/div&gt;
-
-&lt;div id=&#34;bootstrap&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Bootstrap&lt;/h1&gt;
-&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to perform the procedure.&lt;/p&gt;
-&lt;div id=&#34;bootstrapping-steps&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Bootstrapping Steps&lt;/h2&gt;
-&lt;p&gt;The following are the steps when performing a bootstrap.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Treat the sample data as the population.&lt;/li&gt;
-&lt;li&gt;Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.&lt;/li&gt;
-&lt;li&gt;Estimate the model using the resampled data from step 2.&lt;/li&gt;
-&lt;li&gt;Repeat steps 2 and 3 many many times (eg, 10,000 or more).&lt;/li&gt;
-&lt;li&gt;Visualize distribution of effect of interest&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div id=&#34;resampling-with-replacement&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Resampling with replacement&lt;/h2&gt;
-&lt;p&gt;What is meant by sampling with replacement? Let’s do an example.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fruit &amp;lt;- data.frame(name = c(&amp;#39;watermelon&amp;#39;, &amp;#39;apple&amp;#39;, 
-                             &amp;#39;orange&amp;#39;, &amp;#39;kumquat&amp;#39;, 
-                             &amp;#39;grapes&amp;#39;, &amp;#39;canteloupe&amp;#39;, 
-                             &amp;#39;kiwi&amp;#39;, &amp;#39;banana&amp;#39;)) |&amp;gt;
-    mutate(obs_num = 1:n())
-
-fruit&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1 watermelon       1
-## 2      apple       2
-## 3     orange       3
-## 4    kumquat       4
-## 5     grapes       5
-## 6 canteloupe       6
-## 7       kiwi       7
-## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
-## 2       kiwi       7
-## 3     orange       3
-## 4     grapes       5
-## 5      apple       2
-## 6 canteloupe       6
-## 7     banana       8
-## 8 watermelon       1&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
-## 2     banana       8
-## 3 watermelon       1
-## 4 watermelon       1
-## 5 watermelon       1
-## 6     banana       8
-## 7 canteloupe       6
-## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1    kumquat       4
-## 2     grapes       5
-## 3     grapes       5
-## 4 watermelon       1
-## 5 watermelon       1
-## 6     grapes       5
-## 7     banana       8
-## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;More practical example&lt;/h2&gt;
-&lt;p&gt;Let’s load some data to do a more practical example. The following data come from a &lt;a href=&#34;https://nces.ed.gov/timss/&#34;&gt;TIMSS&lt;/a&gt; on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;IDSTUD&lt;/strong&gt;: A unique student ID&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ITBIRTHM&lt;/strong&gt;: The birth month of the student&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ITBIRTHY&lt;/strong&gt;: The birth year of the student&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ITSEX&lt;/strong&gt;: The birth sex of the student&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASDAGE&lt;/strong&gt;: The age of the student (at time of test)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSSCI01&lt;/strong&gt;: Overall science scale score&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSEAR01&lt;/strong&gt;: Earth science scale score&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSLIF01&lt;/strong&gt;: Life science scale score&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSPHY01&lt;/strong&gt;: Physics scale score&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSKNO01&lt;/strong&gt;: Science knowing scale score&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSAPP01&lt;/strong&gt;: Science applying scale score&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ASSREA01&lt;/strong&gt;: Science reasoning scale score&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-
-timss &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv&amp;#39;) |&amp;gt; 
-   filter(ASDAGE &amp;lt; 15)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Rows: 10029 Columns: 12
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &amp;quot;,&amp;quot;
-## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
-##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEAR01 ASSLIF01 ASSPHY01
-##    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
-## 1  10101        6     2005     2   9.92     505.     445.     408.     458.
-## 2  10102       10     2005     2   9.58     401.     291.     323.     297.
-## 3  10103        1     2005     1  10.3      542.     440.     529.     529.
-## 4  10104        6     2005     2   9.92     544.     534.     552.     557.
-## 5  10105        6     2005     2   9.92     588.     555.     500.     559.
-## 6  10106       12     2005     1   9.42     583.     556.     585.     562.
-## # ℹ 3 more variables: ASSKNO01 &amp;lt;dbl&amp;gt;, ASSAPP01 &amp;lt;dbl&amp;gt;, ASSREA01 &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;two-guiding-questions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Two Guiding Questions&lt;/h2&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Is the age of a student related to their overall science scale score?&lt;/li&gt;
-&lt;li&gt;Is the life science scale score related to the overall science scale score?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div id=&#34;bivariate-exploration&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Bivariate exploration&lt;/h2&gt;
-&lt;p&gt;It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”. You may also want to fill in an appropriate axis labels in place of “@@” below.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Summarize the bivariate association&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
-## 
-##     discard&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
-## 
-##     col_factor&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
-## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
-
-gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&amp;gt; 
-  gf_smooth(method = &amp;#39;lm&amp;#39;, size = 1.5) |&amp;gt;
-  gf_smooth(method = &amp;#39;loess&amp;#39;, size = 1.5, color = &amp;#39;green&amp;#39;) |&amp;gt;
-  gf_labs(x = &amp;quot;Age&amp;quot;,
-          y = &amp;quot;Overall Science&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mosaic::cor(ASSSCI01 ~ ASDAGE, data = timss) |&amp;gt; round(2)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -0.04&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;estimate-parameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Estimate Parameters&lt;/h2&gt;
-&lt;p&gt;To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_model &amp;lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
-
-summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Call:
-## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -305.769  -51.969    4.919   56.707  272.217 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
-## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 80.89 on 10025 degrees of freedom
-## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
-## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
-## (Intercept) 580.114047 647.012616
-## ASDAGE       -9.957345  -3.415915&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;resample-these-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Resample these data&lt;/h2&gt;
-&lt;p&gt;For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(timss, n = nrow(timss), replace = TRUE) |&amp;gt; 
-  count(IDSTUD) |&amp;gt;
-  arrange(-n) |&amp;gt;
-  head()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
-##    IDSTUD     n
-##     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
-## 1  180307     6
-## 2 1510101     6
-## 3 1610206     6
-## 4 1850125     6
-## 5 2200104     6
-## 6 2200109     6&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
-  lm(ASSSCI01 ~ ASDAGE, data = .)
-
-summary(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Call:
-## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -304.713  -50.793    4.936   55.816  273.191 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  637.618     16.771  38.020  &amp;lt; 2e-16 ***
-## ASDAGE        -9.032      1.638  -5.513 3.62e-08 ***
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 80.56 on 10025 degrees of freedom
-## Multiple R-squared:  0.003022,	Adjusted R-squared:  0.002923 
-## F-statistic: 30.39 on 1 and 10025 DF,  p-value: 3.62e-08&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                 2.5 %     97.5 %
-## (Intercept) 604.74378 670.491549
-## ASDAGE      -12.24392  -5.820631&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;nrow(timss)^nrow(timss)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] Inf&lt;/code&gt;&lt;/pre&gt;
-&lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Questions to consider&lt;/h3&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Do the parameter estimates differ from before? Why or why not?&lt;/li&gt;
-&lt;li&gt;Would you come to substantially different conclusions from the original analysis? Why or why not?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Let’s now repeat this a bunch of times.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(2022)
-
-resample_timss &amp;lt;- function(data, model_equation) {
-  timss_resample &amp;lt;- slice_sample(data, n = nrow(data), replace = TRUE)
-
-  lm(model_equation, data = timss_resample) |&amp;gt;
-    coef()
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Run this function a bunch of times manually, what happens to the estimates? Why is this happening?&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (Intercept)      ASDAGE 
-##  593.768824   -4.636762&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;make-sure-future.apply-is-installed&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Make sure future.apply is installed&lt;/h2&gt;
-&lt;p&gt;The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the &lt;code&gt;#&lt;/code&gt; symbol) in the first line of code to (hopefully) install the package yourself.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;future.apply&amp;quot;)
-library(future.apply)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: future&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plan(multisession)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;replicate&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Replicate&lt;/h2&gt;
-&lt;p&gt;The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_coef &amp;lt;- future.apply::future_replicate(10000, 
-                        resample_timss(data = timss, 
-                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&amp;gt;
-                        dplyr::bind_rows() |&amp;gt; 
-                        tidyr::pivot_longer(cols = everything())
-
-#head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;visualize-results&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Visualize results&lt;/h2&gt;
-&lt;p&gt;The following code visualizes the results of the analysis above. Explore the following questions.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;What does this distribution show/represent?&lt;/li&gt;
-&lt;li&gt;What are key features of this distribution?&lt;/li&gt;
-&lt;li&gt;How do these values compare to the original linear regression results?
-&lt;ul&gt;
-&lt;li&gt;Are there comparable statistics here compared to those?&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ value, data = timss_coef) |&amp;gt;
-  gf_facet_wrap(~ name, scales = &amp;#39;free&amp;#39;) |&amp;gt;
-  gf_labs(x = &amp;quot;Regression Estimates&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;change-the-n-value&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Change the N value&lt;/h2&gt;
-&lt;p&gt;Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What happens to the resulting figure when the N increases?&lt;/li&gt;
-&lt;li&gt;What value for N seems to be reasonable? Why?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
-##   name         value
-##   &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
-## 1 (Intercept) 610.  
-## 2 ASDAGE       -6.56
-## 3 (Intercept) 603.  
-## 4 ASDAGE       -5.67
-## 5 (Intercept) 620.  
-## 6 ASDAGE       -7.25&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(value ~ name, data = timss_coef, 
-         mean, median, sd, IQR)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   response        name       mean     median        sd       IQR
-## 1    value (Intercept) 613.863905 614.021876 20.493175 27.714280
-## 2    value      ASDAGE  -6.714967  -6.740487  2.005943  2.728819&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(-6.687 - 0) / 2.012&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -3.323559&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pnorm(-3.3235, lower.tail = TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.0004444771&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pnorm(-3.3235, lower.tail = TRUE) * 2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.0008889542&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Call:
-## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -305.769  -51.969    4.919   56.707  272.217 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
-## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 80.89 on 10025 degrees of freedom
-## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
-## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(timss_model, which = 1:5)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
-## (Intercept) 580.114047 647.012616
-## ASDAGE       -9.957345  -3.415915&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(value ~ name, data = timss_coef, 
-         quantile(c(0.025, 0.975)))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   response        name      2.5%      97.5%
-## 1    value (Intercept) 574.15367 653.425218
-## 2    value      ASDAGE -10.57731  -2.829617&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Multiple Regression - In Class Notes</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression-class/</link>
       <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
@@ -3598,9 +3229,9 @@ Y = \beta_{0} + \beta_{1} X_{1}^{X_{2}} + \epsilon
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -3975,9 +3606,9 @@ Y = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + \epsilon
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -4205,9 +3836,9 @@ summary(cost_lm)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -4435,9 +4066,9 @@ aictab(list(cost_lm, act_lm),
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -4852,9 +4483,9 @@ broom::tidy(position_lm)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -5152,9 +4783,9 @@ p_{adj} = min(1, max((m + 1 - k) * p_{k} ))
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -5486,9 +5117,9 @@ three_way_predict_int&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -5762,6 +5393,947 @@ glance(baby_lm_int_w)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>Pre / Post Designs</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/14-prepost/</link>
+      <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/14-prepost/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;pre-post-designs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pre / Post Designs&lt;/h2&gt;
+&lt;p&gt;Pre / Post designs are common designs in the social sciences and beyond. These types of designs are such that two measurement occasions are collected for each person in the study. Typically, the pre-measurement occasion occurs before a treatment and then the post-measurement occasions occurs after the treatment has happened. This gives a glimpse to whether the treatment impacts the a specific outcome.&lt;/p&gt;
+&lt;p&gt;Below are a few scenarios that could be studied with a pre / post design.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Does a new drug reduce blood pressure in those with high blood pressure?&lt;/li&gt;
+&lt;li&gt;Does a yoga regimine reduce pain in those that have fibromyalgia?&lt;/li&gt;
+&lt;li&gt;Does professional development increase knowledge related to acceleration options for students?&lt;/li&gt;
+&lt;li&gt;Does a finance workshop improve financial health and wealth of individuals?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each of these could be conducted so that two measurement occasions could be used. First, the measurement before the treatment would be collected, then the treatment is given, then the post-measurement could explore if the treatment is effective. This is a type of &lt;strong&gt;within&lt;/strong&gt; study design that is popular because each individual acts as its own control group. They are also easier to implement than longitudinal studies that would collect more than 2 measurement occasions.&lt;/p&gt;
+&lt;div id=&#34;analyzing-pre-post-designs&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Analyzing Pre / Post Designs&lt;/h3&gt;
+&lt;p&gt;There are more than one way to analyze pre/post designs. These are largely derived from the research questions and also a statistical consideration related to balance. Let’s first think about the research questions.&lt;/p&gt;
+&lt;p&gt;There first class of research questions talk about &lt;strong&gt;change&lt;/strong&gt;. For example, using the scenarios above, how much does the drug lower blood pressure or how much does the financial workshop improve financial health?&lt;/p&gt;
+&lt;p&gt;The second class of research questions talk about what is the average post score after adjusting for pre scores. This is inherently a conditional mean problem whereas the previous example is an unconditional problem. For example, using the scenarios above, do those with the same initial blood pressure have different blood pressure levels at follow-up?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;We are going to use simulated data based on a real study. The study is:&lt;/p&gt;
+&lt;p&gt;Kathryn Curtis, Anna Osadchuk &amp;amp; Joel Katz (2011) An eight-week yoga
+intervention is associated with improvements in pain, psychological functioning and
+mindfulness, and changes in cortisol levels in women with fibromyalgia, Journal of Pain
+Research, , 189-201, DOI: 10.2147/JPR.S22761&lt;/p&gt;
+&lt;p&gt;For this analysis we are going to focus on pain as a single outcome. The study itself had many different outcomes that they explored the impact of the 8-week yoga intervention. I’m also simplifying the study’s actual design (they collected survey measurements at 3 time points). I am going to focus the data simulation from a self-report measure of 11 items named the Pain Disability Index. This measure quantifies the extent to which an individual’s pain impacts seven daily activities.&lt;/p&gt;
+&lt;p&gt;Table 3 of the paper contains the means and standard deviations for the outcome that we will use for the simulation. Most notably, the mean PDI score for the group before the yoga intervention was 38.14 (SD was 17.17) and follow up was 33.81 (14.43). This resulted in a reductino in the self-report measure of pain of 4.33.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(simglm)
+
+theme_set(theme_bw(base_size = 16))
+
+sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86)
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(-4.33, -0.5)
+)
+
+pain_data &amp;lt;- simulate_fixed(data = NULL, sim_args) |&amp;gt; 
+  simulate_error(sim_args) |&amp;gt;
+  generate_response(sim_args)
+
+head(pain_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.    PDI_pre level1_id        error fixed_outcome random_effects
+## 1            1  15.824510         1   3.65421120    -12.242255              0
+## 2            1 -17.234065         2  -7.10898098      4.287032              0
+## 3            1   2.274378         3   3.96231237     -5.467189              0
+## 4            1   1.412226         4 -15.91017274     -5.036113              0
+## 5            1   3.496196         5   0.67697155     -6.078098              0
+## 6            1 -17.926653         6   0.09513118      4.633326              0
+##          PDI
+## 1  -8.588044
+## 2  -2.821949
+## 3  -1.504876
+## 4 -20.946286
+## 5  -5.401126
+## 6   4.728457&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(PDI ~ PDI_pre, data = pain_data, size = 4) |&amp;gt;
+   gf_smooth(method = &amp;#39;lm&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-prepost_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(~ PDI, data = pain_data, mean, sd, min, max)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response      mean       sd       min     max
+## 1      PDI -3.414159 14.80038 -33.02813 24.7302&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(~ PDI_pre, data = pain_data, mean, sd, min, max)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response      mean       sd    min      max
+## 1  PDI_pre -0.930091 14.59476 -38.14 26.13005&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(PDI ~ PDI_pre, data = pain_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            [,1]
+## [1,] -0.4130691&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;two-competing-models&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Two competing models&lt;/h3&gt;
+&lt;p&gt;There are two competing models here that are often described in the literature. As discussed above, one is performed on the &lt;strong&gt;change&lt;/strong&gt; scores, the other is done via statistical control. These two models are shown below for the simplest design with pre / post measurement occasions for a single group.&lt;/p&gt;
+&lt;div id=&#34;change-scores&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Change Scores&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Post - Pre = \beta_{0} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ancova&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;ANCOVA&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Post = \beta_{0} + \beta_{1} Pre + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For both models, the term of interest is &lt;span class=&#34;math inline&#34;&gt;\(\beta_{0}\)&lt;/span&gt;. This term would represent the average change score for the change score model and would represent the average post score after adjusting for the pre score respectively.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(
+    lm(I(PDI - PDI_pre) ~ 1, data = pain_data)
+    )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = I(PDI - PDI_pre) ~ 1, data = pain_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -43.271 -19.880  -0.548  12.573  65.354 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)
+## (Intercept)   -2.484      3.494  -0.711    0.481
+## 
+## Residual standard error: 24.71 on 49 degrees of freedom&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pain_data &amp;lt;- pain_data |&amp;gt; 
+   mutate(change = PDI - PDI_pre)
+
+t.test(pain_data$change)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	One Sample t-test
+## 
+## data:  pain_data$change
+## t = -0.71089, df = 49, p-value = 0.4805
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -9.506151  4.538015
+## sample estimates:
+## mean of x 
+## -2.484068&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(
+    lm(PDI ~ PDI_pre, data = pain_data)
+    )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = PDI ~ PDI_pre, data = pain_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -30.582  -7.031  -0.199  10.860  28.712 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)   
+## (Intercept)  -3.8038     1.9299  -1.971  0.05451 . 
+## PDI_pre      -0.4189     0.1333  -3.142  0.00287 **
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 13.62 on 48 degrees of freedom
+## Multiple R-squared:  0.1706,	Adjusted R-squared:  0.1533 
+## F-statistic: 9.875 on 1 and 48 DF,  p-value: 0.00287&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;iterate-both-models-multiple-times&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Iterate both models multiple times&lt;/h3&gt;
+&lt;p&gt;These are one instance of simulated data. We can perform this process many times to get a sense as to how much variation there are in these estimates as well as typical values for the parameter of interest. Again, I’m going to use the &lt;strong&gt;simglm&lt;/strong&gt; package to do this automatically. The code is not really that interesting here, unless you are interesting in learning R code. We will focus on the ideas from the output.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(future)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;future&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:mosaic&amp;#39;:
+## 
+##     value&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plan(multisession)
+
+sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86)
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(-4.33, -0.5), 
+    replications = 1000
+)
+
+pain_data_repl &amp;lt;- replicate_simulation(sim_args)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;change_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(I(PDI - PDI_pre) ~ 1, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;change&amp;#39;)
+
+ancova_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(PDI ~ PDI_pre, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;ancova&amp;#39;)
+
+combine_data &amp;lt;- dplyr::bind_rows(
+    change_mod,
+    ancova_mod
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;combine_data |&amp;gt; 
+  dplyr::filter(term == &amp;#39;(Intercept)&amp;#39;) |&amp;gt; 
+  dplyr::mutate(term2 = &amp;#39;Intercept&amp;#39;) |&amp;gt; 
+  gf_violin(model ~ estimate, fill = &amp;#39;grey85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt; 
+  gf_refine(scale_x_continuous(&amp;quot;&amp;quot;, breaks = seq(-18, 9, 3))) |&amp;gt; 
+  gf_vline(xintercept = 0, linewidth = 2, linetype = &amp;#39;dotted&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-prepost_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;increase-strength-of-design&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Increase strength of design&lt;/h2&gt;
+&lt;p&gt;A rather simple adjustment to the above design (not done in the original study) is to add a control group. The control group would not receive the treatment/intervention, but the same measurements would occur for those groups. This removes the counterfactual of having time pass. For example, adding the control group helps to answer the question about what would occur without any treatment just with the passage of time.&lt;/p&gt;
+&lt;p&gt;Having a control group does not automatically give a causal type research design. The key for those types of considerations is really in how the control group was selected. If it was done via random assignment, then this would be a causal type design due to the balanced nature of the control and treatment/intervention group at baseline or pre measurement. If random assignment was not done, then causal type claims can not be made.&lt;/p&gt;
+&lt;div id=&#34;analysis-of-pre-post-design-with-control-group&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Analysis of pre / post design with control group&lt;/h3&gt;
+&lt;p&gt;Unlike above when there was no control group, the choice of ANCOVA and change scores can provide different results. Much of the difference is due to whether the control and treatment/intervention group are balanced at baseline. If random assignment was done and the groups are balanced (similar characteristics at baseline), then both ANCOVA and change scores should give similar results. However, if random assignment was not performed, then it is likely that there is sampling bias and the control and treatment/intervention groups would likely be non-equivalent at baseline. This would then need to be adjusted via ANCOVA. For example, if one group has a higher mean at baseline, this could mean they could be more likely to have bigger change, have regression to the mean, or be close to the ceiling for the measure.&lt;/p&gt;
+&lt;div id=&#34;change-scores-1&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Change Scores&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Post - Pre = \beta_{0} + \beta_{2} treat + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ancova-1&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;ANCOVA&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Post = \beta_{0} + \beta_{1} Pre + \beta_{2} treat + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For both models, the term of interest is &lt;span class=&#34;math inline&#34;&gt;\(\beta_{2}\)&lt;/span&gt;. This term would represent the average treatment effect.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre + treatment,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86),
+        treatment = list(var_type = &amp;#39;factor&amp;#39;, 
+        levels = c(&amp;#39;control&amp;#39;, &amp;#39;treatment&amp;#39;))
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(0, -0.5, -10)
+)
+
+pain_data &amp;lt;- simulate_fixed(data = NULL, sim_args) |&amp;gt; 
+  simulate_error(sim_args) |&amp;gt;
+  generate_response(sim_args)
+
+head(pain_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept.    PDI_pre treatment_1 treatment level1_id     error
+## 1            1   6.125294           0   control         1 19.060108
+## 2            1  12.759632           0   control         2 11.671328
+## 3            1   8.222255           0   control         3  7.696326
+## 4            1 -15.545453           0   control         4 10.743707
+## 5            1   2.309391           1 treatment         5  5.861903
+## 6            1 -13.899807           1 treatment         6  9.433191
+##   fixed_outcome random_effects       PDI
+## 1     -3.062647              0 15.997462
+## 2     -6.379816              0  5.291512
+## 3     -4.111128              0  3.585198
+## 4      7.772726              0 18.516434
+## 5    -11.154696              0 -5.292792
+## 6     -3.050096              0  6.383094&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(PDI ~ PDI_pre, data = pain_data, color = ~ treatment) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-prepost_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(PDI ~ treatment, data = pain_data, mean, sd, min, max, length)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response treatment      mean        sd       min      max length
+## 1      PDI   control   3.73477 11.140745 -18.38707 24.16424     26
+## 2      PDI treatment -11.12375  9.832382 -27.29905 12.61462     24&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(PDI_pre ~ treatment, data = pain_data, mean, sd, min, max, length)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response treatment      mean       sd       min      max length
+## 1  PDI_pre   control 0.3634727 16.42793 -35.93732 31.86000     26
+## 2  PDI_pre treatment 2.2048447 14.06488 -25.75964 22.83984     24&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(lm(PDI ~ PDI_pre + treatment, data = pain_data))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = PDI ~ PDI_pre + treatment, data = pain_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.7128  -6.5343  -0.1554   6.2910  20.0851 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)          3.87357    1.73538   2.232   0.0304 *  
+## PDI_pre             -0.38188    0.08324  -4.588 3.34e-05 ***
+## treatmenttreatment -14.15533    2.50911  -5.642 9.35e-07 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 8.847 on 47 degrees of freedom
+## Multiple R-squared:  0.5448,	Adjusted R-squared:  0.5254 
+## F-statistic: 28.12 on 2 and 47 DF,  p-value: 9.294e-09&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(lm(I(PDI - PDI_pre) ~ treatment, data = pain_data))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = I(PDI - PDI_pre) ~ treatment, data = pain_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -53.618 -14.339  -0.829  18.862  48.824 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&amp;gt;|t|)  
+## (Intercept)           3.371      4.498   0.749   0.4572  
+## treatmenttreatment  -16.700      6.493  -2.572   0.0133 *
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 22.94 on 48 degrees of freedom
+## Multiple R-squared:  0.1211,	Adjusted R-squared:  0.1028 
+## F-statistic: 6.616 on 1 and 48 DF,  p-value: 0.01326&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;iterate&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Iterate&lt;/h3&gt;
+&lt;p&gt;Again, let’s look at any differences by performing the simulation multiple times.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(future)
+plan(multicore)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing (&amp;#39;multicore&amp;#39;) is not supported when running R from RStudio because
+## it is considered unstable. For more details, how to control forked processing
+## or not, and how to silence this warning in future R sessions, see
+## ?parallelly::supportsMulticore&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre + treatment,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+            mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86),
+        treatment = list(var_type = &amp;#39;factor&amp;#39;, 
+            levels = c(&amp;#39;control&amp;#39;, &amp;#39;treatment&amp;#39;))
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(0, -0.5, -10),
+    replications = 1000
+)
+
+pain_data_repl &amp;lt;- replicate_simulation(sim_args)
+
+change_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(I(PDI - PDI_pre) ~ 1 + treatment, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;change&amp;#39;)
+
+ancova_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(PDI ~ PDI_pre + treatment, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;ancova&amp;#39;)
+
+combine_data &amp;lt;- dplyr::bind_rows(
+    change_mod,
+    ancova_mod
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;combine_data |&amp;gt; 
+  dplyr::filter(term == &amp;#39;treatment&amp;#39;) |&amp;gt;
+  gf_violin(model ~ estimate, fill = &amp;#39;grey85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt; 
+  gf_refine(scale_x_continuous(&amp;quot;&amp;quot;, breaks = seq(-40, 20, 5)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-prepost_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;non-equivalent-control-groups&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Non-equivalent control groups&lt;/h3&gt;
+&lt;p&gt;What happens if the control group is not equivalent to the treatment group? One way this can be simulated is to have the treatment allocation not be random, but instead have the treatment allocation be dependent on the pre test score.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre + treatment,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86),
+        treatment = list(var_type = &amp;#39;ordinal&amp;#39;, 
+        levels = c(0:1))
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(0, -0.5, -10),
+    correlate = list(fixed = data.frame(x = c(&amp;#39;PDI_pre&amp;#39;), 
+                                        y = c(&amp;#39;treatment&amp;#39;), 
+                                        corr = c(0.6)))
+)
+
+pain_data &amp;lt;- simulate_fixed(data = NULL, sim_args) |&amp;gt; 
+  correlate_variables(sim_args) |&amp;gt;
+  simulate_error(sim_args) |&amp;gt;
+  generate_response(sim_args)
+
+head(pain_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept. PDI_pre_old treatment_old level1_id   PDI_pre treatment_corr
+## 1            1  -2.8207532             1         1  2.826608      0.2932727
+## 2            1  -1.4448471             1         2  1.450702      0.2692882
+## 3            1  -2.3168672             1         3  2.322722      0.2844891
+## 4            1  -4.2300904             1         4  4.235945      0.3178399
+## 5            1   4.5558217             1         5 -4.549966      0.1646861
+## 6            1  -0.8330819             0         6  0.824996      1.0583812
+##   treatment       error fixed_outcome random_effects        PDI
+## 1         0   7.9013461    -1.4133041              0   6.488042
+## 2         0 -19.4641427    -0.7253511              0 -20.189494
+## 3         0   7.5720741    -1.1613611              0   6.410713
+## 4         0  -9.1303415    -2.1179727              0 -11.248314
+## 5         0  -4.8394631     2.2749830              0  -2.564480
+## 6         1  -0.7446003   -10.4124980              0 -11.157098&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(PDI_pre ~ treatment, data = pain_data, mean, median, sd, length)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response treatment      mean    median       sd length
+## 1  PDI_pre         0 -4.526366 -1.240130 15.12923     25
+## 2  PDI_pre         1  6.734901  8.157298 16.95435     25&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(PDI_pre ~ treatment_old, data = pain_data, mean, median, sd, length)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response treatment_old      mean   median       sd length
+## 1  PDI_pre             0 -1.184797 2.347277 18.84077     21
+## 2  PDI_pre             1  2.761866 4.235945 15.45528     29&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(lm(PDI ~ PDI_pre + treatment, data = pain_data))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = PDI ~ PDI_pre + treatment, data = pain_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -20.968  -7.341  -2.201   8.637  23.491 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  -1.2725     2.3539  -0.541 0.591362    
+## PDI_pre      -0.4032     0.1036  -3.891 0.000313 ***
+## treatment   -12.0455     3.4646  -3.477 0.001103 ** 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 11.53 on 47 degrees of freedom
+## Multiple R-squared:  0.4658,	Adjusted R-squared:  0.4431 
+## F-statistic: 20.49 on 2 and 47 DF,  p-value: 3.983e-07&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(lm(I(PDI - PDI_pre) ~ treatment, data = pain_data))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = I(PDI - PDI_pre) ~ treatment, data = pain_data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -44.57 -20.53  -2.43  12.85  60.45 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)    5.079      5.054   1.005 0.319979    
+## treatment    -27.847      7.147  -3.896 0.000302 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 25.27 on 48 degrees of freedom
+## Multiple R-squared:  0.2403,	Adjusted R-squared:  0.2244 
+## F-statistic: 15.18 on 1 and 48 DF,  p-value: 0.0003023&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(future)
+plan(multicore)
+
+sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre + treatment,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86),
+        treatment = list(var_type = &amp;#39;ordinal&amp;#39;, 
+        levels = c(0:1))
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(0, -0.5, -10),
+    correlate = list(fixed = data.frame(x = c(&amp;#39;PDI_pre&amp;#39;), 
+                                        y = c(&amp;#39;treatment&amp;#39;), 
+                                        corr = c(0.6))),
+    replications = 1000
+)
+
+pain_data_repl &amp;lt;- replicate_simulation(sim_args)
+
+change_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(I(PDI - PDI_pre) ~ 1 + treatment, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;change&amp;#39;)
+
+ancova_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(PDI ~ PDI_pre + treatment, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;ancova&amp;#39;)
+
+combine_data &amp;lt;- dplyr::bind_rows(
+    change_mod,
+    ancova_mod
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;combine_data |&amp;gt; 
+    dplyr::filter(term == &amp;#39;treatment&amp;#39;) |&amp;gt;
+    gf_violin(model ~ estimate, fill = &amp;#39;grey85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt; 
+    gf_refine(scale_x_continuous(&amp;quot;&amp;quot;, breaks = seq(-55, 5, 5)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-prepost_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(future)
+plan(multicore)
+
+sim_args &amp;lt;- list(
+    formula = PDI ~ PDI_pre + treatment,
+    fixed = list(
+        PDI_pre = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 17.17, floor = -38.14, ceiling = 31.86),
+        treatment = list(var_type = &amp;#39;ordinal&amp;#39;, 
+        levels = c(0:1))
+    ),
+    error = list(variance = 150),
+    sample_size = 50,
+    reg_weights = c(0, -0.5, -10),
+    correlate = list(fixed = data.frame(x = c(&amp;#39;PDI_pre&amp;#39;), 
+                                        y = c(&amp;#39;treatment&amp;#39;), 
+                                        corr = c(-0.4))),
+    replications = 1000
+)
+
+pain_data_repl &amp;lt;- replicate_simulation(sim_args)
+
+change_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(I(PDI - PDI_pre) ~ 1 + treatment, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;change&amp;#39;)
+
+ancova_mod &amp;lt;- lapply(seq_along(pain_data_repl), function(xx) 
+  broom::tidy(lm(PDI ~ PDI_pre + treatment, data = pain_data_repl[[xx]]))) |&amp;gt; 
+  dplyr::bind_rows() |&amp;gt; 
+  dplyr::mutate(model = &amp;#39;ancova&amp;#39;)
+
+combine_data &amp;lt;- dplyr::bind_rows(
+    change_mod,
+    ancova_mod
+)
+
+combine_data |&amp;gt; 
+    dplyr::filter(term == &amp;#39;treatment&amp;#39;) |&amp;gt;
+    gf_violin(model ~ estimate, fill = &amp;#39;grey85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt; 
+    gf_refine(scale_x_continuous(&amp;quot;&amp;quot;, breaks = seq(-35, 45, 5)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/14-prepost_files/figure-html/unnamed-chunk-24-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Non-Linear Trends</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/15-non-linear/</link>
+      <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/15-non-linear/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;polynomial-regression&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Polynomial Regression&lt;/h2&gt;
+&lt;p&gt;Polynomial regression adds additional flexibility to the linear regression model to model non-linear trends. It should be noted specifically here that the data modeled here are not longitudinal data. These are data that are collected at a single time point, but the form of relationship is non-linear.&lt;/p&gt;
+&lt;p&gt;There are non-linear regression models that can be specified directly. Those are more challenging, difficult to interpret, and difficult to estimate. I also do not personally use those types of methods, therefore, the focus in this section of notes is to show that non-linear trends can be modeled using linear regression and maintain the additivity of the model.&lt;/p&gt;
+&lt;p&gt;The key to modeling non-linear trends using a linear regression model, is to add polynomial terms. For example, suppose we think that believe there is a non-linear trend. The simplest model would look like the following:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X + \beta_{2} X^{2} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In this model, the single &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; attribute/predictor is included. The model includes the linear association, but also includes a quadratic association which would estimate/allow the regression line to be curvilinear rather than straight. Further polynomial terms (i.e., cubic, quartic, etc.) could be added. These terms are challenging to interpret, therefore, often visualizing the relationship helps to identify the effect of the non-linearity.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0}^{\beta_{1} X} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Example&lt;/h3&gt;
+&lt;p&gt;We will again use simulated data to show the model, but will base this on a real research paper:&lt;/p&gt;
+&lt;p&gt;Glomb, T. M., &amp;amp; Welsh, E. T. (2005). Can opposites attract? Personality heterogeneity in supervisor-subordinate dyads as a predictor of subordinate outcomes. Journal of Applied Psychology, 90(4), 749.&lt;/p&gt;
+&lt;p&gt;This study looked to explore “Hypothesis 1: Differences between the supervisor and the subordinate in control traits (with the supervisor being higher) will be related to higher subordinate satisfaction with the supervisor.”&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+satisfaction = \beta_{0} + \beta_{1} sup\_control + \beta_{2} sub\_control + \beta_{3} sup\_control^2 + \beta_{4} sub\_control^2 + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
+## 
+## Attaching package: &amp;#39;ggstance&amp;#39;
+## 
+## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh
+## 
+## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges
+## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The &amp;#39;mosaic&amp;#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: &amp;#39;mosaic&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:Matrix&amp;#39;:
+## 
+##     mean
+## 
+## The following object is masked from &amp;#39;package:scales&amp;#39;:
+## 
+##     rescale
+## 
+## The following objects are masked from &amp;#39;package:dplyr&amp;#39;:
+## 
+##     count, do, tally
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     cross
+## 
+## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     stat
+## 
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     max, mean, min, prod, range, sample, sum&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(simglm)
+
+theme_set(theme_bw(base_size = 16))
+
+sim_args &amp;lt;- list(
+    formula = satisfaction ~ 1 + poly(sup_control, degree = 2, raw = TRUE) + poly(sub_control, degree = 2, raw = TRUE),
+    fixed = list(
+        sup_control = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 10.93),
+        sub_control = list(var_type = &amp;#39;continuous&amp;#39;, 
+        mean = 0, sd = 9.81)
+    ),
+    error = list(variance = 50),
+    sample_size = 200,
+    reg_weights = c(0, .109, -0.03, -.109, 0)
+)
+
+satis_data &amp;lt;- simulate_fixed(data = NULL, sim_args) |&amp;gt; 
+  simulate_error(sim_args) |&amp;gt;
+  generate_response(sim_args)
+
+head(satis_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept. sup_control_1 sup_control_2 sub_control_1 sub_control_2
+## 1            1      4.203259      17.66738    -13.984398     195.56339
+## 2            1     15.428933     238.05196     -4.602340      21.18153
+## 3            1     19.716769     388.75098    -26.821904     719.41452
+## 4            1     11.908868     141.82115     -5.530018      30.58110
+## 5            1     10.749993     115.56235    -13.294717     176.74949
+## 6            1      4.476296      20.03722     -6.421037      41.22971
+##   sup_control sub_control level1_id      error fixed_outcome random_effects
+## 1    4.203259  -13.984398         1   1.590351     1.4524331              0
+## 2   15.428933   -4.602340         2  -8.319683    -4.9581502              0
+## 3   19.716769  -26.821904         3 -11.923641    -6.5898140              0
+## 4   11.908868   -5.530018         4  -2.995082    -2.3537958              0
+## 5   10.749993  -13.294717         5   4.432907    -0.8459971              0
+## 6    4.476296   -6.421037         6  -1.302958     0.5866925              0
+##   satisfaction
+## 1    3.0427842
+## 2  -13.2778332
+## 3  -18.5134550
+## 4   -5.3488780
+## 5    3.5869104
+## 6   -0.7162654&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(satisfaction ~ sup_control, data = satis_data, size = 4) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2) |&amp;gt;
+  gf_smooth(method = &amp;#39;loess&amp;#39;, linewidth = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(satisfaction ~ sub_control, data = satis_data, size = 4) |&amp;gt;
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2) |&amp;gt;
+  gf_smooth(method = &amp;#39;loess&amp;#39;, linewidth = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(satisfaction ~ 1 + sup_control + sub_control, data = satis_data) |&amp;gt; 
+   broom::tidy() |&amp;gt; 
+   mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term        estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)   -4.07      0.658     -6.18   0    
+## 2 sup_control    0.129     0.056      2.31   0.022
+## 3 sub_control   -0.089     0.07      -1.27   0.204&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(satisfaction ~ 1 + sup_control + sub_control + 
+    I(sup_control^2) + I(sub_control^2) + 
+    I(sup_control^3), data = satis_data) |&amp;gt; 
+   broom::tidy() |&amp;gt; 
+   mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 5
+##   term             estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)         0.341     0.66      0.516   0.606
+## 2 sup_control         0.24      0.069     3.47    0.001
+## 3 sub_control        -0.067     0.051    -1.32    0.188
+## 4 I(sup_control^2)   -0.031     0.002   -13.0     0    
+## 5 I(sub_control^2)   -0.001     0.004    -0.341   0.733
+## 6 I(sup_control^3)    0         0        -0.755   0.451&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tmp &amp;lt;- lm(satisfaction ~ 1 + sup_control + sub_control + I(sup_control^2) + I(sub_control^2), data = satis_data) |&amp;gt; 
+  broom::augment()
+
+head(tmp)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 11
+##   satisfaction[,1] sup_control sub_control `I(sup_control^2)` `I(sub_control^2)`
+##              &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;           &amp;lt;I&amp;lt;dbl&amp;gt;&amp;gt;           &amp;lt;I&amp;lt;dbl&amp;gt;&amp;gt;
+## 1            3.04         4.20      -14.0                17.7              196. 
+## 2          -13.3         15.4        -4.60              238.                21.2
+## 3          -18.5         19.7       -26.8               389.               719. 
+## 4           -5.35        11.9        -5.53              142.                30.6
+## 5            3.59        10.7       -13.3               116.               177. 
+## 6           -0.716        4.48       -6.42               20.0               41.2
+## # ℹ 6 more variables: .fitted &amp;lt;dbl&amp;gt;, .resid &amp;lt;dbl&amp;gt;, .hat &amp;lt;dbl&amp;gt;, .sigma &amp;lt;dbl&amp;gt;,
+## #   .cooksd &amp;lt;dbl&amp;gt;, .std.resid &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ sub_control, data = tmp, size = 2) |&amp;gt; 
+  gf_smooth() &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `geom_smooth()` using method = &amp;#39;loess&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;spline-models&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Spline Models&lt;/h2&gt;
+&lt;p&gt;There are also a type of model called spline models that can also help with the flexibility of the linear regression model. The simplest type of spline model are called linear-linear spline models. These types of models are purely linear, but the linear slope does not need to be the same across the entire span. These can be of interest when something occurs at a specific value of an attribute.&lt;/p&gt;
+&lt;p&gt;For example (this example is completely hypothetical), imagine a situation where you are predicting anxiety symptomolgy by the age of the individual. Suppose we are interested in knowing if there are differential associations across different age spans, spline models can aid in this type of estimation.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_args &amp;lt;- list(
+    formula = anxiety ~ 1 + age + age_group_post + age:age_group_post,
+    fixed = list(
+        age = list(var_type = &amp;#39;ordinal&amp;#39;, 
+        levels = 20:80)
+    ),
+    post = list(age_group_post = list(variable = &amp;#39;age&amp;#39;, 
+                               fun = &amp;#39;ifelse&amp;#39;,
+                               condition = &amp;#39;&amp;gt;= 50&amp;#39;,
+                               yes = 1,
+                               no = 0)),
+    error = list(variance = 50),
+    sample_size = 1000,
+    reg_weights = c(5, 0.05, -1, -0.1)
+)
+
+anxiety_data &amp;lt;- simulate_fixed(data = NULL, sim_args) |&amp;gt; 
+  simulate_error(sim_args) |&amp;gt;
+  generate_response(sim_args)
+
+head(anxiety_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept. age age_group_post age.age_group_post level1_id     error
+## 1            1  79              1                 79         1  3.512515
+## 2            1  64              1                 64         2 -2.417183
+## 3            1  23              0                  0         3  1.499785
+## 4            1  80              1                 80         4 12.217905
+## 5            1  32              0                  0         5  5.326531
+## 6            1  40              0                  0         6 -3.572127
+##   fixed_outcome random_effects   anxiety
+## 1  5.000000e-02              0  3.562515
+## 2  8.000000e-01              0 -1.617183
+## 3  6.150000e+00              0  7.649785
+## 4 -4.440892e-16              0 12.217905
+## 5  6.600000e+00              0 11.926531
+## 6  7.000000e+00              0  3.427873&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(anxiety ~ age, data = anxiety_data, size = 2, alpha = 0.5) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(anxiety ~ age, data = anxiety_data, color = ~factor(age_group_post), size = 2, alpha = 0.5) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2) |&amp;gt; 
+  gf_labs(color = &amp;quot;Age Group&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(anxiety ~ 1 + age + age_group_post, data = anxiety_data) |&amp;gt; 
+  broom::tidy() |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term           estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)       8.24      0.937      8.79   0    
+## 2 age              -0.043     0.025     -1.71   0.087
+## 3 age_group_post   -4.42      0.859     -5.15   0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(anxiety ~ 1 + age + age_group_post + age:age_group_post, data = anxiety_data) |&amp;gt; 
+  broom::tidy() |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term               estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)           5.69      1.37      4.16    0    
+## 2 age                   0.029     0.038     0.78    0.436
+## 3 age_group_post        1.72      2.56      0.673   0.501
+## 4 age:age_group_post   -0.127     0.05     -2.55    0.011&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_args &amp;lt;- list(
+    formula = anxiety ~ 1 + age + age_group_post + age:age_group_post,
+    fixed = list(
+        age = list(var_type = &amp;#39;ordinal&amp;#39;, 
+        levels = -30:30)
+    ),
+    post = list(age_group_post = list(variable = &amp;#39;age&amp;#39;, 
+                               fun = &amp;#39;ifelse&amp;#39;,
+                               condition = &amp;#39;&amp;gt;= 0&amp;#39;,
+                               yes = 1,
+                               no = 0)),
+    error = list(variance = 10),
+    sample_size = 1000,
+    reg_weights = c(5, 0.05, 0, -0.15)
+)
+
+anxiety_data2 &amp;lt;- simulate_fixed(data = NULL, sim_args) |&amp;gt; 
+  simulate_error(sim_args) |&amp;gt;
+  generate_response(sim_args)
+
+head(anxiety_data2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   X.Intercept. age age_group_post age.age_group_post level1_id     error
+## 1            1  -2              0                  0         1 -1.479273
+## 2            1   0              1                  0         2 -3.423205
+## 3            1  22              1                 22         3  1.253110
+## 4            1  -9              0                  0         4  1.181085
+## 5            1 -13              0                  0         5 -2.807391
+## 6            1 -17              0                  0         6  4.106960
+##   fixed_outcome random_effects  anxiety
+## 1          4.90              0 3.420727
+## 2          5.00              0 1.576795
+## 3          2.80              0 4.053110
+## 4          4.55              0 5.731085
+## 5          4.35              0 1.542609
+## 6          4.15              0 8.256960&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(anxiety ~ age, data = anxiety_data2, size = 2, alpha = 0.5) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(anxiety ~ age, data = anxiety_data2, color = ~factor(age_group_post), size = 2, alpha = 0.5) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, linewidth = 2) |&amp;gt; 
+  gf_labs(color = &amp;quot;Age Group&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(anxiety ~ 1 + age + age_group_post, data = anxiety_data2) |&amp;gt; 
+  broom::tidy() |&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term           estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)       3.70      0.229    16.1     0    
+## 2 age              -0.024     0.011    -2.11    0.035
+## 3 age_group_post    0.234     0.404     0.578   0.563&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(anxiety ~ 1 + age + age_group_post + age:age_group_post, data = anxiety_data2) |&amp;gt; 
+  broom::tidy()|&amp;gt; 
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term               estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)           4.63      0.291     15.9    0    
+## 2 age                   0.035     0.016      2.14   0.032
+## 3 age_group_post        0.14      0.4        0.35   0.726
+## 4 age:age_group_post   -0.114     0.022     -5.06   0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(anxiety ~ 1 + age + I(age^2), data = anxiety_data2) |&amp;gt; 
+broom::tidy() |&amp;gt; 
+mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term        estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)    4.36      0.149     29.3    0    
+## 2 age           -0.019     0.006     -3.38   0.001
+## 3 I(age^2)      -0.002     0         -4.82   0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(anxiety ~ age, data = anxiety_data2) |&amp;gt; 
+  gf_smooth(method = &amp;#39;loess&amp;#39;, linewidth = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/15-non-linear_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Linear Regression - In Class</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/02-linear-regression-inclass/</link>
       <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
@@ -5788,9 +6360,9 @@ Y = \beta_{0} + \beta_{1} X + \epsilon
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -6845,6 +7417,372 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Explore data conditions/assumptions for the model fitted in question #3 or #4. Use which model you feel is most useful for these data. Provide rationale, in a couple sentences, for why you picked the model from #3 or #4.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An R Markdown document converted from &#34;content/lectures/07-bootstrap-class.ipynb&#34;</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class/</guid>
+      <description>
+
+
+&lt;div id=&#34;bootstrap&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bootstrap&lt;/h1&gt;
+&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to peform the procedure.&lt;/p&gt;
+&lt;div id=&#34;bootstrapping-steps&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bootstrapping Steps&lt;/h2&gt;
+&lt;p&gt;The following are the steps when performing a bootstrap.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Treat the sample data as the population.&lt;/li&gt;
+&lt;li&gt;Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.&lt;/li&gt;
+&lt;li&gt;Estimate the model using the resampled data from step 2.&lt;/li&gt;
+&lt;li&gt;Repeat steps 2 and 3 many many times (eg, 10,000 or more).&lt;/li&gt;
+&lt;li&gt;Visualize distribution of effect of interest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resampling-with-replacement&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resampling with replacement&lt;/h2&gt;
+&lt;p&gt;What is meant by sampling with replacement? Let’s do an example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fruit &amp;lt;- data.frame(name = c(&amp;#39;watermelon&amp;#39;, &amp;#39;apple&amp;#39;, 
+                             &amp;#39;orange&amp;#39;, &amp;#39;kumquat&amp;#39;, 
+                             &amp;#39;grapes&amp;#39;, &amp;#39;canteloupe&amp;#39;, 
+                             &amp;#39;kiwi&amp;#39;, &amp;#39;banana&amp;#39;)) |&amp;gt;
+    mutate(obs_num = 1:n())
+
+fruit&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 watermelon       1
+## 2      apple       2
+## 3     orange       3
+## 4    kumquat       4
+## 5     grapes       5
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1     grapes       5
+## 2     banana       8
+## 3 canteloupe       6
+## 4 watermelon       1
+## 5     orange       3
+## 6      apple       2
+## 7    kumquat       4
+## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 watermelon       1
+## 2     banana       8
+## 3       kiwi       7
+## 4     grapes       5
+## 5    kumquat       4
+## 6      apple       2
+## 7    kumquat       4
+## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1     grapes       5
+## 2    kumquat       4
+## 3 canteloupe       6
+## 4 canteloupe       6
+## 5      apple       2
+## 6     banana       8
+## 7    kumquat       4
+## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;More practical example&lt;/h2&gt;
+&lt;p&gt;Let’s load some data to do a more practical example. The following data come from a &lt;a href=&#34;https://nces.ed.gov/timss/&#34;&gt;TIMSS&lt;/a&gt; on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IDSTUD&lt;/strong&gt;: A unique student ID&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHM&lt;/strong&gt;: The birth month of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHY&lt;/strong&gt;: The birth year of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITSEX&lt;/strong&gt;: The birth sex of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASDAGE&lt;/strong&gt;: The age of the student (at time of test)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSSCI01&lt;/strong&gt;: Overall science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSEAR01&lt;/strong&gt;: Earth science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSLIF01&lt;/strong&gt;: Life science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSPHY01&lt;/strong&gt;: Physics scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSKNO01&lt;/strong&gt;: Science knowing scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSAPP01&lt;/strong&gt;: Science applying scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSREA01&lt;/strong&gt;: Science reasoning scale score&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+timss &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv&amp;#39;) |&amp;gt; 
+   filter(ASDAGE &amp;lt; 15)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 10029 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
+##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEAR01 ASSLIF01 ASSPHY01
+##    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1  10101        6     2005     2   9.92     505.     445.     408.     458.
+## 2  10102       10     2005     2   9.58     401.     291.     323.     297.
+## 3  10103        1     2005     1  10.3      542.     440.     529.     529.
+## 4  10104        6     2005     2   9.92     544.     534.     552.     557.
+## 5  10105        6     2005     2   9.92     588.     555.     500.     559.
+## 6  10106       12     2005     1   9.42     583.     556.     585.     562.
+## # ℹ 3 more variables: ASSKNO01 &amp;lt;dbl&amp;gt;, ASSAPP01 &amp;lt;dbl&amp;gt;, ASSREA01 &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;two-guiding-questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Two Guiding Questions&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Is the age of a student related to their overall science scale score?&lt;/li&gt;
+&lt;li&gt;Is the life science scale score related to the overall science scale score?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bivariate-exploration&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bivariate exploration&lt;/h2&gt;
+&lt;p&gt;It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”. You may also want to fill in an appropriate axis labels in place of “@@” below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summarize the bivariate association&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+gf_point(ASSSCI01 ~ ASDAGE, data = timss, size = 4) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, size = 1.5) |&amp;gt;
+  gf_smooth(method = &amp;#39;loess&amp;#39;, size = 1.5, color = &amp;#39;green&amp;#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;Age&amp;quot;,
+          y = &amp;quot;Overall Science&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mosaic::cor(ASSSCI01 ~ ASDAGE, data = timss) |&amp;gt; round(2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.04&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimate-parameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimate Parameters&lt;/h2&gt;
+&lt;p&gt;To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_model &amp;lt;- lm(ASSSCI01 ~ ASDAGE, data = timss)
+
+summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resample-these-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resample these data&lt;/h2&gt;
+&lt;p&gt;For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(timss, n = nrow(timss), replace = TRUE) |&amp;gt; 
+  count(IDSTUD) |&amp;gt;
+  arrange(-n) |&amp;gt;
+  head()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
+##    IDSTUD     n
+##     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
+## 1 1020222     7
+## 2  230213     6
+## 3  430312     6
+## 4  930216     6
+## 5 1580501     6
+## 6 1580518     6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) %&amp;gt;% 
+  lm(ASSSCI01 ~ ASDAGE, data = .)
+
+summary(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -304.018  -52.783    5.218   57.107  260.781 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  625.010     17.099  36.552  &amp;lt; 2e-16 ***
+## ASDAGE        -8.017      1.672  -4.795 1.65e-06 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 81.71 on 10025 degrees of freedom
+## Multiple R-squared:  0.002288,	Adjusted R-squared:  0.002189 
+## F-statistic: 22.99 on 1 and 10025 DF,  p-value: 1.651e-06&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                 2.5 %     97.5 %
+## (Intercept) 591.49136 658.527936
+## ASDAGE      -11.29437  -4.739538&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;nrow(timss)^nrow(timss)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] Inf&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Questions to consider&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Do the parameter estimates differ from before? Why or why not?&lt;/li&gt;
+&lt;li&gt;Would you come to substantially different conclusions from the original analysis? Why or why not?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let’s now repeat this a bunch of times.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(2022)
+
+resample_timss &amp;lt;- function(data, model_equation) {
+  timss_resample &amp;lt;- slice_sample(data, n = nrow(data), replace = TRUE)
+
+  lm(model_equation, data = timss_resample) |&amp;gt;
+    coef()
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Run this function a bunch of times manually, what happens to the estimates? Why is this happening?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resample_timss(data = timss, model_equation = ASSSCI01 ~ ASDAGE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (Intercept)      ASDAGE 
+##  593.768824   -4.636762&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-sure-future.apply-is-installed&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Make sure future.apply is installed&lt;/h2&gt;
+&lt;p&gt;The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the &lt;code&gt;#&lt;/code&gt; symbol) in the first line of code to (hopefully) install the package yourself.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;future.apply&amp;quot;)
+library(future.apply)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: future&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plan(multisession)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replicate&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Replicate&lt;/h2&gt;
+&lt;p&gt;The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_coef &amp;lt;- future.apply::future_replicate(10000, 
+                        resample_timss(data = timss, 
+                        model_equation = ASSSCI01 ~ ASDAGE), simplify = FALSE) |&amp;gt;
+                        dplyr::bind_rows() |&amp;gt; 
+                        tidyr::pivot_longer(cols = everything())
+
+#head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualize-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualize results&lt;/h2&gt;
+&lt;p&gt;The following code visualizes the results of the analysis above. Explore the following questions.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What does this distribution show/represent?&lt;/li&gt;
+&lt;li&gt;What are key features of this distribution?&lt;/li&gt;
+&lt;li&gt;How do these values compare to the original linear regression results?
+&lt;ul&gt;
+&lt;li&gt;Are there comparable statistics here compared to those?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ value, data = timss_coef) |&amp;gt;
+  gf_facet_wrap(~ name, scales = &amp;#39;free&amp;#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;Regression Estimates&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;change-the-n-value&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Change the N value&lt;/h2&gt;
+&lt;p&gt;Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What happens to the resulting figure when the N increases?&lt;/li&gt;
+&lt;li&gt;What value for N seems to be reasonable? Why?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 2
+##   name         value
+##   &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 (Intercept) 610.  
+## 2 ASDAGE       -6.56
+## 3 (Intercept) 603.  
+## 4 ASDAGE       -5.67
+## 5 (Intercept) 620.  
+## 6 ASDAGE       -7.25&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(value ~ name, data = timss_coef, 
+         mean, median, sd, IQR)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response        name       mean     median        sd       IQR
+## 1    value (Intercept) 613.863905 614.021876 20.493175 27.714280
+## 2    value      ASDAGE  -6.714967  -6.740487  2.005943  2.728819&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(-6.687 - 0) / 2.012&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -3.323559&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pnorm(-3.3235, lower.tail = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0004444771&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pnorm(-3.3235, lower.tail = TRUE) * 2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0008889542&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = ASSSCI01 ~ ASDAGE, data = timss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -305.769  -51.969    4.919   56.707  272.217 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  613.563     17.064  35.956  &amp;lt; 2e-16 ***
+## ASDAGE        -6.687      1.669  -4.007 6.18e-05 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 80.89 on 10025 degrees of freedom
+## Multiple R-squared:  0.001599,	Adjusted R-squared:  0.0015 
+## F-statistic: 16.06 on 1 and 10025 DF,  p-value: 6.183e-05&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(timss_model, which = 1:5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/07-bootstrap-class_files/figure-html/unnamed-chunk-23-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  2.5 %     97.5 %
+## (Intercept) 580.114047 647.012616
+## ASDAGE       -9.957345  -3.415915&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(value ~ name, data = timss_coef, 
+         quantile(c(0.025, 0.975)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response        name      2.5%      97.5%
+## 1    value (Intercept) 574.15367 653.425218
+## 2    value      ASDAGE -10.57731  -2.829617&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
