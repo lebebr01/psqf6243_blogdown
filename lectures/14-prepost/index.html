@@ -807,6 +807,10 @@
 
 
 
+  <li class=""><a href="/lectures/07-bootstrap-class/">Bootstrap - In Class Portion</a></li>
+
+
+
   <li class=""><a href="/lectures/08-multiple-regression-class/">Multiple Regression - In Class Notes</a></li>
 
 
@@ -843,11 +847,11 @@
 
 
 
+  <li class=""><a href="/lectures/16-chi-square/">Chi-Square Tests</a></li>
+
+
+
   <li class=""><a href="/lectures/02-linear-regression-inclass/">Linear Regression - In Class</a></li>
-
-
-
-  <li class=""><a href="/lectures/07-bootstrap-class/">An R Markdown document converted from &#34;content/lectures/07-bootstrap-class.ipynb&#34;</a></li>
 
       
     
@@ -921,9 +925,9 @@ Research, , 189-201, DOI: 10.2147/JPR.S22761</p>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.2     
+## ✔ purrr     1.0.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -1012,32 +1016,32 @@ pain_data &lt;- simulate_fixed(data = NULL, sim_args) |&gt;
   generate_response(sim_args)
 
 head(pain_data)</code></pre>
-<pre><code>##   X.Intercept.    PDI_pre level1_id        error fixed_outcome random_effects
-## 1            1  15.824510         1   3.65421120    -12.242255              0
-## 2            1 -17.234065         2  -7.10898098      4.287032              0
-## 3            1   2.274378         3   3.96231237     -5.467189              0
-## 4            1   1.412226         4 -15.91017274     -5.036113              0
-## 5            1   3.496196         5   0.67697155     -6.078098              0
-## 6            1 -17.926653         6   0.09513118      4.633326              0
+<pre><code>##   X.Intercept.    PDI_pre level1_id      error fixed_outcome random_effects
+## 1            1   2.892776         1  -7.844935   -5.77638793              0
+## 2            1 -10.512505         2  -9.999489    0.92625257              0
+## 3            1  -8.486329         3 -39.522910   -0.08683538              0
+## 4            1   2.504102         4  -3.103951   -5.58205111              0
+## 5            1   5.576957         5   2.038576   -7.11847870              0
+## 6            1 -35.275850         6  13.758293   13.30792506              0
 ##          PDI
-## 1  -8.588044
-## 2  -2.821949
-## 3  -1.504876
-## 4 -20.946286
-## 5  -5.401126
-## 6   4.728457</code></pre>
+## 1 -13.621323
+## 2  -9.073237
+## 3 -39.609745
+## 4  -8.686002
+## 5  -5.079903
+## 6  27.066218</code></pre>
 <pre class="r"><code>gf_point(PDI ~ PDI_pre, data = pain_data, size = 4) |&gt;
    gf_smooth(method = &#39;lm&#39;)</code></pre>
 <p><img src="/lectures/14-prepost_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>df_stats(~ PDI, data = pain_data, mean, sd, min, max)</code></pre>
-<pre><code>##   response      mean       sd       min     max
-## 1      PDI -3.414159 14.80038 -33.02813 24.7302</code></pre>
+<pre><code>##   response      mean       sd       min      max
+## 1      PDI -4.080952 12.99252 -39.60975 27.06622</code></pre>
 <pre class="r"><code>df_stats(~ PDI_pre, data = pain_data, mean, sd, min, max)</code></pre>
-<pre><code>##   response      mean       sd    min      max
-## 1  PDI_pre -0.930091 14.59476 -38.14 26.13005</code></pre>
+<pre><code>##   response      mean       sd    min   max
+## 1  PDI_pre -2.356306 17.81285 -38.14 31.86</code></pre>
 <pre class="r"><code>cor(PDI ~ PDI_pre, data = pain_data)</code></pre>
 <pre><code>##            [,1]
-## [1,] -0.4130691</code></pre>
+## [1,] -0.5320729</code></pre>
 <div id="two-competing-models" class="section level3">
 <h3>Two competing models</h3>
 <p>There are two competing models here that are often described in the literature. As discussed above, one is performed on the <strong>change</strong> scores, the other is done via statistical control. These two models are shown below for the simplest design with pre / post measurement occasions for a single group.</p>
@@ -1062,13 +1066,13 @@ Post = \beta_{0} + \beta_{1} Pre + \epsilon
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -43.271 -19.880  -0.548  12.573  65.354 
+## -48.309 -23.426   1.522  19.736  64.067 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)   -2.484      3.494  -0.711    0.481
+## (Intercept)   -1.725      3.827  -0.451    0.654
 ## 
-## Residual standard error: 24.71 on 49 degrees of freedom</code></pre>
+## Residual standard error: 27.06 on 49 degrees of freedom</code></pre>
 <pre class="r"><code>pain_data &lt;- pain_data |&gt; 
    mutate(change = PDI - PDI_pre)
 
@@ -1077,13 +1081,13 @@ t.test(pain_data$change)</code></pre>
 ## 	One Sample t-test
 ## 
 ## data:  pain_data$change
-## t = -0.71089, df = 49, p-value = 0.4805
+## t = -0.45063, df = 49, p-value = 0.6542
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -9.506151  4.538015
+##  -9.415741  5.966449
 ## sample estimates:
 ## mean of x 
-## -2.484068</code></pre>
+## -1.724646</code></pre>
 <pre class="r"><code>summary(
     lm(PDI ~ PDI_pre, data = pain_data)
     )</code></pre>
@@ -1093,18 +1097,18 @@ t.test(pain_data$change)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -30.582  -7.031  -0.199  10.860  28.712 
+## -37.908  -4.373   0.281   6.237  20.286 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)  -3.8038     1.9299  -1.971  0.05451 . 
-## PDI_pre      -0.4189     0.1333  -3.142  0.00287 **
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -4.99541    1.58583  -3.150  0.00281 ** 
+## PDI_pre     -0.38809    0.08914  -4.354 6.99e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 13.62 on 48 degrees of freedom
-## Multiple R-squared:  0.1706,	Adjusted R-squared:  0.1533 
-## F-statistic: 9.875 on 1 and 48 DF,  p-value: 0.00287</code></pre>
+## Residual standard error: 11.11 on 48 degrees of freedom
+## Multiple R-squared:  0.2831,	Adjusted R-squared:  0.2682 
+## F-statistic: 18.96 on 1 and 48 DF,  p-value: 6.987e-05</code></pre>
 </div>
 </div>
 <div id="iterate-both-models-multiple-times" class="section level3">
@@ -1191,31 +1195,31 @@ pain_data &lt;- simulate_fixed(data = NULL, sim_args) |&gt;
   generate_response(sim_args)
 
 head(pain_data)</code></pre>
-<pre><code>##   X.Intercept.    PDI_pre treatment_1 treatment level1_id     error
-## 1            1   6.125294           0   control         1 19.060108
-## 2            1  12.759632           0   control         2 11.671328
-## 3            1   8.222255           0   control         3  7.696326
-## 4            1 -15.545453           0   control         4 10.743707
-## 5            1   2.309391           1 treatment         5  5.861903
-## 6            1 -13.899807           1 treatment         6  9.433191
-##   fixed_outcome random_effects       PDI
-## 1     -3.062647              0 15.997462
-## 2     -6.379816              0  5.291512
-## 3     -4.111128              0  3.585198
-## 4      7.772726              0 18.516434
-## 5    -11.154696              0 -5.292792
-## 6     -3.050096              0  6.383094</code></pre>
+<pre><code>##   X.Intercept.     PDI_pre treatment_1 treatment level1_id      error
+## 1            1  -0.6749865           1 treatment         1  25.291103
+## 2            1 -10.7718067           1 treatment         2   5.240914
+## 3            1   2.3915820           1 treatment         3  -5.128693
+## 4            1   7.7364567           0   control         4   5.073699
+## 5            1  -8.7585973           0   control         5 -18.792945
+## 6            1  25.4325632           1 treatment         6   2.545798
+##   fixed_outcome random_effects         PDI
+## 1     -9.662507              0  15.6285963
+## 2     -4.614097              0   0.6268176
+## 3    -11.195791              0 -16.3244841
+## 4     -3.868228              0   1.2054710
+## 5      4.379299              0 -14.4136465
+## 6    -22.716282              0 -20.1704833</code></pre>
 <pre class="r"><code>gf_point(PDI ~ PDI_pre, data = pain_data, color = ~ treatment) |&gt;
   gf_smooth(method = &#39;lm&#39;, linewidth = 2) </code></pre>
 <p><img src="/lectures/14-prepost_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <pre class="r"><code>df_stats(PDI ~ treatment, data = pain_data, mean, sd, min, max, length)</code></pre>
-<pre><code>##   response treatment      mean        sd       min      max length
-## 1      PDI   control   3.73477 11.140745 -18.38707 24.16424     26
-## 2      PDI treatment -11.12375  9.832382 -27.29905 12.61462     24</code></pre>
-<pre class="r"><code>df_stats(PDI_pre ~ treatment, data = pain_data, mean, sd, min, max, length)</code></pre>
 <pre><code>##   response treatment      mean       sd       min      max length
-## 1  PDI_pre   control 0.3634727 16.42793 -35.93732 31.86000     26
-## 2  PDI_pre treatment 2.2048447 14.06488 -25.75964 22.83984     24</code></pre>
+## 1      PDI   control   0.92379 12.95944 -26.37721 29.89596     28
+## 2      PDI treatment -11.10915 13.18287 -49.13029 15.62860     22</code></pre>
+<pre class="r"><code>df_stats(PDI_pre ~ treatment, data = pain_data, mean, sd, min, max, length)</code></pre>
+<pre><code>##   response treatment       mean       sd       min   max length
+## 1  PDI_pre   control -0.8814091 18.84497 -38.10907 31.86     28
+## 2  PDI_pre treatment  2.2874212 16.17885 -28.86085 31.86     22</code></pre>
 <pre class="r"><code>summary(lm(PDI ~ PDI_pre + treatment, data = pain_data))</code></pre>
 <pre><code>## 
 ## Call:
@@ -1223,19 +1227,19 @@ head(pain_data)</code></pre>
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -15.7128  -6.5343  -0.1554   6.2910  20.0851 
+## -31.2623  -6.6562  -0.4754   6.0594  25.5812 
 ## 
 ## Coefficients:
-##                     Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)          3.87357    1.73538   2.232   0.0304 *  
-## PDI_pre             -0.38188    0.08324  -4.588 3.34e-05 ***
-## treatmenttreatment -14.15533    2.50911  -5.642 9.35e-07 ***
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          0.5797     2.1162   0.274   0.7853    
+## PDI_pre             -0.3904     0.0911  -4.285 8.97e-05 ***
+## treatmenttreatment -10.7958     3.2010  -3.373   0.0015 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 8.847 on 47 degrees of freedom
-## Multiple R-squared:  0.5448,	Adjusted R-squared:  0.5254 
-## F-statistic: 28.12 on 2 and 47 DF,  p-value: 9.294e-09</code></pre>
+## Residual standard error: 11.19 on 47 degrees of freedom
+## Multiple R-squared:  0.4096,	Adjusted R-squared:  0.3845 
+## F-statistic: 16.31 on 2 and 47 DF,  p-value: 4.182e-06</code></pre>
 <pre class="r"><code>summary(lm(I(PDI - PDI_pre) ~ treatment, data = pain_data))</code></pre>
 <pre><code>## 
 ## Call:
@@ -1243,18 +1247,18 @@ head(pain_data)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -53.618 -14.339  -0.829  18.862  48.824 
+## -55.333 -16.569  -4.427  17.832  66.200 
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)           3.371      4.498   0.749   0.4572  
-## treatmenttreatment  -16.700      6.493  -2.572   0.0133 *
+## (Intercept)           1.805      5.107   0.353   0.7253  
+## treatmenttreatment  -15.202      7.699  -1.975   0.0541 .
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 22.94 on 48 degrees of freedom
-## Multiple R-squared:  0.1211,	Adjusted R-squared:  0.1028 
-## F-statistic: 6.616 on 1 and 48 DF,  p-value: 0.01326</code></pre>
+## Residual standard error: 27.02 on 48 degrees of freedom
+## Multiple R-squared:  0.07513,	Adjusted R-squared:  0.05586 
+## F-statistic: 3.899 on 1 and 48 DF,  p-value: 0.05408</code></pre>
 </div>
 </div>
 <div id="iterate" class="section level3">
@@ -1328,28 +1332,28 @@ pain_data &lt;- simulate_fixed(data = NULL, sim_args) |&gt;
   generate_response(sim_args)
 
 head(pain_data)</code></pre>
-<pre><code>##   X.Intercept. PDI_pre_old treatment_old level1_id   PDI_pre treatment_corr
-## 1            1  -2.8207532             1         1  2.826608      0.2932727
-## 2            1  -1.4448471             1         2  1.450702      0.2692882
-## 3            1  -2.3168672             1         3  2.322722      0.2844891
-## 4            1  -4.2300904             1         4  4.235945      0.3178399
-## 5            1   4.5558217             1         5 -4.549966      0.1646861
-## 6            1  -0.8330819             0         6  0.824996      1.0583812
-##   treatment       error fixed_outcome random_effects        PDI
-## 1         0   7.9013461    -1.4133041              0   6.488042
-## 2         0 -19.4641427    -0.7253511              0 -20.189494
-## 3         0   7.5720741    -1.1613611              0   6.410713
-## 4         0  -9.1303415    -2.1179727              0 -11.248314
-## 5         0  -4.8394631     2.2749830              0  -2.564480
-## 6         1  -0.7446003   -10.4124980              0 -11.157098</code></pre>
+<pre><code>##   X.Intercept. PDI_pre_old treatment_old level1_id    PDI_pre treatment_corr
+## 1            1   20.520584             0         1 -20.528184     0.61064574
+## 2            1    6.140599             1         2  -6.134122     0.06402201
+## 3            1    5.395088             1         3  -5.388612     0.07714511
+## 4            1   24.314453             1         4 -24.307975    -0.25588936
+## 5            1    5.580358             1         5  -5.573882     0.07388383
+## 6            1   29.920038             1         6 -29.913560    -0.35456356
+##   treatment      error fixed_outcome random_effects        PDI
+## 1         1  -2.212412     0.2640922              0  -1.948320
+## 2         0  -6.786153     3.0670612              0  -3.719091
+## 3         0  13.980510     2.6943059              0  16.674816
+## 4         0  -8.009290    12.1539873              0   4.144698
+## 5         0 -17.013551     2.7869410              0 -14.226610
+## 6         0 -11.300662    14.9567798              0   3.656117</code></pre>
 <pre class="r"><code>df_stats(PDI_pre ~ treatment, data = pain_data, mean, median, sd, length)</code></pre>
 <pre><code>##   response treatment      mean    median       sd length
-## 1  PDI_pre         0 -4.526366 -1.240130 15.12923     25
-## 2  PDI_pre         1  6.734901  8.157298 16.95435     25</code></pre>
+## 1  PDI_pre         0 -7.234013 -5.388612 16.10738     25
+## 2  PDI_pre         1 10.544924  9.375942 18.50102     25</code></pre>
 <pre class="r"><code>df_stats(PDI_pre ~ treatment_old, data = pain_data, mean, median, sd, length)</code></pre>
-<pre><code>##   response treatment_old      mean   median       sd length
-## 1  PDI_pre             0 -1.184797 2.347277 18.84077     21
-## 2  PDI_pre             1  2.761866 4.235945 15.45528     29</code></pre>
+<pre><code>##   response treatment_old      mean    median       sd length
+## 1  PDI_pre             0  8.169427  8.277005 17.31052     23
+## 2  PDI_pre             1 -3.893483 -4.495500 19.60486     27</code></pre>
 <pre class="r"><code>summary(lm(PDI ~ PDI_pre + treatment, data = pain_data))</code></pre>
 <pre><code>## 
 ## Call:
@@ -1357,38 +1361,38 @@ head(pain_data)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -20.968  -7.341  -2.201   8.637  23.491 
+## -25.329  -7.479  -1.333   5.826  44.653 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -1.2725     2.3539  -0.541 0.591362    
-## PDI_pre      -0.4032     0.1036  -3.891 0.000313 ***
-## treatment   -12.0455     3.4646  -3.477 0.001103 ** 
+## (Intercept)   1.0274     2.6975   0.381   0.7050    
+## PDI_pre      -0.5032     0.1075  -4.683 2.44e-05 ***
+## treatment    -7.7222     4.1225  -1.873   0.0673 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 11.53 on 47 degrees of freedom
-## Multiple R-squared:  0.4658,	Adjusted R-squared:  0.4431 
-## F-statistic: 20.49 on 2 and 47 DF,  p-value: 3.983e-07</code></pre>
+## Residual standard error: 12.92 on 47 degrees of freedom
+## Multiple R-squared:  0.4763,	Adjusted R-squared:  0.454 
+## F-statistic: 21.38 on 2 and 47 DF,  p-value: 2.5e-07</code></pre>
 <pre class="r"><code>summary(lm(I(PDI - PDI_pre) ~ treatment, data = pain_data))</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = I(PDI - PDI_pre) ~ treatment, data = pain_data)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -44.57 -20.53  -2.43  12.85  60.45 
+##     Min      1Q  Median      3Q     Max 
+## -58.858 -17.829  -0.806  19.650  68.245 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    5.079      5.054   1.005 0.319979    
-## treatment    -27.847      7.147  -3.896 0.000302 ***
+## (Intercept)   11.902      5.808   2.049 0.045914 *  
+## treatment    -34.448      8.213  -4.194 0.000117 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 25.27 on 48 degrees of freedom
-## Multiple R-squared:  0.2403,	Adjusted R-squared:  0.2244 
-## F-statistic: 15.18 on 1 and 48 DF,  p-value: 0.0003023</code></pre>
+## Residual standard error: 29.04 on 48 degrees of freedom
+## Multiple R-squared:  0.2682,	Adjusted R-squared:  0.253 
+## F-statistic: 17.59 on 1 and 48 DF,  p-value: 0.0001172</code></pre>
 <pre class="r"><code>library(future)
 plan(multicore)
 

@@ -34,10 +34,11 @@
   
     
   
-  <meta name="description" content="Review">
+  <meta name="description" content="Chi-Square Tests There are a total of 2 different chi-square tests for categorical attributes.
+Chi-square goodness of fit - Useful for 1 categorical attribute Chi-square test of independence - Useful for 2 categorical attributes  Let’s explore some data related to the General Social Survey.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/01-review/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/16-chi-square/">
 
   
 
@@ -266,7 +267,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/01-review/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/16-chi-square/">
 
   
   
@@ -281,15 +282,16 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/01-review/">
-  <meta property="og:title" content="Review | PSQF 6243">
-  <meta property="og:description" content="Review"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/16-chi-square/">
+  <meta property="og:title" content="Chi-Square Tests | PSQF 6243">
+  <meta property="og:description" content="Chi-Square Tests There are a total of 2 different chi-square tests for categorical attributes.
+Chi-square goodness of fit - Useful for 1 categorical attribute Chi-square test of independence - Useful for 2 categorical attributes  Let’s explore some data related to the General Social Survey."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2023-08-22T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2023-11-16T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2023-08-22T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2023-11-16T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +310,7 @@
 
 
 
-  <title>Review | PSQF 6243</title>
+  <title>Chi-Square Tests | PSQF 6243</title>
 
 </head>
 
@@ -771,7 +773,7 @@
       
 
 
-  <li class="active"><a href="/lectures/01-review/">Review</a></li>
+  <li class=""><a href="/lectures/01-review/">Review</a></li>
 
 
 
@@ -847,7 +849,7 @@
 
 
 
-  <li class=""><a href="/lectures/16-chi-square/">Chi-Square Tests</a></li>
+  <li class="active"><a href="/lectures/16-chi-square/">Chi-Square Tests</a></li>
 
 
 
@@ -885,7 +887,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Review</h1>
+          <h1>Chi-Square Tests</h1>
 
           <div class="article-style">
             
@@ -894,79 +896,15 @@
 
 </div>
 
-<div id="review-for-psqf-6243" class="section level1">
-<h1>Review for PSQF 6243</h1>
-<p>This serves as a non-exhaustive review for the course. These are elements that I assume you have knowledge of prior to starting the course.</p>
-<ul>
-<li>Variable vs constant attributes</li>
-<li>Types of variables (ie., nominal, ordinal, integer, ratio)</li>
-<li>Descriptive Statistics (eg., mean, median, standard deviation, variance, percentiles)</li>
-<li>Higher order moments (eg., skewness and kurtosis)</li>
-<li>Exploring/summarizing univariate distributions (eg., histogram or density figure)</li>
-<li>What is a statistical model? Why do we use them?</li>
-<li>Population vs Sample</li>
-</ul>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<p>Mario Kart 64 world record data:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">variable</th>
-<th align="left">class</th>
-<th align="left">description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">track</td>
-<td align="left">character</td>
-<td align="left">Track name</td>
-</tr>
-<tr class="even">
-<td align="left">type</td>
-<td align="left">factor</td>
-<td align="left">Single or three lap record</td>
-</tr>
-<tr class="odd">
-<td align="left">shortcut</td>
-<td align="left">factor</td>
-<td align="left">Shortcut or non-shortcut record</td>
-</tr>
-<tr class="even">
-<td align="left">player</td>
-<td align="left">character</td>
-<td align="left">Player’s name</td>
-</tr>
-<tr class="odd">
-<td align="left">system_played</td>
-<td align="left">character</td>
-<td align="left">Used system (NTSC or PAL)</td>
-</tr>
-<tr class="even">
-<td align="left">date</td>
-<td align="left">date</td>
-<td align="left">World record date</td>
-</tr>
-<tr class="odd">
-<td align="left">time_period</td>
-<td align="left">period</td>
-<td align="left">Time as <code>hms</code> period</td>
-</tr>
-<tr class="even">
-<td align="left">time</td>
-<td align="left">double</td>
-<td align="left">Time in seconds</td>
-</tr>
-<tr class="odd">
-<td align="left">record_duration</td>
-<td align="left">double</td>
-<td align="left">Record duration in days</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code># load some libraries
-library(tidyverse)</code></pre>
+<div id="chi-square-tests" class="section level1">
+<h1>Chi-Square Tests</h1>
+<p>There are a total of 2 different chi-square tests for categorical attributes.</p>
+<ol style="list-style-type: decimal">
+<li>Chi-square goodness of fit - Useful for 1 categorical attribute</li>
+<li>Chi-square test of independence - Useful for 2 categorical attributes</li>
+</ol>
+<p>Let’s explore some data related to the <a href="https://gss.norc.org/">General Social Survey</a>.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -977,126 +915,205 @@ library(tidyverse)</code></pre>
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance
-## 
-## Attaching package: &#39;ggstance&#39;
-## 
-## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
-## 
-## Attaching package: &#39;scales&#39;
-## 
-## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard
-## 
-## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor
-## 
-## Loading required package: ggridges
-## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>library(lubridate)
-library(mosaic)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2
-## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Attaching package: &#39;mosaic&#39;
-## 
-## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean
-## 
-## The following object is masked from &#39;package:scales&#39;:
-## 
-##     rescale
-## 
-## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally
-## 
-## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross
-## 
-## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat
-## 
-## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre class="r"><code>library(e1071)
+<pre class="r"><code>head(gss_cat)</code></pre>
+<pre><code>## # A tibble: 6 × 9
+##    year marital         age race  rincome        partyid     relig denom tvhours
+##   &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;          &lt;fct&gt;       &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+## 1  2000 Never married    26 White $8000 to 9999  Ind,near r… Prot… Sout…      12
+## 2  2000 Divorced         48 White $8000 to 9999  Not str re… Prot… Bapt…      NA
+## 3  2000 Widowed          67 White Not applicable Independent Prot… No d…       2
+## 4  2000 Never married    39 White Not applicable Ind,near r… Orth… Not …       4
+## 5  2000 Divorced         25 White Not applicable Not str de… None  Not …       1
+## 6  2000 Married          25 White $20000 - 24999 Strong dem… Prot… Sout…      NA</code></pre>
+<div id="chi-square-goodness-of-fit" class="section level2">
+<h2>Chi-square goodness of fit</h2>
+<p>Suppose we were interested in knowing if the proportion of people from the GSS data are similar to the political affiliation currently in the United States. This link gives the breakdown of the <a href="https://news.gallup.com/poll/15370/party-affiliation.aspx">current political affiliation in the United States</a> according to a continuously running Gallup poll.</p>
+<p>The chi-square goodness of fit explores the extent to which a categorical attribute follows a specified distribution. The chi-square goodness of fit test is often framed as a way to evaluate if the sample data is representative of the population. As such, the following hypotheses would be a way to frame this analysis.</p>
+<p><span class="math display">\[
+H_{0}:\ All\ categories\ follow\ the\ population\ distribution
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+H_{0}:\ All\ categories\ follow\ the\ specified\ percentages\ or\ proportions
+\]</span></p>
+<p>To frame this analysis in the context of the current data, let’s look at the <code>partyid</code> attribute in the data.</p>
+<pre class="r"><code>count(gss_cat, partyid) %&gt;%
+  mutate(prop = n / sum(n))</code></pre>
+<pre><code>## # A tibble: 10 × 3
+##    partyid                n      prop
+##    &lt;fct&gt;              &lt;int&gt;     &lt;dbl&gt;
+##  1 No answer            154 0.00717  
+##  2 Don&#39;t know             1 0.0000465
+##  3 Other party          393 0.0183   
+##  4 Strong republican   2314 0.108    
+##  5 Not str republican  3032 0.141    
+##  6 Ind,near rep        1791 0.0834   
+##  7 Independent         4119 0.192    
+##  8 Ind,near dem        2499 0.116    
+##  9 Not str democrat    3690 0.172    
+## 10 Strong democrat     3490 0.162</code></pre>
+<p>For this example, I’m going to collapse categories and assign a few to NA to omit from the analysis. The following code does this task and then returns a similar table to that shown above. In particular, since the Gallup poll only includes asks about republicans, independents, or democrats, I’m going to group others into an “other” category.</p>
+<pre class="r"><code>gss_cat &lt;- gss_cat %&gt;%
+  mutate(partyid_collapse = fct_collapse(partyid,
+    other = c(&quot;No answer&quot;, &quot;Don&#39;t know&quot;, &quot;Other party&quot;),
+    rep = c(&quot;Strong republican&quot;, &quot;Not str republican&quot;),
+    ind = c(&quot;Ind,near rep&quot;, &quot;Independent&quot;, &quot;Ind,near dem&quot;),
+    dem = c(&quot;Not str democrat&quot;, &quot;Strong democrat&quot;)
+  ))
 
-theme_set(theme_bw(base_size = 18))
+count(gss_cat, partyid_collapse) %&gt;%
+  mutate(prop = n / sum(n))</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   partyid_collapse     n   prop
+##   &lt;fct&gt;            &lt;int&gt;  &lt;dbl&gt;
+## 1 other              548 0.0255
+## 2 rep               5346 0.249 
+## 3 ind               8409 0.391 
+## 4 dem               7180 0.334</code></pre>
+<div id="chi-square-gof-mechanics" class="section level3">
+<h3>Chi-Square GoF Mechanics</h3>
+<p>The chi-square goodness of fit compares the observed cell counts with the expected cell counts. More formally, the chi-square test statistic is as follows:</p>
+<p><span class="math display">\[
+\chi^2 = \sum \frac{( O - E ) ^ 2}{E}
+\]</span></p>
+<p>where <span class="math inline">\(O\)</span> is the observed cell counts and <span class="math inline">\(E\)</span> are the expected cell counts. The expected cell counts are defined as the sample size times the hypothesized proportions/percentages (this is not completely statistically accurate, however, in many social science situations, this should be sufficient). For example:</p>
+<p><span class="math display">\[
+E = p_{H_{0}} * N
+\]</span></p>
+<p>where <span class="math inline">\(p_{H_{0}}\)</span> is the hypothesized proportions from the null hypothesis. The <span class="math inline">\(\chi^2\)</span> statistic follows a chi-square distribution with <span class="math inline">\(k - 1\)</span> degrees of freedom, where <span class="math inline">\(k\)</span> is the number of categories.</p>
+<p>Using the table above, these can be computed from the data and assuming the following as population proportions/percentages from the Gallup poll: Rep = 27%, Ind = 45%, Dem = 27%, other = 1%.</p>
+<pre class="r"><code>chi_tab &lt;- count(gss_cat, partyid_collapse) %&gt;%
+  mutate(prop = n / sum(n), 
+         prop_h0 = c(.01, .27, .45, .27),
+         E = prop_h0 * sum(n))
 
-# load in some data
-mariokart &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-25/records.csv&#39;) %&gt;%
-    mutate(year = year(date),
-           month = month(date),
-           day = month(date))</code></pre>
-<pre><code>## Rows: 2334 Columns: 9
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr  (6): track, type, shortcut, player, system_played, time_period
-## dbl  (2): time, record_duration
-## date (1): date
+chi_tab</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   partyid_collapse     n   prop prop_h0     E
+##   &lt;fct&gt;            &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 other              548 0.0255    0.01  215.
+## 2 rep               5346 0.249     0.27 5800.
+## 3 ind               8409 0.391     0.45 9667.
+## 4 dem               7180 0.334     0.27 5800.</code></pre>
+<p>The <span class="math inline">\(\chi^2\)</span> statistic can be computed manually.</p>
+<pre class="r"><code>chi_tab %&gt;%
+  mutate(num = (n - E)^2,
+         chi_cell = num / E) %&gt;%
+  summarise(chi_square = sum(chi_cell))</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   chi_square
+##        &lt;dbl&gt;
+## 1      1044.</code></pre>
+<p>More readily, using the <code>chisq.test()</code> function in R is easier. This function takes one primary argument, the attribute to do the chi-square goodness of fit test on. Optionally, the specific proportions need to be passed as well, which is typically desired unless equal percentages/proportions are desired.</p>
+<pre class="r"><code>xsq_got &lt;- chisq.test(table(gss_cat$partyid_collapse), p = c(.01, .27, .45, .27))
+
+xsq_got</code></pre>
+<pre><code>## 
+## 	Chi-squared test for given probabilities
 ## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>head(mariokart)</code></pre>
-<pre><code>## # A tibble: 6 × 12
-##   track         type  shortcut player system_played date       time_period  time
-##   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;         &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;
-## 1 Luigi Raceway Thre… No       Salam  NTSC          1997-02-15 2M 12.99S    133.
-## 2 Luigi Raceway Thre… No       Booth  NTSC          1997-02-16 2M 9.99S     130.
-## 3 Luigi Raceway Thre… No       Salam  NTSC          1997-02-16 2M 8.99S     129.
-## 4 Luigi Raceway Thre… No       Salam  NTSC          1997-02-28 2M 6.99S     127.
-## 5 Luigi Raceway Thre… No       Gregg… NTSC          1997-03-07 2M 4.51S     125.
-## 6 Luigi Raceway Thre… No       Rocky… NTSC          1997-04-30 2M 2.89S     123.
-## # ℹ 4 more variables: record_duration &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;</code></pre>
-<pre class="r"><code># univariate distribution of time
-gf_histogram(~ time, data = mariokart, bins = 30) %&gt;% 
-   gf_labs(x = &quot;Time (in seconds)&quot;)</code></pre>
-<p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>gf_density(~ time, data = mariokart) %&gt;% 
-   gf_labs(x = &quot;Time (in seconds)&quot;)</code></pre>
-<p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>df_stats(~ time, data = mariokart, mean, median, sd, skewness, kurtosis, quantile(probs = c(0.1, 0.5, 0.9)))</code></pre>
-<pre><code>##   response     mean median      sd skewness kurtosis   10%   50%     90%
-## 1     time 90.62383  86.19 66.6721 1.771732 3.844745 31.31 86.19 171.961</code></pre>
+## data:  table(gss_cat$partyid_collapse)
+## X-squared = 1044.2, df = 3, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div id="explore-differences" class="section level3">
+<h3>Explore Differences</h3>
+<p>It is often of interest to explore differences, particularly if the chi-square goodness of fit test has a small p-value. This would indicate that the counts likely do not follow the assumed distribution, but where are the differences found? Residuals can help with this. The residuals are the difference in the observed and expected values divided by the square root of the expected values.</p>
+<p><span class="math display">\[
+\chi^2_{resid} = \frac{(O - E)}{\sqrt{E}}
+\]</span></p>
+<p>These can be extracted directly from the model object saved when running the chi-square test.</p>
+<pre class="r"><code>xsq_got$residuals</code></pre>
+<pre><code>## 
+##      other        rep        ind        dem 
+##  22.730994  -5.966485 -12.798166  18.114264</code></pre>
 </div>
 </div>
-<div id="bivariate-association" class="section level1">
-<h1>Bivariate Association</h1>
-<pre class="r"><code>cor(time ~ record_duration, data = mariokart)</code></pre>
-<pre><code>## [1] -0.06736739</code></pre>
-<pre class="r"><code>gf_point(time ~ record_duration, data = mariokart) %&gt;%
-  gf_labs(x = &quot;How long the record was held&quot;,
-          y = &quot;Time (in seconds)&quot;)</code></pre>
-<p><img src="/lectures/01-review_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div id="questions" class="section level2">
-<h2>Questions</h2>
-<ol style="list-style-type: decimal">
-<li>What is problematic about the analyses above? Why?</li>
-<li>What could be done to improve the analyses above?</li>
-</ol>
+<div id="chi-square-test-of-independence" class="section level2">
+<h2>Chi-square Test of Independence</h2>
+<p>The chi-square test of independence is similar to that of the goodness of fit test, except now instead of a single attribute of interest, there are now more than one categorical attribute to be explored. The test of independence explores if the observed attributes are independent from one another. That is, if the two categorical attributes are indpendent, this would assume that the two attributes are proportionally distributed across all categories. The form of the <span class="math inline">\(\chi^2\)</span> test is the same as the GoT test:</p>
+<p><span class="math display">\[
+\chi^2 = \sum \frac{( O - E ) ^ 2}{E}
+\]</span></p>
+<p>However, different from the goodness of fit test, the expected values are computed differently. The expected cell counts are now defined as:</p>
+<p><span class="math display">\[
+E = N * p_{r} * p_{c}
+\]</span></p>
+<p>where <span class="math inline">\(p_{r}\)</span> is the margin proportion for the rows, ignoring the columns (that is, marginal row proportion) and <span class="math inline">\(p_{c}\)</span> is the margin proportion for the columns, ignoring the rows. Finally, the test has degrees of freedom equal to <span class="math inline">\((r - 1)(c - 1)\)</span>.</p>
+<div id="data-example" class="section level3">
+<h3>Data Example</h3>
+<p>To explore this example, let’s see if the political party affiliation differs (or is associated with) across years that the GSS data were collected. The data are collected over 14 years, collected every other year.</p>
+<pre class="r"><code>count(gss_cat, year)</code></pre>
+<pre><code>## # A tibble: 8 × 2
+##    year     n
+##   &lt;int&gt; &lt;int&gt;
+## 1  2000  2817
+## 2  2002  2765
+## 3  2004  2812
+## 4  2006  4510
+## 5  2008  2023
+## 6  2010  2044
+## 7  2012  1974
+## 8  2014  2538</code></pre>
+<p>Suppose we were interested in exploring if there was a difference in political affiliation before and after 2010.</p>
+<pre class="r"><code>gss_cat &lt;- gss_cat %&gt;%
+  mutate(year_2 = ifelse(year &lt; 2010, &quot;2000 to 2008&quot;, &quot;2010 to 2014&quot;))
+
+addmargins(table(gss_cat$year_2, gss_cat$partyid_collapse))</code></pre>
+<pre><code>##               
+##                other   rep   ind   dem   Sum
+##   2000 to 2008   327  3906  5734  4960 14927
+##   2010 to 2014   221  1440  2675  2220  6556
+##   Sum            548  5346  8409  7180 21483</code></pre>
+<p>Giving this table, a single expected value could be computed manually.</p>
+<p><span class="math display">\[
+E_{1,1} = 21483 * (14927 / 21483) * (548 / 21483) = 380.766
+\]</span></p>
+<pre class="r"><code>21483 * (14927 / 21483) * (548 / 21483)</code></pre>
+<pre><code>## [1] 380.766</code></pre>
+<p>These could be computed for subsequent cell expected values, but these can be extracted directly when fitting the chi-square using the <code>chisq.test()</code> function.</p>
+<pre class="r"><code>xsq_ind &lt;- chisq.test(table(gss_cat$year_2, gss_cat$partyid_collapse))
+
+xsq_ind$expected</code></pre>
+<pre><code>##               
+##                  other      rep      ind      dem
+##   2000 to 2008 380.766 3714.553 5842.813 4988.868
+##   2010 to 2014 167.234 1631.447 2566.187 2191.132</code></pre>
+<pre class="r"><code>xsq_ind</code></pre>
+<pre><code>## 
+## 	Pearson&#39;s Chi-squared test
+## 
+## data:  table(gss_cat$year_2, gss_cat$partyid_collapse)
+## X-squared = 64.399, df = 3, p-value = 6.745e-14</code></pre>
+<pre class="r"><code>xsq_ind$residuals</code></pre>
+<pre><code>##               
+##                     other        rep        ind        dem
+##   2000 to 2008 -2.7553619  3.1411979 -1.4235351 -0.4087162
+##   2010 to 2014  4.1576263 -4.7398226  2.1480035  0.6167208</code></pre>
+</div>
+</div>
+<div id="effect-sizes-for-chi-square-tests" class="section level2">
+<h2>Effect Sizes for chi-square tests</h2>
+<p>Effect sizes for chi-square tests can be important, particularly with large sample sizes as the chi-square can be highly sensitive to large sample sizes. In particular, very small differences can be found with small samples sizes.</p>
+<p>For the goodness of fit test, <span class="math inline">\(Cohens\ W\)</span> can be estimated as an effect size measure. This is computed as:</p>
+<p><span class="math display">\[
+Cohens\ W = \sqrt{\frac{\chi^2}{N}}
+\]</span></p>
+<p>For the test of independence, Cramer’s V can be used.</p>
+<p><span class="math display">\[
+V = \sqrt{\frac{\chi^2}{N * df^{*}}}
+\]</span>
+where <span class="math inline">\(df^{*}\)</span> is the smallest of <span class="math inline">\(r - 1\)</span> or <span class="math inline">\(c - 1\)</span>.</p>
+<p>Cramers V ranges from 0 to 1, where values closer to 1 indicate more variation is explained (ie, the attributes are not independent).</p>
+<p>Cohen’s W is similar to Cramers V, but it is not limited to range between 0 and 1.</p>
+<pre class="r"><code>sqrt(693.4 / sum(chi_tab$n))</code></pre>
+<pre><code>## [1] 0.1796571</code></pre>
+<pre class="r"><code>sqrt(64.399 / 21483 * 1)</code></pre>
+<pre><code>## [1] 0.05475101</code></pre>
+<p>The DescTools package can be used for Cramer’s V as well.</p>
+<pre class="r"><code>#install.packages(&quot;DescTools&quot;)
+library(DescTools)
+
+CramerV(table(gss_cat$year_2, gss_cat$partyid_collapse))</code></pre>
+<pre><code>## [1] 0.05475087</code></pre>
 </div>
 </div>
 
@@ -1115,8 +1132,15 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&gt;%
   
   
   <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/15-non-linear/" rel="next">Non-Linear Trends</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/02-linear-regression/" rel="prev">Introduction to Linear Regression</a>
+    <a href="/lectures/02-linear-regression-inclass/" rel="prev">Linear Regression - In Class</a>
   </div>
   
 </div>
@@ -1126,7 +1150,7 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&gt;%
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Aug 22, 2023</p>
+          <p>Last updated on Nov 16, 2023</p>
 
           
 
