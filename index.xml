@@ -238,7 +238,7 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;%
 &lt;li&gt;RStudio Server, to access you can switch via the &amp;ldquo;New&amp;rdquo; button on Jupyter Notebooks.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/r/k5mWc5JbZg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Optionally, but strongly encouraged, complete the &lt;a href=&#34;https://forms.office.com/r/uad9zz6E5i&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;course survey&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -251,7 +251,7 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;%
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;This page is meant as a way to give some introduction and how to access the IDAS used for the course.&lt;/p&gt;
 &lt;h2 id=&#34;access&#34;&gt;Access&lt;/h2&gt;
-&lt;p&gt;The IDAS server can be accessed via the following link directly: &lt;a href=&#34;https://notebooks.hpc.uiowa.edu/fall2023-psqf-6243-0002/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Access IDAS&lt;/a&gt;. Upon going here, you will be prompted to log in with your HawkID. Finally, to use the IDAS, you will need to have DUO authentication activated.&lt;/p&gt;
+&lt;p&gt;The IDAS server can be accessed via the following link directly: &lt;a href=&#34;https://notebooks.hpc.uiowa.edu/spring2024-psqf-6243-0003/hub/home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Access IDAS&lt;/a&gt;. Upon going here, you will be prompted to log in with your HawkID. Finally, to use the IDAS, you will need to have DUO authentication activated.&lt;/p&gt;
 &lt;p&gt;Here is a good link if you have not set up DUO authentication before from ITS. It may take a few hours or up to a day to be granted access to the IDAS after setting up DUO authentication for the first time, &lt;a href=&#34;https://its.uiowa.edu/duo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DUO Authentication Docs&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;idas-specifics&#34;&gt;IDAS Specifics&lt;/h2&gt;
 &lt;p&gt;The IDAS by default will launch in Jupyter Lab mode and will sync all course materials that I have posted for the course. The syncing of remote materials will never overwrite anything that you have manually edited by you, the student. For this reason, if I notice a breaking change, I usually post a new updated file with a new name.&lt;/p&gt;
@@ -263,7 +263,7 @@ gf_histogram(~ time, data = mariokart, bins = 30) %&amp;gt;%
 &lt;/ul&gt;
 &lt;p&gt;This disconnects/stops the server instance so that the resources can be allocated to others wishing to use the service.&lt;/p&gt;
 &lt;h2 id=&#34;common-issues&#34;&gt;Common issues&lt;/h2&gt;
-&lt;p&gt;ITS has established a &lt;a href=&#34;https://wiki.uiowa.edu/display/hpcdocs/Troubleshooting&amp;#43;Common&amp;#43;Issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wiki page&lt;/a&gt; for common problems that occur and other documentation related to the IDAS.&lt;/p&gt;
+&lt;p&gt;ITS has established a &lt;a href=&#34;https://uiowa.atlassian.net/wiki/spaces/hpcdocs/pages/76514973/Troubleshooting&amp;#43;Common&amp;#43;Issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wiki page&lt;/a&gt; for common problems that occur and other documentation related to the IDAS.&lt;/p&gt;
 </description>
     </item>
     
