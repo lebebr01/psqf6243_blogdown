@@ -53,6 +53,12 @@
 &lt;p&gt;This disconnects/stops the server instance so that the resources can be allocated to others wishing to use the service.&lt;/p&gt;
 &lt;h2 id=&#34;common-issues&#34;&gt;Common issues&lt;/h2&gt;
 &lt;p&gt;ITS has established a &lt;a href=&#34;https://uiowa.atlassian.net/wiki/spaces/hpcdocs/pages/76514973/Troubleshooting&amp;#43;Common&amp;#43;Issues&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wiki page&lt;/a&gt; for common problems that occur and other documentation related to the IDAS.&lt;/p&gt;
+&lt;h2 id=&#34;markdown-cheat-sheet&#34;&gt;Markdown Cheat Sheet&lt;/h2&gt;
+&lt;p&gt;For those that are interested in working with the Jupyter Notebooks for the assignments. I include the following resources that may be helpful.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.markdownguide.org/cheat-sheet/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Markdown Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jupyter-notebook.readthedocs.io/en/stable/notebook.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter Notebooks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
