@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Lecture Notes">
+  <meta name="description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
 
   
 
@@ -258,8 +258,6 @@
   
 
   
-  <link rel="alternate" href="/lectures/index.xml" type="application/rss+xml" title="PSQF 6243">
-  
 
   
   <link rel="manifest" href="/index.webmanifest">
@@ -268,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
 
   
   
@@ -283,29 +281,34 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/">
-  <meta property="og:title" content="Lecture Notes | PSQF 6243">
-  <meta property="og:description" content="Lecture Notes"><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/">
+  <meta property="og:title" content="Least Squares Simulation | PSQF 6243">
+  <meta property="og:description" content="Example to show least squares minimization This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2022-08-22T00:00:00&#43;00:00">
+    
+      <meta property="article:published_time" content="2024-02-08T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2024-02-08T00:00:00&#43;00:00">
   
 
   
 
 
 
-
   
 
 
   
 
 
+  
 
 
 
-  <title>Lecture Notes | PSQF 6243</title>
+
+
+  <title>Least Squares Simulation | PSQF 6243</title>
 
 </head>
 
@@ -763,7 +766,7 @@
 
     
       <ul class="nav docs-sidenav">
-        <li class="active"><a href="/lectures/">Lecture Notes</a></li>
+        <li class=""><a href="/lectures/">Lecture Notes</a></li>
     
       
 
@@ -788,7 +791,7 @@
 
 
 
-  <li class=""><a href="/lectures/04-least-squares-simulation/">Least Squares Simulation</a></li>
+  <li class="active"><a href="/lectures/04-least-squares-simulation/">Least Squares Simulation</a></li>
 
       
     
@@ -809,7 +812,7 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      <nav id="TableOfContents"></nav>
+      
 
       
     </div>
@@ -822,21 +825,178 @@
         <div class="docs-article-container">
           
 
-          <h1>Lecture Notes</h1>
+          <h1>Least Squares Simulation</h1>
 
           <div class="article-style">
-            <p>A list of the notes used for the semester. These are updated as we go. I do my best to ge them to you before class.</p>
-<ol>
-<li><a href="01-review/">Review</a></li>
-<li><a href="02-linear-regression/">Linear Regression Intro</a>
-<ul>
-<li><a href="02-linear-regression-class/">Class Notes</a></li>
-</ul>
-</li>
-<li><a href="02a-in-class-activity/">Linear Regression - In Class</a></li>
-<li><a href="03-regression-estimates/">Regression Estimates</a></li>
-<li><a href="04-least-squares-simulation/">Least Squares Simulation</a></li>
-</ol>
+            
+
+<div id="TOC">
+
+</div>
+
+<div id="example-to-show-least-squares-minimization" class="section level2">
+<h2>Example to show least squares minimization</h2>
+<p>This little example is meant as a way to show the least square really minimizes the criterion, $ ( Y - )^2 $.</p>
+<p>In this example, we will generate some data so that we know what the truth is. Then, upon data generation, we will compute a bunch of different values for the linear slope and y-intercept. For each combination of the y-intercept and slope, I will compute the sum of squares error depicted above.</p>
+<div id="simulate-some-data" class="section level3">
+<h3>Simulate some data</h3>
+<p>The following example simulates data based on the following linear regression formula:</p>
+<p><span class="math display">\[
+Y = 5 + 0.5 X + \epsilon
+\]</span></p>
+<p>More explicitly, the simulation allows us to specify what the intercept and slope is in the population. These are specified below in the <code>reg_weights</code> simulation argument.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(simglm)
+
+theme_set(theme_bw(base_size = 18))
+
+set.seed(2023)
+
+sim_arguments &lt;- list(
+    formula = y ~ x,
+    fixed = list(x = list(var_type = &#39;continuous&#39;, mean = 100, sd = 20)),
+    error = list(variance = 100),
+    sample_size = 1000,
+    reg_weights = c(5, .5)
+)
+
+sim_data &lt;- simulate_fixed(data = NULL, sim_arguments) |&gt;
+  simulate_error(sim_arguments) |&gt;
+  generate_response(sim_arguments)
+
+head(sim_data)</code></pre>
+<pre><code>##   X.Intercept.         x level1_id      error fixed_outcome random_effects
+## 1            1  98.32431         1 -2.6862147      54.16216              0
+## 2            1  80.34113         2 -1.1886232      45.17056              0
+## 3            1  62.49865         3  0.6545456      36.24933              0
+## 4            1  96.27711         4 12.9091527      53.13855              0
+## 5            1  87.33029         5 -4.5144816      48.66514              0
+## 6            1 121.81595         6 19.5705749      65.90797              0
+##          y
+## 1 51.47594
+## 2 43.98194
+## 3 36.90387
+## 4 66.04771
+## 5 44.15066
+## 6 85.47855</code></pre>
+</div>
+<div id="visualize-the-simulated-data" class="section level3">
+<h3>Visualize the Simulated Data</h3>
+<p>The following code visualizes the simulated data from above. What would you estimate the correlation to be?</p>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggstance&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh</code></pre>
+<pre><code>## Loading required package: scales</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## Loading required package: ggridges</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>gf_point(y ~ x, data = sim_data, size = 4) |&gt;
+  gf_smooth(method = &#39;lm&#39;)</code></pre>
+<p><img src="/lectures/04-least-squares-simulation_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="estimate-regression-coefficients" class="section level3">
+<h3>Estimate Regression Coefficients</h3>
+<p>Even though we know what truth is, there is error involved in the simulation process, therefore, the population values specified above will not equal the exact regression coefficients estimated. Below, we estimate what those regression coefficients are.</p>
+<pre class="r"><code>sim_lm &lt;- lm (y ~ x, data = sim_data)
+coef(sim_lm)</code></pre>
+<pre><code>## (Intercept)           x 
+##   5.1260093   0.5002076</code></pre>
+</div>
+<div id="create-different-combinations-of-intercept-and-slope-coefficients" class="section level3">
+<h3>Create different combinations of intercept and slope coefficients</h3>
+<p>The following code generates a sequence of intercept and corresponding slope conditions. We will use these different values to estimate the sum of squares error shown at the top of the notes for each of these intercept and slope values to show that the regression estimates are optimal to minimize the sum of square error.</p>
+<pre class="r"><code>y_intercept &lt;- seq(0, 15, by = .25)
+slope &lt;- seq(0, 1.5, by = .01)
+
+conditions &lt;- rbind(expand.grid(y_intercept = y_intercept, 
+                          slope = slope),
+                          coef(sim_lm))
+
+tail(conditions)</code></pre>
+<pre><code>##      y_intercept     slope
+## 9207   14.000000 1.5000000
+## 9208   14.250000 1.5000000
+## 9209   14.500000 1.5000000
+## 9210   14.750000 1.5000000
+## 9211   15.000000 1.5000000
+## 9212    5.126009 0.5002076</code></pre>
+<pre class="r"><code>dim(conditions)</code></pre>
+<pre><code>## [1] 9212    2</code></pre>
+</div>
+<div id="showing-two-combinations" class="section level3">
+<h3>Showing Two Combinations</h3>
+<p>Here we visualize two possible slope conditions. Which one seems better for the data?</p>
+<pre class="r"><code>gf_point(y ~ x, data = sim_data, size = 4) |&gt;
+  gf_smooth(method = &#39;lm&#39;) |&gt;
+  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 1), linetype = 2, size = 2) |&gt;
+  gf_abline(slope = ~slope, intercept = ~y_intercept, data = slice(conditions, 855), linetype = 2, color = &#39;lightgreen&#39;, size = 2) |&gt;
+  gf_refine(coord_cartesian(xlim = c(0, 160), ylim = c(0, 120)))</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="/lectures/04-least-squares-simulation_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="compute-sum-of-squares-error" class="section level3">
+<h3>Compute Sum of Squares Error</h3>
+<p>The following code creates a new function that computes the sum of square error. The function takes two arguments, the combination of intercept and slope values and the simulated data. The output is the sigma or average error from the regression line. The first code chunk below performs the computation for a single condition. The second code chunk does it for all of the conditions.</p>
+<pre class="r"><code>sum_square_error &lt;- function(conditions, sim_data) {
+    fitted &lt;- conditions[[&#39;y_intercept&#39;]] + conditions[[&#39;slope&#39;]] * sim_data[[&#39;x&#39;]]
+
+    deviation &lt;- sim_data[[&#39;y&#39;]] - fitted
+
+    sqrt((sum(deviation^2) / (nrow(sim_data) - 2)))
+}
+
+sum_square_error(conditions[1892, ], sim_data)</code></pre>
+<pre><code>## [1] 26.25721</code></pre>
+<pre class="r"><code>summary(sim_lm)$sigma</code></pre>
+<pre><code>## [1] 9.738423</code></pre>
+<pre class="r"><code>library(future)
+
+plan(multicore)</code></pre>
+<pre><code>## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing (&#39;multicore&#39;) is not supported when running R from RStudio because
+## it is considered unstable. For more details, how to control forked processing
+## or not, and how to silence this warning in future R sessions, see
+## ?parallelly::supportsMulticore</code></pre>
+<pre class="r"><code>conditions$sse &lt;- unlist(lapply(1:nrow(conditions), function(xx) sum_square_error(conditions[xx, ], sim_data)))
+
+head(conditions)</code></pre>
+<pre><code>##   y_intercept slope      sse
+## 1        0.00     0 56.72588
+## 2        0.25     0 56.48344
+## 3        0.50     0 56.24108
+## 4        0.75     0 55.99878
+## 5        1.00     0 55.75655
+## 6        1.25     0 55.51440</code></pre>
+</div>
+</div>
 
           </div>
 
@@ -851,6 +1011,13 @@
 <div class="post-nav">
   
   
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/lectures/03-regression-estimates/" rel="next">Regression Estimates</a>
+  </div>
+  
+  
 </div>
 
           </div>
@@ -858,7 +1025,7 @@
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Aug 22, 2022</p>
+          <p>Last updated on Feb 8, 2024</p>
 
           
 
