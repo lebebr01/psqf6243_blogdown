@@ -1613,6 +1613,77 @@ X_Y&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>Week 5</title>
+      <link>https://psqf6243.brandonlebeau.org/content/05-week5/</link>
+      <pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/05-week5/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Digging deeper into linear regression. Time will be spent to show/prove via simulation the least square criterion that is minimized by the regression estimates. The foundation for inference using classical statistical methods will be explored.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Understand the least squares minimization for regression.&lt;/li&gt;
+&lt;li&gt;Explore inference for regression parameters.&lt;/li&gt;
+&lt;li&gt;Define what a standard error is.&lt;/li&gt;
+&lt;li&gt;Define null hypothesis significance testing (NHST)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read 24.4 of &lt;a href=&#34;https://openintro-ims.netlify.app/inf-model-slr.html#mathslope&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz1/&#34;&gt;Quiz 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz2/&#34;&gt;Quiz 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz3/&#34;&gt;Quiz 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Practice Problem 1 - Coming soon.&lt;/li&gt;
+&lt;li&gt;Practice Problem 2 - coming soon.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Week 6</title>
+      <link>https://psqf6243.brandonlebeau.org/content/06-week6/</link>
+      <pubDate>Thu, 21 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/content/06-week6/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Digging deeper into linear regression inference using classical procedures. Further definitions of confidence intervals, sampling distribution, and interpretations of p-values. Regression conditions for valid inferences. Topics will explore evaluation of residuals for checking of conditions.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Construct a confidence interval&lt;/li&gt;
+&lt;li&gt;Define the sampling distribution&lt;/li&gt;
+&lt;li&gt;Perform significance testing&lt;/li&gt;
+&lt;li&gt;Interpret p-value as a continuous probability&lt;/li&gt;
+&lt;li&gt;Define what a residual is&lt;/li&gt;
+&lt;li&gt;Define common statistical conditions for linear regression&lt;/li&gt;
+&lt;li&gt;Interpret residual plots&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;activities&#34;&gt;Activities&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Chapter 2 of &lt;a href=&#34;https://dx-doi-org.proxy.lib.uiowa.edu/10.4135/9781483396774.n2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Applied Regression: An Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Read Chapter 3, section 1 of &lt;a href=&#34;https://web.stanford.edu/~hastie/ISLR2/ISLRv2_website.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Statistical Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Engage with &lt;a href=&#34;../../lectures/&#34;&gt;course notes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read 24.4 of &lt;a href=&#34;https://openintro-ims.netlify.app/inf-model-slr.html#mathslope&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Introduction to Modern Statistics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Section 11.1 of Regression and Other Stories &lt;a href=&#34;https://users.aalto.fi/~ave/ROS.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Regression and Other Stories&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Optional, Read &lt;a href=&#34;https://doi.org/10.1080/00031305.2016.1154108&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ASA statement on p-values&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;assignments&#34;&gt;Assignments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz1/&#34;&gt;Quiz 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz2/&#34;&gt;Quiz 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../assignments/quizzes/quiz3/&#34;&gt;Quiz 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Quiz 4 - coming soon.&lt;/li&gt;
+&lt;li&gt;Practice Problem 1 - Coming soon.&lt;/li&gt;
+&lt;li&gt;Practice Problem 2 - coming soon.&lt;/li&gt;
+&lt;li&gt;Practice Problem 3 - coming soon.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Least Squares Simulation</title>
       <link>https://psqf6243.brandonlebeau.org/lectures/04-least-squares-simulation/</link>
       <pubDate>Thu, 08 Feb 2024 00:00:00 +0000</pubDate>
@@ -1786,6 +1857,36 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
 ## 6        1.25     0 55.51440&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quiz 1</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz1/</link>
+      <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz1/</guid>
+      <description>&lt;p&gt;Quiz 1 can be taken on ICON, due February 12th, 2023. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/01-week1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/227131/quizzes/420389&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 1 Link&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quiz 2</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz2/</link>
+      <pubDate>Thu, 08 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz2/</guid>
+      <description>&lt;p&gt;Quiz 2 can be taken on ICON, due February 19th, 2022. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/02-week2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 2&lt;/a&gt; or &lt;a href=&#34;https://psqf6243.brandonlebeau.org/lectures/02-linear-regression/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;section 2 of the notes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/227131/quizzes/420403&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 2 Link&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quiz 3</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz3/</link>
+      <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz3/</guid>
+      <description>&lt;p&gt;Quiz 3 can be taken on ICON, due October 2nd, 2023. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/03-week3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/227131/quizzes/420405&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 3 Link&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
