@@ -1996,7 +1996,7 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Explore the distribution of the &lt;code&gt;totlngth&lt;/code&gt; attribute. Summarize key elements of the distribution, for instance discussing elements related to &lt;strong&gt;shape&lt;/strong&gt;, &lt;strong&gt;center&lt;/strong&gt;, &lt;strong&gt;variation&lt;/strong&gt;, and/or &lt;strong&gt;extreme values&lt;/strong&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Explore the bivariate association between tail length (&lt;code&gt;taill&lt;/code&gt; attribute) and the total length from question 1 visually. That is, estimate what is the bivariate association between the attributes you chose. In a few sentences, summarize key elements of the associations, paying attention to the &lt;strong&gt;strength&lt;/strong&gt; and &lt;strong&gt;direction&lt;/strong&gt; of association.&lt;/p&gt;
+&lt;p&gt;Explore the bivariate association between tail length (&lt;code&gt;taill&lt;/code&gt; attribute) and the total length from question 1 visually. From the figure, estimate what is the bivariate association. Does the association appear to be linear?&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Compute the bivariate association (i.e., the correlation) between tail length and total length. What is the best interpretation for the correlation?&lt;/p&gt;
