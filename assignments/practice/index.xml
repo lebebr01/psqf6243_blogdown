@@ -220,7 +220,7 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h2&gt;
-&lt;p&gt;Does the tail length (&lt;code&gt;taill&lt;/code&gt; attribute) explain variation in the total length of the possum?&lt;/p&gt;
+&lt;p&gt;Does the tail length (&lt;code&gt;taill&lt;/code&gt; attribute) explain variation in the total length (&lt;code&gt;totlngth&lt;/code&gt; attribute) of the possum?&lt;/p&gt;
 &lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
