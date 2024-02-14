@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 08 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -1887,6 +1887,238 @@ head(conditions)&lt;/code&gt;&lt;/pre&gt;
       <guid>https://psqf6243.brandonlebeau.org/assignments/quizzes/quiz3/</guid>
       <description>&lt;p&gt;Quiz 3 can be taken on ICON, due October 2nd, 2023. The quiz covers content from &lt;a href=&#34;https://psqf6243.brandonlebeau.org/content/03-week3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Week 3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://uiowa.instructure.com/courses/227131/quizzes/420405&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Quiz 3 Link&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Practice Problem 1</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/practice/practice1/</link>
+      <pubDate>Wed, 14 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/practice/practice1/</guid>
+      <description>&lt;p&gt;The following activity is aimed to give you some practice with exploring data on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. &lt;em&gt;Please make sure to add everyone&amp;rsquo;s name to the submission&lt;/em&gt;, this can be a comment on ICON or on the document itself.&lt;/p&gt;
+&lt;h2 id=&#34;instructions&#34;&gt;Instructions&lt;/h2&gt;
+&lt;h3 id=&#34;what-to-turn-in&#34;&gt;What to turn in&lt;/h3&gt;
+&lt;p&gt;Please turn in a document that contains the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;answers to the questions below&lt;/li&gt;
+&lt;li&gt;include any relevant statistics/figures that support your answer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, upload the final document to &lt;a href=&#34;https://uiowa.instructure.com/courses/227131/quizzes/427360&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICON&lt;/a&gt; and complete the graded survey.&lt;/p&gt;
+&lt;h3 id=&#34;due-date&#34;&gt;Due Date&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Due around&lt;/em&gt; &lt;strong&gt;February 26th, 2023&lt;/strong&gt;. No penalty for late submissions as long as it is submitted by May 9th.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;The data for this activity comes from the &lt;a href=&#34;https://www.kaggle.com/datasets/abrambeyer/openintro-possum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kaggle&lt;/a&gt;. The data contain 104 rows and 14 columns about possums collected from Australia. A data description for each column in the data is shown below.&lt;/p&gt;
+&lt;p&gt;The data can be obtained in &lt;a href=&#34;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/possum.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;csv format&lt;/a&gt;. A short description for each attribute is as follows. These data are also found within the &amp;ldquo;data&amp;rdquo; folder inside the IDAS.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;variable&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;class&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;case&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Observation number.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;site&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;site.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pop&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Population, either Vic (Victoria) or other (New South Wales or Queensland)..&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;sex&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sex of possum, either m (male) or f (female)..&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;age&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Age.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hdlngth&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Head length, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;skullw&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Skull width, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;totlngth&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Total length, in cm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;taill&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Tail length, in cm&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;footlgth&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;foot length, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;earconch&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ear conch length, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;eye&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;distance from medial canthus to lateral canthus of right eye, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;chest&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;chest girth, in cm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;belly&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;belly girth, in cm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Explore the distribution of the &lt;code&gt;totlngth&lt;/code&gt; attribute. Summarize key elements of the distribution, for instance discussing elements related to &lt;strong&gt;shape&lt;/strong&gt;, &lt;strong&gt;center&lt;/strong&gt;, &lt;strong&gt;variation&lt;/strong&gt;, and/or &lt;strong&gt;extreme values&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explore the bivariate association between tail length (&lt;code&gt;taill&lt;/code&gt; attribute) and the total length from question 1 visually. That is, estimate what is the bivariate association between the attributes you chose. In a few sentences, summarize key elements of the associations, paying attention to the &lt;strong&gt;strength&lt;/strong&gt; and &lt;strong&gt;direction&lt;/strong&gt; of association.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Compute the bivariate association (i.e., the correlation) between tail length and total length. What is the best interpretation for the correlation?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Activity 2</title>
+      <link>https://psqf6243.brandonlebeau.org/assignments/practice/practice2/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/assignments/practice/practice2/</guid>
+      <description>&lt;p&gt;The following activity is aimed to give you some practice with exploring data and running a linear regression on your own using statistical software. You are welcome to use any statistical software you wish and you are also free to work in groups of up to 3 for this assignment. If you work in groups, please submit one completed activity per group on ICON. &lt;em&gt;Please make sure to add everyone&amp;rsquo;s name to the submission&lt;/em&gt;, this can be a comment on ICON or on the document itself.&lt;/p&gt;
+&lt;h2 id=&#34;instructions&#34;&gt;Instructions&lt;/h2&gt;
+&lt;h3 id=&#34;what-to-turn-in&#34;&gt;What to turn in&lt;/h3&gt;
+&lt;p&gt;Please turn in a document that contains the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;answers to the questions below&lt;/li&gt;
+&lt;li&gt;include any relevant statistics/figures that support your answer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, upload the final document to &lt;a href=&#34;https://uiowa.instructure.com/courses/227131/quizzes/427361&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ICON&lt;/a&gt; and complete the graded survey.&lt;/p&gt;
+&lt;h3 id=&#34;due-date&#34;&gt;Due Date&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Due around&lt;/em&gt; &lt;strong&gt;March 4th, 2023&lt;/strong&gt;. No penalty for late submissions as long as it is submitted by May 9th.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;The data for this activity comes from the &lt;a href=&#34;https://www.kaggle.com/datasets/abrambeyer/openintro-possum&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Kaggle&lt;/a&gt;. The data contain 104 rows and 14 columns about possums collected from Australia. A data description for each column in the data is shown below.&lt;/p&gt;
+&lt;p&gt;The data can be obtained in &lt;a href=&#34;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/possum.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;csv format&lt;/a&gt;. A short description for each attribute is as follows. These data are also found within the &amp;ldquo;data&amp;rdquo; folder inside the IDAS.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;variable&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;class&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;case&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Observation number.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;site&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;site.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pop&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Population, either Vic (Victoria) or other (New South Wales or Queensland)..&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;sex&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;character&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sex of possum, either m (male) or f (female)..&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;age&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Age.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hdlngth&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Head length, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;skullw&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Skull width, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;totlngth&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Total length, in cm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;taill&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Tail length, in cm&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;footlgth&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;foot length, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;earconch&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ear conch length, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;eye&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;distance from medial canthus to lateral canthus of right eye, in mm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;chest&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integer&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;chest girth, in cm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;belly&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;double&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;belly girth, in cm.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;guiding-question&#34;&gt;Guiding Question&lt;/h2&gt;
+&lt;p&gt;Does the tail length (&lt;code&gt;taill&lt;/code&gt; attribute) explain variation in the total length of the possum?&lt;/p&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Fit a linear regression to answer the research question highlighted above. Interpret the intercept and slope of the linear regression. That is, what do these terms mean?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What are the r-squared and sigma estimates from the linear regression? Interpret these two values in the context of the problem. That is, what do these two terms mean in the context of the data and this problem?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, in a couple sentences, provide a summary of the overall model. Does the model appear to be useful to predict or explain variation in the total length of the possum with the tail length? &lt;em&gt;Use statistics from the analysis steps above to support your answer.&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
