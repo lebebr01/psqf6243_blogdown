@@ -37,7 +37,7 @@
   <meta name="description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates-class/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates-class/">
 
   
   
@@ -281,8 +281,8 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates/">
-  <meta property="og:title" content="Regression Estimates | PSQF 6243">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates-class/">
+  <meta property="og:title" content="Regression Estimates - In class | PSQF 6243">
   <meta property="og:description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
@@ -308,7 +308,7 @@
 
 
 
-  <title>Regression Estimates | PSQF 6243</title>
+  <title>Regression Estimates - In class | PSQF 6243</title>
 
 </head>
 
@@ -787,11 +787,11 @@
 
 
 
-  <li class="active"><a href="/lectures/03-regression-estimates/">Regression Estimates</a></li>
+  <li class=""><a href="/lectures/03-regression-estimates/">Regression Estimates</a></li>
 
 
 
-  <li class=""><a href="/lectures/03-regression-estimates-class/">Regression Estimates - In class</a></li>
+  <li class="active"><a href="/lectures/03-regression-estimates-class/">Regression Estimates - In class</a></li>
 
 
 
@@ -837,7 +837,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Regression Estimates</h1>
+          <h1>Regression Estimates - In class</h1>
 
           <div class="article-style">
             
@@ -1043,13 +1043,15 @@ airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr0
 ## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;</code></pre>
 <pre class="r"><code>dim(airquality)</code></pre>
 <pre><code>## [1] 4821   13</code></pre>
+<pre class="r"><code>gf_density(~ daily_aqi, data = airquality)</code></pre>
+<p><img src="/lectures/03-regression-estimates-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>gf_point(daily_aqi ~ avg_wind, data = airquality, size = 4, alpha = .15) %&gt;%
   gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
           y = &quot;Daily Air Quality&quot;) %&gt;%
   gf_smooth() %&gt;%
   gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;, linetype = 2)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
-<p><img src="/lectures/03-regression-estimates_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/lectures/03-regression-estimates-class_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>cor(daily_aqi ~ avg_wind, data = airquality) |&gt; round(3)</code></pre>
 <pre><code>## [1] -0.292</code></pre>
 <pre class="r"><code>air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
@@ -1086,7 +1088,7 @@ gf_point(daily_aqi ~ avg_wind_mc, data = airquality, size = 4, alpha = .15) %&gt
   gf_smooth() %&gt;%
   gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;, linetype = 2)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
-<p><img src="/lectures/03-regression-estimates_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/lectures/03-regression-estimates-class_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>air_lm_mc &lt;- lm(daily_aqi ~ avg_wind_mc, data = airquality)
 coef(air_lm_mc)</code></pre>
 <pre><code>## (Intercept) avg_wind_mc 
@@ -1248,14 +1250,14 @@ X_Y</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/02a-in-class-activity/" rel="next">Linear Regression - Activity</a>
+    <a href="/lectures/03-regression-estimates/" rel="next">Regression Estimates</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/03-regression-estimates-class/" rel="prev">Regression Estimates - In class</a>
+    <a href="/lectures/04-least-squares-simulation/" rel="prev">Least Squares Simulation</a>
   </div>
   
 </div>
