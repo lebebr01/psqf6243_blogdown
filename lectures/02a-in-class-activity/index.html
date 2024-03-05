@@ -805,6 +805,14 @@
 
   <li class=""><a href="/lectures/06-regression-conditions/">Linear Regression Data Conditions</a></li>
 
+
+
+  <li class=""><a href="/lectures/07-bootstrap/">Bootstrap</a></li>
+
+
+
+  <li class=""><a href="/lectures/08-multiple-regression/">Multiple Regression</a></li>
+
       
     
 
@@ -859,27 +867,21 @@
 <li>Given what you find in #1, how do you decide which attribute should be an outcome (Y) vs a predictor (X)?</li>
 </ol>
 <pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.3.2</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.3.2</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <pre class="r"><code>library(palmerpenguins)
 library(ggformula)</code></pre>
-<pre><code>## Loading required package: ggstance
-## 
-## Attaching package: &#39;ggstance&#39;
-## 
-## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+<pre><code>## Loading required package: scales
 ## 
 ## Attaching package: &#39;scales&#39;
 ## 
@@ -891,12 +893,14 @@ library(ggformula)</code></pre>
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges</code></pre>
+<pre><code>## Warning: package &#39;ggridges&#39; was built under R version 4.3.2</code></pre>
+<pre><code>## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
 ## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
 <pre class="r"><code>library(mosaic)</code></pre>
+<pre><code>## Warning: package &#39;mosaic&#39; was built under R version 4.3.2</code></pre>
 <pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -1009,16 +1013,20 @@ visualize_relationship &lt;- function(outcome, predictor, data = penguins,
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.</code></pre>
-<pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
 <p><img src="/lectures/02a-in-class-activity_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>visualize_relationship(outcome = &#39;flipper_length_mm&#39;,
           predictor = &#39;body_mass_g&#39;,
           data = penguins,
           add_regression_line = TRUE,
           add_smoother_line = FALSE)</code></pre>
-<pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
 <p><img src="/lectures/02a-in-class-activity_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="linear-regression-fitting" class="section level2">

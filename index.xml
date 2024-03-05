@@ -5,7 +5,7 @@
     <link>https://psqf6243.brandonlebeau.org/</link>
       <atom:link href="https://psqf6243.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
     <description>PSQF 6243</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 21 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg</url>
       <title>PSQF 6243</title>
@@ -96,26 +96,20 @@
 &lt;/table&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load some libraries
 library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
-## 
-## Attaching package: &amp;#39;ggstance&amp;#39;
-## 
-## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
 ## 
 ## Attaching package: &amp;#39;scales&amp;#39;
 ## 
@@ -127,13 +121,15 @@ library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
 ## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(lubridate)
 library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -332,17 +328,20 @@ Y = \beta_{0} + \beta_{1} X + \epsilon
 &lt;h2&gt;Specific example&lt;/h2&gt;
 &lt;p&gt;The data used for this section of the course is from the 2019 WNBA season. These data are part of the &lt;a href=&#34;https://www.bayesrulesbook.com/&#34;&gt;&lt;em&gt;bayesrules&lt;/em&gt; package/book&lt;/a&gt;. The data contain 146 rows, one for each WNBA player sampled, and 32 attributes for that player. The R packages are loaded and the first few rows of the data are shown below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -591,17 +590,20 @@ Y = \beta_{0} + \beta_{1} X + \epsilon
 &lt;h2&gt;Specific example&lt;/h2&gt;
 &lt;p&gt;The data used for this section of the course is from the 2019 WNBA season. These data are part of the &lt;a href=&#34;https://www.bayesrulesbook.com/&#34;&gt;&lt;em&gt;bayesrules&lt;/em&gt; package/book&lt;/a&gt;. The data contain 146 rows, one for each WNBA player sampled, and 32 attributes for that player. The R packages are loaded and the first few rows of the data are shown below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -964,27 +966,21 @@ sigma_hat_square&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Given what you find in #1, how do you decide which attribute should be an outcome (Y) vs a predictor (X)?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(palmerpenguins)
 library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
-## 
-## Attaching package: &amp;#39;ggstance&amp;#39;
-## 
-## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
 ## 
 ## Attaching package: &amp;#39;scales&amp;#39;
 ## 
@@ -996,12 +992,14 @@ library(ggformula)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
 ## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -1114,16 +1112,20 @@ visualize_relationship &amp;lt;- function(outcome, predictor, data = penguins,
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02a-in-class-activity_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;visualize_relationship(outcome = &amp;#39;flipper_length_mm&amp;#39;,
           predictor = &amp;#39;body_mass_g&amp;#39;,
           data = penguins,
           add_regression_line = TRUE,
           add_smoother_line = FALSE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing missing values (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/02a-in-class-activity_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;linear-regression-fitting&#34; class=&#34;section level2&#34;&gt;
@@ -1305,26 +1307,20 @@ flipper\_length = \beta_{0} + \beta_{1} body\_mass
 &lt;h2&gt;Bivariate Figure&lt;/h2&gt;
 &lt;p&gt;Note, below I do a bit of post-processing to combine data from different POC values within a single CBSA.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
-## 
-## Attaching package: &amp;#39;ggstance&amp;#39;
-## 
-## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
 ## 
 ## Attaching package: &amp;#39;scales&amp;#39;
 ## 
@@ -1336,12 +1332,14 @@ flipper\_length = \beta_{0} + \beta_{1} body\_mass
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
 ## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -1736,26 +1734,20 @@ X_Y&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Bivariate Figure&lt;/h2&gt;
 &lt;p&gt;Note, below I do a bit of post-processing to combine data from different POC values within a single CBSA.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
-## 
-## Attaching package: &amp;#39;ggstance&amp;#39;
-## 
-## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
 ## 
 ## Attaching package: &amp;#39;scales&amp;#39;
 ## 
@@ -1767,12 +1759,14 @@ X_Y&lt;/code&gt;&lt;/pre&gt;
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
 ## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -2107,12 +2101,14 @@ Y = 5 + 0.5 X + \epsilon
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;More explicitly, the simulation allows us to specify what the intercept and slope is in the population. These are specified below in the &lt;code&gt;reg_weights&lt;/code&gt; simulation argument.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -2155,12 +2151,6 @@ head(sim_data)&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Visualize the Simulated Data&lt;/h3&gt;
 &lt;p&gt;The following code visualizes the simulated data from above. What would you estimate the correlation to be?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;ggstance&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: scales&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## Attaching package: &amp;#39;scales&amp;#39;&lt;/code&gt;&lt;/pre&gt;
@@ -2171,6 +2161,7 @@ head(sim_data)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ##     col_factor&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
@@ -2393,26 +2384,20 @@ SE( ) = &lt;/p&gt;
 &lt;h4&gt;Guiding Question&lt;/h4&gt;
 &lt;p&gt;How is average daily wind speed related to the daily air quality index?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
-## 
-## Attaching package: &amp;#39;ggstance&amp;#39;
-## 
-## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
 ## 
 ## Attaching package: &amp;#39;scales&amp;#39;
 ## 
@@ -2424,12 +2409,14 @@ SE( ) = &lt;/p&gt;
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
 ## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -2733,26 +2720,20 @@ Y - \hat{Y}
 &lt;h4&gt;Guiding Question&lt;/h4&gt;
 &lt;p&gt;How is average daily wind speed related to the daily air quality index?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
-## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: ggstance
-## 
-## Attaching package: &amp;#39;ggstance&amp;#39;
-## 
-## The following objects are masked from &amp;#39;package:ggplot2&amp;#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh
-## 
-## Loading required package: scales
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
 ## 
 ## Attaching package: &amp;#39;scales&amp;#39;
 ## 
@@ -2764,12 +2745,14 @@ Y - \hat{Y}
 ## 
 ##     col_factor
 ## 
-## Loading required package: ggridges
-## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
 ## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mosaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mosaic&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;mosaic&amp;#39;:
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -3117,6 +3100,476 @@ head(airquality)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Transform the data.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bootstrap</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap/</link>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/07-bootstrap/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;bootstrap&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bootstrap&lt;/h1&gt;
+&lt;p&gt;The bootstrap is an alternative to the NHST framework already discussed. The primary benefit of the bootstrap is that it comes with fewer assumptions then the NHST framework. The only real assumption when doing a bootstrap approach is that the sample is obtained randomly from the population, an assumption already made in the NHST framework. The primary drawback of the bootstrap approach is that it is computationally expensive, therefore, it can take time to perform the procedure.&lt;/p&gt;
+&lt;div id=&#34;bootstrapping-steps&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bootstrapping Steps&lt;/h2&gt;
+&lt;p&gt;The following are the steps when performing a bootstrap.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Treat the sample data as the population.&lt;/li&gt;
+&lt;li&gt;Resample, with replacement, from the sample data, ensuring the new sample is the same size as the original.&lt;/li&gt;
+&lt;li&gt;Estimate the model using the resampled data from step 2.&lt;/li&gt;
+&lt;li&gt;Repeat steps 2 and 3 many many times (eg, 10,000 or more).&lt;/li&gt;
+&lt;li&gt;Visualize distribution of effect of interest&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resampling-with-replacement&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resampling with replacement&lt;/h2&gt;
+&lt;p&gt;What is meant by sampling with replacement? Let’s do an example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fruit &amp;lt;- data.frame(name = c(&amp;#39;watermelon&amp;#39;, &amp;#39;apple&amp;#39;, &amp;#39;orange&amp;#39;, &amp;#39;kumquat&amp;#39;, &amp;#39;grapes&amp;#39;, &amp;#39;canteloupe&amp;#39;, &amp;#39;kiwi&amp;#39;, &amp;#39;banana&amp;#39;)) |&amp;gt;
+    mutate(obs_num = 1:n())
+
+fruit&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 watermelon       1
+## 2      apple       2
+## 3     orange       3
+## 4    kumquat       4
+## 5     grapes       5
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1 canteloupe       6
+## 2     orange       3
+## 3      apple       2
+## 4       kiwi       7
+## 5 watermelon       1
+## 6     banana       8
+## 7    kumquat       4
+## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         name obs_num
+## 1     banana       8
+## 2      apple       2
+## 3     banana       8
+## 4     orange       3
+## 5       kiwi       7
+## 6 canteloupe       6
+## 7       kiwi       7
+## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;More practical example&lt;/h2&gt;
+&lt;p&gt;Let’s load some data to do a more practical example. The following data come from a &lt;a href=&#34;https://nces.ed.gov/timss/&#34;&gt;TIMSS&lt;/a&gt; on science achievement. The data provided is a subset of the available data and is not intended to be representative. Below is a short description of the data. Please don’t hesitate to send any data related questions, happy to provide additional help on interpreting the data appropriately.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IDSTUD&lt;/strong&gt;: A unique student ID&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHM&lt;/strong&gt;: The birth month of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITBIRTHY&lt;/strong&gt;: The birth year of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ITSEX&lt;/strong&gt;: The birth sex of the student&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASDAGE&lt;/strong&gt;: The age of the student (at time of test)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSSCI01&lt;/strong&gt;: Overall science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSEAR01&lt;/strong&gt;: Earth science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSLIF01&lt;/strong&gt;: Life science scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSPHY01&lt;/strong&gt;: Physics scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSKNO01&lt;/strong&gt;: Science knowing scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSAPP01&lt;/strong&gt;: Science applying scale score&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ASSREA01&lt;/strong&gt;: Science reasoning scale score&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+timss &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/timss_grade4_science.csv&amp;#39;) |&amp;gt; 
+   filter(ASDAGE &amp;lt; 15)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 10029 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## dbl (12): IDSTUD, ITBIRTHM, ITBIRTHY, ITSEX, ASDAGE, ASSSCI01, ASSEAR01, ASS...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(timss)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 12
+##   IDSTUD ITBIRTHM ITBIRTHY ITSEX ASDAGE ASSSCI01 ASSEAR01 ASSLIF01 ASSPHY01
+##    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1  10101        6     2005     2   9.92     505.     445.     408.     458.
+## 2  10102       10     2005     2   9.58     401.     291.     323.     297.
+## 3  10103        1     2005     1  10.3      542.     440.     529.     529.
+## 4  10104        6     2005     2   9.92     544.     534.     552.     557.
+## 5  10105        6     2005     2   9.92     588.     555.     500.     559.
+## 6  10106       12     2005     1   9.42     583.     556.     585.     562.
+## # ℹ 3 more variables: ASSKNO01 &amp;lt;dbl&amp;gt;, ASSAPP01 &amp;lt;dbl&amp;gt;, ASSREA01 &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;two-guiding-questions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Two Guiding Questions&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Is the age of a student related to their overall science scale score?&lt;/li&gt;
+&lt;li&gt;Is the life science scale score related to the overall science scale score?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bivariate-exploration&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bivariate exploration&lt;/h2&gt;
+&lt;p&gt;It is important to explore relationships bivariately before going to the model phase. To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”. You may also want to fill in an appropriate axis labels in place of “@@” below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summarize the bivariate association&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+gf_point(%% ~ ^^, data = timss, size = 4) |&amp;gt; 
+  gf_smooth(method = &amp;#39;lm&amp;#39;, size = 1.5) |&amp;gt;
+  gf_smooth(method = &amp;#39;loess&amp;#39;, size = 1.5, color = &amp;#39;green&amp;#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;@@&amp;quot;,
+          y = &amp;quot;@@&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;estimate-parameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimate Parameters&lt;/h2&gt;
+&lt;p&gt;To do this, fill in the outcome of interest in place of “%%” below and fill in the appropriate predictor in place of “^^”.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interpret the following parameter estimates in the context of the current problem. (ie., what do these parameter estimates mean?)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_model &amp;lt;- lm(%% ~ ^^, data = timss)
+
+summary(timss_model)
+confint(timss_model)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;resample-these-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Resample these data&lt;/h2&gt;
+&lt;p&gt;For the astronauts data, to resample, a similar idea can be made. Essentially, we are treating these data as a random sample of some population of space missions. We again, would resample, with replacement, which means that multiple missions would likely show up in the resampling procedure.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(timss, n = nrow(timss), replace = TRUE) |&amp;gt; 
+  count(IDSTUD)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resamp_lm &amp;lt;- slice_sample(timss, n = nrow(timss), replace = TRUE) |&amp;gt; 
+  lm(%% ~ ^^, data = .)
+
+summary(resamp_lm)
+confint(resamp_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;questions-to-consider&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Questions to consider&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Do the parameter estimates differ from before? Why or why not?&lt;/li&gt;
+&lt;li&gt;Would you come to substantially different conclusions from the original analysis? Why or why not?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let’s now repeat this a bunch of times.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(2022)
+
+resample_timss &amp;lt;- function(data, model_equation) {
+  timss_resample &amp;lt;- slice_sample(data, n = nrow(data), replace = TRUE)
+
+  
+  lm(model_equation, data = timss_resample) |&amp;gt;
+    coef()
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Run this function a bunch of times manually, what happens to the estimates? Why is this happening?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;resample_timss(data = timss, model_equation = %% ~ ^^)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-sure-future.apply-is-installed&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Make sure future.apply is installed&lt;/h2&gt;
+&lt;p&gt;The following code chunk makes sure the future.apply function is installed for parallel processing in R. If you get an error, you can uncomment (delete the &lt;code&gt;#&lt;/code&gt; symbol) in the first line of code to (hopefully) install the package yourself.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;future.apply&amp;quot;)
+library(future.apply)
+
+plan(multisession)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;replicate&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Replicate&lt;/h2&gt;
+&lt;p&gt;The following code replicates the analysis many times. Pick an initial value for N and fill in the model equation to match your code above. I will ask you to change this N value later.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;timss_coef &amp;lt;- future.apply::future_replicate(N, resample_timss(data = timss, 
+                        model_equation = %% ~ ^^), simplify = FALSE) |&amp;gt;
+                        dplyr::bind_rows() |&amp;gt; 
+                        tidyr::pivot_longer(cols = everything())
+
+head(timss_coef)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualize-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualize results&lt;/h2&gt;
+&lt;p&gt;The following code visualizes the results of the analysis above. Explore the following questions.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;What does this distribution show/represent?&lt;/li&gt;
+&lt;li&gt;What are key features of this distribution?&lt;/li&gt;
+&lt;li&gt;How do these values compare to the original linear regression results?
+&lt;ul&gt;
+&lt;li&gt;Are there comparable statistics here compared to those?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ value, data = timss_coef) |&amp;gt;
+  gf_facet_wrap(~ name, scales = &amp;#39;free&amp;#39;) |&amp;gt;
+  gf_labs(x = &amp;quot;Regression Estimates&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;change-the-n-value&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Change the N value&lt;/h2&gt;
+&lt;p&gt;Now, change the N value for the replicate step (you can either add a new cell to copy/paste the code or just change it in the code above).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What happens to the resulting figure when the N increases?&lt;/li&gt;
+&lt;li&gt;What value for N seems to be reasonable? Why?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple Regression</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression/</link>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;multiple-regression&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Multiple Regression&lt;/h1&gt;
+&lt;p&gt;So far, the course has considered a single continuous predictor attribute. That is, in the following equation, we have only considered a single &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; attribute.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;However, there are many situations where we would want more than one predictor attribute in the data. We can simply add another predictor attribute and this would look like the following regression equation.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Y = \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(X_{1}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(X_{2}\)&lt;/span&gt; are two different predictors attributes. Let’s dive right into some data to explore this a bit more.&lt;/p&gt;
+&lt;div id=&#34;data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Data&lt;/h2&gt;
+&lt;p&gt;For this portion, using data from the college scorecard representing information about higher education institutions.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+college &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/lebebr01/statthink/main/data-raw/College-scorecard-4143.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 7058 Columns: 16
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (6): instnm, city, stabbr, preddeg, region, locale
+## dbl (10): adm_rate, actcmmid, ugds, costt4_a, costt4_p, tuitionfee_in, tuiti...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(college)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 16
+##   instnm     city  stabbr preddeg region locale adm_rate actcmmid  ugds costt4_a
+##   &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 Alabama A… Norm… AL     Bachel… South… City:…    0.903       18  4824    22886
+## 2 Universit… Birm… AL     Bachel… South… City:…    0.918       25 12866    24129
+## 3 Amridge U… Mont… AL     Bachel… South… City:…   NA           NA   322    15080
+## 4 Universit… Hunt… AL     Bachel… South… City:…    0.812       28  6917    22108
+## 5 Alabama S… Mont… AL     Bachel… South… City:…    0.979       18  4189    19413
+## 6 The Unive… Tusc… AL     Bachel… South… City:…    0.533       28 32387    28836
+## # ℹ 6 more variables: costt4_p &amp;lt;dbl&amp;gt;, tuitionfee_in &amp;lt;dbl&amp;gt;,
+## #   tuitionfee_out &amp;lt;dbl&amp;gt;, debt_mdn &amp;lt;dbl&amp;gt;, grad_debt_mdn &amp;lt;dbl&amp;gt;, female &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question&lt;/h2&gt;
+&lt;p&gt;Suppose we were interested in exploring admission rates and which attributes helped to explain variation in admission rates.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ adm_rate, data = college) %&amp;gt;%
+  gf_labs(x = &amp;quot;Admission Rate&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite outside the scale range
+## (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(adm_rate ~ actcmmid, data = college) %&amp;gt;%
+  gf_smooth(method = &amp;#39;loess&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Median ACT Score&amp;quot;,
+          y = &amp;quot;Admission Rate&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing non-finite outside the scale range
+## (`stat_smooth()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing missing values or values outside the scale range
+## (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(GGally)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;GGally&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;GGally&amp;#39;:
+##   method from   
+##   +.gg   ggplot2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggpairs(college[c(&amp;#39;adm_rate&amp;#39;, &amp;#39;actcmmid&amp;#39;, &amp;#39;costt4_a&amp;#39;)])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5039 rows containing non-finite outside the scale range
+## (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5769 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5236 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing missing values or values outside the scale range
+## (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5769 rows containing non-finite outside the scale range
+## (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+## Removed 5777 rows containing missing values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5236 rows containing missing values or values outside the scale range
+## (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 5777 rows containing missing values or values outside the scale range
+## (`geom_point()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 3486 rows containing non-finite outside the scale range
+## (`stat_density()`).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/08-multiple-regression_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s now fit a multiple regression model.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;adm_mult_reg &amp;lt;- lm(adm_rate ~ actcmmid + costt4_a, data = college)
+
+summary(adm_mult_reg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid + costt4_a, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.65484 -0.12230  0.02291  0.13863  0.37054 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  1.135e+00  3.326e-02  34.130  &amp;lt; 2e-16 ***
+## actcmmid    -1.669e-02  1.650e-03 -10.114  &amp;lt; 2e-16 ***
+## costt4_a    -2.304e-06  4.047e-07  -5.693 1.55e-08 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1813 on 1278 degrees of freedom
+##   (5777 observations deleted due to missingness)
+## Multiple R-squared:  0.1836,	Adjusted R-squared:  0.1824 
+## F-statistic: 143.8 on 2 and 1278 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This model is now the following form:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+Admission\ Rate = 1.1 + -0.017 ACT + -0.000002 cost + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Why are these parameter estimates so small?&lt;/li&gt;
+&lt;li&gt;How well is the overall model doing?&lt;/li&gt;
+&lt;li&gt;Are both terms important in understanding variation in admission rates? How can you tell?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variance-decomposition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Variance decomposition&lt;/h2&gt;
+&lt;p&gt;Ultimately, multiple regression is a decomposition of variance. Recall,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\sum (Y - \bar{Y})^2 =  \sum (\hat{Y} - \bar{Y})^2 + \sum (Y - \hat{Y})^2  \\[10pt]
+SS_{Total} = SS_{Regression} + SS_{Error}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Multiple regression still does this, but now, there are two attributes going into helping explain variation in the regression portion of the variance decomposition. How is this variance decomposed by default? For linear regression, the variance decomposition is commonly done using type I sum of square decomposition. What does this mean? Essentially, this means that additional terms are added to determine if they help explain variation over and above the other terms in the model. This is a conditional variance added. For example, given the model above, the variance decomposition could be broken down into the following.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+SS_{Total} = SS_{Regression} + SS_{Error}   \\[10pt]
+SS_{Total} = SS_{X_{1}} + SS_{X_{2} | X_{1}} + SS_{Error}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;act_lm &amp;lt;- lm(adm_rate ~ actcmmid, data = college)
+
+summary(act_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ actcmmid, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.71615 -0.12521  0.02024  0.14490  0.37314 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  1.180914   0.032988   35.80   &amp;lt;2e-16 ***
+## actcmmid    -0.022162   0.001391  -15.93   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1844 on 1287 degrees of freedom
+##   (5769 observations deleted due to missingness)
+## Multiple R-squared:  0.1647,	Adjusted R-squared:  0.1641 
+## F-statistic: 253.8 on 1 and 1287 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(act_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## actcmmid     1  8.635  8.6351  253.84 &amp;lt; 2.2e-16 ***
+## Residuals 1287 43.781  0.0340                      
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(adm_mult_reg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## actcmmid     1  8.386  8.3861 255.092 &amp;lt; 2.2e-16 ***
+## costt4_a     1  1.065  1.0655  32.411 1.546e-08 ***
+## Residuals 1278 42.014  0.0329                      
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cost_lm &amp;lt;- lm(adm_rate ~ costt4_a, data = college)
+
+summary(cost_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = adm_rate ~ costt4_a, data = college)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.72108 -0.12656  0.02474  0.14459  0.38059 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)  8.233e-01  1.151e-02   71.52   &amp;lt;2e-16 ***
+## costt4_a    -4.147e-06  3.022e-07  -13.73   &amp;lt;2e-16 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.1965 on 1820 degrees of freedom
+##   (5236 observations deleted due to missingness)
+## Multiple R-squared:  0.0938,	Adjusted R-squared:  0.09331 
+## F-statistic: 188.4 on 1 and 1820 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;anova(cost_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Analysis of Variance Table
+## 
+## Response: adm_rate
+##             Df Sum Sq Mean Sq F value    Pr(&amp;gt;F)    
+## costt4_a     1  7.278  7.2781   188.4 &amp;lt; 2.2e-16 ***
+## Residuals 1820 70.309  0.0386                      
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
