@@ -2946,24 +2946,24 @@ fruit&lt;/code&gt;&lt;/pre&gt;
 ## 8     banana       8&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1 canteloupe       6
-## 2     orange       3
-## 3      apple       2
-## 4       kiwi       7
-## 5 watermelon       1
-## 6     banana       8
-## 7    kumquat       4
-## 8     grapes       5&lt;/code&gt;&lt;/pre&gt;
+## 1     orange       3
+## 2    kumquat       4
+## 3 watermelon       1
+## 4     grapes       5
+## 5     banana       8
+## 6       kiwi       7
+## 7      apple       2
+## 8 canteloupe       6&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice_sample(fruit, n = nrow(fruit), replace = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##         name obs_num
-## 1     banana       8
-## 2      apple       2
-## 3     banana       8
-## 4     orange       3
-## 5       kiwi       7
-## 6 canteloupe       6
-## 7       kiwi       7
-## 8     orange       3&lt;/code&gt;&lt;/pre&gt;
+## 1      apple       2
+## 2 canteloupe       6
+## 3     orange       3
+## 4      apple       2
+## 5     banana       8
+## 6       kiwi       7
+## 7 watermelon       1
+## 8       kiwi       7&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;more-practical-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;More practical example&lt;/h2&gt;
@@ -3355,6 +3355,997 @@ summary(cost_lm)&lt;/code&gt;&lt;/pre&gt;
 ## Residuals 1820 70.309  0.0386                      
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Regression with Categorical Predictors</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical/</link>
+      <pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;regression-with-categorical-predictors&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Regression with Categorical Predictors&lt;/h1&gt;
+&lt;p&gt;This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;Lahman&amp;quot;)
+
+library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Lahman)
+library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting |&amp;gt;
+  filter(AB &amp;gt; 100) |&amp;gt;
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) |&amp;gt;
+  filter(yearID &amp;gt; 1990) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  summarise(H = sum(H), AB = sum(AB)) |&amp;gt;
+  mutate(average = H / AB)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- People |&amp;gt;
+  tbl_df() |&amp;gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&amp;gt;
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) |&amp;gt;
+  inner_join(career, by = &amp;quot;playerID&amp;quot;) |&amp;gt;
+  dplyr::select(-playerID)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 5
+##   name               lgID      H    AB average
+##   &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 Jeff Abbott        AL      127   459   0.277
+## 2 Kurt Abbott        AL       33   123   0.268
+## 3 Kurt Abbott        NL      455  1780   0.256
+## 4 Reggie Abercrombie NL       54   255   0.212
+## 5 Brent Abernathy    AL      194   767   0.253
+## 6 Shawn Abner        AL       81   309   0.262&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;question&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question&lt;/h2&gt;
+&lt;p&gt;Suppose we are interested in the batting average of baseball players since 1990, that is, the average is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+average = \frac{number\ of\ hits}{number\ of\ atbats}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s first visualize this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ average, data = career) |&amp;gt;
+  gf_labs(x = &amp;quot;Batting Average&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;What if we hypothesized that the batting average will differ based on the league that players played in.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(lgID ~ average, data = career, fill = &amp;#39;gray80&amp;#39;, draw_quantiles = c(&amp;#39;0.1&amp;#39;, &amp;#39;0.5&amp;#39;, &amp;#39;0.9&amp;#39;)) |&amp;gt;
+  gf_labs(x = &amp;quot;Batting Average&amp;quot;,
+          y = &amp;quot;League&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The distributions seem similar, but what if we wanted to go a step further and estimate a model to explore if there are really differences or not. For example, suppose we were interested in:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \mu_{NL} = \mu_{AL}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;What type of model could we use? What about linear regression?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;linear-regression-with-categorical-attributes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Linear Regression with Categorical Attributes&lt;/h2&gt;
+&lt;p&gt;Since these notes are happening, you can assume it is possible. But how can a categorical attribute with categories rather than numbers be included in the linear regression model?&lt;/p&gt;
+&lt;p&gt;The answer is that they can’t. We need a new representation of the categorical attribute, enter dummy or indicator coding.&lt;/p&gt;
+&lt;div id=&#34;dummyindicator-coding&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Dummy/Indicator Coding&lt;/h3&gt;
+&lt;p&gt;Suppose we use the following logic:&lt;/p&gt;
+&lt;p&gt;If NL, then give a value of 1, else give a value of 0.&lt;/p&gt;
+&lt;p&gt;Does this give the same information as before?&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;League ID&lt;/th&gt;
+&lt;th&gt;Dummy League ID&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;AL&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;NL&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;What would this look like for the actual data?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- career |&amp;gt;
+  mutate(league_dummy = ifelse(lgID == &amp;#39;NL&amp;#39;, 1, 0))
+
+head(career, n = 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 × 6
+##    name               lgID      H    AB average league_dummy
+##    &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1 Jeff Abbott        AL      127   459   0.277            0
+##  2 Kurt Abbott        AL       33   123   0.268            0
+##  3 Kurt Abbott        NL      455  1780   0.256            1
+##  4 Reggie Abercrombie NL       54   255   0.212            1
+##  5 Brent Abernathy    AL      194   767   0.253            0
+##  6 Shawn Abner        AL       81   309   0.262            0
+##  7 Shawn Abner        NL       19   115   0.165            1
+##  8 CJ Abrams          NL       70   284   0.246            1
+##  9 Bobby Abreu        AL      858  3061   0.280            0
+## 10 Bobby Abreu        NL     1602  5373   0.298            1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that there is a numeric attribute, these can be added into the linear regression model.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;average_lm &amp;lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)  0.252     0.000758   333.      0    
+## 2 league_dummy 0.000558  0.00107      0.522   0.602&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;How are these terms interpreted now?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(average ~ league_dummy, data = career, mean, sd, length)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response league_dummy      mean         sd length
+## 1  average            0 0.2518959 0.02895094   1461
+## 2  average            1 0.2524535 0.02896021   1477&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;average_lm2 &amp;lt;- lm(average ~ lgID, data = career)
+
+broom::tidy(average_lm2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term        estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept) 0.252     0.000758   333.      0    
+## 2 lgIDNL      0.000558  0.00107      0.522   0.602&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t.test(average ~ lgID, data = career, var.equal = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	Two Sample t-test
+## 
+## data:  average by lgID
+## t = -0.52189, df = 2936, p-value = 0.6018
+## alternative hypothesis: true difference in means between group AL and group NL is not equal to 0
+## 95 percent confidence interval:
+##  -0.002652537  0.001537330
+## sample estimates:
+## mean in group AL mean in group NL 
+##        0.2518959        0.2524535&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;values-other-than-01&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Values other than 0/1&lt;/h2&gt;
+&lt;p&gt;First, I want to build off of the first part of the notes on regression with categorical predictors. Before generalizing to more than two groups, let’s first explore what happens when values other than 0/1 are used for the categorical attribute. The following three dummy/indicator attributes will be used:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;1 = NL, 0 = AL&lt;/li&gt;
+&lt;li&gt;1 = NL, 2 = AL&lt;/li&gt;
+&lt;li&gt;100 = NL, 0 = AL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Make some predictions about what you think will happen in the three separate regressions?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting |&amp;gt;
+  filter(AB &amp;gt; 100) |&amp;gt;
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) |&amp;gt;
+  filter(yearID &amp;gt; 1990) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  summarise(H = sum(H), AB = sum(AB)) |&amp;gt;
+  mutate(average = H / AB)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- People |&amp;gt;
+  tbl_df() |&amp;gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&amp;gt;
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) |&amp;gt;
+  inner_join(career, by = &amp;quot;playerID&amp;quot;) |&amp;gt;
+  dplyr::select(-playerID)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- career |&amp;gt;
+  mutate(league_dummy = ifelse(lgID == &amp;#39;NL&amp;#39;, 1, 0),
+         league_dummy_12 = ifelse(lgID == &amp;#39;NL&amp;#39;, 1, 2),
+         league_dummy_100 = ifelse(lgID == &amp;#39;NL&amp;#39;, 100, 0))
+
+head(career, n = 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 × 8
+##    name  lgID      H    AB average league_dummy league_dummy_12 league_dummy_100
+##    &amp;lt;chr&amp;gt; &amp;lt;fct&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;           &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt;
+##  1 Jeff… AL      127   459   0.277            0               2                0
+##  2 Kurt… AL       33   123   0.268            0               2                0
+##  3 Kurt… NL      455  1780   0.256            1               1              100
+##  4 Regg… NL       54   255   0.212            1               1              100
+##  5 Bren… AL      194   767   0.253            0               2                0
+##  6 Shaw… AL       81   309   0.262            0               2                0
+##  7 Shaw… NL       19   115   0.165            1               1              100
+##  8 CJ A… NL       70   284   0.246            1               1              100
+##  9 Bobb… AL      858  3061   0.280            0               2                0
+## 10 Bobb… NL     1602  5373   0.298            1               1              100&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;average_lm &amp;lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)  0.252     0.000758   333.      0    
+## 2 league_dummy 0.000558  0.00107      0.522   0.602&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;average_lm_12 &amp;lt;- lm(average ~ league_dummy_12, data = career)
+
+broom::tidy(average_lm_12)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term             estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)      0.253      0.00169   150.      0    
+## 2 league_dummy_12 -0.000558   0.00107    -0.522   0.602&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;average_lm_100 &amp;lt;- lm(average ~ league_dummy_100, data = career)
+
+broom::tidy(average_lm_100)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 5
+##   term               estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)      0.252      0.000758    333.      0    
+## 2 league_dummy_100 0.00000558 0.0000107     0.522   0.602&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Before moving to more than 2 groups, any thoughts on how we could run a one-sample t-test using a linear regression? For example, suppose this null hypothesis wanted to be explored.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \mu_{BA} = .2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{A}: \mu_{BA} \neq .2
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;generalize-to-more-than-2-groups&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Generalize to more than 2 groups&lt;/h2&gt;
+&lt;p&gt;The ability to use regression with categorical attributes of more than 2 groups is possible and an extension of the 2 groups model shown above. First, let’s think about how we could represent three categories as numeric attributes. Suppose we had the following 4 categories of baseball players.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Position&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Outfield&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Infield&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Catcher&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Designated Hitter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# remotes::install_github(&amp;quot;bdilday/GeomMLBStadiums&amp;quot;)
+
+library(GeomMLBStadiums)
+
+ggplot() + 
+   geom_mlb_stadium(stadium_ids = &amp;quot;twins&amp;quot;, 
+                   stadium_segments = &amp;quot;all&amp;quot;) + 
+  facet_wrap(~team) + 
+  coord_fixed() + 
+  theme_void()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting |&amp;gt;
+  filter(AB &amp;gt; 100) |&amp;gt;
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) |&amp;gt;
+  filter(yearID &amp;gt; 1990) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  summarise(H = sum(H), AB = sum(AB)) |&amp;gt;
+  mutate(average = H / AB)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- Appearances |&amp;gt;
+  filter(yearID &amp;gt; 1990) |&amp;gt;
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) |&amp;gt;
+  rowwise() |&amp;gt;
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) |&amp;gt;
+  select(-G_1b, -G_2b, -G_3b, -G_ss) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) |&amp;gt;
+  pivot_longer(catcher:infield,
+               names_to = &amp;quot;position&amp;quot;) |&amp;gt;
+  filter(value &amp;gt; 0) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  slice_max(value) |&amp;gt;
+  select(playerID, lgID, position) |&amp;gt;
+  inner_join(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.
+## Joining with `by = join_by(playerID, lgID)`&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- People |&amp;gt;
+  tbl_df() |&amp;gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&amp;gt;
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) |&amp;gt;
+  inner_join(career, by = &amp;quot;playerID&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- career |&amp;gt;
+  mutate(league_dummy = ifelse(lgID == &amp;#39;NL&amp;#39;, 1, 0))
+
+count(career, position)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 2
+##   position     n
+##   &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
+## 1 catcher    415
+## 2 dh          83
+## 3 infield   1279
+## 4 outfield  1165&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(position ~ average, data = career, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt;
+  gf_labs(x = &amp;quot;Batting Average&amp;quot;,
+          y = &amp;quot;&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- career |&amp;gt;
+  mutate(outfield = ifelse(position == &amp;#39;outfield&amp;#39;, 1, 0),
+         infield = ifelse(position == &amp;#39;infield&amp;#39;, 1, 0),
+         catcher = ifelse(position == &amp;#39;catcher&amp;#39;, 1, 0))
+
+head(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 11
+##   playerID  name        lgID  position     H    AB average league_dummy outfield
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;       &amp;lt;fct&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 abbotje01 Jeff Abbott AL    outfield   127   459   0.277            0        1
+## 2 abbotku01 Kurt Abbott AL    infield     33   123   0.268            0        0
+## 3 abbotku01 Kurt Abbott NL    infield    455  1780   0.256            1        0
+## 4 abercre01 Reggie Abe… NL    outfield    54   255   0.212            1        1
+## 5 abernbr01 Brent Aber… AL    infield    194   767   0.253            0        0
+## 6 abnersh01 Shawn Abner AL    outfield    81   309   0.262            0        1
+## # ℹ 2 more variables: infield &amp;lt;dbl&amp;gt;, catcher &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;position_lm &amp;lt;- lm(average ~ 1 + outfield + infield + catcher, data = career)
+
+broom::tidy(position_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term         estimate std.error statistic   p.value
+##   &amp;lt;chr&amp;gt;           &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1 (Intercept)  0.255      0.00314    81.3   0        
+## 2 outfield    -0.000610   0.00325    -0.188 0.851    
+## 3 infield     -0.00218    0.00324    -0.672 0.501    
+## 4 catcher     -0.0144     0.00344    -4.19  0.0000288&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(average ~ position, data = career, mean)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response position      mean
+## 1  average  catcher 0.2409461
+## 2  average       dh 0.2553577
+## 3  average  infield 0.2531783
+## 4  average outfield 0.2547475&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Pairwise Contrasts</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/10-pairwise/</link>
+      <pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/10-pairwise/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;more-details-on-pairwise-contrasts&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;More details on pairwise contrasts&lt;/h1&gt;
+&lt;p&gt;Last week the idea of pairwise contrasts were introduced. Here is a more formal discussion of pairwise contrasts and controlling of familywise type I error rates.&lt;/p&gt;
+&lt;div id=&#34;bonferroni-method&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bonferroni Method&lt;/h2&gt;
+&lt;p&gt;This method is introduced first, primarily due to its simplicity. This is not the best measure to use however as will be discussed below. The Bonferroni method makes the following adjustment:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\alpha_{new} = \frac{\alpha}{m}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; is the number of hypotheses being tested. Let’s use a specific example to frame this based on the baseball data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Lahman)
+library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+career &amp;lt;- Batting |&amp;gt;
+  filter(AB &amp;gt; 100) |&amp;gt;
+  anti_join(Pitching, by = &amp;quot;playerID&amp;quot;) |&amp;gt;
+  filter(yearID &amp;gt; 1990) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  summarise(H = sum(H), AB = sum(AB)) |&amp;gt;
+  mutate(average = H / AB)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- Appearances |&amp;gt;
+  filter(yearID &amp;gt; 1990) |&amp;gt;
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) |&amp;gt;
+  rowwise() |&amp;gt;
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) |&amp;gt;
+  select(-G_1b, -G_2b, -G_3b, -G_ss) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) |&amp;gt;
+  pivot_longer(catcher:infield,
+               names_to = &amp;quot;position&amp;quot;) |&amp;gt;
+  filter(value &amp;gt; 0) |&amp;gt;
+  group_by(playerID, lgID) |&amp;gt;
+  slice_max(value) |&amp;gt;
+  select(playerID, lgID, position) |&amp;gt;
+  inner_join(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` has grouped output by &amp;#39;playerID&amp;#39;. You can override using the
+## `.groups` argument.
+## Joining with `by = join_by(playerID, lgID)`&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- People |&amp;gt;
+  tbl_df() |&amp;gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&amp;gt;
+  unite(name, nameFirst, nameLast, sep = &amp;quot; &amp;quot;) |&amp;gt;
+  inner_join(career, by = &amp;quot;playerID&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;career &amp;lt;- career |&amp;gt;
+  mutate(league_dummy = ifelse(lgID == &amp;#39;NL&amp;#39;, 1, 0))
+
+head(career)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 8
+##   playerID  name               lgID  position     H    AB average league_dummy
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;              &amp;lt;fct&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 abbotje01 Jeff Abbott        AL    outfield   127   459   0.277            0
+## 2 abbotku01 Kurt Abbott        AL    infield     33   123   0.268            0
+## 3 abbotku01 Kurt Abbott        NL    infield    455  1780   0.256            1
+## 4 abercre01 Reggie Abercrombie NL    outfield    54   255   0.212            1
+## 5 abernbr01 Brent Abernathy    AL    infield    194   767   0.253            0
+## 6 abnersh01 Shawn Abner        AL    outfield    81   309   0.262            0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;position_lm &amp;lt;- lm(average ~ 1 + position, data = career)
+
+broom::tidy(position_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term             estimate std.error statistic  p.value
+##   &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;
+## 1 (Intercept)        0.241    0.00140    172.   0       
+## 2 positiondh         0.0144   0.00344      4.19 2.88e- 5
+## 3 positioninfield    0.0122   0.00162      7.57 5.03e-14
+## 4 positionoutfield   0.0138   0.00164      8.44 4.97e-17&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(career, position)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 2
+##   position     n
+##   &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
+## 1 catcher    415
+## 2 dh          83
+## 3 infield   1279
+## 4 outfield  1165&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Given that there are 4 groups, if all pairwise comparisons were of interest, the following would be all possible &lt;strong&gt;NULL&lt;/strong&gt; hypotheses. Note, I am assuming that each of these has a matching alternative hypothesis that states the groups differences are &lt;em&gt;different&lt;/em&gt; from 0.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+H_{0}: \mu_{catcher} - \mu_{dh} = 0 \\
+H_{0}: \mu_{catcher} - \mu_{infield} = 0 \\
+H_{0}: \mu_{catcher} - \mu_{outfield} = 0 \\
+H_{0}: \mu_{dh} - \mu_{infield} = 0 \\
+H_{0}: \mu_{dh} - \mu_{outfield} = 0 \\
+H_{0}: \mu_{infield} - \mu_{outfield} = 0 \\
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In general, to find the total number of hypotheses, you can use the combinations formula:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For our example this would lead to:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\binom{4}{2} = \frac{4!}{2!(4 - 2)!} = \frac{4 * 3 * 2 * 1}{2 * 1 * (2 * 1)} = \frac{24}{4} = 6
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Therefore, using bonferroni’s correction, our new alpha would be:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\alpha_{new} = \frac{.05}{6} = .0083
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Alternatively, you could also adjust the p-values to make them smaller and still use .05 (or any other predetermined familywise &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; value).&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+p_{new} = \frac{p_{original}}{m}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This is what most software programs do automatically for you.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;bonf&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  career$average and career$position 
+## 
+##          catcher dh      infield
+## dh       0.00017 -       -      
+## infield  3e-13   1.00000 -      
+## outfield 3e-16   1.00000 1.00000
+## 
+## P value adjustment method: bonferroni&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-a-type-i-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is a type I error?&lt;/h2&gt;
+&lt;p&gt;Before moving to why you should care, let’s more formally talk about type I errors. Suppose we have the following table of possible outcomes:&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;35%&#34; /&gt;
+&lt;col width=&#34;31%&#34; /&gt;
+&lt;col width=&#34;33%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt; true&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt; false&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Reject &lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Type I Error (&lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Correct - Power (&lt;span class=&#34;math inline&#34;&gt;\(1 - \beta\)&lt;/span&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Retain &lt;span class=&#34;math inline&#34;&gt;\(H_{0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Correct (&lt;span class=&#34;math inline&#34;&gt;\(1 - \alpha\)&lt;/span&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;Type II Error (&lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Type I error&lt;/strong&gt; is when the null hypothesis is true in the population, but the statistical evidence &lt;em&gt;supports the alternative hypothesis&lt;/em&gt;.
+&lt;strong&gt;Type II error&lt;/strong&gt; is when the null hypothesis is false in the population, but the statistical evidence &lt;em&gt;supports the null hypothesis&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Here is a good link for an interactive app that shows many of these terms visually: &lt;a href=&#34;https://rpsychologist.com/d3/nhst/&#34; class=&#34;uri&#34;&gt;https://rpsychologist.com/d3/nhst/&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;type-m-and-type-s-errors&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Type M and Type S errors&lt;/h3&gt;
+&lt;p&gt;These were first defined by Gelman and Tuerlinckx (2000) and is also in section 4.4 of &lt;em&gt;Regression and Other Stories&lt;/em&gt; textbook.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Type S (sign) occurs when the sign of the estimated effect is in the opposite direction as the true effect.&lt;/li&gt;
+&lt;li&gt;Type M (magnitude) occurse when the magnitude of the estimated effect is much different (often larger) than the true effect.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These really shift the narrative away from achieving statistical signficiance and moving toward proper estimation of effects or precision, this is a better goal in my opinion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;holm-bonferroni-procedure&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Holm-Bonferroni Procedure&lt;/h2&gt;
+&lt;p&gt;The boneferroni procedure will be overly conservative and I wouldn’t recommend it’s use in practice. If you want a simple approach to p-value adjustment, I’d recommend just setting a specific value for the alpha value to be more conservative, for example setting it to 0.01.&lt;/p&gt;
+&lt;p&gt;The Holm-Bonferroni approach is an adjustment method that is more powerful then the original bonferroni procedure, but does not come with onerous assumptions. The Holm-Boneferroni procedure uses the following steps for adjustment.&lt;/p&gt;
+&lt;p&gt;Suppose there are &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; p-values (ie, &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; null hypotheses). First, order these from smallest to largest, be sure to keep track of which hypothese the p-value is associated with. Then,
+1. Is the smallest p-value &lt;strong&gt;less than&lt;/strong&gt; &lt;span class=&#34;math inline&#34;&gt;\(\alpha / m\)&lt;/span&gt;, if yes, provide evidence for the alternative hypothesis and proceed to the next p-value, it not stop.
+2. Is the second smallest p-value &lt;strong&gt;less than&lt;/strong&gt; $ / m - 1$, if eys, provide evidence for the alternative hypothesis and proceed to the next p-value, if not stop.
+3. Continue, comparing the p-values in order to the following adjust alpha,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\alpha_{new_{k}} = \frac{\alpha}{m + 1 - k}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where is &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; is the rank of the p-values when ordered from smallest to largest.&lt;/p&gt;
+&lt;p&gt;Similar to the bonferroni, the p-values can be adjusted with the following formula:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+p_{adj} = min(1, max((m + 1 - k) * p_{k} ))
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where is &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; is the rank of the p-values when ordered from smallest to largest.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;holm&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  career$average and career$position 
+## 
+##          catcher dh      infield
+## dh       0.00012 -       -      
+## infield  2.5e-13 1.00000 -      
+## outfield 3.0e-16 1.00000 0.52730
+## 
+## P value adjustment method: holm&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               catcher        dh   infield
+## dh       2.880340e-05        NA        NA
+## infield  5.033217e-14 0.5013190        NA
+## outfield 4.974152e-17 0.8510978 0.1757679&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[3] * (6 + 1 - 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.984491e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[2] * (6 + 1 - 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 2.516609e-13&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[1] * (6 + 1 - 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.0001152136&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[9] * (6 + 1 - 4)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5273037&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[5] * (6 + 1 - 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.002638&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairwise.t.test(career$average, career$position, p.adjust = &amp;#39;none&amp;#39;)$p.value[6] * (6 + 1 - 6)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.8510978&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exploring-assumptionsdata-conditions-for-model-with-categorical-attributes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exploring assumptions/Data Conditions for model with categorical attributes&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(position_lm, which = 1:5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-pairwise_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-pairwise_files/figure-html/unnamed-chunk-8-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-pairwise_files/figure-html/unnamed-chunk-8-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-pairwise_files/figure-html/unnamed-chunk-8-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/10-pairwise_files/figure-html/unnamed-chunk-8-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiple Categorical Predictors</title>
+      <link>https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical/</link>
+      <pubDate>Tue, 26 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;add-more-than-one-categorical-predictor&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Add more than one categorical predictor&lt;/h1&gt;
+&lt;p&gt;Let’s explore the ability to add more than one categorical predictor to our model. This will then build into thinking through interactions. Let’s load some new data. These are bike data from Philadelphia program, called &lt;a href=&#34;https://www.rideindego.com/about/data/&#34;&gt;Indego&lt;/a&gt;. The data loaded below are from Q3 of 2023.&lt;/p&gt;
+&lt;p&gt;Here is information about the columns in the data.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;trip_id:&lt;/strong&gt; Locally unique integer that identifies the trip&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;duration:&lt;/strong&gt; Length of trip in minutes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_time:&lt;/strong&gt; The date/time when the trip began, presented in ISO 8601 format in local time&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_time:&lt;/strong&gt; The date/time when the trip ended, presented in ISO 8601 format in local time&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_station:&lt;/strong&gt; The station ID where the trip originated (for station name and more information on each station see the Station Table)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_lat:&lt;/strong&gt; The latitude of the station where the trip originated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;start_lon:&lt;/strong&gt; The longitude of the station where the trip originated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_station:&lt;/strong&gt; The station ID where the trip terminated (for station name and more information on each station see the Station Table)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_lat:&lt;/strong&gt; The latitude of the station where the trip terminated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;end_lon:&lt;/strong&gt; The longitude of the station where the trip terminated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bike_id:&lt;/strong&gt; Locally unique integer that identifies the bike&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;plan_duration:&lt;/strong&gt; The number of days that the plan the passholder is using entitles them to ride; 0 is used for a single ride plan (Walk-up)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;trip_route_category:&lt;/strong&gt; “Round Trip” for trips starting and ending at the same station or “One Way” for all other trips&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;passholder_type:&lt;/strong&gt; The name of the passholder’s plan&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bike_type:&lt;/strong&gt; The kind of bike used on the trip, including standard pedal-powered bikes or electric assist bikes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&amp;lt;http://conflicted.r-lib.org/&amp;gt;) to force all conflicts to become errors&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: scales
+## 
+## Attaching package: &amp;#39;scales&amp;#39;
+## 
+## The following object is masked from &amp;#39;package:purrr&amp;#39;:
+## 
+##     discard
+## 
+## The following object is masked from &amp;#39;package:readr&amp;#39;:
+## 
+##     col_factor
+## 
+## Loading required package: ggridges&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggridges&amp;#39; was built under R version 4.3.2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## New to ggformula?  Try the tutorials: 
+## 	learnr::run_tutorial(&amp;quot;introduction&amp;quot;, package = &amp;quot;ggformula&amp;quot;)
+## 	learnr::run_tutorial(&amp;quot;refining&amp;quot;, package = &amp;quot;ggformula&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 18))
+
+temp &amp;lt;- tempfile()
+download.file(&amp;quot;https://bicycletransit.wpenginepowered.com/wp-content/uploads/2023/10/indego-trips-2023-q3.zip&amp;quot;, temp)
+bike &amp;lt;- readr::read_csv(unz(temp, &amp;quot;indego-trips-2023-q3-2.csv&amp;quot;)) |&amp;gt;
+   filter(duration &amp;lt;= 120 &amp;amp; passholder_type != &amp;#39;Walk-up&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+## e.g.:
+##   dat &amp;lt;- vroom(...)
+##   problems(dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 353256 Columns: 15
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr  (5): start_time, end_time, trip_route_category, passholder_type, bike_type
+## dbl (10): trip_id, duration, start_station, start_lat, start_lon, end_statio...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unlink(temp)
+
+head(bike)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 15
+##     trip_id duration start_time    end_time    start_station start_lat start_lon
+##       &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;               &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1 677293140        2 7/1/2023 0:00 7/1/2023 0…          3271      39.9     -75.2
+## 2 677304406       27 7/1/2023 0:00 7/1/2023 0…          3060      40.0     -75.2
+## 3 677304584       32 7/1/2023 0:00 7/1/2023 0…          3057      40.0     -75.2
+## 4 677302282        6 7/1/2023 0:00 7/1/2023 0…          3038      39.9     -75.2
+## 5 677304444       27 7/1/2023 0:01 7/1/2023 0…          3060      40.0     -75.2
+## 6 677303703        9 7/1/2023 0:01 7/1/2023 0…          3158      39.9     -75.2
+## # ℹ 8 more variables: end_station &amp;lt;dbl&amp;gt;, end_lat &amp;lt;dbl&amp;gt;, end_lon &amp;lt;dbl&amp;gt;,
+## #   bike_id &amp;lt;dbl&amp;gt;, plan_duration &amp;lt;dbl&amp;gt;, trip_route_category &amp;lt;chr&amp;gt;,
+## #   passholder_type &amp;lt;chr&amp;gt;, bike_type &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(bike)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 351189     15&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Suppose we were interested in the following research questions.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Does the trip route, type of pass, and bike type explain variation in the duration the bike was rented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s explore this descriptively.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ duration, data = bike) |&amp;gt;
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(bike_type ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt;
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(passholder_type ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt;
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(trip_route_category ~ duration, data = bike, fill = &amp;#39;gray85&amp;#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&amp;gt;
+  gf_labs(x = &amp;quot;Duration, in minutes&amp;quot;, y = &amp;quot;&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;regression-model-with-multiple-categorical-predictors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Regression model with multiple categorical predictors&lt;/h2&gt;
+&lt;p&gt;Similar to multiple linear regression, including multiple categorical predictors is similar to that case. The simplest model is the additive model, also commonly referred to as the main effect model. Let’s start with two categorical attributes that take on two different values.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+duration = \beta_{0} + \beta_{1} bike\_type + \beta_{2} trip\_route\_category + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bike_lm &amp;lt;- lm(duration ~ bike_type + trip_route_category, data = bike)
+
+broom::glance(bike_lm)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic p.value    df    logLik     AIC    BIC
+##       &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+## 1    0.0214        0.0214  13.6     3832.       0     2 -1414715.  2.83e6 2.83e6
+## # ℹ 3 more variables: deviance &amp;lt;dbl&amp;gt;, df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm) |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term                          estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                      12.5      0.032     393.        0
+## 2 bike_typestandard                 2.49     0.046      54.1       0
+## 3 trip_route_categoryRound Trip     6.00     0.088      68.4       0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;two_way_predict &amp;lt;- broom::augment(bike_lm) |&amp;gt;
+   distinct(bike_type, trip_route_category, .fitted)
+
+two_way_predict&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 3
+##   bike_type trip_route_category .fitted
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;
+## 1 electric  One Way                12.5
+## 2 standard  One Way                15.0
+## 3 electric  Round Trip             18.5
+## 4 standard  Round Trip             21.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean_duration &amp;lt;- df_stats(duration ~ bike_type + trip_route_category, data =bike, mean, length)
+mean_duration&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   response bike_type trip_route_category     mean length
+## 1 duration  electric             One Way 12.62121 176083
+## 2 duration  standard             One Way 14.88991 149160
+## 3 duration  electric          Round Trip 17.21428  13674
+## 4 duration  standard          Round Trip 22.46178  12272&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = two_way_predict, size = 5) |&amp;gt;
+  gf_line(size = 1.5, group = ~ trip_route_category) |&amp;gt;
+  gf_labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;) |&amp;gt;
+  gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Back to the coefficients to really understand what these are.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm) |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 5
+##   term                          estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                            &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                      12.5      0.032     393.        0
+## 2 bike_typestandard                 2.49     0.046      54.1       0
+## 3 trip_route_categoryRound Trip     6.00     0.088      68.4       0&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Intercept&lt;/em&gt;: The average bike rental duration for the reference group (electric bikes and one-way trips).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;bike_typestandard&lt;/em&gt;: This is like a slope, so for a one unit change in bike type (ie, moving from an electric bike to a standard bike), the estimated mean change in bike duration decreased by 0.375 minutes, holding other attributes constant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;trip_route_categoryRound Trip&lt;/em&gt;: This is again like a slope, for a one unit change in trip route (ie, moving from a one-way trip to a round trip), the estimated mean change in bike duraction increased by 7.246 minutes, holder other attributes constant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are like weighted marginal means, where the weighting is occuring due to different sample sizes among the groups.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;count(bike, bike_type, trip_route_category)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 3
+##   bike_type trip_route_category      n
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                &amp;lt;int&amp;gt;
+## 1 electric  One Way             176083
+## 2 electric  Round Trip           13674
+## 3 standard  One Way             149160
+## 4 standard  Round Trip           12272&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_stats(duration ~ bike_type + trip_route_category, data = bike, mean) |&amp;gt;
+  pivot_wider(names_from = &amp;#39;trip_route_category&amp;#39;, values_from = &amp;quot;mean&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 4
+##   response bike_type `One Way` `Round Trip`
+##   &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 duration electric       12.6         17.2
+## 2 duration standard       14.9         22.5&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;interaction-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Interaction Model&lt;/h3&gt;
+&lt;p&gt;The interaction model expands on the main effect only model, by allowing the effect of one category to differ based on elements of the other category. One way to think about this in the case with two categorical attributes, is that the mean change differs based on levels of the second attribute. This model, in the case where the attributes are each two groups, adds one additional term.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+duration = \beta_{0} + \beta_{1} bike\_type + \beta_{2} trip\_route\_category + \beta_{3} bike\_type:trip\_route\_category + \epsilon
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bike_lm_int &amp;lt;- lm(duration ~ bike_type + trip_route_category + bike_type:trip_route_category, data = bike)
+
+broom::glance(bike_lm_int)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic p.value    df    logLik     AIC    BIC
+##       &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+## 1    0.0222        0.0221  13.6     2653.       0     3 -1414571.  2.83e6 2.83e6
+## # ℹ 3 more variables: deviance &amp;lt;dbl&amp;gt;, df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm_int)  |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term                                      estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                                        &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                                  12.6      0.032     390.        0
+## 2 bike_typestandard                             2.27     0.048      47.5       0
+## 3 trip_route_categoryRound Trip                 4.59     0.121      38.1       0
+## 4 bike_typestandard:trip_route_categoryRou…     2.98     0.176      17.0       0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;two_way_predict_int &amp;lt;- broom::augment(bike_lm_int) |&amp;gt;
+   distinct(bike_type, trip_route_category, .fitted)
+
+two_way_predict_int&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 3
+##   bike_type trip_route_category .fitted
+##   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;
+## 1 electric  One Way                12.6
+## 2 standard  One Way                14.9
+## 3 electric  Round Trip             17.2
+## 4 standard  Round Trip             22.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = two_way_predict_int, size = 5) |&amp;gt;
+  gf_line(size = 1.5, group = ~ trip_route_category) |&amp;gt;
+  gf_labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;) |&amp;gt;
+  gf_point(mean ~ bike_type, color = ~ trip_route_category, data = mean_duration, shape = 15, size = 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Back to the coefficients and what do these mean here.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm_int)  |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 5
+##   term                                      estimate std.error statistic p.value
+##   &amp;lt;chr&amp;gt;                                        &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 (Intercept)                                  12.6      0.032     390.        0
+## 2 bike_typestandard                             2.27     0.048      47.5       0
+## 3 trip_route_categoryRound Trip                 4.59     0.121      38.1       0
+## 4 bike_typestandard:trip_route_categoryRou…     2.98     0.176      17.0       0&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Intercept&lt;/em&gt;: The average bike rental duration for the reference group (electric bikes and one-way trips).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;bike_typestandard&lt;/em&gt;: This is like a slope, so for a one unit change in bike type (ie, moving from an electric bike to a standard bike), the estimated mean change in bike duration decreased by .05 minutes, holding other attributes constant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;trip_route_categoryRound Trip&lt;/em&gt;: This is again like a slope, for a one unit change in trip route (ie, moving from a one-way trip to a round trip), the estimated mean change in bike duraction increased by 4.3 minutes, holder other attributes constant.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;bike_typestandard:trip_route_categoryRound Trip&lt;/em&gt;: This is the interaction effect and is the &lt;strong&gt;additional&lt;/strong&gt; mean level change for standard bikes &lt;em&gt;and&lt;/em&gt; round trips, holding other attributes constant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We can get the estimated means for the 4 groups as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{elec-1way} = 15.2
+\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{elec-RT} = 15.2 + 4.3
+\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{stand-1way} = 15.2 - .05
+\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat{\mu}_{stand-RT} = 15.2 - 0.05 + 4.3 + 4.7
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Example&lt;/h3&gt;
+&lt;p&gt;What about the example with two categorical attributes bike type and passholder type? Fit this model below and interpret the parameter estimates, both one without and with interaction effects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;second-order-three-way-interaction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Second order (three-way) interaction&lt;/h2&gt;
+&lt;p&gt;The more attributes that interact with one another makes the model more complicated and difficult to interpret. Still, let’s try a second order or three way interaction.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bike_lm_3way &amp;lt;- lm(duration ~ bike_type * trip_route_category * passholder_type, data = bike)
+
+broom::glance(bike_lm_3way)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic p.value    df    logLik     AIC    BIC
+##       &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+## 1     0.112         0.112  12.9     4035.       0    11 -1397605.  2.80e6 2.80e6
+## # ℹ 3 more variables: deviance &amp;lt;dbl&amp;gt;, df.residual &amp;lt;int&amp;gt;, nobs &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;broom::tidy(bike_lm_3way) |&amp;gt;
+  mutate_if(is.double, round, 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 12 × 5
+##    term                                     estimate std.error statistic p.value
+##    &amp;lt;chr&amp;gt;                                       &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 (Intercept)                                27.4       0.12     229.     0    
+##  2 bike_typestandard                           0.256     0.189      1.35   0.177
+##  3 trip_route_categoryRound Trip               6.74      0.284     23.7    0    
+##  4 passholder_typeIndego30                   -15.5       0.126   -123.     0    
+##  5 passholder_typeIndego365                  -17.1       0.136   -125.     0    
+##  6 bike_typestandard:trip_route_categoryRo…   -0.851     0.46      -1.85   0.064
+##  7 bike_typestandard:passholder_typeIndego…    3.28      0.197     16.6    0    
+##  8 bike_typestandard:passholder_typeIndego…    0.718     0.209      3.44   0.001
+##  9 trip_route_categoryRound Trip:passholde…   -4.34      0.317    -13.7    0    
+## 10 trip_route_categoryRound Trip:passholde…   -8.16      0.41     -19.9    0    
+## 11 bike_typestandard:trip_route_categoryRo…    5.49      0.502     10.9    0    
+## 12 bike_typestandard:trip_route_categoryRo…    4.85      0.619      7.84   0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Interpreting these coefficients can be challenging, visualizing them can be a more effective way to undersand the impact these may have. The following steps will be used to visualize these model results:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Generate model-implied or predicted values for each combination of model values&lt;/li&gt;
+&lt;li&gt;Plot those model implied means&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;three_way_predict_int &amp;lt;- broom::augment(bike_lm_3way) |&amp;gt;
+   distinct(bike_type, trip_route_category, passholder_type, .fitted)
+
+three_way_predict_int&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 12 × 4
+##    bike_type trip_route_category passholder_type .fitted
+##    &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;               &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;
+##  1 electric  One Way             Indego30          12.0 
+##  2 standard  One Way             Indego30          15.5 
+##  3 standard  One Way             Day Pass          27.7 
+##  4 electric  One Way             Indego365         10.4 
+##  5 standard  One Way             Indego365         11.4 
+##  6 electric  One Way             Day Pass          27.4 
+##  7 electric  Round Trip          Indego30          14.4 
+##  8 standard  Round Trip          Day Pass          33.6 
+##  9 standard  Round Trip          Indego365         13.9 
+## 10 standard  Round Trip          Indego30          22.5 
+## 11 electric  Round Trip          Day Pass          34.2 
+## 12 electric  Round Trip          Indego365          8.96&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_point(.fitted ~ bike_type, color = ~ trip_route_category, data = three_way_predict_int, size = 5) |&amp;gt;
+  gf_line(size = 1.5, group = ~ trip_route_category) |&amp;gt;
+  gf_facet_wrap(~ passholder_type) |&amp;gt;
+  gf_labs(y = &amp;quot;&amp;quot;, x = &amp;quot;Model Predicted Values&amp;quot;, color = &amp;#39;Trip Route&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psqf6243.brandonlebeau.org/lectures/11-multiple-categorical_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

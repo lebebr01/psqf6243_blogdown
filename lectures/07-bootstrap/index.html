@@ -813,6 +813,18 @@
 
   <li class=""><a href="/lectures/08-multiple-regression/">Multiple Regression</a></li>
 
+
+
+  <li class=""><a href="/lectures/09-regression-categorical/">Regression with Categorical Predictors</a></li>
+
+
+
+  <li class=""><a href="/lectures/10-pairwise/">Pairwise Contrasts</a></li>
+
+
+
+  <li class=""><a href="/lectures/11-multiple-categorical/">Multiple Categorical Predictors</a></li>
+
       
     
 
@@ -899,24 +911,24 @@ fruit</code></pre>
 ## 8     banana       8</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = FALSE)</code></pre>
 <pre><code>##         name obs_num
-## 1 canteloupe       6
-## 2     orange       3
-## 3      apple       2
-## 4       kiwi       7
-## 5 watermelon       1
-## 6     banana       8
-## 7    kumquat       4
-## 8     grapes       5</code></pre>
+## 1     orange       3
+## 2    kumquat       4
+## 3 watermelon       1
+## 4     grapes       5
+## 5     banana       8
+## 6       kiwi       7
+## 7      apple       2
+## 8 canteloupe       6</code></pre>
 <pre class="r"><code>slice_sample(fruit, n = nrow(fruit), replace = TRUE)</code></pre>
 <pre><code>##         name obs_num
-## 1     banana       8
-## 2      apple       2
-## 3     banana       8
-## 4     orange       3
-## 5       kiwi       7
-## 6 canteloupe       6
-## 7       kiwi       7
-## 8     orange       3</code></pre>
+## 1      apple       2
+## 2 canteloupe       6
+## 3     orange       3
+## 4      apple       2
+## 5     banana       8
+## 6       kiwi       7
+## 7 watermelon       1
+## 8       kiwi       7</code></pre>
 </div>
 <div id="more-practical-example" class="section level2">
 <h2>More practical example</h2>

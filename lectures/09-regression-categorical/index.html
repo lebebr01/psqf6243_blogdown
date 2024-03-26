@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean.">
+  <meta name="description" content="Regression with Categorical Predictors This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates-class/">
+  <link rel="alternate" hreflang="en-us" href="https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates-class/">
+  <link rel="canonical" href="https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical/">
 
   
   
@@ -281,15 +281,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="PSQF 6243">
-  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/03-regression-estimates-class/">
-  <meta property="og:title" content="Regression Estimates - In class | PSQF 6243">
-  <meta property="og:description" content="Understanding Regression Parameters This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://psqf6243.brandonlebeau.org/lectures/09-regression-categorical/">
+  <meta property="og:title" content="Regression with Categorical Predictors | PSQF 6243">
+  <meta property="og:description" content="Regression with Categorical Predictors This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data."><meta property="og:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://psqf6243.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2024-02-08T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2024-03-26T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2024-02-08T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2024-03-26T00:00:00&#43;00:00">
   
 
   
@@ -308,7 +308,7 @@
 
 
 
-  <title>Regression Estimates - In class | PSQF 6243</title>
+  <title>Regression with Categorical Predictors | PSQF 6243</title>
 
 </head>
 
@@ -791,7 +791,7 @@
 
 
 
-  <li class="active"><a href="/lectures/03-regression-estimates-class/">Regression Estimates - In class</a></li>
+  <li class=""><a href="/lectures/03-regression-estimates-class/">Regression Estimates - In class</a></li>
 
 
 
@@ -815,7 +815,7 @@
 
 
 
-  <li class=""><a href="/lectures/09-regression-categorical/">Regression with Categorical Predictors</a></li>
+  <li class="active"><a href="/lectures/09-regression-categorical/">Regression with Categorical Predictors</a></li>
 
 
 
@@ -857,7 +857,7 @@
         <div class="docs-article-container">
           
 
-          <h1>Regression Estimates - In class</h1>
+          <h1>Regression with Categorical Predictors</h1>
 
           <div class="article-style">
             
@@ -866,87 +866,12 @@
 
 </div>
 
-<div id="understanding-regression-parameters" class="section level1">
-<h1>Understanding Regression Parameters</h1>
-<p>This section of notes aims to dig a bit more into what the simple linear regression (ie., regression with a single continuous covariate/attribute) parameter estimates mean. We will consider the estimation formulas in part of this to gain a sense of how these can be computed.</p>
-<div id="new-example-data" class="section level2">
-<h2>New Example Data</h2>
-<p>The new data for this section of notes will explore data from the <a href="https://www.epa.gov/outdoor-air-quality-data">Environmental Protection Agency on Air Quality</a> collected for the state of Iowa in 2021. The data are daily values for PM 2.5 particulates. The attributes included in the data are shown below with a short description.</p>
-<table>
-<colgroup>
-<col width="43%" />
-<col width="56%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Variable</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">date</td>
-<td align="left">Date of observation</td>
-</tr>
-<tr class="even">
-<td align="left">id</td>
-<td align="left">Site ID</td>
-</tr>
-<tr class="odd">
-<td align="left">poc</td>
-<td align="left">Parameter Occurrence Code (POC)</td>
-</tr>
-<tr class="even">
-<td align="left">pm2.5</td>
-<td align="left">Average daily pm 2.5 particulate value, in (ug/m3; micrograms per meter cubed)</td>
-</tr>
-<tr class="odd">
-<td align="left">daily_aqi</td>
-<td align="left">Average air quality index</td>
-</tr>
-<tr class="even">
-<td align="left">site_name</td>
-<td align="left">Site Name</td>
-</tr>
-<tr class="odd">
-<td align="left">aqs_parameter_desc</td>
-<td align="left">Text Description of Observation</td>
-</tr>
-<tr class="even">
-<td align="left">cbsa_code</td>
-<td align="left">Core Based Statistical Area (CBSA) ID</td>
-</tr>
-<tr class="odd">
-<td align="left">cbsa_name</td>
-<td align="left">CBSA Name</td>
-</tr>
-<tr class="even">
-<td align="left">county</td>
-<td align="left">County in Iowa</td>
-</tr>
-<tr class="odd">
-<td align="left">avg_wind</td>
-<td align="left">Average daily wind speed (in knots)</td>
-</tr>
-<tr class="even">
-<td align="left">max_wind</td>
-<td align="left">Maximum daily wind speed (in knots)</td>
-</tr>
-<tr class="odd">
-<td align="left">max_wind_hours</td>
-<td align="left">Time of maximum daily wind speed</td>
-</tr>
-</tbody>
-</table>
-<div id="guiding-question" class="section level3">
-<h3>Guiding Question</h3>
-<p>How is average daily wind speed related to the daily air quality index?</p>
-</div>
-</div>
-<div id="bivariate-figure" class="section level2">
-<h2>Bivariate Figure</h2>
-<p>Note, below I do a bit of post-processing to combine data from different POC values within a single CBSA.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<div id="regression-with-categorical-predictors" class="section level1">
+<h1>Regression with Categorical Predictors</h1>
+<p>This set of notes will explore using linear regression for a single predictor attribute that is categorical instead of continuous. To explore this first, let’s explore some data.</p>
+<pre class="r"><code># install.packages(&quot;Lahman&quot;)
+
+library(tidyverse)</code></pre>
 <pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.3.2</code></pre>
 <pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.3.2</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -959,7 +884,8 @@
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>library(ggformula)</code></pre>
+<pre class="r"><code>library(Lahman)
+library(ggformula)</code></pre>
 <pre><code>## Loading required package: scales
 ## 
 ## Attaching package: &#39;scales&#39;
@@ -978,275 +904,352 @@
 ## New to ggformula?  Try the tutorials: 
 ## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
 ## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre class="r"><code>library(mosaic)</code></pre>
-<pre><code>## Warning: package &#39;mosaic&#39; was built under R version 4.3.2</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2
-## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Attaching package: &#39;mosaic&#39;
-## 
-## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean
-## 
-## The following object is masked from &#39;package:scales&#39;:
-## 
-##     rescale
-## 
-## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally
-## 
-## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross
-## 
-## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat
-## 
-## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
 <pre class="r"><code>theme_set(theme_bw(base_size = 18))
 
-airquality &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/iowa_air_quality_2021.csv&quot;)</code></pre>
-<pre><code>## Rows: 6917 Columns: 10
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr (5): date, site_name, aqs_parameter_desc, cbsa_name, county
-## dbl (5): id, poc, pm2.5, daily_aqi, cbsa_code
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>wind &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/lebebr01/psqf_6243/main/data/daily_WIND_2021-iowa.csv&quot;)</code></pre>
-<pre><code>## Rows: 1537 Columns: 5
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr (2): date, cbsa_name
-## dbl (3): avg_wind, max_wind, max_wind_hours
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>airquality &lt;- airquality %&gt;%
-   left_join(wind, by = c(&#39;cbsa_name&#39;, &#39;date&#39;)) %&gt;% 
-   drop_na()</code></pre>
-<pre><code>## Warning in left_join(., wind, by = c(&quot;cbsa_name&quot;, &quot;date&quot;)): Detected an unexpected many-to-many relationship between `x` and `y`.
-## ℹ Row 21 of `x` matches multiple rows in `y`.
-## ℹ Row 1 of `y` matches multiple rows in `x`.
-## ℹ If a many-to-many relationship is expected, set `relationship =
-##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
-<pre class="r"><code>head(airquality)</code></pre>
-<pre><code>## # A tibble: 6 × 13
-##   date           id   poc pm2.5 daily_aqi site_name aqs_parameter_desc cbsa_code
-##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
-## 1 1/1/21  190130009     1  15.1        57 Water To… PM2.5 - Local Con…     47940
-## 2 1/4/21  190130009     1  13.3        54 Water To… PM2.5 - Local Con…     47940
-## 3 1/7/21  190130009     1  20.5        69 Water To… PM2.5 - Local Con…     47940
-## 4 1/10/21 190130009     1  14.3        56 Water To… PM2.5 - Local Con…     47940
-## 5 1/13/21 190130009     1  13.7        54 Water To… PM2.5 - Local Con…     47940
-## 6 1/16/21 190130009     1   5.3        22 Water To… PM2.5 - Local Con…     47940
-## # ℹ 5 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
-## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;</code></pre>
-<pre class="r"><code>dim(airquality)</code></pre>
-<pre><code>## [1] 4821   13</code></pre>
-<pre class="r"><code>gf_density(~ daily_aqi, data = airquality)</code></pre>
-<p><img src="/lectures/03-regression-estimates-class_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>gf_point(daily_aqi ~ avg_wind, data = airquality, size = 4, alpha = .15) %&gt;%
-  gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
-          y = &quot;Daily Air Quality&quot;) %&gt;%
-  gf_smooth() %&gt;%
-  gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;, linetype = 2)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
-<p><img src="/lectures/03-regression-estimates-class_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>cor(daily_aqi ~ avg_wind, data = airquality) |&gt; round(3)</code></pre>
-<pre><code>## [1] -0.292</code></pre>
-<pre class="r"><code>air_lm &lt;- lm(daily_aqi ~ avg_wind, data = airquality)
-coef(air_lm) |&gt; round(3)</code></pre>
-<pre><code>## (Intercept)    avg_wind 
-##      48.223      -2.212</code></pre>
-<pre class="r"><code>summary(air_lm)$r.square |&gt; round(3)</code></pre>
-<pre><code>## [1] 0.085</code></pre>
-<pre class="r"><code>summary(air_lm)$sigma |&gt; round(3)</code></pre>
-<pre><code>## [1] 18.055</code></pre>
-<div id="interpreting-these-estimates" class="section level3">
-<h3>Interpreting these estimates</h3>
-<p>What do these parameter estimates mean in this context?</p>
-<p><strong>Intercept:</strong> This is the model implied ______ when the ________ equals 0.<br />
-<strong>Slope:</strong> For each 1 unit change in ____ there is a -2.2 unit decrease in <strong><em>.<br />
-<strong>R-Square:</strong> The </em></strong>__ in ____ is explained by ____.<br />
-<strong>Sigma:</strong> The _____ distance each point is from ____.</p>
+career &lt;- Batting |&gt;
+  filter(AB &gt; 100) |&gt;
+  anti_join(Pitching, by = &quot;playerID&quot;) |&gt;
+  filter(yearID &gt; 1990) |&gt;
+  group_by(playerID, lgID) |&gt;
+  summarise(H = sum(H), AB = sum(AB)) |&gt;
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- People |&gt;
+  tbl_df() |&gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&gt;
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) |&gt;
+  inner_join(career, by = &quot;playerID&quot;) |&gt;
+  dplyr::select(-playerID)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 5
+##   name               lgID      H    AB average
+##   &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1 Jeff Abbott        AL      127   459   0.277
+## 2 Kurt Abbott        AL       33   123   0.268
+## 3 Kurt Abbott        NL      455  1780   0.256
+## 4 Reggie Abercrombie NL       54   255   0.212
+## 5 Brent Abernathy    AL      194   767   0.253
+## 6 Shawn Abner        AL       81   309   0.262</code></pre>
+<div id="question" class="section level2">
+<h2>Question</h2>
+<p>Suppose we are interested in the batting average of baseball players since 1990, that is, the average is:</p>
+<p><span class="math display">\[
+average = \frac{number\ of\ hits}{number\ of\ atbats}
+\]</span></p>
+<p>Let’s first visualize this.</p>
+<pre class="r"><code>gf_density(~ average, data = career) |&gt;
+  gf_labs(x = &quot;Batting Average&quot;)</code></pre>
+<p><img src="/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>What if we hypothesized that the batting average will differ based on the league that players played in.</p>
+<pre class="r"><code>gf_violin(lgID ~ average, data = career, fill = &#39;gray80&#39;, draw_quantiles = c(&#39;0.1&#39;, &#39;0.5&#39;, &#39;0.9&#39;)) |&gt;
+  gf_labs(x = &quot;Batting Average&quot;,
+          y = &quot;League&quot;)</code></pre>
+<p><img src="/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>The distributions seem similar, but what if we wanted to go a step further and estimate a model to explore if there are really differences or not. For example, suppose we were interested in:</p>
+<p><span class="math display">\[
+H_{0}: \mu_{NL} = \mu_{AL}
+\]</span></p>
+<p>What type of model could we use? What about linear regression?</p>
 </div>
-</div>
-<div id="centering-predictors" class="section level2">
-<h2>Centering predictors</h2>
-<p>There are times when centering of predictors can be helpful for interpretation of the model parameters. This can be helpful when 0 is not a practically useful characteristic of the attribute or for more specific tests of certain elements of the X attribute.</p>
-<div id="mean-centering" class="section level3">
-<h3>Mean Centering</h3>
-<p>Mean centering is where the mean of the attribute is subtracted from each value. This is a linear transformation where each data point is subtracted by a constant, the mean. This means that the distance between points do not change.</p>
-<pre class="r"><code>airquality &lt;- airquality %&gt;%
-  mutate(avg_wind_mc = avg_wind - mean(avg_wind),
-         avg_wind_maxc = avg_wind - max(avg_wind),
-         avg_wind_10 = avg_wind - 10)
+<div id="linear-regression-with-categorical-attributes" class="section level2">
+<h2>Linear Regression with Categorical Attributes</h2>
+<p>Since these notes are happening, you can assume it is possible. But how can a categorical attribute with categories rather than numbers be included in the linear regression model?</p>
+<p>The answer is that they can’t. We need a new representation of the categorical attribute, enter dummy or indicator coding.</p>
+<div id="dummyindicator-coding" class="section level3">
+<h3>Dummy/Indicator Coding</h3>
+<p>Suppose we use the following logic:</p>
+<p>If NL, then give a value of 1, else give a value of 0.</p>
+<p>Does this give the same information as before?</p>
+<table>
+<thead>
+<tr class="header">
+<th>League ID</th>
+<th>Dummy League ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AL</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>NL</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>What would this look like for the actual data?</p>
+<pre class="r"><code>career &lt;- career |&gt;
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
 
-gf_point(daily_aqi ~ avg_wind_mc, data = airquality, size = 4, alpha = .15) %&gt;%
-  gf_labs(x = &quot;Average daily wind speed (in knots)&quot;,
-          y = &quot;Daily Air Quality&quot;) %&gt;%
-  gf_smooth() %&gt;%
-  gf_smooth(method = &#39;lm&#39;, color = &#39;lightblue&#39;, linetype = 2)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
-<p><img src="/lectures/03-regression-estimates-class_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>air_lm_mc &lt;- lm(daily_aqi ~ avg_wind_mc, data = airquality)
-coef(air_lm_mc)</code></pre>
-<pre><code>## (Intercept) avg_wind_mc 
-##   38.788011   -2.211798</code></pre>
-<pre class="r"><code>summary(air_lm_mc)$r.square</code></pre>
-<pre><code>## [1] 0.08528019</code></pre>
-<pre class="r"><code>summary(air_lm_mc)$sigma</code></pre>
-<pre><code>## [1] 18.05479</code></pre>
-<pre class="r"><code>air_lm_maxc &lt;- lm(daily_aqi ~ avg_wind_maxc, data = airquality)
-coef(air_lm_maxc)</code></pre>
-<pre><code>##   (Intercept) avg_wind_maxc 
-##      5.968391     -2.211798</code></pre>
-<pre class="r"><code>summary(air_lm_maxc)$r.square</code></pre>
-<pre><code>## [1] 0.08528019</code></pre>
-<pre class="r"><code>summary(air_lm_maxc)$sigma</code></pre>
-<pre><code>## [1] 18.05479</code></pre>
-<pre class="r"><code>air_lm_10 &lt;- lm(daily_aqi ~ avg_wind_10, data = airquality)
-coef(air_lm_10)</code></pre>
-<pre><code>## (Intercept) avg_wind_10 
-##   26.104968   -2.211798</code></pre>
-<pre class="r"><code>summary(air_lm_10)$r.square</code></pre>
-<pre><code>## [1] 0.08528019</code></pre>
-<pre class="r"><code>summary(air_lm_10)$sigma</code></pre>
-<pre><code>## [1] 18.05479</code></pre>
-</div>
-</div>
-<div id="standardized-regression" class="section level2">
-<h2>Standardized Regression</h2>
-<p>Another type of regression that can be done is one in which the attributes are standardized prior to estimating the linear regression. What is meant by standardizing? This is converting the attributes into z-scores:</p>
-<p><span class="math display">\[
-Z_{api} = \frac{(aqi - \bar{aqi})}{s_{aqi}}
-\]</span></p>
-<pre class="r"><code>airquality &lt;- airquality %&gt;%
-  mutate(z_aqi = scale(daily_aqi),
-         z_aqi2 = (daily_aqi - mean(daily_aqi)) / sd(daily_aqi),
-         z_wind = scale(avg_wind))
+head(career, n = 10)</code></pre>
+<pre><code>## # A tibble: 10 × 6
+##    name               lgID      H    AB average league_dummy
+##    &lt;chr&gt;              &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Jeff Abbott        AL      127   459   0.277            0
+##  2 Kurt Abbott        AL       33   123   0.268            0
+##  3 Kurt Abbott        NL      455  1780   0.256            1
+##  4 Reggie Abercrombie NL       54   255   0.212            1
+##  5 Brent Abernathy    AL      194   767   0.253            0
+##  6 Shawn Abner        AL       81   309   0.262            0
+##  7 Shawn Abner        NL       19   115   0.165            1
+##  8 CJ Abrams          NL       70   284   0.246            1
+##  9 Bobby Abreu        AL      858  3061   0.280            0
+## 10 Bobby Abreu        NL     1602  5373   0.298            1</code></pre>
+<p>Now that there is a numeric attribute, these can be added into the linear regression model.</p>
+<pre class="r"><code>average_lm &lt;- lm(average ~ league_dummy, data = career)
 
-head(airquality)</code></pre>
-<pre><code>## # A tibble: 6 × 19
-##   date           id   poc pm2.5 daily_aqi site_name aqs_parameter_desc cbsa_code
-##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
-## 1 1/1/21  190130009     1  15.1        57 Water To… PM2.5 - Local Con…     47940
-## 2 1/4/21  190130009     1  13.3        54 Water To… PM2.5 - Local Con…     47940
-## 3 1/7/21  190130009     1  20.5        69 Water To… PM2.5 - Local Con…     47940
-## 4 1/10/21 190130009     1  14.3        56 Water To… PM2.5 - Local Con…     47940
-## 5 1/13/21 190130009     1  13.7        54 Water To… PM2.5 - Local Con…     47940
-## 6 1/16/21 190130009     1   5.3        22 Water To… PM2.5 - Local Con…     47940
-## # ℹ 11 more variables: cbsa_name &lt;chr&gt;, county &lt;chr&gt;, avg_wind &lt;dbl&gt;,
-## #   max_wind &lt;dbl&gt;, max_wind_hours &lt;dbl&gt;, avg_wind_mc &lt;dbl&gt;,
-## #   avg_wind_maxc &lt;dbl&gt;, avg_wind_10 &lt;dbl&gt;, z_aqi &lt;dbl[,1]&gt;, z_aqi2 &lt;dbl&gt;,
-## #   z_wind &lt;dbl[,1]&gt;</code></pre>
-<pre class="r"><code>air_lm_s &lt;- lm(z_aqi ~ z_wind, data = airquality)
-coef(air_lm_s)</code></pre>
-<pre><code>##   (Intercept)        z_wind 
-## -6.712023e-16 -2.920277e-01</code></pre>
-<pre class="r"><code>summary(air_lm_s)$r.square</code></pre>
-<pre><code>## [1] 0.08528019</code></pre>
-<pre class="r"><code>summary(air_lm_s)$sigma</code></pre>
-<pre><code>## [1] 0.9565091</code></pre>
-<p>We can also use this formula to convert any unstandardized regression coefficients into a standardized metric.</p>
-<p><span class="math display">\[
-b^{&#39;}_{k} = b_{k} * \frac{s_{x_{k}}}{s_{y}}
-\]</span></p>
-<pre class="r"><code>-2.211 * sd(airquality$avg_wind) / sd(airquality$daily_aqi)</code></pre>
-<pre><code>## [1] -0.2919224</code></pre>
-<pre class="r"><code>cor(daily_aqi ~ avg_wind, data = airquality)</code></pre>
-<pre><code>## [1] -0.2920277</code></pre>
+broom::tidy(average_lm)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)  0.252     0.000758   333.      0    
+## 2 league_dummy 0.000558  0.00107      0.522   0.602</code></pre>
+<p>How are these terms interpreted now?</p>
+<pre class="r"><code>df_stats(average ~ league_dummy, data = career, mean, sd, length)</code></pre>
+<pre><code>##   response league_dummy      mean         sd length
+## 1  average            0 0.2518959 0.02895094   1461
+## 2  average            1 0.2524535 0.02896021   1477</code></pre>
+<pre class="r"><code>average_lm2 &lt;- lm(average ~ lgID, data = career)
+
+broom::tidy(average_lm2)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept) 0.252     0.000758   333.      0    
+## 2 lgIDNL      0.000558  0.00107      0.522   0.602</code></pre>
+<pre class="r"><code>t.test(average ~ lgID, data = career, var.equal = TRUE)</code></pre>
+<pre><code>## 
+## 	Two Sample t-test
+## 
+## data:  average by lgID
+## t = -0.52189, df = 2936, p-value = 0.6018
+## alternative hypothesis: true difference in means between group AL and group NL is not equal to 0
+## 95 percent confidence interval:
+##  -0.002652537  0.001537330
+## sample estimates:
+## mean in group AL mean in group NL 
+##        0.2518959        0.2524535</code></pre>
 </div>
-<div id="parameter-estimation" class="section level2">
-<h2>Parameter Estimation</h2>
-<p>Now that we looked how the parameters are impacted by some changes in the model specification, how are these parameters actually estimated? I will show two ways, one is general, the other is specific to this simple case with a single predictor/covariate attribute. In general, linear regression (or more generally the general linear model) uses least square estimation. This means that the the parameters in the model minimize the squared distance between the observed and predicted values. That is, least squares estimates minimize this criterion:</p>
-<p><span class="math display">\[
-\sum (Y - \hat{Y})^2
-\]</span></p>
-<div id="specific-example" class="section level3">
-<h3>Specific example</h3>
-<p>Calculus can be used to show that these two equations can be solved simultanuously to get estimates for <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> that minimize the criterion above. These formulas are:</p>
-<p><span class="math display">\[
-b_{1} = \frac{\sum(X - \bar{X})(Y - \bar{Y})}{\sum(X - \bar{X})^2}
-\]</span>
-<span class="math display">\[
-b_{0} = \bar{Y} - b_{1}\bar{X}
-\]</span></p>
-<p>Let’s use R to get these quantities.</p>
-<pre class="r"><code>b1 &lt;- with(airquality, 
-      sum((avg_wind - mean(avg_wind)) * (daily_aqi - mean(daily_aqi))) / sum((avg_wind - mean(avg_wind))^2)
-)
-b0 &lt;- with(airquality, 
-      mean(daily_aqi) - b1 * mean(avg_wind)
-)
-b0</code></pre>
-<pre><code>## [1] 48.22295</code></pre>
-<pre class="r"><code>b1</code></pre>
-<pre><code>## [1] -2.211798</code></pre>
-<pre class="r"><code>coef(air_lm)</code></pre>
-<pre><code>## (Intercept)    avg_wind 
-##   48.222946   -2.211798</code></pre>
 </div>
-<div id="general-approach" class="section level3">
-<h3>General Approach</h3>
-<p>When there are more than one predictor, the number of equations gets a bit unyieldy, therefore, there is a general analytic approach that works for any set of predictor attributes. The general approach uses matrix algebra (anyone take linear algebra?), to achieve their estimates. This general form is:</p>
+<div id="values-other-than-01" class="section level2">
+<h2>Values other than 0/1</h2>
+<p>First, I want to build off of the first part of the notes on regression with categorical predictors. Before generalizing to more than two groups, let’s first explore what happens when values other than 0/1 are used for the categorical attribute. The following three dummy/indicator attributes will be used:</p>
+<ol style="list-style-type: decimal">
+<li>1 = NL, 0 = AL</li>
+<li>1 = NL, 2 = AL</li>
+<li>100 = NL, 0 = AL</li>
+</ol>
+<p>Make some predictions about what you think will happen in the three separate regressions?</p>
+<pre class="r"><code>library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &lt;- Batting |&gt;
+  filter(AB &gt; 100) |&gt;
+  anti_join(Pitching, by = &quot;playerID&quot;) |&gt;
+  filter(yearID &gt; 1990) |&gt;
+  group_by(playerID, lgID) |&gt;
+  summarise(H = sum(H), AB = sum(AB)) |&gt;
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- People |&gt;
+  tbl_df() |&gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&gt;
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) |&gt;
+  inner_join(career, by = &quot;playerID&quot;) |&gt;
+  dplyr::select(-playerID)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>career &lt;- career |&gt;
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0),
+         league_dummy_12 = ifelse(lgID == &#39;NL&#39;, 1, 2),
+         league_dummy_100 = ifelse(lgID == &#39;NL&#39;, 100, 0))
+
+head(career, n = 10)</code></pre>
+<pre><code>## # A tibble: 10 × 8
+##    name  lgID      H    AB average league_dummy league_dummy_12 league_dummy_100
+##    &lt;chr&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Jeff… AL      127   459   0.277            0               2                0
+##  2 Kurt… AL       33   123   0.268            0               2                0
+##  3 Kurt… NL      455  1780   0.256            1               1              100
+##  4 Regg… NL       54   255   0.212            1               1              100
+##  5 Bren… AL      194   767   0.253            0               2                0
+##  6 Shaw… AL       81   309   0.262            0               2                0
+##  7 Shaw… NL       19   115   0.165            1               1              100
+##  8 CJ A… NL       70   284   0.246            1               1              100
+##  9 Bobb… AL      858  3061   0.280            0               2                0
+## 10 Bobb… NL     1602  5373   0.298            1               1              100</code></pre>
+<pre class="r"><code>average_lm &lt;- lm(average ~ league_dummy, data = career)
+
+broom::tidy(average_lm)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term         estimate std.error statistic p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)  0.252     0.000758   333.      0    
+## 2 league_dummy 0.000558  0.00107      0.522   0.602</code></pre>
+<pre class="r"><code>average_lm_12 &lt;- lm(average ~ league_dummy_12, data = career)
+
+broom::tidy(average_lm_12)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term             estimate std.error statistic p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)      0.253      0.00169   150.      0    
+## 2 league_dummy_12 -0.000558   0.00107    -0.522   0.602</code></pre>
+<pre class="r"><code>average_lm_100 &lt;- lm(average ~ league_dummy_100, data = career)
+
+broom::tidy(average_lm_100)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term               estimate std.error statistic p.value
+##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)      0.252      0.000758    333.      0    
+## 2 league_dummy_100 0.00000558 0.0000107     0.522   0.602</code></pre>
+<p>Before moving to more than 2 groups, any thoughts on how we could run a one-sample t-test using a linear regression? For example, suppose this null hypothesis wanted to be explored.</p>
 <p><span class="math display">\[
-\mathbf{b} = \left( \mathbf{X}^{`}\mathbf{X} \right)^{-1} \left( \mathbf{X}^{`} \mathbf{Y} \right).
-\]</span>
-Where <span class="math inline">\(\mathbf{b}\)</span> is a vector of estimated regression coefficients, <span class="math inline">\(\mathbf{X}\)</span> is a matrix of covariate/predictor attributes (called the design matrix), and <span class="math inline">\(\mathbf{Y}\)</span> is a vector of the outcome attribute.</p>
-<p>Below, I show what these would look like for the air quality example that has been used and solve for the regression coefficients.</p>
-<pre class="r"><code>X &lt;- model.matrix(air_lm)
-head(X)</code></pre>
-<pre><code>##   (Intercept) avg_wind
-## 1           1 2.941667
-## 2           1 2.445833
-## 3           1 1.995833
-## 4           1 3.445833
-## 5           1 1.116667
-## 6           1 6.091667</code></pre>
-<pre class="r"><code>Y &lt;- as.matrix(airquality$daily_aqi)
-head(Y)</code></pre>
-<pre><code>##      [,1]
-## [1,]   57
-## [2,]   54
-## [3,]   69
-## [4,]   56
-## [5,]   54
-## [6,]   22</code></pre>
-<pre class="r"><code>X_X &lt;- solve(t(X) %*% X)
-X_X</code></pre>
-<pre><code>##               (Intercept)      avg_wind
-## (Intercept)  0.0008152474 -1.424894e-04
-## avg_wind    -0.0001424894  3.340328e-05</code></pre>
-<pre class="r"><code>X_Y &lt;- t(X) %*% Y
-X_Y</code></pre>
-<pre><code>##               [,1]
-## (Intercept) 186997
-## avg_wind    731464</code></pre>
-<pre class="r"><code>X_X %*% X_Y</code></pre>
-<pre><code>##                  [,1]
-## (Intercept) 48.222946
-## avg_wind    -2.211798</code></pre>
-<pre class="r"><code>coef(air_lm)</code></pre>
-<pre><code>## (Intercept)    avg_wind 
-##   48.222946   -2.211798</code></pre>
+H_{0}: \mu_{BA} = .2
+\]</span></p>
+<p><span class="math display">\[
+H_{A}: \mu_{BA} \neq .2
+\]</span></p>
 </div>
+<div id="generalize-to-more-than-2-groups" class="section level2">
+<h2>Generalize to more than 2 groups</h2>
+<p>The ability to use regression with categorical attributes of more than 2 groups is possible and an extension of the 2 groups model shown above. First, let’s think about how we could represent three categories as numeric attributes. Suppose we had the following 4 categories of baseball players.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Position</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Outfield</td>
+</tr>
+<tr class="even">
+<td align="left">Infield</td>
+</tr>
+<tr class="odd">
+<td align="left">Catcher</td>
+</tr>
+<tr class="even">
+<td align="left">Designated Hitter</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># remotes::install_github(&quot;bdilday/GeomMLBStadiums&quot;)
+
+library(GeomMLBStadiums)
+
+ggplot() + 
+   geom_mlb_stadium(stadium_ids = &quot;twins&quot;, 
+                   stadium_segments = &quot;all&quot;) + 
+  facet_wrap(~team) + 
+  coord_fixed() + 
+  theme_void()</code></pre>
+<p><img src="/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>library(tidyverse)
+library(Lahman)
+library(ggformula)
+
+theme_set(theme_bw(base_size = 18))
+
+career &lt;- Batting |&gt;
+  filter(AB &gt; 100) |&gt;
+  anti_join(Pitching, by = &quot;playerID&quot;) |&gt;
+  filter(yearID &gt; 1990) |&gt;
+  group_by(playerID, lgID) |&gt;
+  summarise(H = sum(H), AB = sum(AB)) |&gt;
+  mutate(average = H / AB)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>career &lt;- Appearances |&gt;
+  filter(yearID &gt; 1990) |&gt;
+  select(-GS, -G_ph, -G_pr, -G_batting, -G_defense, -G_p, -G_lf, -G_cf, -G_rf) |&gt;
+  rowwise() |&gt;
+  mutate(g_inf = sum(c_across(G_1b:G_ss))) |&gt;
+  select(-G_1b, -G_2b, -G_3b, -G_ss) |&gt;
+  group_by(playerID, lgID) |&gt;
+  summarise(catcher = sum(G_c),
+            outfield = sum(G_of),
+            dh = sum(G_dh),
+            infield = sum(g_inf),
+            total_games = sum(G_all)) |&gt;
+  pivot_longer(catcher:infield,
+               names_to = &quot;position&quot;) |&gt;
+  filter(value &gt; 0) |&gt;
+  group_by(playerID, lgID) |&gt;
+  slice_max(value) |&gt;
+  select(playerID, lgID, position) |&gt;
+  inner_join(career)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;playerID&#39;. You can override using the
+## `.groups` argument.
+## Joining with `by = join_by(playerID, lgID)`</code></pre>
+<pre class="r"><code>career &lt;- People |&gt;
+  tbl_df() |&gt;
+  dplyr::select(playerID, nameFirst, nameLast) |&gt;
+  unite(name, nameFirst, nameLast, sep = &quot; &quot;) |&gt;
+  inner_join(career, by = &quot;playerID&quot;)</code></pre>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>career &lt;- career |&gt;
+  mutate(league_dummy = ifelse(lgID == &#39;NL&#39;, 1, 0))
+
+count(career, position)</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   position     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 catcher    415
+## 2 dh          83
+## 3 infield   1279
+## 4 outfield  1165</code></pre>
+<pre class="r"><code>gf_violin(position ~ average, data = career, fill = &#39;gray85&#39;, draw_quantiles = c(0.1, 0.5, 0.9)) |&gt;
+  gf_labs(x = &quot;Batting Average&quot;,
+          y = &quot;&quot;)</code></pre>
+<p><img src="/lectures/09-regression-categorical_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>career &lt;- career |&gt;
+  mutate(outfield = ifelse(position == &#39;outfield&#39;, 1, 0),
+         infield = ifelse(position == &#39;infield&#39;, 1, 0),
+         catcher = ifelse(position == &#39;catcher&#39;, 1, 0))
+
+head(career)</code></pre>
+<pre><code>## # A tibble: 6 × 11
+##   playerID  name        lgID  position     H    AB average league_dummy outfield
+##   &lt;chr&gt;     &lt;chr&gt;       &lt;fct&gt; &lt;chr&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+## 1 abbotje01 Jeff Abbott AL    outfield   127   459   0.277            0        1
+## 2 abbotku01 Kurt Abbott AL    infield     33   123   0.268            0        0
+## 3 abbotku01 Kurt Abbott NL    infield    455  1780   0.256            1        0
+## 4 abercre01 Reggie Abe… NL    outfield    54   255   0.212            1        1
+## 5 abernbr01 Brent Aber… AL    infield    194   767   0.253            0        0
+## 6 abnersh01 Shawn Abner AL    outfield    81   309   0.262            0        1
+## # ℹ 2 more variables: infield &lt;dbl&gt;, catcher &lt;dbl&gt;</code></pre>
+<pre class="r"><code>position_lm &lt;- lm(average ~ 1 + outfield + infield + catcher, data = career)
+
+broom::tidy(position_lm)</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   term         estimate std.error statistic   p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)  0.255      0.00314    81.3   0        
+## 2 outfield    -0.000610   0.00325    -0.188 0.851    
+## 3 infield     -0.00218    0.00324    -0.672 0.501    
+## 4 catcher     -0.0144     0.00344    -4.19  0.0000288</code></pre>
+<pre class="r"><code>df_stats(average ~ position, data = career, mean)</code></pre>
+<pre><code>##   response position      mean
+## 1  average  catcher 0.2409461
+## 2  average       dh 0.2553577
+## 3  average  infield 0.2531783
+## 4  average outfield 0.2547475</code></pre>
 </div>
 </div>
 
@@ -1266,14 +1269,14 @@ X_Y</code></pre>
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/lectures/03-regression-estimates/" rel="next">Regression Estimates</a>
+    <a href="/lectures/08-multiple-regression/" rel="next">Multiple Regression</a>
   </div>
   
   
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/lectures/04-least-squares-simulation/" rel="prev">Least Squares Simulation</a>
+    <a href="/lectures/10-pairwise/" rel="prev">Pairwise Contrasts</a>
   </div>
   
 </div>
@@ -1283,7 +1286,7 @@ X_Y</code></pre>
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Feb 8, 2024</p>
+          <p>Last updated on Mar 26, 2024</p>
 
           
 
